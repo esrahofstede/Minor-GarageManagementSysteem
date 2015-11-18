@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Minor"
+    targetNamespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema"
+    xmlns:bsvk="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema"
+    elementFormDefault="qualified"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:complexType name="KlantenSearchCriteria">
+    <xs:sequence>
+      <xs:element name="klantnummer" type="xs:string" minOccurs="0" />
+      <xs:element name="minLeeftijd" type="xs:int" minOccurs="0" />
+      <xs:element name="maxLeeftijd" type="xs:int" minOccurs="0" />
+      <xs:element name="woonplaats" type="xs:string" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="Klant" type="bsvk:Klant"/>
+  
+  <xs:complexType name="Klant">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" />
+      <xs:element name="klantnummer" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Persoon">
+    <xs:complexContent>
+      <xs:extension base="bsvk:Klant">
+        <xs:sequence>
+          <xs:element name="voornaam" type="xs:string" />
+          <xs:element name="tussenvoegsel" type="xs:string" />
+          <xs:element name="achternaam" type="xs:string" />
+          <xs:element name="adres" type="xs:string" />
+          <xs:element name="postcode" type="xs:string" />
+          <xs:element name="woonplaats" type="xs:string" />
+          <xs:element name="telefoonnummer" type="xs:string" />
+          <xs:element name="emailadres" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Leasemaatschappij">
+    <xs:complexContent>
+      <xs:extension base="bsvk:Klant">
+        <xs:sequence>
+          <xs:element name="naam" type="xs:string" />
+          <xs:element name="adres" type="xs:date" />
+          <xs:element name="postcode" type="xs:string" />
+          <xs:element name="woonplaats" type="xs:string" />
+          <xs:element name="telefoonnummer" type="xs:string" />
+          <xs:element name="emailadres" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Voertuig">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" />
+      <xs:element name="kenteken" type="xs:string" />
+      <xs:element name="merk" type="xs:string" />
+      <xs:element name="type" type="xs:string" />
+      <xs:element name="eigenaar" type="bsvk:Klant" />
+      <xs:element name="bestuurder" type="bsvk:Persoon" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="OnderhoudsOpdracht">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" />
+      <xs:element name="aanmeldingsdatum" type="xs:dateTime" />
+      <xs:element name="kilometerstand" type="xs:string" />
+      <xs:element name="onderhoudsomschrijving" type="xs:string" />
+      <xs:element name="voertuig" type="bsvk:Voertuig" />
+      <xs:element name="apk" type="xs:boolean" />
+      <xs:element name="onderhoudswerkzaamheden" type="bsvk:OnderhoudsWerkzaamheden" nillable="true" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="OnderhoudsWerkzaamheden">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" />
+      <xs:element name="afmeldingsdatum" type="xs:dateTime" />
+      <xs:element name="kilometerstand" type="xs:string" />
+      <xs:element name="onderhoudswerkzaamhedenomschrijving" type="xs:string" />
+      
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
