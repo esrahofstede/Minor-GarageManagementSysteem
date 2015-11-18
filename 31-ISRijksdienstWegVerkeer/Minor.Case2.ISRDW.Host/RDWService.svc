@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Minor.Case2.ISRDW.Implementation.ISRDWServiceHandler" %>
