@@ -20,6 +20,7 @@
     <CasingExceptions>
       <Acronym>ISRDW</Acronym>
       <Acronym>IRDWService</Acronym>
+      <Acronym>RDW</Acronym>
     </CasingExceptions>
   </Acronyms>
 </Dictionary>

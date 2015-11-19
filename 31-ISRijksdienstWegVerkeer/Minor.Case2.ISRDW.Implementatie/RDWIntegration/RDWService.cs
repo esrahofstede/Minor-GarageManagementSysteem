@@ -6,8 +6,16 @@ using System.Text;
 
 namespace Minor.Case2.ISRDW.Implementation.RDWIntegration
 {
+    /// <summary>
+    /// Connection to RDW API
+    /// </summary>
     public class RDWService : IRDWService
     {
+        /// <summary>
+        /// Submits the APK verzoek to the RDW API
+        /// </summary>
+        /// <param name="message">XML requestmessage in format of RDW</param>
+        /// <returns>XML responsemessage</returns>
         public string SubmitAPKVerzoek(string message)
         {
             var section = ConfigurationManager.GetSection("rdwConfigurations/connection") as RDWConfigSection;

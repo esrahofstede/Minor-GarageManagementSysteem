@@ -17,8 +17,6 @@ namespace Minor.Case2.ISRDW.Implementation
         }
     }
 
-
-
     public class RdwElement : ConfigurationElement
     {
         [ConfigurationProperty("address")]
