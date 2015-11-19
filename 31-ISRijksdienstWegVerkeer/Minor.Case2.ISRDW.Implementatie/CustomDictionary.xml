@@ -1,10 +1,11 @@
 ﻿<Dictionary>
   <Words>
     <Unrecognized>
-      <Word>knokker</Word>
     </Unrecognized>
     <Recognized>
-      <Word></Word>
+      <Word>verzoek</Word>
+      <Word>rdw</Word>
+      <Word>keuringsverzoek</Word>
     </Recognized>
     <Deprecated>
       <Term PreferredAlternate=""></Term>
@@ -21,6 +22,8 @@
       <Acronym>ISRDW</Acronym>
       <Acronym>IRDWService</Acronym>
       <Acronym>RDW</Acronym>
+      <Acronym>XML</Acronym>
+      <Acronym>APK</Acronym>
     </CasingExceptions>
   </Acronyms>
 </Dictionary>

@@ -22,8 +22,8 @@ namespace Minor.Case2.ISRDW.Implementation
         /// <returns>Responsemessage of the APK verzoek</returns>
         public apkKeuringsverzoekResponseMessage SubmitAPKVerzoek(apkKeuringsverzoekRequestMessage message)
         {
-            var response = _rdwService.SubmitAPKVerzoek(Util.SerializeToXML(message));
-            return Util.DeserializeFromXML<apkKeuringsverzoekResponseMessage>(response);
+            var response = _rdwService.SubmitAPKVerzoek(Utility.SerializeToXML(message));
+            return Utility.DeserializeFromXML<apkKeuringsverzoekResponseMessage>(response);
         }
 
         public RDWAdapter()

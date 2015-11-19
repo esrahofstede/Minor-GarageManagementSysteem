@@ -18,6 +18,7 @@
   </Words>
   <Acronyms>
     <CasingExceptions>
+      <Acronym>DAL</Acronym>
       <Acronym>ISRDW</Acronym>
     </CasingExceptions>
   </Acronyms>

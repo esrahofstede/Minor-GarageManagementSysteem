@@ -17,7 +17,12 @@ namespace Minor.Case2.ISRDW.Implementation
         /// <returns>apkKeuringsverzoekRequestMessage object to send to the RDW service</returns>
         public static apkKeuringsverzoekRequestMessage MapToRDWRequestMessage(SendRdwKeuringsverzoekRequestMessage message)
         {
-            var keuringsverzoek = message.Keuringsverzoek;
+            if(message == null)
+            {
+                throw new ArgumentNullException(nameof(message), "The message that needs to be mapped, cannot be null");
+            }
+
+            var keuringsverzoek = message?.Keuringsverzoek;
 
             var apkKeuringsverzoek = new keuringsverzoek()
             {
@@ -48,10 +53,15 @@ namespace Minor.Case2.ISRDW.Implementation
         /// <summary>
         /// Map the ApkKeuringverzoek  object to the keuringverzoekRequest request
         /// </summary>
-        /// <param name="reponse">apkKeuringsverzoekRequestMessage object from the RDW service</param>
-        public static SendRdwKeuringsverzoekResponseMessage MapToResponseMessage(apkKeuringsverzoekResponseMessage reponse)
+        /// <param name="response">apkKeuringsverzoekRequestMessage object from the RDW service</param>
+        public static SendRdwKeuringsverzoekResponseMessage MapToResponseMessage(apkKeuringsverzoekResponseMessage response)
         {
-            var keuringsRegistratie = reponse.keuringsregistratie;
+            if (response == null)
+            {
+                throw new ArgumentNullException(nameof(response), "The message that needs to be mapped, cannot be null");
+            }
+
+            var keuringsRegistratie = response.keuringsregistratie;
 
             return new SendRdwKeuringsverzoekResponseMessage
             {

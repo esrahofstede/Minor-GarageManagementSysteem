@@ -23,7 +23,7 @@ namespace Minor.Case2.ISRDW.Implementation.RDWIntegration
         }
 
 
-        private string PostMessage(string url, string message)
+        private static string PostMessage(string url, string message)
         {
             byte[] bodyBytes = Encoding.UTF8.GetBytes(message);
             WebRequest request = HttpWebRequest.Create(url);

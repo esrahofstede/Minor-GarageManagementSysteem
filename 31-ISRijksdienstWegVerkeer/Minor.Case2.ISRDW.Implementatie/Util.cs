@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace Minor.Case2.ISRDW.Implementation
 {
-    public class Util
+    public static class Utility
     {
         /// <summary>
         /// Serialize object to a XML string
@@ -24,7 +25,7 @@ namespace Minor.Case2.ISRDW.Implementation
 
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
 
-            using (StringWriterUtf8 textWriter = new StringWriterUtf8())
+            using (StringWriterUtf8 textWriter = new StringWriterUtf8(new CultureInfo("en-US")))
             {
                 xmlSerializer.Serialize(textWriter, toSerialize);
                 return textWriter.ToString();
@@ -58,6 +59,7 @@ namespace Minor.Case2.ISRDW.Implementation
     /// </summary>
     class StringWriterUtf8 : System.IO.StringWriter
     {
+        public StringWriterUtf8(IFormatProvider formatProvider) : base(formatProvider){}
         public override Encoding Encoding
         {
             get

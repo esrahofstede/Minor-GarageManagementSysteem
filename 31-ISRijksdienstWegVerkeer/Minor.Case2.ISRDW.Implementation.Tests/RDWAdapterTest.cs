@@ -102,7 +102,7 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
             var message = DummyData.GetMessage();
 
             // Act
-            var result = Util.SerializeToXML(message);
+            var result = Utility.SerializeToXML(message);
 
             // Assert
             var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<apkKeuringsverzoekRequestMessage xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <keuringsverzoek correlatieId=\"0038c17b-aa10-4f93-8569-d184fdfc265b\" xmlns=\"http://www.rdw.nl\">\r\n    <voertuig>\r\n      <kenteken>BV-01-EG</kenteken>\r\n      <kilometerstand>12345</kilometerstand>\r\n      <naam>A. Eigenaar</naam>\r\n    </voertuig>\r\n    <keuringsdatum xmlns=\"http://www.rdw.nl/apk\">2008-11-19</keuringsdatum>\r\n    <keuringsinstantie type=\"garage\" kvk=\"3013 5370\" xmlns=\"http://www.rdw.nl/apk\">\r\n      <naam>Garage Voorbeeld B.V.</naam>\r\n      <plaats>Wijk bij Voorbeeld</plaats>\r\n    </keuringsinstantie>\r\n  </keuringsverzoek>\r\n</apkKeuringsverzoekRequestMessage>";
@@ -118,7 +118,7 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
             apkKeuringsverzoekRequestMessage message = null;
 
             // Act
-            var result = Util.SerializeToXML(message);
+            var result = Utility.SerializeToXML(message);
 
             // Assert ArgumentNullException
         }
@@ -130,7 +130,7 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
             var message = "<?xml version=\"1.0\" encoding=\"utf-8\"?><apkKeuringsverzoekResponseMessage xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><keuringsregistratie correlatieId=\"0038c17b-aa10-4f93-8569-d184fdfc265b\" xmlns=\"http://www.rdw.nl\" xmlns:apk=\"http://www.rdw.nl/apk\"><kenteken>BV-01-EG</kenteken><apk:keuringsdatum>2008-11-19</apk:keuringsdatum><apk:steekproef xsi:nil=\"true\"/></keuringsregistratie></apkKeuringsverzoekResponseMessage>";
 
             // Act
-            var result = Util.DeserializeFromXML<apkKeuringsverzoekResponseMessage>(message);
+            var result = Utility.DeserializeFromXML<apkKeuringsverzoekResponseMessage>(message);
 
             // Assert
             Assert.AreEqual("0038c17b-aa10-4f93-8569-d184fdfc265b", result.keuringsregistratie.correlatieId);
@@ -148,7 +148,7 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
             string message = string.Empty;
 
             // Act
-            var result = Util.DeserializeFromXML<apkKeuringsverzoekResponseMessage>(message);
+            var result = Utility.DeserializeFromXML<apkKeuringsverzoekResponseMessage>(message);
 
             // Assert ArgumentNullException
         }
