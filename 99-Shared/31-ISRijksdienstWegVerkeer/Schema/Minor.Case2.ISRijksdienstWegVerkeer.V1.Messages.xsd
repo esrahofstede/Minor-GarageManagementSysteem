@@ -2,21 +2,21 @@
 <xs:schema id="Minor"
     targetNamespace="urn:minor-case2-isrijksdienstwegverkeer:v1:messages"
     xmlns:msg="urn:minor-case2-isrijksdienstwegverkeer:v1:messages"
-    xmlns:bsvk="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema"
+    xmlns:kv="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema"
     xmlns:rdw="urn:minor-case2-isrijksdienstwegverkeer:v1:schema"
     elementFormDefault="qualified"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
 >
-  <xs:import namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema"
-             schemaLocation="../../BSVoertuigEnKlantbeheer/Schema/Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.xsd" />
   <xs:import namespace="urn:minor-case2-isrijksdienstwegverkeer:v1:schema"
              schemaLocation="Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema.xsd" />
+  <xs:import namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema"
+           schemaLocation="../../01-BSVoertuigEnKlantbeheer/Schema/Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.xsd" />
 
   <xs:element name="SendRdwKeuringsverzoekRequestMessage">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="Voertuig"
-                    type="bsvk:Voertuig"/>
+                    type="kv:Voertuig"/>
         <xs:element name="Garage" type="rdw:Garage"/>
         <xs:element name="Keuringsverzoek" type="rdw:Keuringsverzoek"/>
       </xs:sequence>
@@ -26,8 +26,8 @@
   <xs:element name="SendRdwKeuringsverzoekResponseMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="Voertuig"
-                    type="bsvk:Voertuig"/>
+        <xs:element name="Kenteken"
+                    type="xs:string"/>
         <xs:element name="Keuringsverzoek" type="rdw:Keuringsverzoek"/>
         <xs:element name="Steekproef" type="xs:boolean" />
       </xs:sequence>
