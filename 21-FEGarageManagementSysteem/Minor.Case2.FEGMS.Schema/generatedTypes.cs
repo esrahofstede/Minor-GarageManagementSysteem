@@ -911,7 +911,7 @@ namespace Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema
         
         private string TypeField;
         
-        private System.DateTime DateField;
+        private string DateField;
         
         private string CorrolatieIdField;
         
@@ -940,8 +940,8 @@ namespace Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
-        public System.DateTime Date
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=1)]
+        public string Date
         {
             get
             {

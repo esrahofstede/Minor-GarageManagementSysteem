@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ISRDWServiceHandler" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="urn:minor-case2-isrijksdienstwegverkeer:v1:messages" />
+      <xs:element name="RequestKeuringsverzoek">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q1="urn:minor-case2-isrijksdienstwegverkeer:v1:messages" minOccurs="0" name="message" nillable="true" type="q1:SendRdwKeuringsverzoekRequestMessage" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RequestKeuringsverzoekResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q2="urn:minor-case2-isrijksdienstwegverkeer:v1:messages" minOccurs="0" name="RequestKeuringsverzoekResult" nillable="true" type="q2:SendRdwKeuringsverzoekResponseMessage" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xs:schema xmlns:tns="urn:minor-case2-isrijksdienstwegverkeer:v1:messages" elementFormDefault="qualified" targetNamespace="urn:minor-case2-isrijksdienstwegverkeer:v1:messages" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" />
+      <xs:import namespace="urn:minor-case2-isrijksdienstwegverkeer:v1:schema" />
+      <xs:complexType name="SendRdwKeuringsverzoekRequestMessage">
+        <xs:sequence>
+          <xs:element xmlns:q1="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" name="Voertuig" nillable="true" type="q1:Voertuig">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element xmlns:q2="urn:minor-case2-isrijksdienstwegverkeer:v1:schema" name="Garage" nillable="true" type="q2:Garage">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element xmlns:q3="urn:minor-case2-isrijksdienstwegverkeer:v1:schema" name="Keuringsverzoek" nillable="true" type="q3:Keuringsverzoek">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SendRdwKeuringsverzoekRequestMessage" nillable="true" type="tns:SendRdwKeuringsverzoekRequestMessage" />
+      <xs:complexType name="SendRdwKeuringsverzoekResponseMessage">
+        <xs:sequence>
+          <xs:element name="Kenteken" nillable="true" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element xmlns:q4="urn:minor-case2-isrijksdienstwegverkeer:v1:schema" name="Keuringsverzoek" nillable="true" type="q4:Keuringsverzoek">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Steekproef" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SendRdwKeuringsverzoekResponseMessage" nillable="true" type="tns:SendRdwKeuringsverzoekResponseMessage" />
+    </xs:schema>
+    <xs:schema xmlns:tns="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" elementFormDefault="qualified" targetNamespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="Voertuig">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long" />
+          <xs:element name="kenteken" nillable="true" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="merk" nillable="true" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="type" nillable="true" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="eigenaar" nillable="true" type="tns:Klant">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="bestuurder" nillable="true" type="tns:Persoon">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Voertuig" nillable="true" type="tns:Voertuig" />
+      <xs:complexType name="Klant">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long" />
+          <xs:element name="klantnummer" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Klant" nillable="true" type="tns:Klant" />
+      <xs:complexType name="Persoon">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:Klant">
+            <xs:sequence>
+              <xs:element name="voornaam" nillable="true" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="tussenvoegsel" nillable="true" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="achternaam" nillable="true" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="adres" nillable="true" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="postcode" nillable="true" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="woonplaats" nillable="true" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="telefoonnummer" nillable="true" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="emailadres" nillable="true" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="Persoon" nillable="true" type="tns:Persoon" />
+      <xs:complexType name="Leasemaatschappij">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:Klant">
+            <xs:sequence>
+              <xs:element name="naam" nillable="true" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="adres" nillable="true" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="postcode" nillable="true" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="woonplaats" nillable="true" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="telefoonnummer" nillable="true" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="emailadres" nillable="true" type="xs:string">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="Leasemaatschappij" nillable="true" type="tns:Leasemaatschappij" />
+    </xs:schema>
+    <xs:schema xmlns:tns="urn:minor-case2-isrijksdienstwegverkeer:v1:schema" elementFormDefault="qualified" targetNamespace="urn:minor-case2-isrijksdienstwegverkeer:v1:schema" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="Garage">
+        <xs:sequence>
+          <xs:element name="Naam" nillable="true" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Plaats" nillable="true" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Kvk" nillable="true" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Garage" nillable="true" type="tns:Garage" />
+      <xs:complexType name="Keuringsverzoek">
+        <xs:sequence>
+          <xs:element name="Type" nillable="true" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Date" nillable="true" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CorrolatieId" nillable="true" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Keuringsverzoek" nillable="true" type="tns:Keuringsverzoek" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="IISRDWService_RequestKeuringsverzoek_InputMessage">
+    <wsdl:part name="parameters" element="tns:RequestKeuringsverzoek" />
+  </wsdl:message>
+  <wsdl:message name="IISRDWService_RequestKeuringsverzoek_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RequestKeuringsverzoekResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IISRDWService">
+    <wsdl:operation name="RequestKeuringsverzoek">
+      <wsdl:input wsaw:Action="http://tempuri.org/IISRDWService/RequestKeuringsverzoek" message="tns:IISRDWService_RequestKeuringsverzoek_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IISRDWService/RequestKeuringsverzoekResponse" message="tns:IISRDWService_RequestKeuringsverzoek_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IISRDWService" type="tns:IISRDWService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RequestKeuringsverzoek">
+      <soap:operation soapAction="http://tempuri.org/IISRDWService/RequestKeuringsverzoek" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ISRDWServiceHandler">
+    <wsdl:port name="BasicHttpBinding_IISRDWService" binding="tns:BasicHttpBinding_IISRDWService">
+      <soap:address location="http://localhost:49775/RDWService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

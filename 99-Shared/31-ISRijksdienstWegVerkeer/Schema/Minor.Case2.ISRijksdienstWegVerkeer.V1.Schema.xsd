@@ -8,17 +8,17 @@
 
   <xs:complexType name="Garage">
     <xs:sequence>
-      <xs:element name="naam" type="xs:string" />
-      <xs:element name="plaats" type="xs:string" />
-      <xs:element name="kvk" type="xs:string" />
+      <xs:element name="Naam" type="xs:string" />
+      <xs:element name="Plaats" type="xs:string" />
+      <xs:element name="Kvk" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   
   <xs:complexType name="Keuringsverzoek">
     <xs:sequence>
-      <xs:element name="type" type="xs:string" />
-      <xs:element name="date" type="xs:date" />
-      <xs:element name="corrolatieId" type="xs:string" />
+      <xs:element name="Type" type="xs:string" />
+      <xs:element name="Date" type="xs:dateTime" />
+      <xs:element name="CorrolatieId" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
 

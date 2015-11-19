@@ -70,6 +70,10 @@
       <Project>{ee2155d2-4752-493f-b525-d26d43ee9f0b}</Project>
       <Name>02 - Contract</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Minor.Case2.ISRDW.Schema\01 - Schema.csproj">
+      <Project>{a9c2f4a7-8696-4d6e-913f-e83fe87ccd8d}</Project>
+      <Name>01 - Schema</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />

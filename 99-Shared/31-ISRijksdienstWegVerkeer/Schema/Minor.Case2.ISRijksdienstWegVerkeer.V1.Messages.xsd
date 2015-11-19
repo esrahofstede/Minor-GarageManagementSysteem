@@ -26,8 +26,7 @@
   <xs:element name="SendRdwKeuringsverzoekResponseMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="Kenteken"
-                    type="xs:string"/>
+        <xs:element name="Kenteken" type="xs:string"/>
         <xs:element name="Keuringsverzoek" type="rdw:Keuringsverzoek"/>
         <xs:element name="Steekproef" type="xs:boolean" />
       </xs:sequence>
