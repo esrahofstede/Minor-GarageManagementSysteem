@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -9,8 +10,8 @@ namespace Minor.Case2.ISRDW.Implementation.RDWIntegration
     {
         public string SubmitAPKVerzoek(string message)
         {
-            string urlRDW = @"http://rdwserver:18423/rdw/APKKeuringsverzoek";
-            return PostMessage(urlRDW, message);
+            var section = ConfigurationManager.GetSection("rdwConfigurations/connection") as RDWConfigSection;
+            return PostMessage(section.RdwElement.Address, message);
         }
 
 
