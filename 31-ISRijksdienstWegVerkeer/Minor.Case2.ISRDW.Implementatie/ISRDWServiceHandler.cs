@@ -11,18 +11,31 @@ using Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema;
 namespace Minor.Case2.ISRDW.Implementation
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
+
     public class ISRDWServiceHandler : IISRDWService
     {
+        /// <summary>
+        /// Send an apk request to the RDW service 
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public SendRdwKeuringsverzoekResponseMessage RequestKeuringsverzoek(SendRdwKeuringsverzoekRequestMessage message)
         {
-            var keuringsverzoek = message.Keuringsverzoek;
-            //var keuringsverzoek = new Keuringsverzoek
-            //{
-            //    CorrolatieId = message.Keuringsverzoek.CorrolatieId,
-            //    Date = message.
-            //    Type = message.Keuringsverzoek.Type,
-            //};
+            var apkKeuringsverzoekRequestMessage = MapToRDWRequestMessage(message);
 
+            var apkKeuringsverzoekResponseMessage = new RDWAdapter().SubmitAPKVerzoek(apkKeuringsverzoekRequestMessage);
+
+            return MapToResponseMessage(apkKeuringsverzoekResponseMessage);
+        }
+
+        /// <summary>
+        /// Map the keuringverzoekRequest object to the ApkKeuringverzoek request
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns>apkKeuringsverzoekRequestMessage object to send to the RDW service</returns>
+        public apkKeuringsverzoekRequestMessage MapToRDWRequestMessage(SendRdwKeuringsverzoekRequestMessage message)
+        {
+            var keuringsverzoek = message.Keuringsverzoek;
 
             var apkKeuringsverzoek = new keuringsverzoek()
             {
@@ -33,24 +46,30 @@ namespace Minor.Case2.ISRDW.Implementation
                     kvk = message.Garage.Kvk,
                     naam = message.Garage.Naam,
                     plaats = message.Garage.Plaats,
-                    type = "garage",
+                    type = message.Garage.Type,
                 },
                 voertuig = new keuringsverzoekVoertuig
                 {
                     kenteken = message.Voertuig.kenteken,
                     kilometerstand = 0,
-                    naam = message.Voertuig.kenteken,
-                    type = Util.ParseEnum<voertuigtype>(keuringsverzoek.Type),  
+                    naam = message.Voertuig.bestuurder.achternaam,
+                    type = voertuigtype.personenauto,
                 }
             };
 
-            var apkKeuringsverzoekRequestMessage = new apkKeuringsverzoekRequestMessage
+            return new apkKeuringsverzoekRequestMessage
             {
-                keuringsverzoek = apkKeuringsverzoek, 
+                keuringsverzoek = apkKeuringsverzoek,
             };
+        }
 
-            var apkKeuringsverzoekResponseMessage = new RDWAdapter().SubmitAPKVerzoek(apkKeuringsverzoekRequestMessage);
-            var keuringsRegistratie = apkKeuringsverzoekResponseMessage.keuringsregistratie;
+        /// <summary>
+        /// Map the ApkKeuringverzoek  object to the keuringverzoekRequest request
+        /// </summary>
+        /// <param name="reponse">apkKeuringsverzoekRequestMessage object from the RDW service</param>
+        public SendRdwKeuringsverzoekResponseMessage MapToResponseMessage(apkKeuringsverzoekResponseMessage reponse)
+        {
+            var keuringsRegistratie = reponse.keuringsregistratie;
 
             return new SendRdwKeuringsverzoekResponseMessage
             {
@@ -58,8 +77,7 @@ namespace Minor.Case2.ISRDW.Implementation
                 Keuringsverzoek = new Keuringsverzoek
                 {
                     CorrolatieId = keuringsRegistratie.correlatieId,
-                    Date = keuringsRegistratie.keuringsdatum,
-                    Type = message.Keuringsverzoek.Type,
+                    Date = keuringsRegistratie.keuringsdatum
                 },
                 Steekproef = keuringsRegistratie.steekproef.HasValue
             };

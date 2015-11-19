@@ -23,11 +23,6 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Garage" nillable="true" type="tns:Garage" />
-  <xs:complexType name="Keuringsverzoek">
-    <xs:sequence>
       <xs:element name="Type" nillable="true" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
@@ -35,6 +30,11 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Garage" nillable="true" type="tns:Garage" />
+  <xs:complexType name="Keuringsverzoek">
+    <xs:sequence>
       <xs:element name="Date" type="xs:dateTime" />
       <xs:element name="CorrolatieId" nillable="true" type="xs:string">
         <xs:annotation>

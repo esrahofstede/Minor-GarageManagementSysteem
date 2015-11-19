@@ -24,7 +24,8 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                 {
                     Naam = "test",
                     Kvk = "123112344",
-                    Plaats = "Utrecht"
+                    Plaats = "Utrecht",
+                    Type = "Garage",
                 },
                 Voertuig = new Voertuig
                 {
@@ -46,13 +47,12 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                 Keuringsverzoek = new Keuringsverzoek
                 {
                     CorrolatieId = "asdf",
-                    Date = DateTime.Now,
-                    Type = "personenauto"
+                    Date = DateTime.Now
                 }
             };
             
             SendRdwKeuringsverzoekResponseMessage response = service.RequestKeuringsverzoek(requestMessage);
-            return View(response.Steekproef as object);
+            return View(response.Steekproef);
         }
     }
 }

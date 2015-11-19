@@ -39,11 +39,6 @@ namespace Minor.Case2.ISRDW.Implementation
                 return (T) xmlSerializer.Deserialize(stringReader);
             }
         }
-
-        public static T ParseEnum<T>(string value)
-        {
-            return (T)Enum.Parse(typeof(T), value, true);
-        }
     }
 
     class StringWriterUtf8 : System.IO.StringWriter
