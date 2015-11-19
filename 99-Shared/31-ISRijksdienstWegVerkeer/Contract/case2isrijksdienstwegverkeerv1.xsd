@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="urn:case2:isrijksdienstwegverkeer:v1" elementFormDefault="qualified" targetNamespace="urn:case2:isrijksdienstwegverkeer:v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="urn:minor-case2-isrijksdienstwegverkeer:v1:messages" />
+  <xs:element name="RequestKeuringsverzoek">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="message" nillable="true" xmlns:q1="urn:minor-case2-isrijksdienstwegverkeer:v1:messages" type="q1:SendRdwKeuringsverzoekRequestMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RequestKeuringsverzoekResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RequestKeuringsverzoekResult" nillable="true" xmlns:q2="urn:minor-case2-isrijksdienstwegverkeer:v1:messages" type="q2:SendRdwKeuringsverzoekResponseMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
