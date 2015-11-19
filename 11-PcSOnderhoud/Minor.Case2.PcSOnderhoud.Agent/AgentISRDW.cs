@@ -45,7 +45,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
                 {
                     CorrolatieId = "asdf",
                     Date = DateTime.Now,
-                    Type = "personenauto"
+                    //Type = "personenauto",
                 }
             });
         }
