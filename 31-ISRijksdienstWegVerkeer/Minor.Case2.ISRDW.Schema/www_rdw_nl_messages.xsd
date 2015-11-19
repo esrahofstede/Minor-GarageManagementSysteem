@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://www.rdw.nl"
+    elementFormDefault="qualified"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://www.rdw.nl">
+  
+  <xsd:include schemaLocation="www_rdw_nl.xsd" />
+  
+  <xsd:element name="apkKeuringsverzoekRequestMessage">
+    <xsd:complexType>
+      <xsd:sequence>
+		    <xsd:element ref="tns:keuringsverzoek" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="apkKeuringsverzoekResponseMessage">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="tns:keuringsregistratie" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>
