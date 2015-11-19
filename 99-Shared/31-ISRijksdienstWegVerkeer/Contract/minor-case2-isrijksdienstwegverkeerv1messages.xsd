@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="urn:minor-case2-isrijksdienstwegverkeer:v1:messages" elementFormDefault="qualified" targetNamespace="urn:minor-case2-isrijksdienstwegverkeer:v1:messages" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" />
+  <xs:import namespace="urn:minor-case2-isrijksdienstwegverkeer:v1:schema" />
+  <xs:complexType name="SendRdwKeuringsverzoekRequestMessage">
+    <xs:sequence>
+      <xs:element name="Voertuig" nillable="true" xmlns:q1="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q1:Voertuig">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Garage" nillable="true" xmlns:q2="urn:minor-case2-isrijksdienstwegverkeer:v1:schema" type="q2:Garage">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Keuringsverzoek" nillable="true" xmlns:q3="urn:minor-case2-isrijksdienstwegverkeer:v1:schema" type="q3:Keuringsverzoek">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SendRdwKeuringsverzoekRequestMessage" nillable="true" type="tns:SendRdwKeuringsverzoekRequestMessage" />
+  <xs:complexType name="SendRdwKeuringsverzoekResponseMessage">
+    <xs:sequence>
+      <xs:element name="Kenteken" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Keuringsverzoek" nillable="true" xmlns:q4="urn:minor-case2-isrijksdienstwegverkeer:v1:schema" type="q4:Keuringsverzoek">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Steekproef" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SendRdwKeuringsverzoekResponseMessage" nillable="true" type="tns:SendRdwKeuringsverzoekResponseMessage" />
+</xs:schema>

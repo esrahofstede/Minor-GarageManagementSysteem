@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Minor.Case2.ISRDW.Implementation
+namespace Minor.Case2.ISRDW.Implementation.RDWIntegration
 {
     public interface IRDWService
     {

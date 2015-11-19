@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Minor.Case2.ISRDW.Implementation.RDWIntegration;
 
 namespace Minor.Case2.ISRDW.Implementation.Tests
 {
