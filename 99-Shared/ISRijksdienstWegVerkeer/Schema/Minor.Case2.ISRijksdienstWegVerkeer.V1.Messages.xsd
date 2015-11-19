@@ -1,58 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema id="Minor"
-    targetNamespace="urn:minor-case2-isrijksdienstwegverkeer:v1:schema"
+    targetNamespace="urn:minor-case2-isrijksdienstwegverkeer:v1:messages"
+    xmlns:msg="urn:minor-case2-isrijksdienstwegverkeer:v1:messages"
+    xmlns:bsvk="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema"
     xmlns:rdw="urn:minor-case2-isrijksdienstwegverkeer:v1:schema"
     elementFormDefault="qualified"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
 >
-  <xs:complexType name="KlantenSearchCriteria">
-    <xs:sequence>
-      <xs:element name="klantnummer" type="xs:string" minOccurs="0" />
-      <xs:element name="minLeeftijd" type="xs:int" minOccurs="0" />
-      <xs:element name="maxLeeftijd" type="xs:int" minOccurs="0" />
-      <xs:element name="woonplaats" type="xs:string" minOccurs="0" />
-    </xs:sequence>
-  </xs:complexType>
+  <xs:import namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema"
+             schemaLocation="../../BSVoertuigEnKlantbeheer/Schema/Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.xsd" />
+  <xs:import namespace="urn:minor-case2-isrijksdienstwegverkeer:v1:schema"
+             schemaLocation="Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema.xsd" />
 
-  <xs:complexType name="KlantenCollection">
-    <xs:sequence>
-      <xs:element name="Klant" type="k:Klant"
-                  minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-  </xs:complexType>
+  <xs:element name="SendRdwKeuringsverzoekRequestMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Voertuig"
+                    type="bsvk:Voertuig"/>
+        <xs:element name="Garage" type="rdw:Garage"/>
+        <xs:element name="Keuringsverzoek" type="rdw:Keuringsverzoek"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 
-  <xs:complexType name="Klant">
-    <xs:sequence>
-      <xs:element name="id" type="xs:long" />
-      <xs:element name="klantnummer" type="xs:string" />
-      <xs:element name="voornaam" type="xs:string" />
-      <xs:element name="achternaam" type="xs:string" />
-      <xs:element name="geboortedatum" type="xs:date" />
-      <xs:element name="straat" type="xs:string" />
-      <xs:element name="postcode" type="xs:string" />
-      <xs:element name="woonplaats" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="KlantRef">
-    <xs:sequence>
-      <xs:element name="id" type="xs:long" />
-      <xs:element name="klantnummer" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="KlantSummaryCollection">
-    <xs:sequence>
-      <xs:element name="KlantSummary" type="k:KlantSummary"
-                  minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="KlantSummary">
-    <xs:sequence>
-      <xs:element name="id" type="xs:long" />
-      <xs:element name="klantnummer" type="xs:string" />
-      <xs:element name="naam" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
+  <xs:element name="SendRdwKeuringsverzoekResponseMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Voertuig"
+                    type="bsvk:Voertuig"/>
+        <xs:element name="Keuringsverzoek" type="rdw:Keuringsverzoek"/>
+        <xs:element name="Steekproef" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

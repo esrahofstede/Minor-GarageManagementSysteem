@@ -70,7 +70,7 @@
     <xs:sequence>
       <xs:element name="id" type="xs:long" />
       <xs:element name="aanmeldingsdatum" type="xs:dateTime" />
-      <xs:element name="kilometerstand" type="xs:string" />
+      <xs:element name="kilometerstand" type="xs:long" />
       <xs:element name="onderhoudsomschrijving" type="xs:string" />
       <xs:element name="voertuig" type="bsvk:Voertuig" />
       <xs:element name="apk" type="xs:boolean" />

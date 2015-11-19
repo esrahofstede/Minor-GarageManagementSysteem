@@ -8,7 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		BSVoertuigEnKlantbeheer\Schema\Minor.Case2.BSVoertuigEnKlantbeheer.V1.Messages.xsd = BSVoertuigEnKlantbeheer\Schema\Minor.Case2.BSVoertuigEnKlantbeheer.V1.Messages.xsd
 		BSVoertuigEnKlantbeheer\Schema\Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.xsd = BSVoertuigEnKlantbeheer\Schema\Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.xsd
 		ISRijksdienstWegVerkeer\Schema\Minor.Case2.ISRijksdienstWegVerkeer.V1.Messages.xsd = ISRijksdienstWegVerkeer\Schema\Minor.Case2.ISRijksdienstWegVerkeer.V1.Messages.xsd
-		Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema.xsd = Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema.xsd
+		ISRijksdienstWegVerkeer\Schema\Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema.xsd = ISRijksdienstWegVerkeer\Schema\Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema.xsd
 	EndProjectSection
 EndProject
 Global
