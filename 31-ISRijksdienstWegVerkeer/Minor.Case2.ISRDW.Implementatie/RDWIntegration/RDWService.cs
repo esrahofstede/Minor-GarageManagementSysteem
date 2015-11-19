@@ -3,7 +3,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace Minor.Case2.ISRDW.Implementation
+namespace Minor.Case2.ISRDW.Implementation.RDWIntegration
 {
     public class RDWService : IRDWService
     {

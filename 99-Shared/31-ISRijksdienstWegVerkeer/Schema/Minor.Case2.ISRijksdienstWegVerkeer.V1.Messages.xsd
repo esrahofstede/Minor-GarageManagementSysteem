@@ -15,8 +15,7 @@
   <xs:element name="SendRdwKeuringsverzoekRequestMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="Voertuig"
-                    type="kv:Voertuig"/>
+        <xs:element name="Voertuig" type="kv:Voertuig"/>
         <xs:element name="Garage" type="rdw:Garage"/>
         <xs:element name="Keuringsverzoek" type="rdw:Keuringsverzoek"/>
       </xs:sequence>
