@@ -221,6 +221,8 @@ namespace Minor.Case2.FEGMS.Client.ISRDWServiceReferenceService {
         
         private string KvkField;
         
+        private string TypeField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -270,6 +272,19 @@ namespace Minor.Case2.FEGMS.Client.ISRDWServiceReferenceService {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=3)]
+        public string Type {
+            get {
+                return this.TypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TypeField, value) != true)) {
+                    this.TypeField = value;
+                    this.RaisePropertyChanged("Type");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -289,8 +304,6 @@ namespace Minor.Case2.FEGMS.Client.ISRDWServiceReferenceService {
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private string TypeField;
-        
         private System.DateTime DateField;
         
         private string CorrolatieIdField;
@@ -305,20 +318,7 @@ namespace Minor.Case2.FEGMS.Client.ISRDWServiceReferenceService {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
-        public string Type {
-            get {
-                return this.TypeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TypeField, value) != true)) {
-                    this.TypeField = value;
-                    this.RaisePropertyChanged("Type");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
         public System.DateTime Date {
             get {
                 return this.DateField;
@@ -331,7 +331,7 @@ namespace Minor.Case2.FEGMS.Client.ISRDWServiceReferenceService {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=2)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=1)]
         public string CorrolatieId {
             get {
                 return this.CorrolatieIdField;

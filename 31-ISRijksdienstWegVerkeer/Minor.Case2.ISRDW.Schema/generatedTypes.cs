@@ -768,6 +768,8 @@ namespace Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema
         
         private string KvkField;
         
+        private string TypeField;
+        
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -818,6 +820,19 @@ namespace Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema
                 this.KvkField = value;
             }
         }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=3)]
+        public string Type
+        {
+            get
+            {
+                return this.TypeField;
+            }
+            set
+            {
+                this.TypeField = value;
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -827,8 +842,6 @@ namespace Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema
     {
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private string TypeField;
         
         private System.DateTime DateField;
         
@@ -846,20 +859,7 @@ namespace Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
-        public string Type
-        {
-            get
-            {
-                return this.TypeField;
-            }
-            set
-            {
-                this.TypeField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
         public System.DateTime Date
         {
             get
@@ -872,7 +872,7 @@ namespace Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=2)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=1)]
         public string CorrolatieId
         {
             get
