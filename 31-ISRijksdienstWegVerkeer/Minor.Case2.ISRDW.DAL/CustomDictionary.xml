@@ -4,7 +4,18 @@
       <Word>knokker</Word>
     </Unrecognized>
     <Recognized>
-      <Word></Word>
+      <Word>Correlatie</Word>
+      <Word>Eigenaar</Word>
+      <Word>Instantie</Word>
+      <Word>Kenteken</Word>
+      <Word>Keuringsdatum</Word>
+      <Word>Keuringsinstantie</Word>
+      <Word>Keuringsregistratie</Word>
+      <Word>Keuringsverzoek</Word>
+      <Word>Naam</Word>
+      <Word>Plaats</Word>
+      <Word>Steekproef</Word>
+      <Word>Voertuig</Word>
     </Recognized>
     <Deprecated>
       <Term PreferredAlternate=""></Term>
@@ -20,6 +31,9 @@
     <CasingExceptions>
       <Acronym>DAL</Acronym>
       <Acronym>ISRDW</Acronym>
+      <Acronym>ID</Acronym>
+      <Acronym>RDW</Acronym>
+      <Acronym>KVK</Acronym>
     </CasingExceptions>
   </Acronyms>
 </Dictionary>
