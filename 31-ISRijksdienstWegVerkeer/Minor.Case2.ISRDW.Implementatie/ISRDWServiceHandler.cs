@@ -18,13 +18,14 @@ namespace Minor.Case2.ISRDW.Implementation
             var keuringsverzoek = new Keuringsverzoek
             {
                 CorrolatieId = message.Keuringsverzoek.CorrolatieId,
-                Date = new DateTime(2015, 10, 10)
+                Date = new DateTime(2015, 10, 10),
+                Type = "personenauto"
             };
 
             return new SendRdwKeuringsverzoekResponseMessage
             {
                 Kenteken = "12-AA-BB",
-                Keuringsverzoek = new Keuringsverzoek(),
+                Keuringsverzoek = keuringsverzoek,
                 Steekproef = true
             };
         }

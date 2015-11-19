@@ -291,7 +291,7 @@ namespace Minor.Case2.FEGMS.Client.ISRDWServiceReferenceService {
         
         private string TypeField;
         
-        private string DateField;
+        private System.DateTime DateField;
         
         private string CorrolatieIdField;
         
@@ -318,13 +318,13 @@ namespace Minor.Case2.FEGMS.Client.ISRDWServiceReferenceService {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=1)]
-        public string Date {
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
+        public System.DateTime Date {
             get {
                 return this.DateField;
             }
             set {
-                if ((object.ReferenceEquals(this.DateField, value) != true)) {
+                if ((this.DateField.Equals(value) != true)) {
                     this.DateField = value;
                     this.RaisePropertyChanged("Date");
                 }
@@ -450,7 +450,7 @@ namespace Minor.Case2.FEGMS.Client.ISRDWServiceReferenceService {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=1)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
         public string tussenvoegsel {
             get {
                 return this.tussenvoegselField;
@@ -476,7 +476,7 @@ namespace Minor.Case2.FEGMS.Client.ISRDWServiceReferenceService {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=3)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
         public string adres {
             get {
                 return this.adresField;
@@ -489,7 +489,7 @@ namespace Minor.Case2.FEGMS.Client.ISRDWServiceReferenceService {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
         public string postcode {
             get {
                 return this.postcodeField;
@@ -502,7 +502,7 @@ namespace Minor.Case2.FEGMS.Client.ISRDWServiceReferenceService {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=5)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
         public string woonplaats {
             get {
                 return this.woonplaatsField;
@@ -515,7 +515,7 @@ namespace Minor.Case2.FEGMS.Client.ISRDWServiceReferenceService {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=6)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=6)]
         public string telefoonnummer {
             get {
                 return this.telefoonnummerField;
@@ -528,7 +528,7 @@ namespace Minor.Case2.FEGMS.Client.ISRDWServiceReferenceService {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=7)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=7)]
         public string emailadres {
             get {
                 return this.emailadresField;
@@ -714,10 +714,11 @@ namespace Minor.Case2.FEGMS.Client.ISRDWServiceReferenceService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ISRDWServiceReferenceService.IISRDWService")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="urn:case2:isrijksdienstwegverkeer:v1", ConfigurationName="ISRDWServiceReferenceService.IISRDWService")]
     public interface IISRDWService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IISRDWService/RequestKeuringsverzoek", ReplyAction="http://tempuri.org/IISRDWService/RequestKeuringsverzoekResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="urn:case2:isrijksdienstwegverkeer:v1/IISRDWService/RequestKeuringsverzoek", ReplyAction="urn:case2:isrijksdienstwegverkeer:v1/IISRDWService/RequestKeuringsverzoekResponse" +
+            "")]
         Minor.Case2.FEGMS.Client.ISRDWServiceReferenceService.SendRdwKeuringsverzoekResponseMessage RequestKeuringsverzoek(Minor.Case2.FEGMS.Client.ISRDWServiceReferenceService.SendRdwKeuringsverzoekRequestMessage message);
     }
     

@@ -5,15 +5,6 @@
     elementFormDefault="qualified"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
 >
-  <xs:complexType name="KlantenSearchCriteria">
-    <xs:sequence>
-      <xs:element name="klantnummer" type="xs:string" minOccurs="0" />
-      <xs:element name="minLeeftijd" type="xs:int" minOccurs="0" />
-      <xs:element name="maxLeeftijd" type="xs:int" minOccurs="0" />
-      <xs:element name="woonplaats" type="xs:string" minOccurs="0" />
-    </xs:sequence>
-  </xs:complexType>
-
   <xs:element name="Klant" type="bsvk:Klant"/>
   
   <xs:complexType name="Klant">
@@ -28,13 +19,13 @@
       <xs:extension base="bsvk:Klant">
         <xs:sequence>
           <xs:element name="voornaam" type="xs:string" />
-          <xs:element name="tussenvoegsel" type="xs:string" />
+          <xs:element name="tussenvoegsel" nillable="true" type="xs:string" />
           <xs:element name="achternaam" type="xs:string" />
-          <xs:element name="adres" type="xs:string" />
-          <xs:element name="postcode" type="xs:string" />
-          <xs:element name="woonplaats" type="xs:string" />
-          <xs:element name="telefoonnummer" type="xs:string" />
-          <xs:element name="emailadres" type="xs:string" />
+          <xs:element name="adres" nillable="true" type="xs:string" />
+          <xs:element name="postcode" nillable="true" type="xs:string" />
+          <xs:element name="woonplaats" nillable="true"  type="xs:string" />
+          <xs:element name="telefoonnummer" nillable="true" type="xs:string" />
+          <xs:element name="emailadres" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

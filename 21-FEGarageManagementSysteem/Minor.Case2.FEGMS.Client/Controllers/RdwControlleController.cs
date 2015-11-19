@@ -20,12 +20,35 @@ namespace Minor.Case2.FEGMS.Client.Controllers
             IISRDWService service = new ISRDWServiceClient();
             SendRdwKeuringsverzoekRequestMessage requestMessage = new SendRdwKeuringsverzoekRequestMessage
             {
-                Garage = new Garage(),
+                Garage = new Garage
+                {
+                    Naam = "test",
+                    Kvk = "123112344",
+                    Plaats = "Utrecht"
+                },
                 Voertuig = new Voertuig
                 {
-                    kenteken =  "12-AA-BB"
+                    kenteken =  "12-AA-BB",
+                    merk = "ford",
+                    type = "focus",
+                    bestuurder = new Persoon
+                    {
+                        voornaam = "jan",
+                        achternaam = "jansen"
+                    },
+                    eigenaar = new Persoon
+                    {
+                        voornaam = "jan",
+                        achternaam = "jansen"
+                    },
+                    id = 1
                 },
-                Keuringsverzoek = new Keuringsverzoek()
+                Keuringsverzoek = new Keuringsverzoek
+                {
+                    CorrolatieId = "asdf",
+                    Date = DateTime.Now,
+                    Type = "personenauto"
+                }
             };
             
             SendRdwKeuringsverzoekResponseMessage response = service.RequestKeuringsverzoek(requestMessage);

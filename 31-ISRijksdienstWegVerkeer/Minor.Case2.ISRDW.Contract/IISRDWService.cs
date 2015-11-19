@@ -9,10 +9,9 @@ using Minor.Case2.ISRijksdienstWegVerkeer.V1.Messages;
 namespace Minor.Case2.ISRDW.Contract
 {
 
-    [ServiceContract(Namespace ="urn:case2:isrijksdienstwegverkeer:service")]
+    [ServiceContract(Namespace = "urn:case2:isrijksdienstwegverkeer:v1" )]
     public interface IISRDWService
     {
-
         [OperationContract]
         SendRdwKeuringsverzoekResponseMessage RequestKeuringsverzoek(SendRdwKeuringsverzoekRequestMessage message);
     }
