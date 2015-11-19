@@ -15,18 +15,53 @@ namespace Minor.Case2.ISRDW.Implementation
     {
         public SendRdwKeuringsverzoekResponseMessage RequestKeuringsverzoek(SendRdwKeuringsverzoekRequestMessage message)
         {
-            var keuringsverzoek = new Keuringsverzoek
+            var keuringsverzoek = message.Keuringsverzoek;
+            //var keuringsverzoek = new Keuringsverzoek
+            //{
+            //    CorrolatieId = message.Keuringsverzoek.CorrolatieId,
+            //    Date = message.
+            //    Type = message.Keuringsverzoek.Type,
+            //};
+
+
+            var apkKeuringsverzoek = new keuringsverzoek()
             {
-                CorrolatieId = message.Keuringsverzoek.CorrolatieId,
-                Date = new DateTime(2015, 10, 10),
-                Type = "personenauto"
+                correlatieId = keuringsverzoek.CorrolatieId,
+                keuringsdatum = keuringsverzoek.Date,
+                keuringsinstantie = new keuringsinstantie
+                {
+                    kvk = message.Garage.Kvk,
+                    naam = message.Garage.Naam,
+                    plaats = message.Garage.Plaats,
+                    type = "garage",
+                },
+                voertuig = new keuringsverzoekVoertuig
+                {
+                    kenteken = message.Voertuig.kenteken,
+                    kilometerstand = 0,
+                    naam = message.Voertuig.kenteken,
+                    type = Util.ParseEnum<voertuigtype>(keuringsverzoek.Type),  
+                }
             };
+
+            var apkKeuringsverzoekRequestMessage = new apkKeuringsverzoekRequestMessage
+            {
+                keuringsverzoek = apkKeuringsverzoek, 
+            };
+
+            var apkKeuringsverzoekResponseMessage = new RDWAdapter().SubmitAPKVerzoek(apkKeuringsverzoekRequestMessage);
+            var keuringsRegistratie = apkKeuringsverzoekResponseMessage.keuringsregistratie;
 
             return new SendRdwKeuringsverzoekResponseMessage
             {
-                Kenteken = "12-AA-BB",
-                Keuringsverzoek = keuringsverzoek,
-                Steekproef = true
+                Kenteken = keuringsRegistratie.kenteken,
+                Keuringsverzoek = new Keuringsverzoek
+                {
+                    CorrolatieId = keuringsRegistratie.correlatieId,
+                    Date = keuringsRegistratie.keuringsdatum,
+                    Type = message.Keuringsverzoek.Type,
+                },
+                Steekproef = keuringsRegistratie.steekproef.HasValue
             };
         }
     }
