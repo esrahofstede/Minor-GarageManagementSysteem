@@ -3,9 +3,9 @@
 <locationData xmlns="urn:minor-servicebus-fileservicelocator:locationData">
 
   <serviceLocation>
-    <name>BSKlantbeheer</name>
+    <name>ISRDWService</name>
     <profile>Development</profile>
-    <metadataAddress>http://localhost:30412/BSKlantbeheer/mex</metadataAddress>
+    <metadataAddress>http://localhost:49775/RDWService.svc/mex</metadataAddress>
   </serviceLocation>
 
   <serviceLocation>

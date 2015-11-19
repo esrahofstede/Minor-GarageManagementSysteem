@@ -45,12 +45,15 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AgentISRDWTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Minor.Case2.PcSOnderhoud.Agent\06 - Agent.csproj">
@@ -62,7 +65,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LocationData.xml" />
+    <Content Include="LocationData.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

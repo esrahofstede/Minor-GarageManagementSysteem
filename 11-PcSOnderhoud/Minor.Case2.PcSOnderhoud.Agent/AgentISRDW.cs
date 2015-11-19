@@ -16,7 +16,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
         public AgentISRDW()
         {
             var proxy = factory.CreateAgent();
-            proxy.RequestKeuringsverzoek(new minorcase2isrijksdienstwegverkeer.v1.messages.SendRdwKeuringsverzoekRequestMessage
+            var test = proxy.RequestKeuringsverzoek(new minorcase2isrijksdienstwegverkeer.v1.messages.SendRdwKeuringsverzoekRequestMessage
             {
                 Garage = new Garage
                 {
