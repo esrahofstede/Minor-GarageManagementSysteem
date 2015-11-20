@@ -1,0 +1,14 @@
+﻿<Dictionary> 
+  <Words> 
+    <Recognized> 
+      <Word>Beheer</Word>
+      <Word>Klant</Word>
+      <Word>Voertuig</Word>
+    </Recognized> 
+  </Words> 
+  <Acronyms> 
+    <CasingExceptions> 
+      <Acronym>En</Acronym>
+    </CasingExceptions> 
+  </Acronyms> 
+</Dictionary>
