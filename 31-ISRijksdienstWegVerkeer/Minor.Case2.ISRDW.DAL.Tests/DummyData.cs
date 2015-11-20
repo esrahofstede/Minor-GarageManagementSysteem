@@ -32,6 +32,7 @@ namespace Minor.Case2.ISRDW.DAL.Tests
                 KeuringsinstantieType = "garage",
                 KVK = "3013 5370",
                 NaamEigenaar = "A. Eigenaar",
+                VoertuigType = "personenauto",
             };
         }
     }
