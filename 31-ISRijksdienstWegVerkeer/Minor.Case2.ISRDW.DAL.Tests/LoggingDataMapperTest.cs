@@ -23,7 +23,6 @@ namespace Minor.Case2.ISRDW.DAL.Tests
         [TestMethod]
         public void FindAllLogsTest()
         {
-
             //Arrange
             var mapper = new LoggingDataMapper();
 

@@ -10,7 +10,7 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
         public void MapRequestMessageToAPKRequestMessageTest()
         {
             //Arange
-            var requestMessage = DummyData.GetRequestMessage();
+            var requestMessage = DummyData.GetSendRdwKeuringsverzoekRequestMessage();
             ISRDWServiceHandler handler = new ISRDWServiceHandler();
             //Act
             var rdwRequestMessage = Mapper.MapToRDWRequestMessage(requestMessage);
@@ -24,13 +24,13 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
         public void MapAPKResponseMessageToResponseMessageTest()
         {
             //Arange
-            var reponseMessage = DummyData.GetReponseMessage();
+            var reponseMessage = DummyData.GetApkKeuringsverzoekResponseMessage();
             ISRDWServiceHandler handler = new ISRDWServiceHandler();
             //Act
             var rdwResponseMessage = Mapper.MapToResponseMessage(reponseMessage);
             //Assert
-            Assert.AreEqual(reponseMessage.keuringsregistratie.kenteken, rdwResponseMessage.Kenteken);
-            Assert.AreEqual(reponseMessage.keuringsregistratie.steekproefSpecified, rdwResponseMessage.Steekproef);
+            Assert.AreEqual("BV-01-EG", rdwResponseMessage.Kenteken);
+            Assert.IsFalse(rdwResponseMessage.Steekproef);
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Minor.Case2.ISRDW.DAL.Entities
         public string CorrelatieId { get; set; }
         public string VoertuigType { get; set; }
         public string Kenteken { get; set; }
+        public int Kilometerstand { get; set; }
         public string NaamEigenaar { get; set; }
         public DateTime Keuringsdatum { get; set; }
         public string KeuringsinstantieType { get; set; }

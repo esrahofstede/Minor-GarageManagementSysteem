@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="LoggingManager.cs" />
     <Compile Include="Mapper.cs" />
     <Compile Include="RDWConfigSection.cs" />
     <Compile Include="RDWIntegration\IRDWService.cs" />
@@ -75,6 +76,10 @@
     <ProjectReference Include="..\Minor.Case2.ISRDW.Contract\02 - Contract.csproj">
       <Project>{ee2155d2-4752-493f-b525-d26d43ee9f0b}</Project>
       <Name>02 - Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Minor.Case2.ISRDW.DAL\06 - DAL.csproj">
+      <Project>{10eb5f09-1684-4970-b99b-8d269f03beed}</Project>
+      <Name>06 - DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Minor.Case2.ISRDW.Schema\01 - Schema.csproj">
       <Project>{a9c2f4a7-8696-4d6e-913f-e83fe87ccd8d}</Project>

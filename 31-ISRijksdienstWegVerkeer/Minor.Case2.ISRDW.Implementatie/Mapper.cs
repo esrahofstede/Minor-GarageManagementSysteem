@@ -1,4 +1,5 @@
-﻿using Minor.Case2.ISRijksdienstWegVerkeer.V1.Messages;
+﻿using Minor.Case2.ISRDW.DAL.Entities;
+using Minor.Case2.ISRijksdienstWegVerkeer.V1.Messages;
 using Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Minor.Case2.ISRDW.Implementation
 {
+    /// <summary>
+    /// A static helper class for mappings
+    /// </summary>
     public static class Mapper
     {
         /// <summary>
@@ -66,12 +70,70 @@ namespace Minor.Case2.ISRDW.Implementation
             return new SendRdwKeuringsverzoekResponseMessage
             {
                 Kenteken = keuringsRegistratie.kenteken,
-                Keuringsverzoek = new Keuringsverzoek
+                Keuringsverzoek = new ISRijksdienstWegVerkeer.V1.Schema.Keuringsverzoek
                 {
                     CorrolatieId = keuringsRegistratie.correlatieId,
                     Date = keuringsRegistratie.keuringsdatum
                 },
                 Steekproef = keuringsRegistratie.steekproef.HasValue
+            };
+        }
+
+        /// <summary>
+        /// Map the apkKeuringsverzoekRequestMessage with a timestamp to a logging object
+        /// </summary>
+        /// <param name="message">an apkKeuringsverzoekRequestMessage to map</param>
+        /// <param name="time">Time of the logging</param>
+        /// <returns>The mapped logging object</returns>
+        public static Logging MapToLogging(apkKeuringsverzoekRequestMessage message, DateTime time)
+        {
+            if(message == null)
+            {
+                throw new ArgumentNullException(nameof(message), "The message that needs to be mapped, cannot be null");
+            }
+
+            return new Logging
+            {
+                Keuringsverzoek = new DAL.Entities.Keuringsverzoek
+                {
+                    CorrelatieId = message.keuringsverzoek.correlatieId,
+                    Kenteken = message.keuringsverzoek.voertuig.kenteken,
+                    NaamEigenaar = message.keuringsverzoek.voertuig.naam,
+                    VoertuigType = message.keuringsverzoek.voertuig.type.ToString(),
+                    Kilometerstand = message.keuringsverzoek.voertuig.kilometerstand,
+                    Keuringsdatum = message.keuringsverzoek.keuringsdatum,
+                    KeuringsinstantieNaam = message.keuringsverzoek.keuringsinstantie.naam,
+                    KeuringsinstantiePlaats = message.keuringsverzoek.keuringsinstantie.plaats,
+                    KeuringsinstantieType = message.keuringsverzoek.keuringsinstantie.type,
+                    KVK = message.keuringsverzoek.keuringsinstantie.kvk,
+                },
+                Time = time,
+            };
+        }
+
+        /// <summary>
+        /// Map the apkKeuringsverzoekResponseMessage with a timestamp to a logging object
+        /// </summary>
+        /// <param name="message">an apkKeuringsverzoekResponseMessage to map</param>
+        /// <param name="time">Time of the logging</param>
+        /// <returns>The mapped logging object</returns>
+        public static Logging MapToLogging(apkKeuringsverzoekResponseMessage message, DateTime time)
+        {
+            if (message == null)
+            {
+                throw new ArgumentNullException(nameof(message), "The message that needs to be mapped, cannot be null");
+            }
+
+            return new Logging
+            {
+                Keuringsregistratie = new DAL.Entities.Keuringsregistratie
+                {
+                    CorrelatieId = message.keuringsregistratie.correlatieId,
+                    Kenteken = message.keuringsregistratie.kenteken,
+                    Keuringsdatum = message.keuringsregistratie.keuringsdatum,
+                    Steekproef = message.keuringsregistratie.steekproef,
+                },
+                Time = time,
             };
         }
     }

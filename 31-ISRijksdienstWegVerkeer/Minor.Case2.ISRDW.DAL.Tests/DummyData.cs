@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Minor.Case2.ISRDW.DAL.Tests
 {
-    public static class DummyData
+    internal static class DummyData
     {
-        public static Keuringsregistratie GetKeuringsregistratie()
+        internal static Keuringsregistratie GetKeuringsregistratie()
         {
             return new Keuringsregistratie
             {
@@ -20,7 +20,7 @@ namespace Minor.Case2.ISRDW.DAL.Tests
             };
         }
 
-        public static Keuringsverzoek GetKeuringsverzoek()
+        internal static Keuringsverzoek GetKeuringsverzoek()
         {
             return new Keuringsverzoek
             {
@@ -32,6 +32,7 @@ namespace Minor.Case2.ISRDW.DAL.Tests
                 KeuringsinstantieType = "garage",
                 KVK = "3013 5370",
                 NaamEigenaar = "A. Eigenaar",
+                VoertuigType = "personenauto",
             };
         }
     }

@@ -60,8 +60,17 @@
     <Compile Include="ISRDWServiceHanderTest.cs" />
     <Compile Include="RDWAdapterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LoggingManagerTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Minor.Case2.ISRDW.DAL.Tests\07 - DAL.Tests.csproj">
+      <Project>{12f4e73d-2bb8-4eac-9f9c-0d3b5bd64b72}</Project>
+      <Name>07 - DAL.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Minor.Case2.ISRDW.DAL\06 - DAL.csproj">
+      <Project>{10eb5f09-1684-4970-b99b-8d269f03beed}</Project>
+      <Name>06 - DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Minor.Case2.ISRDW.Implementatie\04 - Implementation.csproj">
       <Project>{597d4dd4-0496-40ff-806c-10fb1310d518}</Project>
       <Name>04 - Implementation</Name>

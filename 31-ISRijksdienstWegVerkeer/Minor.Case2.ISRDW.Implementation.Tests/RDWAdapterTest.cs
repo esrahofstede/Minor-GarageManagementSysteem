@@ -33,7 +33,7 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
         public void RDWAdapterMockWithSteekproefTest()
         {
             // Arrange
-            var message = DummyData.GetMessage();
+            var message = DummyData.GetApkKeuringsverzoekRequestMessage();
 
             var response = "<?xml version=\"1.0\" encoding=\"utf-8\"?><apkKeuringsverzoekResponseMessage xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><keuringsregistratie correlatieId=\"0038c17b-aa10-4f93-8569-d184fdfc265b\" xmlns=\"http://www.rdw.nl\" xmlns:apk=\"http://www.rdw.nl/apk\"><kenteken>BV-01-EG</kenteken><apk:keuringsdatum>2008-11-19</apk:keuringsdatum><apk:steekproef xsi:nil=\"true\"/></keuringsregistratie></apkKeuringsverzoekResponseMessage>";
 
@@ -58,7 +58,7 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
         public void RDWAdapterMockWithoutSteekproefTest()
         {
             // Arrange
-            var message = DummyData.GetMessage();
+            var message = DummyData.GetApkKeuringsverzoekRequestMessage();
 
             var response = "<?xml version=\"1.0\" encoding=\"utf-8\"?><apkKeuringsverzoekResponseMessage xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><keuringsregistratie correlatieId=\"0038c17b-aa10-4f93-8569-d184fdfc265b\" xmlns=\"http://www.rdw.nl\" xmlns:apk=\"http://www.rdw.nl/apk\"><kenteken>BV-01-EG</kenteken><apk:keuringsdatum>2008-11-19</apk:keuringsdatum><apk:steekproef>2008-11-19</apk:steekproef></keuringsregistratie></apkKeuringsverzoekResponseMessage>";
 
@@ -99,7 +99,7 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
         public void UtilSerializeToXMLTest()
         {
             // Arrange
-            var message = DummyData.GetMessage();
+            var message = DummyData.GetApkKeuringsverzoekRequestMessage();
 
             // Act
             var result = Utility.SerializeToXML(message);
