@@ -1,6 +1,7 @@
 ﻿using Minor.ServiceBus.Agent.Implementation;
-using minorcase2bsvoertuigenklantbeheer.v1.schema;
-using minorcase2isrijksdienstwegverkeer.v1.schema;
+using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
+using Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema;
+using Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,43 +12,28 @@ namespace Minor.Case2.PcSOnderhoud.Agent
 {
     public class AgentISRDW
     {
-        ServiceFactory<IISRDWService> factory = new ServiceFactory<IISRDWService>("ISRDWService");
+        private ServiceFactory<IISRDWService> _factory;
 
         public AgentISRDW()
         {
-            var proxy = factory.CreateAgent();
-            var test = proxy.RequestKeuringsverzoek(new minorcase2isrijksdienstwegverkeer.v1.messages.SendRdwKeuringsverzoekRequestMessage
+            _factory = new ServiceFactory<IISRDWService>("ISRDWService");
+        }
+
+        public AgentISRDW(ServiceFactory<IISRDWService> factory)
+        {
+            _factory = factory;
+        }
+        public SendRdwKeuringsverzoekResponseMessage SendAPKKeuringsverzoek(Voertuig voertuig, Garage garage, Keuringsverzoek keuringsverzoek)
+        {
+            var proxy =_factory.CreateAgent();
+            var apkKeuringsverzoek = new SendRdwKeuringsverzoekRequestMessage
             {
-                Garage = new Garage
-                {
-                    Naam = "test",
-                    Kvk = "123112344",
-                    Plaats = "Utrecht"
-                },
-                Voertuig = new Voertuig
-                {
-                    kenteken = "12-AA-BB",
-                    merk = "ford",
-                    type = "focus",
-                    bestuurder = new Persoon
-                    {
-                        voornaam = "jan",
-                        achternaam = "jansen"
-                    },
-                    eigenaar = new Persoon
-                    {
-                        voornaam = "jan",
-                        achternaam = "jansen"
-                    },
-                    id = 1
-                },
-                Keuringsverzoek = new Keuringsverzoek
-                {
-                    CorrolatieId = "asdf",
-                    Date = DateTime.Now,
-                    //Type = "personenauto",
-                }
-            });
+                Voertuig = voertuig,
+                Garage =  garage,
+                Keuringsverzoek = keuringsverzoek
+            };
+            var result = proxy.RequestKeuringsverzoek(apkKeuringsverzoek);
+            return result;
         }
     }
 }

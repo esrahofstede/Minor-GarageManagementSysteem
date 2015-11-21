@@ -29,6 +29,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\..\99-Shared\Case2Key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -59,6 +65,12 @@
     <Compile Include="WebServiceLocator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\99-Shared\Case2Key.snk">
+      <Link>Case2Key.snk</Link>
+    </None>
+    <None Include="01-Implementation.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ServiceLocation.xsd">
       <SubType>Designer</SubType>
     </None>
