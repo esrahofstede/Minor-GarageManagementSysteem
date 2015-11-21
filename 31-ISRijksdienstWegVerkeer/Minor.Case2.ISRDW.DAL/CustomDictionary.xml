@@ -16,6 +16,7 @@
       <Word>Plaats</Word>
       <Word>Steekproef</Word>
       <Word>Voertuig</Word>
+      <Word>Kilometerstand</Word>
     </Recognized>
     <Deprecated>
       <Term PreferredAlternate=""></Term>

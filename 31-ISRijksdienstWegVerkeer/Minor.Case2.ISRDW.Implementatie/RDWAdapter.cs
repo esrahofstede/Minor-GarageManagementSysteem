@@ -14,6 +14,7 @@ namespace Minor.Case2.ISRDW.Implementation
     public class RDWAdapter
     {
         private IRDWService _rdwService;
+        private ILoggingManager _loggingManager;
 
         /// <summary>
         /// Submits the APK verzoek to the RDW API
@@ -22,22 +23,27 @@ namespace Minor.Case2.ISRDW.Implementation
         /// <returns>Responsemessage of the APK verzoek</returns>
         public apkKeuringsverzoekResponseMessage SubmitAPKVerzoek(apkKeuringsverzoekRequestMessage message)
         {
-            var response = _rdwService.SubmitAPKVerzoek(Utility.SerializeToXML(message));
-            return Utility.DeserializeFromXML<apkKeuringsverzoekResponseMessage>(response);
+            _loggingManager.Log(message, DateTime.Now);
+            var responseXML = _rdwService.SubmitAPKVerzoek(Utility.SerializeToXML(message));
+            var response = Utility.DeserializeFromXML<apkKeuringsverzoekResponseMessage>(responseXML);
+            _loggingManager.Log(response, DateTime.Now);
+            return response;
         }
 
         public RDWAdapter()
         {
             _rdwService = new RDWService();
+            _loggingManager = new LoggingManager();
         }
 
         /// <summary>
         /// Creates an instance of the RDWAdapter and can be injected with an IRDWService
         /// </summary>
         /// <param name="rdwService">Injectable IRDWService</param>
-        public RDWAdapter(IRDWService rdwService)
+        public RDWAdapter(IRDWService rdwService, ILoggingManager loggingManager)
         {
             _rdwService = rdwService;
+            _loggingManager = loggingManager;
         }
     }
 }

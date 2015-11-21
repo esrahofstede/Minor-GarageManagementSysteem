@@ -34,19 +34,22 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
         {
             // Arrange
             var message = DummyData.GetApkKeuringsverzoekRequestMessage();
-
             var response = "<?xml version=\"1.0\" encoding=\"utf-8\"?><apkKeuringsverzoekResponseMessage xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><keuringsregistratie correlatieId=\"0038c17b-aa10-4f93-8569-d184fdfc265b\" xmlns=\"http://www.rdw.nl\" xmlns:apk=\"http://www.rdw.nl/apk\"><kenteken>BV-01-EG</kenteken><apk:keuringsdatum>2008-11-19</apk:keuringsdatum><apk:steekproef xsi:nil=\"true\"/></keuringsregistratie></apkKeuringsverzoekResponseMessage>";
 
-            var mock = new Mock<IRDWService>(MockBehavior.Strict);
-            mock.Setup(rdwService => rdwService.SubmitAPKVerzoek(It.IsAny<string>())).Returns(response);
+            var rdwServiceMock = new Mock<IRDWService>(MockBehavior.Strict);
+            rdwServiceMock.Setup(rdwService => rdwService.SubmitAPKVerzoek(It.IsAny<string>())).Returns(response);
 
-            RDWAdapter adapter = new RDWAdapter(mock.Object);
+            var logMock = new Mock<ILoggingManager>(MockBehavior.Strict);
+            logMock.Setup(log => log.Log(It.IsAny<apkKeuringsverzoekRequestMessage>(), It.IsAny<DateTime>()));
+            logMock.Setup(log => log.Log(It.IsAny<apkKeuringsverzoekResponseMessage>(), It.IsAny<DateTime>()));
+
+            RDWAdapter adapter = new RDWAdapter(rdwServiceMock.Object, logMock.Object);
 
             // Act
             var resultSubmition = adapter.SubmitAPKVerzoek(message);
 
             // Assert 
-            mock.Verify(rdwAdapter => rdwAdapter.SubmitAPKVerzoek(It.IsAny<string>()));
+            rdwServiceMock.Verify(rdwAdapter => rdwAdapter.SubmitAPKVerzoek(It.IsAny<string>()));
 
             Assert.AreEqual("0038c17b-aa10-4f93-8569-d184fdfc265b", resultSubmition.keuringsregistratie.correlatieId);
             Assert.AreEqual("BV-01-EG", resultSubmition.keuringsregistratie.kenteken);
@@ -59,19 +62,22 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
         {
             // Arrange
             var message = DummyData.GetApkKeuringsverzoekRequestMessage();
-
             var response = "<?xml version=\"1.0\" encoding=\"utf-8\"?><apkKeuringsverzoekResponseMessage xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><keuringsregistratie correlatieId=\"0038c17b-aa10-4f93-8569-d184fdfc265b\" xmlns=\"http://www.rdw.nl\" xmlns:apk=\"http://www.rdw.nl/apk\"><kenteken>BV-01-EG</kenteken><apk:keuringsdatum>2008-11-19</apk:keuringsdatum><apk:steekproef>2008-11-19</apk:steekproef></keuringsregistratie></apkKeuringsverzoekResponseMessage>";
 
-            var mock = new Mock<IRDWService>(MockBehavior.Strict);
-            mock.Setup(rdwService => rdwService.SubmitAPKVerzoek(It.IsAny<string>())).Returns(response);
+            var rdwServiceMock = new Mock<IRDWService>(MockBehavior.Strict);
+            rdwServiceMock.Setup(rdwService => rdwService.SubmitAPKVerzoek(It.IsAny<string>())).Returns(response);
 
-            RDWAdapter adapter = new RDWAdapter(mock.Object);
+            var logMock = new Mock<ILoggingManager>(MockBehavior.Strict);
+            logMock.Setup(log => log.Log(It.IsAny<apkKeuringsverzoekRequestMessage>(), It.IsAny<DateTime>()));
+            logMock.Setup(log => log.Log(It.IsAny<apkKeuringsverzoekResponseMessage>(), It.IsAny<DateTime>()));
+
+            RDWAdapter adapter = new RDWAdapter(rdwServiceMock.Object, logMock.Object);
 
             // Act
             var resultSubmition = adapter.SubmitAPKVerzoek(message);
 
             // Assert 
-            mock.Verify(rdwAdapter => rdwAdapter.SubmitAPKVerzoek(It.IsAny<string>()));
+            rdwServiceMock.Verify(rdwAdapter => rdwAdapter.SubmitAPKVerzoek(It.IsAny<string>()));
 
             Assert.AreEqual("0038c17b-aa10-4f93-8569-d184fdfc265b", resultSubmition.keuringsregistratie.correlatieId);
             Assert.AreEqual("BV-01-EG", resultSubmition.keuringsregistratie.kenteken);
