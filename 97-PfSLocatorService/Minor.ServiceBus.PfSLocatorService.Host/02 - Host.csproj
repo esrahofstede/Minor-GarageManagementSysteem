@@ -61,6 +61,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="locationData.xml" />
     <Content Include="PfSLocatorService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>

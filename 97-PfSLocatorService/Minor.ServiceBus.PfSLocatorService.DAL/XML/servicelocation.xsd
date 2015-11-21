@@ -18,7 +18,7 @@
       <xsd:element name="name" type="xsd:string"></xsd:element>
       <xsd:element name="profile" type="xsd:string"></xsd:element>
       <xsd:element name="metadataAddress" type="xsd:string"></xsd:element>
-      <xsd:element name="version" type="xsd:decimal" nillable="true"></xsd:element>
+      <xsd:element name="version" type="xsd:decimal" minOccurs="0"></xsd:element>
     </xsd:sequence>
   </xsd:complexType>
 </xsd:schema>

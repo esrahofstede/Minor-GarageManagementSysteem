@@ -12,7 +12,6 @@ namespace Minor.Case2.PcSOnderhoud.Contract
     {
         [OperationContract]
         string GetData(int value);
-
     }
     
 }

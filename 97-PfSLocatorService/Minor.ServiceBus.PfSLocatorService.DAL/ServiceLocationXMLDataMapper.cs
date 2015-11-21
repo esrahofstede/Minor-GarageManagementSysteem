@@ -64,8 +64,9 @@ namespace Minor.ServiceBus.PfSLocatorService.DAL
 
         public T LoadXMLFile<T>()
         {
+            string test = Directory.GetCurrentDirectory();
             string relativePath = Path.Combine(Directory.GetCurrentDirectory(), _filePath);
-            //relativePath = MakeAbsolutePath(_filePath);
+            relativePath = MakeAbsolutePath("locationData.xml");
 
             XmlSerializer serializer = new XmlSerializer(typeof(locationData));
             using (StreamReader reader = new StreamReader(relativePath))

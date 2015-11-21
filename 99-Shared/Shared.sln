@@ -5,6 +5,7 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0F7765AF-8A76-4410-A2E8-93CF90CE4259}"
 	ProjectSection(SolutionItems) = preProject
+		31-ISRijksdienstWegVerkeer\Contract\case2isrijksdienstwegverkeerv1.wsdl = 31-ISRijksdienstWegVerkeer\Contract\case2isrijksdienstwegverkeerv1.wsdl
 		01-BSVoertuigEnKlantbeheer\Schema\Minor.Case2.BSVoertuigEnKlantbeheer.V1.Messages.xsd = 01-BSVoertuigEnKlantbeheer\Schema\Minor.Case2.BSVoertuigEnKlantbeheer.V1.Messages.xsd
 		01-BSVoertuigEnKlantbeheer\Schema\Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.xsd = 01-BSVoertuigEnKlantbeheer\Schema\Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.xsd
 		31-ISRijksdienstWegVerkeer\Schema\Minor.Case2.ISRijksdienstWegVerkeer.V1.Messages.xsd = 31-ISRijksdienstWegVerkeer\Schema\Minor.Case2.ISRijksdienstWegVerkeer.V1.Messages.xsd

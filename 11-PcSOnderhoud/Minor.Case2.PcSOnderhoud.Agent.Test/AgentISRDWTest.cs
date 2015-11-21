@@ -35,7 +35,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             AgentISRDW agent = new AgentISRDW(factoryMock.Object);
 
             //Act
-            var result = agent.SendAPKKeuringsverzoek(new Voertuig(), new Garage(), new Keuringsverzoek());
+            agent.SendAPKKeuringsverzoek(new Voertuig(), new Garage(), new Keuringsverzoek());
 
             //Assert
             Assert.IsTrue(true);
@@ -56,14 +56,54 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             var factoryMock = new Mock<ServiceFactory<IISRDWService>>(MockBehavior.Strict);
             factoryMock.Setup(factory => factory.CreateAgent()).Returns(serviceMock.Object);
             
-            AgentISRDW agent = new AgentISRDW(factoryMock.Object);
+            var agent = new AgentISRDW(factoryMock.Object);
 
             //Act
-            var result = agent.SendAPKKeuringsverzoek(new Voertuig(), new Garage(), new Keuringsverzoek());
+            agent.SendAPKKeuringsverzoek(new Voertuig(), new Garage(), new Keuringsverzoek());
 
             //Assert
             Assert.IsTrue(true);
             serviceMock.Verify(service => service.RequestKeuringsverzoek(It.IsAny<SendRdwKeuringsverzoekRequestMessage>()), Times.Once());
+        }
+
+        [TestMethod]
+        public void IntegratieTest()
+        {
+            //Arrange
+            var keuringsreq = new SendRdwKeuringsverzoekRequestMessage();
+            var voertuig = new Voertuig
+            {
+                kenteken = "12-AA-AA",
+                merk = "ford",
+                type = "focus",
+                eigenaar = new Persoon
+                {
+                    voornaam = "Jan",
+                    achternaam = "Jansen"
+                },
+                bestuurder = new Persoon
+                {
+                    voornaam = "Jan",
+                    achternaam = "Jansen"
+                }
+            };
+            var garage = new Garage
+            {
+                Kvk = "1234 1234"
+            };
+            var keuringsverzoek = new Keuringsverzoek
+            {
+                Date = DateTime.Now,
+                CorrolatieId = Guid.NewGuid().ToString()
+            };
+
+            AgentISRDW agent = new AgentISRDW();
+
+            //Act
+            var result = agent.SendAPKKeuringsverzoek(voertuig, garage, keuringsverzoek);
+
+            //Assert
+            Assert.IsTrue(true);
         }
 
     }

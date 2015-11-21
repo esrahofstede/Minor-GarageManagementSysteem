@@ -52,7 +52,9 @@ public partial class serviceLocation {
     
     private string metadataAddressField;
     
-    private System.Nullable<decimal> versionField;
+    private decimal versionField;
+    
+    private bool versionFieldSpecified;
     
     /// <remarks/>
     public string name {
@@ -85,13 +87,23 @@ public partial class serviceLocation {
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-    public System.Nullable<decimal> version {
+    public decimal version {
         get {
             return this.versionField;
         }
         set {
             this.versionField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool versionSpecified {
+        get {
+            return this.versionFieldSpecified;
+        }
+        set {
+            this.versionFieldSpecified = value;
         }
     }
 }
