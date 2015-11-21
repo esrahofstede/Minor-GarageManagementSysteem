@@ -8,7 +8,7 @@ namespace Minor.Case2.ISRDW.Implementation
     /// <summary>
     /// Manager for logging
     /// </summary>
-    public class LoggingManager
+    public class LoggingManager : ILoggingManager
     {
         IDataMapper<Logging, long> _loggingMapper;
 
