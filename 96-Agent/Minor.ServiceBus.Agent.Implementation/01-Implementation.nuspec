@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Minor.Caespi.ServiceBus.Agent</id>
+    <version>1.0.0.3</version>
+    <title>Agent ServiceBus</title>
+    <authors>Levi, Ruben, Esra</authors>
+    <owners>Esra</owners>
+    <licenseUrl>http://choosealicense.com/licenses/apache-2.0/</licenseUrl>
+    <projectUrl>https://github.com/esrahofstede/Minor-GarageManagementSysteem</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>De agent voor de servicebus</description>
+    <releaseNotes>Parameterless ctor for ServiceFactory</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>servicebus agent servicelocator esrahofstede minor2015</tags>
+  </metadata>
+</package>

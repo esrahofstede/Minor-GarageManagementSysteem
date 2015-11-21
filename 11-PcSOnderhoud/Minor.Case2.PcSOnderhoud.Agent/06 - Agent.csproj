@@ -38,8 +38,8 @@
     <AssemblyOriginatorKeyFile>..\..\99-Shared\Case2Key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Minor.ServiceBus.Agent.Implementation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ad43e0a7da9d5a7, processorArchitecture=MSIL">
-      <HintPath>..\packages\AgentServiceBus.1.0.0.4\lib\net452\Minor.ServiceBus.Agent.Implementation.dll</HintPath>
+    <Reference Include="Minor.ServiceBus.Agent.Implementation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=73e451069382071b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Minor.Caespi.ServiceBus.Agent.1.0.0.3\lib\net452\Minor.ServiceBus.Agent.Implementation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -55,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgentISRDW.cs" />
-    <Compile Include="case2isrijksdienstwegverkeerv1.cs" />
+    <Compile Include="ISRijksdienstWegVerkeerV1Contract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +71,11 @@
   <PropertyGroup>
     <PreBuildEvent>"C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6 Tools\svcutil.exe" ^
  /d:"$(ProjectDir) " ^
+ /n:urn:minor-case2-bsvoertuigenklantbeheer:v1:messages,Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Messages ^
+ /n:urn:minor-case2-bsvoertuigenklantbeheer:v1:schema,Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema ^
+ /n:urn:minor-case2-isrijksdienstwegverkeer:v1:messages,Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages ^
+ /n:urn:minor-case2-isrijksdienstwegverkeer:v1:schema,Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema ^
+ /out:"ISRijksdienstWegVerkeerV1Contract.cs" ^
  "$(SolutionDir)..\99-Shared\31-ISRijksdienstWegVerkeer\Contract\*.wsdl" ^
  "$(SolutionDir)..\99-Shared\31-ISRijksdienstWegVerkeer\Contract\*.xsd"</PreBuildEvent>
   </PropertyGroup>

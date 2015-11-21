@@ -1,5 +1,10 @@
 ﻿using System;
+using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
+using Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema;
+using Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages;
+using Minor.ServiceBus.Agent.Implementation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace Minor.Case2.PcSOnderhoud.Agent.Tests
 {
@@ -7,12 +12,59 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
     public class AgentISRDWTest
     {
         [TestMethod]
-        public void CreateAgentTest()
+        public void RDWAgentHasSendReqMethodTest()
         {
             //Arrange
             AgentISRDW agent = new AgentISRDW();
+
             //Act
+            var result = agent.SendAPKKeuringsverzoek(new Voertuig(), new Garage(), new Keuringsverzoek());
+
             //Assert
+            Assert.AreEqual(typeof(SendRdwKeuringsverzoekResponseMessage), result.GetType());
         }
+
+
+        [TestMethod]
+        public void RDWAgentSendReq_CallsFactory_Test()
+        {
+            var serviceMock = new Mock<IISRDWService>();
+            var factoryMock = new Mock<ServiceFactory<IISRDWService>>(MockBehavior.Strict);
+            factoryMock.Setup(factory => factory.CreateAgent()).Returns(serviceMock.Object);
+            //Arrange
+            AgentISRDW agent = new AgentISRDW(factoryMock.Object);
+
+            //Act
+            var result = agent.SendAPKKeuringsverzoek(new Voertuig(), new Garage(), new Keuringsverzoek());
+
+            //Assert
+            Assert.IsTrue(true);
+            factoryMock.Verify(factory => factory.CreateAgent(), Times.Once());
+            //Test kan niet worden uitgevoerd omdat de CreateAgent method niet virtual is.
+        }
+
+        [TestMethod]
+        public void RDWAgentSendReq_ServiceGetsCalled_Test()
+        {
+            //Arrange
+            var keuringsverzoek = new SendRdwKeuringsverzoekRequestMessage();
+            var serviceMock = new Mock<IISRDWService>();
+            serviceMock
+                .Setup(service => service
+                    .RequestKeuringsverzoek(It.IsAny<SendRdwKeuringsverzoekRequestMessage>()))
+                .Returns(new SendRdwKeuringsverzoekResponseMessage());
+            var factoryMock = new Mock<ServiceFactory<IISRDWService>>(MockBehavior.Strict);
+            factoryMock.Setup(factory => factory.CreateAgent()).Returns(serviceMock.Object);
+            
+            AgentISRDW agent = new AgentISRDW(factoryMock.Object);
+
+            //Act
+            var result = agent.SendAPKKeuringsverzoek(new Voertuig(), new Garage(), new Keuringsverzoek());
+
+            //Assert
+            Assert.IsTrue(true);
+            serviceMock.Verify(service => service.RequestKeuringsverzoek(It.IsAny<SendRdwKeuringsverzoekRequestMessage>()), Times.Once());
+        }
+
     }
 }

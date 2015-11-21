@@ -20,6 +20,8 @@ namespace Minor.ServiceBus.Agent.Implementation
 
         public IServiceLocator ServiceLocator { get; set; }
 
+        public ServiceFactory(){}
+
         public ServiceFactory(string name) : this(name, ConfigurationManager.GetSection("serviceBus/serviceLocators") as ServiceLocatorConfigSection){ }
 
         public ServiceFactory(string name, ServiceLocatorConfigSection config)
@@ -41,7 +43,7 @@ namespace Minor.ServiceBus.Agent.Implementation
             }
         }
 
-        public TContract CreateAgent()
+        public virtual TContract CreateAgent()
         {
             var mexAddress = ServiceLocator.FindMetadataEndpointAddress(_serviceName, _config.Profile);
             var mexUri = new Uri(mexAddress);
