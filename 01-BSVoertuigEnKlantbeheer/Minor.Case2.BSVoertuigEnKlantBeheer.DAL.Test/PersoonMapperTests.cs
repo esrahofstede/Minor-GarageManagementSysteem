@@ -52,7 +52,8 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
             }
         }
 
-        //[TestMethod]
+        [Ignore] //Bij de relatie tussen voertuig en klant gaat nog iets mis
+        [TestMethod]
         public void HasPersoonAVoertuigTest()
         {
             // Arrange
