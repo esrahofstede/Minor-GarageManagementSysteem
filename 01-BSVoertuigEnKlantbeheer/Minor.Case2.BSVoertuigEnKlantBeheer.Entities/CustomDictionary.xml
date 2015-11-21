@@ -4,11 +4,37 @@
       <Word>Beheer</Word>
       <Word>Klant</Word>
       <Word>Voertuig</Word>
+      <Word>Woonplaats</Word>
+      <Word>Voornaam</Word>
+      <Word>Achternaam</Word>
+      <Word>Tussenvoegsel</Word>
+      <Word>Telefoonnummer</Word>
+      <Word>Persoon</Word>
+      <Word>Opdracht</Word>
+      <Word>Opdrachten</Word>
+      <Word>Onderhouds</Word>
+      <Word>Omschrijving</Word>
+      <Word>Klantnummer</Word>
+      <Word>Kilometerstand</Word>
+      <Word>Kenteken</Word>
+      <Word>Emailadres</Word>
+      <Word>Eigenaar</Word>
+      <Word>Bestuurder</Word>
+      <Word>Aanmeldings</Word>
+      <Word>Afmeldings</Word>
+      <Word>Merk</Word>
+      <Word>Leasemaatschappij</Word>
+      <Word>Naam</Word>
+      <Word>Adres</Word>
+      <Word>Werkzaamheden</Word>
+      <Word>Voertuigen</Word>
     </Recognized> 
   </Words> 
   <Acronyms> 
     <CasingExceptions> 
       <Acronym>En</Acronym>
+      <Acronym>APK</Acronym>
+      <Acronym>ID</Acronym>
     </CasingExceptions> 
   </Acronyms> 
 </Dictionary>

@@ -12,6 +12,8 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappings
     {
         public OnderhoudsWerkzaamhedenMapping()
         {
+            this.ToTable("Onderhoudswerkzaamheden");
+
             this.HasKey(o => o.ID);
 
             this.Property(o => o.Omschrijving)
