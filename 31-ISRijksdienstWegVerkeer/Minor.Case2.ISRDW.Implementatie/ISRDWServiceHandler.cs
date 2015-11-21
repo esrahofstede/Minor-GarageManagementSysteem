@@ -7,6 +7,7 @@ using System.ServiceModel;
 using System.Text;
 using Minor.Case2.ISRijksdienstWegVerkeer.V1.Messages;
 using Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema;
+using Minor.Case2.All.V1.Schema;
 
 namespace Minor.Case2.ISRDW.Implementation
 {
@@ -14,6 +15,10 @@ namespace Minor.Case2.ISRDW.Implementation
 
     public class ISRDWServiceHandler : IISRDWService
     {
+        public ISRDWServiceHandler()
+        {
+            log4net.Config.XmlConfigurator.Configure();
+        }
         /// <summary>
         /// Send an apk request to the RDW service 
         /// </summary>
@@ -21,11 +26,45 @@ namespace Minor.Case2.ISRDW.Implementation
         /// <returns></returns>
         public SendRdwKeuringsverzoekResponseMessage RequestKeuringsverzoek(SendRdwKeuringsverzoekRequestMessage message)
         {
-            var apkKeuringsverzoekRequestMessage = Mapper.MapToRDWRequestMessage(message);
+            var list = new List<FunctionalErrorDetail>();
 
-            var apkKeuringsverzoekResponseMessage = new RDWAdapter().SubmitAPKVerzoek(apkKeuringsverzoekRequestMessage);
+            if (message.Garage == null)
+            {
+                list.Add(new FunctionalErrorDetail
+                {
+                    ErrorCode = 100,
+                    Message = "Garage cannot be null"
+                });
+            }
 
-            return Mapper.MapToResponseMessage(apkKeuringsverzoekResponseMessage);
+            if (message.Keuringsverzoek == null)
+            {
+                list.Add(new FunctionalErrorDetail
+                {
+                    ErrorCode = 101,
+                    Message = "Keuringsverzoek cannot be null"
+                });
+            }
+
+            if (message.Voertuig == null)
+            {
+                list.Add(new FunctionalErrorDetail
+                {
+                    ErrorCode = 102,
+                    Message = "Voertuig cannot be null"
+                });
+            }
+
+            try
+            {
+                var apkKeuringsverzoekRequestMessage = Mapper.MapToRDWRequestMessage(message);
+                var apkKeuringsverzoekResponseMessage = new RDWAdapter().SubmitAPKVerzoek(apkKeuringsverzoekRequestMessage);
+                return Mapper.MapToResponseMessage(apkKeuringsverzoekResponseMessage);
+            }
+            catch (CommunicationException ex)
+            {
+                throw new FaultException(ex.Message);
+            }
         }
     }
 }

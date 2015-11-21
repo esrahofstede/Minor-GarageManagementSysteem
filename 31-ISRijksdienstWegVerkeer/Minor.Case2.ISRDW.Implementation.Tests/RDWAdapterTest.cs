@@ -14,15 +14,15 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
         //[TestMethod]
         //public void RDWAdapterRealTest()
         //{
-        //    Arrange
-        //   var message = new apkKeuringsverzoekRequestMessage(); //DummyData.GetMessage();
+        //    //Arrange
+        //    var message = DummyData.GetApkKeuringsverzoekRequestMessage();//  new apkKeuringsverzoekRequestMessage(); DummyData.GetMessage();
 
         //    RDWAdapter adapter = new RDWAdapter();
 
-        //    Act
-        //   var resultSubmition = adapter.SubmitAPKVerzoek(message);
+        //    //Act
+        //    var resultSubmition = adapter.SubmitAPKVerzoek(message);
 
-        //    Assert
+        //    //Assert
         //    Assert.AreEqual("0038c17b-aa10-4f93-8569-d184fdfc265b", resultSubmition.keuringsregistratie.correlatieId);
         //    Assert.AreEqual("BV-01-EG", resultSubmition.keuringsregistratie.kenteken);
         //    Assert.AreEqual(new DateTime(2008, 11, 19), resultSubmition.keuringsregistratie.keuringsdatum);
@@ -158,7 +158,7 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
 
             // Assert ArgumentNullException
         }
-        
+
 
     }
 }

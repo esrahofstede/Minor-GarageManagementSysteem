@@ -41,9 +41,9 @@ namespace Minor.Case2.ISRDW.Implementation
                 },
                 voertuig = new keuringsverzoekVoertuig
                 {
-                    kenteken = message.Voertuig.kenteken,
+                    kenteken = message.Voertuig.Kenteken,
                     kilometerstand = 0,
-                    naam = message.Voertuig.bestuurder.achternaam,
+                    naam = message.Voertuig.Bestuurder.Achternaam,
                     type = voertuigtype.personenauto,
                 }
             };

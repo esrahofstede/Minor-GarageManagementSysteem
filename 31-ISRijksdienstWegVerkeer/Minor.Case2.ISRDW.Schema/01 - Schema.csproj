@@ -53,6 +53,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FunctionalErrorDetail.cs" />
     <Compile Include="generatedTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -86,12 +87,18 @@
   <PropertyGroup>
     <PreBuildEvent>"C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6 Tools\svcutil.exe" ^
 /dconly ^
-/out:"$(ProjectDir)generatedTypes.cs" ^
+/out:"$(ProjectDir)GeneratedTypes.cs" ^
 /n:urn:minor-case2-bsvoertuigenklantbeheer:schema,Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema ^
 /n:urn:minor-case2-bsvoertuigenklantbeheer:messages,Minor.Case2.BSVoertuigEnKlantbeheer.V1.Messages ^
 /n:urn:minor-case2-isrijksdienstwegverkeer:v1:schema,Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema ^
 /n:urn:minor-case2-isrijksdienstwegverkeer:v1:messages,Minor.Case2.ISRijksdienstWegVerkeer.V1.Messages ^
-"$(SolutionDir)..\99-Shared\31-ISRijksdienstWegVerkeer\Schema\*.xsd" "$(SolutionDir)..\99-Shared\01-BSVoertuigEnKlantbeheer\Schema\*.xsd"</PreBuildEvent>
+"$(SolutionDir)..\99-Shared\31-ISRijksdienstWegVerkeer\Schema\*.xsd" "$(SolutionDir)..\99-Shared\01-BSVoertuigEnKlantbeheer\Schema\*.xsd"
+
+"C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6 Tools\svcutil.exe" ^
+/dconly ^
+/out:"$(ProjectDir)FunctionalErrorDetail.cs" ^
+/n:urn:minor-case2-all:v1:schema,Minor.Case2.All.V1.Schema ^
+"$(SolutionDir)..\99-Shared\00-All\Schema\FunctionalErrorDetail.xsd"</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

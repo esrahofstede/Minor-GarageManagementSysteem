@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using Minor.Case2.ISRijksdienstWegVerkeer.V1.Messages;
+using Minor.Case2.All.V1.Schema;
 
 namespace Minor.Case2.ISRDW.Contract
 {
@@ -13,6 +14,7 @@ namespace Minor.Case2.ISRDW.Contract
     public interface IISRDWService
     {
         [OperationContract]
+        [FaultContract(typeof(FunctionalErrorDetail[]))]
         SendRdwKeuringsverzoekResponseMessage RequestKeuringsverzoek(SendRdwKeuringsverzoekRequestMessage message);
     }
 
