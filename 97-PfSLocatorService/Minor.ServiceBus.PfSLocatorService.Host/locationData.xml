@@ -11,8 +11,13 @@
     <metadataAddress>http://localhost/Caespi/RDWService.svc/mex</metadataAddress>
   </serviceLocation>
   <serviceLocation>
-    <name>BSKlantEnVoertuigBeheer</name>
+    <name>BSVoertuigEnKlantBeheer</name>
     <profile>Development</profile>
-    <metadataAddress>http://localhost:30412/BSKlantEnVoertuigBeheer.svc/mex</metadataAddress>
+    <metadataAddress>http://localhost:50488/BSVoertuigEnKlantBeheer.svc/mex</metadataAddress>
+  </serviceLocation>
+  <serviceLocation>
+    <name>BSVoertuigEnKlantBeheer</name>
+    <profile>Production</profile>
+    <metadataAddress>http://localhost/Caespi/BSVoertuigEnKlantBeheer.svc/mex</metadataAddress>
   </serviceLocation>
 </locationData>
