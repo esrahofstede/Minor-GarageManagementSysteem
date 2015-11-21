@@ -1,17 +1,16 @@
-﻿using Minor.Case2.ISRijksdienstWegVerkeer.V1.Messages;
+﻿using Minor.Case2.ISRDW.DAL.Entities;
+using Minor.Case2.ISRijksdienstWegVerkeer.V1.Messages;
 using Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema;
 using minorcase2bsvoertuigenklantbeheer.v1.schema;
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Minor.Case2.ISRDW.Implementation.Tests
 {
     internal static class DummyData
     {
-        internal static apkKeuringsverzoekRequestMessage GetMessage()
+        internal static apkKeuringsverzoekRequestMessage GetApkKeuringsverzoekRequestMessage()
         {
             return new apkKeuringsverzoekRequestMessage
             {
@@ -37,7 +36,7 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
             };
         }
 
-        internal static SendRdwKeuringsverzoekRequestMessage GetRequestMessage()
+        internal static SendRdwKeuringsverzoekRequestMessage GetSendRdwKeuringsverzoekRequestMessage()
         {
             return new SendRdwKeuringsverzoekRequestMessage
             {
@@ -65,27 +64,88 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
                     },
                     id = 1
                 },
-                Keuringsverzoek = new Keuringsverzoek
+                Keuringsverzoek = new ISRijksdienstWegVerkeer.V1.Schema.Keuringsverzoek
                 {
-                    CorrolatieId = new Guid().ToString(),
+                    CorrolatieId = "0038c17b-aa10-4f93-8569-d184fdfc265b",
                     Date = DateTime.Now
                 }
             };
         }
 
-        internal static apkKeuringsverzoekResponseMessage GetReponseMessage()
+        internal static apkKeuringsverzoekResponseMessage GetApkKeuringsverzoekResponseMessage()
         {
             return new apkKeuringsverzoekResponseMessage
             {
                 keuringsregistratie = new keuringsregistratie()
                 {
-                    correlatieId = new Guid().ToString(),
-                    kenteken = "12-AA-BB",
-                    steekproef = DateTime.Parse("2014-01-10"),
-                    keuringsdatum = DateTime.Parse("2014-01-01"),
+                    correlatieId = "0038c17b-aa10-4f93-8569-d184fdfc265b",
+                    kenteken = "BV-01-EG",
+                    steekproef = null,
+                    keuringsdatum = new DateTime(2008, 11, 19),
                     steekproefSpecified = true
                 }
             };
         }
+
+        internal static Logging GetLogging()
+        {
+            return new Logging
+            {
+                Time = new DateTime(2015, 11, 18, 11, 13, 00),
+                Keuringsregistratie = new Keuringsregistratie
+                {
+                    CorrelatieId = "0038c17b-aa10-4f93-8569-d184fdfc265b",
+                    Kenteken = "BV-01-EG",
+                    Keuringsdatum = new DateTime(2008, 11, 19),
+                    Steekproef = null,
+                }
+            };
+        }
+
+        internal static IEnumerable<Logging> GetAllKeuringsregistratieLoggings()
+        {
+            return new List<Logging>
+            {
+                new Logging
+                {
+                    Time = new DateTime(2015, 11, 18, 11, 13, 00),
+                    Keuringsregistratie = new Keuringsregistratie
+                    {
+                        CorrelatieId = "0038c17b-aa10-4f93-8569-d184fdfc265b",
+                        Kenteken = "BV-01-EG",
+                        Keuringsdatum = new DateTime(2008, 11, 19),
+                        Steekproef = null,
+                    }
+                },
+
+            };
+        }
+
+        internal static IEnumerable<Logging> GetAllKeuringsverzoekLoggings()
+        {
+            return new List<Logging>
+            {
+                new Logging
+                {
+                    Time = new DateTime(2015, 11, 18, 11, 13, 00),
+                    Keuringsverzoek = new DAL.Entities.Keuringsverzoek
+                    {
+                        CorrelatieId = "0038c17b-aa10-4f93-8569-d184fdfc265b",
+                        Kenteken = "BV-01-EG",
+                        NaamEigenaar = "A. Eigenaar",
+                        VoertuigType = "personenauto",
+                        Kilometerstand = 12345,
+                        Keuringsdatum = new DateTime(2008, 11, 19),
+                        KeuringsinstantieNaam = "Garage Voorbeeld B.V.",
+                        KeuringsinstantiePlaats = "Wijk bij Voorbeeld",
+                        KeuringsinstantieType = "garage",
+                        KVK = "3013 5370",
+                    }
+
+                },
+
+            };
+        }
+
     }
 }
