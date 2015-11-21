@@ -66,6 +66,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             serviceMock.Verify(service => service.RequestKeuringsverzoek(It.IsAny<SendRdwKeuringsverzoekRequestMessage>()), Times.Once());
         }
 
+        [Ignore]
         [TestMethod]
         public void IntegratieTest()
         {

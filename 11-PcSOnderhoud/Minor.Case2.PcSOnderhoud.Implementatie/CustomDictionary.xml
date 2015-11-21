@@ -6,6 +6,18 @@
     </Unrecognized>
     <Recognized>
       <Word>Onderhoud</Word>
+      <Word>Klant</Word>
+      <Word>Klanten</Word>
+      <Word>Voeg</Word>
+      <Word>Onderhoudsopdracht</Word>
+      <Word>Toe</Word>
+      <Word>Met</Word>
+      <Word>Voertuig</Word>
+      <Word>En</Word>
+      <Word>Klant</Word>
+      <Word>Toe</Word>
+      <Word>Zoek</Word>
+      <Word>Criteria</Word>
     </Recognized>
     <Deprecated>
       <Term PreferredAlternate="EnterpriseServices">ComPlus</Term>

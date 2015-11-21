@@ -14,6 +14,29 @@
     </xs:sequence>
   </xs:complexType>
 
+  <xs:complexType name="KlantenCollection">
+    <xs:sequence>
+      <xs:element name ="Klant" type="bsvk:Klant" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="VoertuigCollection">
+    <xs:sequence>
+      <xs:element name ="Voertuig" type="bsvk:Voertuig" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="VoertuigenSearchCriteria">
+    <xs:sequence>
+      <xs:element name="Id" type="xs:long" />
+      <xs:element name ="Kenteken" type="xs:string" />
+      <xs:element name="Merk" type="xs:string" />
+      <xs:element name="Type" type="xs:string" />
+      <xs:element name="Eigenaar" type="bsvk:Klant" />
+      <xs:element name="Bestuurder" type="bsvk:Persoon" />
+    </xs:sequence>
+  </xs:complexType>
+  
   <xs:complexType name="Persoon">
     <xs:complexContent>
       <xs:extension base="bsvk:Klant">
@@ -57,7 +80,7 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="OnderhoudsOpdracht">
+  <xs:complexType name="Onderhoudsopdracht">
     <xs:sequence>
       <xs:element name="Id" type="xs:long" />
       <xs:element name="Aanmeldingsdatum" type="xs:dateTime" />

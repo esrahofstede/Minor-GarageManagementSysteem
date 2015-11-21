@@ -7,7 +7,17 @@
     <Recognized>
       <Word>Onderhoud</Word>
       <Word>Keuringsverzoek</Word>
+      <Word>Klant</Word>
+      <Word>Klanten</Word>
+      <Word>Voeg</Word>
+      <Word>Onderhoudsopdracht</Word>
+      <Word>Toe</Word>
+      <Word>Met</Word>
       <Word>Voertuig</Word>
+      <Word>En</Word>
+      <Word>Klant</Word>
+      <Word>Toe</Word>
+      <Word>Beheer</Word>
     </Recognized>
     <Deprecated>
     </Deprecated>
@@ -17,6 +27,7 @@
       <Acronym>Pc</Acronym>
       <Acronym>APK</Acronym>
       <Acronym>ISRDW</Acronym>
+      <Acronym>RDW</Acronym>
     </CasingExceptions>
   </Acronyms>
 </Dictionary>

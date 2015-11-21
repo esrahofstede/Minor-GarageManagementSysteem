@@ -40,6 +40,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GeneratedTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +61,14 @@
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>"C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6 Tools\svcutil.exe" ^
+/dconly ^
+/out:"$(ProjectDir)GeneratedTypes.cs" ^
+/n:urn:minor-case2-bsvoertuigenklantbeheer:v1:schema,Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema ^
+/n:urn:minor-case2-bsvoertuigenklantbeheer:v1:messages,Minor.Case2.BSVoertuigEnKlantbeheer.V1.Messages ^
+"$(SolutionDir)..\99-Shared\01-BSVoertuigEnKlantbeheer\Schema\*.xsd"</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
