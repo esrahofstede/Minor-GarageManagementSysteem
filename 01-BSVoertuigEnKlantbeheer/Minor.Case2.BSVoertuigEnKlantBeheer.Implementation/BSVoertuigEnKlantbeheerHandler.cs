@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
 {
     [ServiceBehavior]
-    public class BSVoertuigEnKlantbeheer : IBSVoertuigEnKlantbeheer
+    public class BSVoertuigEnKlantbeheerHandler : IBSVoertuigEnKlantbeheer
     {
     }
 }
