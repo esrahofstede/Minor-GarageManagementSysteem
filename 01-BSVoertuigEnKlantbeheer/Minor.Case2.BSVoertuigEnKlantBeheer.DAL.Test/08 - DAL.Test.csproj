@@ -63,8 +63,8 @@
     <Compile Include="DbInitializer.cs" />
     <Compile Include="DummyData.cs" />
     <Compile Include="LeasemaatschappijMapperTests.cs" />
-    <Compile Include="OnderhoudsOpdrachtTests.cs" />
-    <Compile Include="OnderhoudsWerkzaamhedenTests.cs" />
+    <Compile Include="OnderhoudsopdrachtTests.cs" />
+    <Compile Include="OnderhoudswerkzaamhedenTests.cs" />
     <Compile Include="PersoonMapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VoertuigMapperTests.cs" />

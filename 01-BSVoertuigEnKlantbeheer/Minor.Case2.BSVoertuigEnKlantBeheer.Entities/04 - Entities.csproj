@@ -50,8 +50,8 @@
   <ItemGroup>
     <Compile Include="Klant.cs" />
     <Compile Include="Leasemaatschappij.cs" />
-    <Compile Include="OnderhoudsOpdracht.cs" />
-    <Compile Include="OnderhoudsWerkzaamheden.cs" />
+    <Compile Include="Onderhoudsopdracht.cs" />
+    <Compile Include="Onderhoudswerkzaamheden.cs" />
     <Compile Include="Persoon.cs" />
     <Compile Include="Voertuig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

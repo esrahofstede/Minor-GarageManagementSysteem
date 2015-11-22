@@ -9,7 +9,7 @@ using System.Transactions;
 namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
 {
     [TestClass]
-    public class OnderhoudsWerkzaamhedenTests
+    public class OnderhoudswerkzaamhedenTests
     {
         [ClassInitialize]
         public static void ClassInitialize(TestContext testcontext)
