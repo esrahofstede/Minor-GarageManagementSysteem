@@ -10,6 +10,11 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="id" type="xs:long" />
       <xs:element name="Klantnummer" type="xs:long" />
+      <xs:element name="Adres" nillable="true" type="xs:string" />
+      <xs:element name="Postcode" nillable="true" type="xs:string" />
+      <xs:element name="Woonplaats" nillable="true" type="xs:string" />
+      <xs:element name="Telefoonnummer" nillable="true" type="xs:string" />
+      <xs:element name="Emailadres" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Klant" nillable="true" type="tns:Klant" />
@@ -32,11 +37,6 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element name="Adres" nillable="true" type="xs:string" />
-          <xs:element name="Postcode" nillable="true" type="xs:string" />
-          <xs:element name="Woonplaats" nillable="true" type="xs:string" />
-          <xs:element name="Telefoonnummer" nillable="true" type="xs:string" />
-          <xs:element name="Emailadres" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -47,41 +47,6 @@
       <xs:extension base="tns:Klant">
         <xs:sequence>
           <xs:element name="Naam" nillable="true" type="xs:string">
-            <xs:annotation>
-              <xs:appinfo>
-                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="Adres" nillable="true" type="xs:string">
-            <xs:annotation>
-              <xs:appinfo>
-                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="Postcode" nillable="true" type="xs:string">
-            <xs:annotation>
-              <xs:appinfo>
-                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="Woonplaats" nillable="true" type="xs:string">
-            <xs:annotation>
-              <xs:appinfo>
-                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="Telefoonnummer" nillable="true" type="xs:string">
-            <xs:annotation>
-              <xs:appinfo>
-                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="Emailadres" nillable="true" type="xs:string">
             <xs:annotation>
               <xs:appinfo>
                 <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
