@@ -11,6 +11,11 @@
     <xs:sequence>
       <xs:element name="id" type="xs:long" minOccurs="0" />
       <xs:element name="klantnummer" type="xs:long" />
+      <xs:element name="Adres" nillable="true" type="xs:string" />
+      <xs:element name="Postcode" nillable="true" type="xs:string" />
+      <xs:element name="Woonplaats" nillable="true"  type="xs:string" />
+      <xs:element name="Telefoonnummer" nillable="true" type="xs:string" />
+      <xs:element name="Emailadres" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
 
@@ -44,11 +49,6 @@
           <xs:element name="Voornaam" type="xs:string" />
           <xs:element name="Tussenvoegsel" nillable="true" type="xs:string" />
           <xs:element name="Achternaam" type="xs:string" />
-          <xs:element name="Adres" nillable="true" type="xs:string" />
-          <xs:element name="Postcode" nillable="true" type="xs:string" />
-          <xs:element name="Woonplaats" nillable="true"  type="xs:string" />
-          <xs:element name="Telefoonnummer" nillable="true" type="xs:string" />
-          <xs:element name="Emailadres" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -59,11 +59,6 @@
       <xs:extension base="bsvk:Klant">
         <xs:sequence>
           <xs:element name="Naam" type="xs:string" />
-          <xs:element name="Adres" type="xs:date" />
-          <xs:element name="Postcode" type="xs:string" />
-          <xs:element name="Woonplaats" type="xs:string" />
-          <xs:element name="Telefoonnummer" type="xs:string" />
-          <xs:element name="Emailadres" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
