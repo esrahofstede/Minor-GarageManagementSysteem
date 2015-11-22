@@ -74,18 +74,18 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             var keuringsreq = new SendRdwKeuringsverzoekRequestMessage();
             var voertuig = new Voertuig
             {
-                kenteken = "12-AA-AA",
-                merk = "ford",
-                type = "focus",
-                eigenaar = new Persoon
+                Kenteken = "12-AA-AA",
+                Merk = "ford",
+                Type = "focus",
+                Eigenaar = new Persoon
                 {
-                    voornaam = "Jan",
-                    achternaam = "Jansen"
+                    Voornaam = "Jan",
+                    Achternaam = "Jansen"
                 },
-                bestuurder = new Persoon
+                Bestuurder = new Persoon
                 {
-                    voornaam = "Jan",
-                    achternaam = "Jansen"
+                    Voornaam = "Jan",
+                    Achternaam = "Jansen"
                 }
             };
             var garage = new Garage
