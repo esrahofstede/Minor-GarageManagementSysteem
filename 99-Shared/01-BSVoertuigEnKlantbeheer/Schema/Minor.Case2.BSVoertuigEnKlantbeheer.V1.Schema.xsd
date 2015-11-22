@@ -96,7 +96,7 @@
     <xs:sequence>
       <xs:element name="Id" type="xs:long" />
       <xs:element name="Afmeldingsdatum" type="xs:dateTime" />
-      <xs:element name="Kilometerstand" type="xs:string" />
+      <xs:element name="Kilometerstand" type="xs:long" />
       <xs:element name="Onderhoudswerkzaamhedenomschrijving" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
