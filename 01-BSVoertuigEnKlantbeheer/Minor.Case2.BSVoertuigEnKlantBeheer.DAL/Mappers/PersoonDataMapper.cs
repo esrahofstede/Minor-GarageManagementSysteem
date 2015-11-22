@@ -1,4 +1,5 @@
-﻿using Minor.Case2.BSVoertuigEnKlantBeheer.Entities;
+﻿using Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Contexts;
+using Minor.Case2.BSVoertuigEnKlantBeheer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,21 +9,21 @@ using System.Threading.Tasks;
 
 namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappers
 {
-    public class PersoonDataMapper : DataMapperBase<Persoon, long, VoertuigEnKlantContext>
+    public class PersoonDataMapper : DataMapperBase<Persoon, long, KlantContext>
     {
-        protected override IQueryable<Persoon> GetCollection(VoertuigEnKlantContext context)
+        protected override IQueryable<Persoon> GetCollection(KlantContext context)
         {
-            return context.Klanten.Include(k => k.Voertuigen).OfType<Persoon>();
+            return context.Klanten.OfType<Persoon>();
         }
 
-        protected override Persoon Find(long id, VoertuigEnKlantContext context)
+        protected override Persoon Find(long id, KlantContext context)
         {
             return GetCollection(context).Where(p => p.ID == id).Single();
         }
 
         public override void Insert(Persoon persoon)
         {
-            using (var context = new VoertuigEnKlantContext())
+            using (var context = new KlantContext())
             {
                 context.Klanten.Add(persoon);
                 context.SaveChanges();

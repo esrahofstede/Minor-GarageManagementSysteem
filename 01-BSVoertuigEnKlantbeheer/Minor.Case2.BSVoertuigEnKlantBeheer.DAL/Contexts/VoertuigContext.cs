@@ -8,16 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL
+namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Contexts
 {
-    public class VoertuigEnKlantContext : DbContext
+    public class VoertuigContext : DbContext
     {
-        public VoertuigEnKlantContext() : base("BSVoertuigEnKlantBeheerDB")
+        public VoertuigContext() : base("BSVoertuigBeheerDB")
         {
 
         }
 
-        public DbSet<Klant> Klanten { get; set; }
         public DbSet<Voertuig> Voertuigen { get; set; }
         public DbSet<Onderhoudsopdracht> OnderhoudsOpdrachten { get; set; }
         public DbSet<Onderhoudswerkzaamheden> OnderhoudsWerkzaamheden { get; set; }
@@ -28,9 +27,6 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add<Klant>(new KlantMapping());
-            modelBuilder.Configurations.Add<Persoon>(new PersoonMapping());
-            modelBuilder.Configurations.Add<Leasemaatschappij>(new LeasemaatschappijMapping());
             modelBuilder.Configurations.Add<Voertuig>(new VoertuigMapping());
             modelBuilder.Configurations.Add<Onderhoudsopdracht>(new OnderhoudsOpdrachtMapping());
             modelBuilder.Configurations.Add<Onderhoudswerkzaamheden>(new OnderhoudsWerkzaamhedenMapping());

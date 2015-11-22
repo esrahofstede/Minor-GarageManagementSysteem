@@ -27,8 +27,8 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
                 Kenteken = "NL-123-G",
                 Merk = "Citroen",
                 Type = "C3",
-                Eigenaar = GetDummyLeasemaatschappij(),
-                Bestuurder = GetDummyPersoon()
+                EigenaarID = 1,
+                BestuurderID = 2,           
             };
         }
 

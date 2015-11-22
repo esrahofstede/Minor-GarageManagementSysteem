@@ -31,7 +31,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappings
             this.Property(k => k.Telefoonnummer).HasMaxLength(300);
             this.Property(k => k.Emailadres).HasMaxLength(300);
 
-            this.HasMany(k => k.Voertuigen);
+            //this.HasMany(k => k.Voertuigen);
         }
     }
 }

@@ -60,13 +60,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="DbInitializer.cs" />
+    <Compile Include="KlantDbInitializer.cs" />
     <Compile Include="DummyData.cs" />
     <Compile Include="LeasemaatschappijMapperTests.cs" />
     <Compile Include="OnderhoudsopdrachtTests.cs" />
     <Compile Include="OnderhoudswerkzaamhedenTests.cs" />
     <Compile Include="PersoonMapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VoertuigDbInitializer.cs" />
     <Compile Include="VoertuigMapperTests.cs" />
   </ItemGroup>
   <ItemGroup>

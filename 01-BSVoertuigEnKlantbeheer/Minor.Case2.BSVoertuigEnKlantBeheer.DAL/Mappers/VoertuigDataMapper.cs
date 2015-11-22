@@ -1,32 +1,91 @@
-﻿using Minor.Case2.BSVoertuigEnKlantBeheer.Entities;
+﻿using Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Contexts;
+using Minor.Case2.BSVoertuigEnKlantBeheer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappers
 {
-    public class VoertuigDataMapper : DataMapperBase<Voertuig, long, VoertuigEnKlantContext>
+    public class VoertuigDataMapper : DataMapperBase<Voertuig, long, VoertuigContext>
     {
-        protected override IQueryable<Voertuig> GetCollection(VoertuigEnKlantContext context)
+        protected override IQueryable<Voertuig> GetCollection(VoertuigContext context)
         {
             return context.Voertuigen
-                .Include(v => v.Bestuurder)
-                .Include(v => v.Eigenaar)
                 .Include(v => v.OnderhoudsOpdrachten);
         }
 
-        protected override Voertuig Find(long id, VoertuigEnKlantContext context)
+        public override IEnumerable<Voertuig> FindAll()
         {
-            return GetCollection(context).Where(p => p.ID == id).Single();
+            using (var context = new VoertuigContext())
+            {
+                List<Voertuig> voertuigen = GetCollection(context).ToList();
+                foreach (var voertuig in voertuigen)
+                {
+                    voertuig.Bestuurder = AddKlantenToVoertuig(voertuig).Bestuurder;
+                    voertuig.Eigenaar = AddKlantenToVoertuig(voertuig).Eigenaar;
+                }
+                return voertuigen;
+            }
+        }
+
+        public override IEnumerable<Voertuig> FindAllBy(Expression<Func<Voertuig, bool>> filter)
+        {
+            using (var context = new VoertuigContext())
+            {
+                List<Voertuig> voertuigen = GetCollection(context).Where(filter).ToList();
+                foreach (var voertuig in voertuigen)
+                {
+                    voertuig.Bestuurder = AddKlantenToVoertuig(voertuig).Bestuurder;
+                    voertuig.Eigenaar = AddKlantenToVoertuig(voertuig).Eigenaar;
+                }
+                return voertuigen;
+            }
+        }
+
+        protected override Voertuig Find(long id, VoertuigContext context)
+        {
+            Voertuig voertuig = GetCollection(context).Where(p => p.ID == id).Single();
+            return AddKlantenToVoertuig(voertuig);
+
+        }
+
+        private Voertuig AddKlantenToVoertuig(Voertuig voertuig)
+        {
+            if (voertuig.BestuurderID != 0)
+            {
+                voertuig.Bestuurder = new PersoonDataMapper().FindByID(voertuig.BestuurderID);
+            }
+            if (voertuig.EigenaarID != 0)
+            {
+                voertuig.Eigenaar = new KlantDataMapper().FindByID(voertuig.EigenaarID);
+            }
+            return voertuig;
         }
 
         public override void Insert(Voertuig voertuig)
         {
-            using (var context = new VoertuigEnKlantContext())
+            using (var context = new VoertuigContext())
             {
+                if (voertuig.Bestuurder != null)
+                {
+                    Persoon persoon = new PersoonDataMapper().FindAllBy(k => k.ID == voertuig.Bestuurder.ID).SingleOrDefault();
+                    if (persoon != null)
+                    {
+                        voertuig.BestuurderID = persoon.ID;
+                    }
+                }
+                if (voertuig.Eigenaar != null)
+                {
+                    Klant klant = new KlantDataMapper().FindAllBy(k => k.ID == voertuig.Eigenaar.ID).SingleOrDefault();
+                    if (klant != null)
+                    {
+                        voertuig.EigenaarID = klant.ID;
+                    }
+                }
                 context.Voertuigen.Add(voertuig);
                 context.SaveChanges();
             }

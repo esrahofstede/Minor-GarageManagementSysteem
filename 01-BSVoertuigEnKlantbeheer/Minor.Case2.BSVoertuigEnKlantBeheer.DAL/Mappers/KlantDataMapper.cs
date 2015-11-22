@@ -2,40 +2,39 @@
 using Minor.Case2.BSVoertuigEnKlantBeheer.Entities;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappers
 {
-    public class LeasemaatschappijDataMapper : DataMapperBase<Leasemaatschappij, long, KlantContext>
+    public class KlantDataMapper : DataMapperBase<Klant, long, KlantContext>
     {
-        protected override IQueryable<Leasemaatschappij> GetCollection(KlantContext context)
+        protected override IQueryable<Klant> GetCollection(KlantContext context)
         {
-            return context.Klanten.OfType<Leasemaatschappij>();
+            return context.Klanten;
         }
 
-        protected override Leasemaatschappij Find(long id, KlantContext context)
+        protected override Klant Find(long id, KlantContext context)
         {
             return GetCollection(context).Where(p => p.ID == id).Single();
         }
 
-        public override void Insert(Leasemaatschappij leasemaatschappij)
+        public override void Insert(Klant klant)
         {
             using (var context = new KlantContext())
             {
-                context.Klanten.Add(leasemaatschappij);
+                context.Klanten.Add(klant);
                 context.SaveChanges();
             }
         }
 
-        public override void Update(Leasemaatschappij item)
+        public override void Update(Klant item)
         {
             throw new NotImplementedException();
         }
 
-        public override void Delete(Leasemaatschappij item)
+        public override void Delete(Klant item)
         {
             throw new NotImplementedException();
         }

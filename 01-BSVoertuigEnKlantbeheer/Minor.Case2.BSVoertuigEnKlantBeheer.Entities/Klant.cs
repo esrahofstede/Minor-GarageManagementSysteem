@@ -16,6 +16,6 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Entities
         public string Telefoonnummer { get; set; }
         public string Emailadres { get; set; }
 
-        public virtual ICollection<Voertuig> Voertuigen { get; set; }
+        //public virtual ICollection<Voertuig> Voertuigen { get; set; }
     }
 }
