@@ -9,7 +9,7 @@
   
   <xs:complexType name="Klant">
     <xs:sequence>
-      <xs:element name="id" type="xs:long" />
+      <xs:element name="id" type="xs:long" minOccurs="0" />
       <xs:element name="klantnummer" type="xs:long" />
     </xs:sequence>
   </xs:complexType>
@@ -28,7 +28,7 @@
 
   <xs:complexType name="VoertuigenSearchCriteria">
     <xs:sequence>
-      <xs:element name="Id" type="xs:long" />
+      <xs:element name="Id" type="xs:long" minOccurs="0" />
       <xs:element name ="Kenteken" type="xs:string" />
       <xs:element name="Merk" type="xs:string" />
       <xs:element name="Type" type="xs:string" />
@@ -71,7 +71,7 @@
 
   <xs:complexType name="Voertuig">
     <xs:sequence>
-      <xs:element name="Id" type="xs:long" />
+      <xs:element name="Id" type="xs:long" minOccurs="0" />
       <xs:element name="Kenteken" type="xs:string" />
       <xs:element name="Merk" type="xs:string" />
       <xs:element name="Type" type="xs:string" />
@@ -82,7 +82,7 @@
 
   <xs:complexType name="Onderhoudsopdracht">
     <xs:sequence>
-      <xs:element name="Id" type="xs:long" />
+      <xs:element name="Id" type="xs:long" minOccurs="0" />
       <xs:element name="Aanmeldingsdatum" type="xs:dateTime" />
       <xs:element name="Kilometerstand" type="xs:long" />
       <xs:element name="Onderhoudsomschrijving" type="xs:string" />
@@ -94,7 +94,7 @@
 
   <xs:complexType name="OnderhoudsWerkzaamheden">
     <xs:sequence>
-      <xs:element name="Id" type="xs:long" />
+      <xs:element name="Id" type="xs:long" minOccurs="0" />
       <xs:element name="Afmeldingsdatum" type="xs:dateTime" />
       <xs:element name="Kilometerstand" type="xs:long" />
       <xs:element name="Onderhoudswerkzaamhedenomschrijving" type="xs:string" />
