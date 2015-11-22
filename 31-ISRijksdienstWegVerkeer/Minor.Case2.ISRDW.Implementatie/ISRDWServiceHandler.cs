@@ -61,7 +61,7 @@ namespace Minor.Case2.ISRDW.Implementation
                 var apkKeuringsverzoekResponseMessage = new RDWAdapter().SubmitAPKVerzoek(apkKeuringsverzoekRequestMessage);
                 return Mapper.MapToResponseMessage(apkKeuringsverzoekResponseMessage);
             }
-            catch (CommunicationException ex)
+            catch (Exception ex)
             {
                 throw new FaultException(ex.Message);
             }
