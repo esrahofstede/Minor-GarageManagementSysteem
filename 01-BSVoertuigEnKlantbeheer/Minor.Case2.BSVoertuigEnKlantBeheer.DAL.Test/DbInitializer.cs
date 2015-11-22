@@ -36,30 +36,30 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
                 
             };
 
-            OnderhoudsWerkzaamheden ow1 = new OnderhoudsWerkzaamheden
+            Onderhoudswerkzaamheden ow1 = new Onderhoudswerkzaamheden
             {
-                AfmeldingsDatum = new DateTime(2014, 12, 1),
+                Afmeldingsdatum = new DateTime(2014, 12, 1),
                 Kilometerstand = 14050,
                 Omschrijving = "Olie vervangen"
 
             };
 
-            OnderhoudsOpdracht o1 = new OnderhoudsOpdracht
+            Onderhoudsopdracht o1 = new Onderhoudsopdracht
             {
-                AanmeldingsDatum = new DateTime(2014, 12, 1),
+                Aanmeldingsdatum = new DateTime(2014, 12, 1),
                 APK = false,
                 Kilometerstand = 14050,
-                OnderhoudsOmschrijving = "Oliepeil is laag",
+                Onderhoudsomschrijving = "Oliepeil is laag",
                 Voertuig = v1,
-                OnderhoudsWerkzaamheden = ow1               
+                Onderhoudswerkzaamheden = ow1               
             };
 
-            OnderhoudsOpdracht o2 = new OnderhoudsOpdracht
+            Onderhoudsopdracht o2 = new Onderhoudsopdracht
             {
-                AanmeldingsDatum = new DateTime(2014, 12, 1),
+                Aanmeldingsdatum = new DateTime(2014, 12, 1),
                 APK = false,
                 Kilometerstand = 14050,
-                OnderhoudsOmschrijving = "Oliepeil is laag",
+                Onderhoudsomschrijving = "Oliepeil is laag",
                 Voertuig = v1
             };
 
@@ -67,8 +67,8 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
             context.Klanten.AddRange(new Leasemaatschappij[] { l1 });
             context.Voertuigen.AddRange(new Voertuig[] { v1 });
 
-            context.OnderhoudsOpdrachten.AddRange(new OnderhoudsOpdracht[] { o1, o2 });
-            context.OnderhoudsWerkzaamheden.AddRange(new OnderhoudsWerkzaamheden[] { ow1 });
+            context.OnderhoudsOpdrachten.AddRange(new Onderhoudsopdracht[] { o1, o2 });
+            context.OnderhoudsWerkzaamheden.AddRange(new Onderhoudswerkzaamheden[] { ow1 });
 
 
             base.Seed(context);

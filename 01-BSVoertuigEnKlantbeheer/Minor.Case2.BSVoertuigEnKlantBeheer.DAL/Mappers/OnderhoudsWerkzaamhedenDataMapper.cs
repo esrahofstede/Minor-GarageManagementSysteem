@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappers
 {
-    public class OnderhoudsWerkzaamhedenDataMapper : DataMapperBase<OnderhoudsWerkzaamheden, long, VoertuigEnKlantContext>
+    public class OnderhoudsWerkzaamhedenDataMapper : DataMapperBase<Onderhoudswerkzaamheden, long, VoertuigEnKlantContext>
     {
-        protected override IQueryable<OnderhoudsWerkzaamheden> GetCollection(VoertuigEnKlantContext context)
+        protected override IQueryable<Onderhoudswerkzaamheden> GetCollection(VoertuigEnKlantContext context)
         {
-            return context.OnderhoudsWerkzaamheden.Include(o => o.OnderhoudsOpdracht);
+            return context.OnderhoudsWerkzaamheden.Include(o => o.Onderhoudsopdracht);
         }
 
-        protected override OnderhoudsWerkzaamheden Find(long id, VoertuigEnKlantContext context)
+        protected override Onderhoudswerkzaamheden Find(long id, VoertuigEnKlantContext context)
         {
             return GetCollection(context).Where(p => p.ID == id).Single();
         }
 
-        public override void Insert(OnderhoudsWerkzaamheden onderhoudsWerkzaamheden)
+        public override void Insert(Onderhoudswerkzaamheden onderhoudsWerkzaamheden)
         {
             using (var context = new VoertuigEnKlantContext())
             {
@@ -29,12 +29,12 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappers
             }
         }
 
-        public override void Update(OnderhoudsWerkzaamheden item)
+        public override void Update(Onderhoudswerkzaamheden item)
         {
             throw new NotImplementedException();
         }
 
-        public override void Delete(OnderhoudsWerkzaamheden item)
+        public override void Delete(Onderhoudswerkzaamheden item)
         {
             throw new NotImplementedException();
         }

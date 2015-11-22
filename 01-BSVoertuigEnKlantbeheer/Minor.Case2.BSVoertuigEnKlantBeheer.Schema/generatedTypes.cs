@@ -666,7 +666,7 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
         
         private System.DateTime AfmeldingsdatumField;
         
-        private string KilometerstandField;
+        private long KilometerstandField;
         
         private string OnderhoudswerkzaamhedenomschrijvingField;
         
@@ -708,8 +708,8 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=2)]
-        public string Kilometerstand
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
+        public long Kilometerstand
         {
             get
             {

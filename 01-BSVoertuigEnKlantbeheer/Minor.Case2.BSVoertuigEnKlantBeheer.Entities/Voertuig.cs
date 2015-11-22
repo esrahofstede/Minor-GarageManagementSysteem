@@ -15,6 +15,6 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Entities
 
         public virtual Klant Eigenaar { get; set; }
         public virtual Persoon Bestuurder { get; set; }
-        public virtual ICollection<OnderhoudsOpdracht> OnderhoudsOpdrachten { get; set; }
+        public virtual ICollection<Onderhoudsopdracht> OnderhoudsOpdrachten { get; set; }
     }
 }

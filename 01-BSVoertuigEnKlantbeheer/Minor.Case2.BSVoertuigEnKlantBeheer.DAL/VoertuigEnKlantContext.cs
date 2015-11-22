@@ -19,8 +19,8 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL
 
         public DbSet<Klant> Klanten { get; set; }
         public DbSet<Voertuig> Voertuigen { get; set; }
-        public DbSet<OnderhoudsOpdracht> OnderhoudsOpdrachten { get; set; }
-        public DbSet<OnderhoudsWerkzaamheden> OnderhoudsWerkzaamheden { get; set; }
+        public DbSet<Onderhoudsopdracht> OnderhoudsOpdrachten { get; set; }
+        public DbSet<Onderhoudswerkzaamheden> OnderhoudsWerkzaamheden { get; set; }
 
         /// <summary>
         /// Add MappingObjects to the DbModelBuilder
@@ -32,8 +32,8 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL
             modelBuilder.Configurations.Add<Persoon>(new PersoonMapping());
             modelBuilder.Configurations.Add<Leasemaatschappij>(new LeasemaatschappijMapping());
             modelBuilder.Configurations.Add<Voertuig>(new VoertuigMapping());
-            modelBuilder.Configurations.Add<OnderhoudsOpdracht>(new OnderhoudsOpdrachtMapping());
-            modelBuilder.Configurations.Add<OnderhoudsWerkzaamheden>(new OnderhoudsWerkzaamhedenMapping());
+            modelBuilder.Configurations.Add<Onderhoudsopdracht>(new OnderhoudsOpdrachtMapping());
+            modelBuilder.Configurations.Add<Onderhoudswerkzaamheden>(new OnderhoudsWerkzaamhedenMapping());
             base.OnModelCreating(modelBuilder);
         }
 

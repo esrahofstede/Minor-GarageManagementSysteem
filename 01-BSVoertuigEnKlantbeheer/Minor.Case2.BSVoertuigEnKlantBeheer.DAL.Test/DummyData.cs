@@ -13,7 +13,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
         {
             return new Persoon
             {
-
+                
                 Klantnummer = 123123,
                 Voornaam = "Piet",
                 Achternaam = "Pietersen",
@@ -41,26 +41,26 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
             };
         }
 
-        public static OnderhoudsOpdracht GetDummyOnderhoudsOpdracht()
+        public static Onderhoudsopdracht GetDummyOnderhoudsOpdracht()
         {
-            return new OnderhoudsOpdracht
+            return new Onderhoudsopdracht
             {
                 APK = true,
                 Kilometerstand = 12000,
-                AanmeldingsDatum = new DateTime(2015, 11, 11),
-                OnderhoudsOmschrijving = "APK Keuren",
+                Aanmeldingsdatum = new DateTime(2015, 11, 11),
+                Onderhoudsomschrijving = "APK Keuren",
                 Voertuig = GetDummyVoertuig()
             };
         }
 
-        public static OnderhoudsWerkzaamheden GetDummyOnderhoudsWerkzaamheden()
+        public static Onderhoudswerkzaamheden GetDummyOnderhoudsWerkzaamheden()
         {
-            return new OnderhoudsWerkzaamheden
+            return new Onderhoudswerkzaamheden
             {
                 Kilometerstand = 12000,
-                AfmeldingsDatum = new DateTime(2015, 11, 13),
+                Afmeldingsdatum = new DateTime(2015, 11, 13),
                 Omschrijving = "Lampen vervangen",  
-                OnderhoudsOpdracht = GetDummyOnderhoudsOpdracht()
+                Onderhoudsopdracht = GetDummyOnderhoudsOpdracht()
             };
         }
     }

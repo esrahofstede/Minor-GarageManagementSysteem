@@ -28,7 +28,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
             var target = new OnderhoudsWerkzaamhedenDataMapper();
 
             // Act
-            IEnumerable<OnderhoudsWerkzaamheden> result = target.FindAll();
+            IEnumerable<Onderhoudswerkzaamheden> result = target.FindAll();
 
             // Assert
             Assert.AreEqual(1, result.Count());
@@ -44,7 +44,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
 
                 // Act
                 target.Insert(DummyData.GetDummyOnderhoudsWerkzaamheden());
-                IEnumerable<OnderhoudsWerkzaamheden> result = target.FindAll();
+                IEnumerable<Onderhoudswerkzaamheden> result = target.FindAll();
 
                 // Assert
                 Assert.AreEqual(2, result.Count());
@@ -58,10 +58,10 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
             var target = new OnderhoudsWerkzaamhedenDataMapper();
 
             // Act
-            IEnumerable<OnderhoudsWerkzaamheden> result = target.FindAll();
+            IEnumerable<Onderhoudswerkzaamheden> result = target.FindAll();
 
             // Assert
-            Assert.IsNotNull(result.First().OnderhoudsOpdracht);
+            Assert.IsNotNull(result.First().Onderhoudsopdracht);
         }
     }
 }
