@@ -49,8 +49,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Minor.ServiceBus.Agent.Implementation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AgentServiceBus.1.0.0.1\lib\net452\Minor.ServiceBus.Agent.Implementation.dll</HintPath>
+    <Reference Include="Minor.ServiceBus.Agent.Implementation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=73e451069382071b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Minor.Caespi.ServiceBus.Agent.1.0.0.3\lib\net452\Minor.ServiceBus.Agent.Implementation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -127,6 +127,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OnderhoudController.cs" />
     <Compile Include="Controllers\RdwControlleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -137,6 +138,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\InsertLeasemaatschappijGegevensVM.cs" />
+    <Compile Include="ViewModel\InsertVoertuiggegevensVM.cs" />
+    <Compile Include="ViewModel\InsertKlantgegevensVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -188,6 +192,7 @@
     <None Include="Service References\ISRDWServiceReferenceService\ISRDWServiceHandler.wsdl" />
     <Content Include="Views\RdwControlle\Execute.cshtml" />
     <Content Include="Views\RdwControlle\Index.cshtml" />
+    <Content Include="Views\Onderhoud\InsertKlantgegevens.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -209,6 +214,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ISRDWServiceReferenceService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Minor.Case2.FEGMS.Schema\01-Schema.csproj">
+      <Project>{c541088d-7d4e-4c5f-bd17-36ad6538932b}</Project>
+      <Name>01-Schema</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

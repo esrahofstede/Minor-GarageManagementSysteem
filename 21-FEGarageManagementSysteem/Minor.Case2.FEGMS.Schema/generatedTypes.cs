@@ -8,28 +8,43 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn:minor-case2-isrijksdienstwegverkeer:v1:messages", ClrNamespace="Minor.Case2.ISRijksdienstWegVerkeer.V1.Messages")]
-[assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn:minor-case2-bsvoertuigenklantbeheer:v1:schema", ClrNamespace="minorcase2bsvoertuigenklantbeheer.v1.schema")]
-[assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn:minor-case2-isrijksdienstwegverkeer:v1:schema", ClrNamespace="Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema")]
+[assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn:minor-case2-bsvoertuigenklantbeheer:v1:schema", ClrNamespace="Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema")]
 
-namespace Minor.Case2.ISRijksdienstWegVerkeer.V1.Messages
+namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
 {
     using System.Runtime.Serialization;
     
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SendRdwKeuringsverzoekRequestMessage", Namespace="urn:minor-case2-isrijksdienstwegverkeer:v1:messages")]
-    public partial class SendRdwKeuringsverzoekRequestMessage : object, System.Runtime.Serialization.IExtensibleDataObject
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="KlantenCollection", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema", ItemName="Klant")]
+    public class KlantenCollection : System.Collections.Generic.List<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Klant>
+    {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Klant", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Persoon))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Leasemaatschappij))]
+    public partial class Klant : object, System.Runtime.Serialization.IExtensibleDataObject
     {
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private minorcase2bsvoertuigenklantbeheer.v1.schema.Voertuig VoertuigField;
+        private long idField;
         
-        private Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema.Garage GarageField;
+        private long KlantnummerField;
         
-        private Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema.Keuringsverzoek KeuringsverzoekField;
+        private string AdresField;
+        
+        private string PostcodeField;
+        
+        private string WoonplaatsField;
+        
+        private string TelefoonnummerField;
+        
+        private string EmailadresField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -43,59 +58,191 @@ namespace Minor.Case2.ISRijksdienstWegVerkeer.V1.Messages
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
-        public minorcase2bsvoertuigenklantbeheer.v1.schema.Voertuig Voertuig
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long id
         {
             get
             {
-                return this.VoertuigField;
+                return this.idField;
             }
             set
             {
-                this.VoertuigField = value;
+                this.idField = value;
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=1)]
-        public Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema.Garage Garage
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
+        public long Klantnummer
         {
             get
             {
-                return this.GarageField;
+                return this.KlantnummerField;
             }
             set
             {
-                this.GarageField = value;
+                this.KlantnummerField = value;
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=2)]
-        public Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema.Keuringsverzoek Keuringsverzoek
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
+        public string Adres
         {
             get
             {
-                return this.KeuringsverzoekField;
+                return this.AdresField;
             }
             set
             {
-                this.KeuringsverzoekField = value;
+                this.AdresField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
+        public string Postcode
+        {
+            get
+            {
+                return this.PostcodeField;
+            }
+            set
+            {
+                this.PostcodeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
+        public string Woonplaats
+        {
+            get
+            {
+                return this.WoonplaatsField;
+            }
+            set
+            {
+                this.WoonplaatsField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
+        public string Telefoonnummer
+        {
+            get
+            {
+                return this.TelefoonnummerField;
+            }
+            set
+            {
+                this.TelefoonnummerField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=6)]
+        public string Emailadres
+        {
+            get
+            {
+                return this.EmailadresField;
+            }
+            set
+            {
+                this.EmailadresField = value;
             }
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SendRdwKeuringsverzoekResponseMessage", Namespace="urn:minor-case2-isrijksdienstwegverkeer:v1:messages")]
-    public partial class SendRdwKeuringsverzoekResponseMessage : object, System.Runtime.Serialization.IExtensibleDataObject
+    [System.Runtime.Serialization.DataContractAttribute(Name="Persoon", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
+    public partial class Persoon : Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Klant
+    {
+        
+        private string VoornaamField;
+        
+        private string TussenvoegselField;
+        
+        private string AchternaamField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        public string Voornaam
+        {
+            get
+            {
+                return this.VoornaamField;
+            }
+            set
+            {
+                this.VoornaamField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
+        public string Tussenvoegsel
+        {
+            get
+            {
+                return this.TussenvoegselField;
+            }
+            set
+            {
+                this.TussenvoegselField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=2)]
+        public string Achternaam
+        {
+            get
+            {
+                return this.AchternaamField;
+            }
+            set
+            {
+                this.AchternaamField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Leasemaatschappij", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
+    public partial class Leasemaatschappij : Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Klant
+    {
+        
+        private string NaamField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        public string Naam
+        {
+            get
+            {
+                return this.NaamField;
+            }
+            set
+            {
+                this.NaamField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="VoertuigenSearchCriteria", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
+    public partial class VoertuigenSearchCriteria : object, System.Runtime.Serialization.IExtensibleDataObject
     {
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
+        private long IdField;
+        
         private string KentekenField;
         
-        private Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema.Keuringsverzoek KeuringsverzoekField;
+        private string MerkField;
         
-        private bool SteekproefField;
+        private string TypeField;
+        
+        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Klant EigenaarField;
+        
+        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Persoon BestuurderField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -106,6 +253,19 @@ namespace Minor.Case2.ISRijksdienstWegVerkeer.V1.Messages
             set
             {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long Id
+        {
+            get
+            {
+                return this.IdField;
+            }
+            set
+            {
+                this.IdField = value;
             }
         }
         
@@ -123,705 +283,19 @@ namespace Minor.Case2.ISRijksdienstWegVerkeer.V1.Messages
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
-        public Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema.Keuringsverzoek Keuringsverzoek
+        public string Merk
         {
             get
             {
-                return this.KeuringsverzoekField;
+                return this.MerkField;
             }
             set
             {
-                this.KeuringsverzoekField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public bool Steekproef
-        {
-            get
-            {
-                return this.SteekproefField;
-            }
-            set
-            {
-                this.SteekproefField = value;
-            }
-        }
-    }
-}
-namespace minorcase2bsvoertuigenklantbeheer.v1.schema
-{
-    using System.Runtime.Serialization;
-    
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Voertuig", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
-    public partial class Voertuig : object, System.Runtime.Serialization.IExtensibleDataObject
-    {
-        
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private long idField;
-        
-        private string kentekenField;
-        
-        private string merkField;
-        
-        private string typeField;
-        
-        private minorcase2bsvoertuigenklantbeheer.v1.schema.Klant eigenaarField;
-        
-        private minorcase2bsvoertuigenklantbeheer.v1.schema.Persoon bestuurderField;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-        {
-            get
-            {
-                return this.extensionDataField;
-            }
-            set
-            {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public long id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
+                this.MerkField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
-        public string kenteken
-        {
-            get
-            {
-                return this.kentekenField;
-            }
-            set
-            {
-                this.kentekenField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
-        public string merk
-        {
-            get
-            {
-                return this.merkField;
-            }
-            set
-            {
-                this.merkField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
-        public string type
-        {
-            get
-            {
-                return this.typeField;
-            }
-            set
-            {
-                this.typeField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
-        public minorcase2bsvoertuigenklantbeheer.v1.schema.Klant eigenaar
-        {
-            get
-            {
-                return this.eigenaarField;
-            }
-            set
-            {
-                this.eigenaarField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=5)]
-        public minorcase2bsvoertuigenklantbeheer.v1.schema.Persoon bestuurder
-        {
-            get
-            {
-                return this.bestuurderField;
-            }
-            set
-            {
-                this.bestuurderField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Klant", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(minorcase2bsvoertuigenklantbeheer.v1.schema.Persoon))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(minorcase2bsvoertuigenklantbeheer.v1.schema.Leasemaatschappij))]
-    public partial class Klant : object, System.Runtime.Serialization.IExtensibleDataObject
-    {
-        
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private long idField;
-        
-        private long klantnummerField;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-        {
-            get
-            {
-                return this.extensionDataField;
-            }
-            set
-            {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public long id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public long klantnummer
-        {
-            get
-            {
-                return this.klantnummerField;
-            }
-            set
-            {
-                this.klantnummerField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Persoon", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
-    public partial class Persoon : minorcase2bsvoertuigenklantbeheer.v1.schema.Klant
-    {
-        
-        private string voornaamField;
-        
-        private string tussenvoegselField;
-        
-        private string achternaamField;
-        
-        private string adresField;
-        
-        private string postcodeField;
-        
-        private string woonplaatsField;
-        
-        private string telefoonnummerField;
-        
-        private string emailadresField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
-        public string voornaam
-        {
-            get
-            {
-                return this.voornaamField;
-            }
-            set
-            {
-                this.voornaamField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
-        public string tussenvoegsel
-        {
-            get
-            {
-                return this.tussenvoegselField;
-            }
-            set
-            {
-                this.tussenvoegselField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=2)]
-        public string achternaam
-        {
-            get
-            {
-                return this.achternaamField;
-            }
-            set
-            {
-                this.achternaamField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
-        public string adres
-        {
-            get
-            {
-                return this.adresField;
-            }
-            set
-            {
-                this.adresField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
-        public string postcode
-        {
-            get
-            {
-                return this.postcodeField;
-            }
-            set
-            {
-                this.postcodeField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
-        public string woonplaats
-        {
-            get
-            {
-                return this.woonplaatsField;
-            }
-            set
-            {
-                this.woonplaatsField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=6)]
-        public string telefoonnummer
-        {
-            get
-            {
-                return this.telefoonnummerField;
-            }
-            set
-            {
-                this.telefoonnummerField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=7)]
-        public string emailadres
-        {
-            get
-            {
-                return this.emailadresField;
-            }
-            set
-            {
-                this.emailadresField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Leasemaatschappij", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
-    public partial class Leasemaatschappij : minorcase2bsvoertuigenklantbeheer.v1.schema.Klant
-    {
-        
-        private string naamField;
-        
-        private string adresField;
-        
-        private string postcodeField;
-        
-        private string woonplaatsField;
-        
-        private string telefoonnummerField;
-        
-        private string emailadresField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
-        public string naam
-        {
-            get
-            {
-                return this.naamField;
-            }
-            set
-            {
-                this.naamField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=1)]
-        public string adres
-        {
-            get
-            {
-                return this.adresField;
-            }
-            set
-            {
-                this.adresField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=2)]
-        public string postcode
-        {
-            get
-            {
-                return this.postcodeField;
-            }
-            set
-            {
-                this.postcodeField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=3)]
-        public string woonplaats
-        {
-            get
-            {
-                return this.woonplaatsField;
-            }
-            set
-            {
-                this.woonplaatsField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
-        public string telefoonnummer
-        {
-            get
-            {
-                return this.telefoonnummerField;
-            }
-            set
-            {
-                this.telefoonnummerField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=5)]
-        public string emailadres
-        {
-            get
-            {
-                return this.emailadresField;
-            }
-            set
-            {
-                this.emailadresField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="OnderhoudsOpdracht", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
-    public partial class OnderhoudsOpdracht : object, System.Runtime.Serialization.IExtensibleDataObject
-    {
-        
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private long idField;
-        
-        private System.DateTime aanmeldingsdatumField;
-        
-        private long kilometerstandField;
-        
-        private string onderhoudsomschrijvingField;
-        
-        private minorcase2bsvoertuigenklantbeheer.v1.schema.Voertuig voertuigField;
-        
-        private bool apkField;
-        
-        private minorcase2bsvoertuigenklantbeheer.v1.schema.OnderhoudsWerkzaamheden onderhoudswerkzaamhedenField;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-        {
-            get
-            {
-                return this.extensionDataField;
-            }
-            set
-            {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public long id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
-        public System.DateTime aanmeldingsdatum
-        {
-            get
-            {
-                return this.aanmeldingsdatumField;
-            }
-            set
-            {
-                this.aanmeldingsdatumField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
-        public long kilometerstand
-        {
-            get
-            {
-                return this.kilometerstandField;
-            }
-            set
-            {
-                this.kilometerstandField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=3)]
-        public string onderhoudsomschrijving
-        {
-            get
-            {
-                return this.onderhoudsomschrijvingField;
-            }
-            set
-            {
-                this.onderhoudsomschrijvingField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
-        public minorcase2bsvoertuigenklantbeheer.v1.schema.Voertuig voertuig
-        {
-            get
-            {
-                return this.voertuigField;
-            }
-            set
-            {
-                this.voertuigField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
-        public bool apk
-        {
-            get
-            {
-                return this.apkField;
-            }
-            set
-            {
-                this.apkField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=6)]
-        public minorcase2bsvoertuigenklantbeheer.v1.schema.OnderhoudsWerkzaamheden onderhoudswerkzaamheden
-        {
-            get
-            {
-                return this.onderhoudswerkzaamhedenField;
-            }
-            set
-            {
-                this.onderhoudswerkzaamhedenField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="OnderhoudsWerkzaamheden", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
-    public partial class OnderhoudsWerkzaamheden : object, System.Runtime.Serialization.IExtensibleDataObject
-    {
-        
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private long idField;
-        
-        private System.DateTime afmeldingsdatumField;
-        
-        private string kilometerstandField;
-        
-        private string onderhoudswerkzaamhedenomschrijvingField;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-        {
-            get
-            {
-                return this.extensionDataField;
-            }
-            set
-            {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public long id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
-        public System.DateTime afmeldingsdatum
-        {
-            get
-            {
-                return this.afmeldingsdatumField;
-            }
-            set
-            {
-                this.afmeldingsdatumField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=2)]
-        public string kilometerstand
-        {
-            get
-            {
-                return this.kilometerstandField;
-            }
-            set
-            {
-                this.kilometerstandField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=3)]
-        public string onderhoudswerkzaamhedenomschrijving
-        {
-            get
-            {
-                return this.onderhoudswerkzaamhedenomschrijvingField;
-            }
-            set
-            {
-                this.onderhoudswerkzaamhedenomschrijvingField = value;
-            }
-        }
-    }
-}
-namespace Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema
-{
-    using System.Runtime.Serialization;
-    
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Garage", Namespace="urn:minor-case2-isrijksdienstwegverkeer:v1:schema")]
-    public partial class Garage : object, System.Runtime.Serialization.IExtensibleDataObject
-    {
-        
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private string NaamField;
-        
-        private string PlaatsField;
-        
-        private string KvkField;
-        
-        private string TypeField;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-        {
-            get
-            {
-                return this.extensionDataField;
-            }
-            set
-            {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
-        public string Naam
-        {
-            get
-            {
-                return this.NaamField;
-            }
-            set
-            {
-                this.NaamField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
-        public string Plaats
-        {
-            get
-            {
-                return this.PlaatsField;
-            }
-            set
-            {
-                this.PlaatsField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=2)]
-        public string Kvk
-        {
-            get
-            {
-                return this.KvkField;
-            }
-            set
-            {
-                this.KvkField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=3)]
         public string Type
         {
             get
@@ -833,19 +307,60 @@ namespace Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema
                 this.TypeField = value;
             }
         }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
+        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Klant Eigenaar
+        {
+            get
+            {
+                return this.EigenaarField;
+            }
+            set
+            {
+                this.EigenaarField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=5)]
+        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Persoon Bestuurder
+        {
+            get
+            {
+                return this.BestuurderField;
+            }
+            set
+            {
+                this.BestuurderField = value;
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Keuringsverzoek", Namespace="urn:minor-case2-isrijksdienstwegverkeer:v1:schema")]
-    public partial class Keuringsverzoek : object, System.Runtime.Serialization.IExtensibleDataObject
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="VoertuigCollection", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema", ItemName="Voertuig")]
+    public class VoertuigCollection : System.Collections.Generic.List<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig>
+    {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Voertuig", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
+    public partial class Voertuig : object, System.Runtime.Serialization.IExtensibleDataObject
     {
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private System.DateTime DateField;
+        private long IdField;
         
-        private string CorrolatieIdField;
+        private string KentekenField;
+        
+        private string MerkField;
+        
+        private string TypeField;
+        
+        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Klant EigenaarField;
+        
+        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Persoon BestuurderField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -859,30 +374,383 @@ namespace Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public System.DateTime Date
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long Id
         {
             get
             {
-                return this.DateField;
+                return this.IdField;
             }
             set
             {
-                this.DateField = value;
+                this.IdField = value;
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=1)]
-        public string CorrolatieId
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        public string Kenteken
         {
             get
             {
-                return this.CorrolatieIdField;
+                return this.KentekenField;
             }
             set
             {
-                this.CorrolatieIdField = value;
+                this.KentekenField = value;
             }
         }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        public string Merk
+        {
+            get
+            {
+                return this.MerkField;
+            }
+            set
+            {
+                this.MerkField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        public string Type
+        {
+            get
+            {
+                return this.TypeField;
+            }
+            set
+            {
+                this.TypeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
+        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Klant Eigenaar
+        {
+            get
+            {
+                return this.EigenaarField;
+            }
+            set
+            {
+                this.EigenaarField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=5)]
+        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Persoon Bestuurder
+        {
+            get
+            {
+                return this.BestuurderField;
+            }
+            set
+            {
+                this.BestuurderField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Onderhoudsopdracht", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
+    public partial class Onderhoudsopdracht : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private long IdField;
+        
+        private System.DateTime AanmeldingsdatumField;
+        
+        private long KilometerstandField;
+        
+        private string OnderhoudsomschrijvingField;
+        
+        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig VoertuigField;
+        
+        private bool APKField;
+        
+        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudswerkzaamheden OnderhoudswerkzaamhedenField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long Id
+        {
+            get
+            {
+                return this.IdField;
+            }
+            set
+            {
+                this.IdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
+        public System.DateTime Aanmeldingsdatum
+        {
+            get
+            {
+                return this.AanmeldingsdatumField;
+            }
+            set
+            {
+                this.AanmeldingsdatumField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
+        public long Kilometerstand
+        {
+            get
+            {
+                return this.KilometerstandField;
+            }
+            set
+            {
+                this.KilometerstandField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=3)]
+        public string Onderhoudsomschrijving
+        {
+            get
+            {
+                return this.OnderhoudsomschrijvingField;
+            }
+            set
+            {
+                this.OnderhoudsomschrijvingField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
+        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig Voertuig
+        {
+            get
+            {
+                return this.VoertuigField;
+            }
+            set
+            {
+                this.VoertuigField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
+        public bool APK
+        {
+            get
+            {
+                return this.APKField;
+            }
+            set
+            {
+                this.APKField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=6)]
+        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudswerkzaamheden Onderhoudswerkzaamheden
+        {
+            get
+            {
+                return this.OnderhoudswerkzaamhedenField;
+            }
+            set
+            {
+                this.OnderhoudswerkzaamhedenField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Onderhoudswerkzaamheden", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
+    public partial class Onderhoudswerkzaamheden : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private long IdField;
+        
+        private System.DateTime AfmeldingsdatumField;
+        
+        private long KilometerstandField;
+        
+        private string OnderhoudswerkzaamhedenomschrijvingField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long Id
+        {
+            get
+            {
+                return this.IdField;
+            }
+            set
+            {
+                this.IdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
+        public System.DateTime Afmeldingsdatum
+        {
+            get
+            {
+                return this.AfmeldingsdatumField;
+            }
+            set
+            {
+                this.AfmeldingsdatumField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
+        public long Kilometerstand
+        {
+            get
+            {
+                return this.KilometerstandField;
+            }
+            set
+            {
+                this.KilometerstandField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=3)]
+        public string Onderhoudswerkzaamhedenomschrijving
+        {
+            get
+            {
+                return this.OnderhoudswerkzaamhedenomschrijvingField;
+            }
+            set
+            {
+                this.OnderhoudswerkzaamhedenomschrijvingField = value;
+            }
+        }
+    }
+}
+
+
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+[System.ServiceModel.ServiceContractAttribute(Namespace="urn:minor:case2:pcsonderhoud:v1", ConfigurationName="IPcSOnderhoudService")]
+public interface IPcSOnderhoudService
+{
+    
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetAllKlanten", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetAllKlantenResponse")]
+    Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.KlantenCollection GetAllKlanten();
+    
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetAllKlanten", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetAllKlantenResponse")]
+    System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.KlantenCollection> GetAllKlantenAsync();
+    
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetVoertuigBy", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetVoertuigByResponse")]
+    Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigCollection GetVoertuigBy(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigenSearchCriteria zoekCriteria);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetVoertuigBy", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetVoertuigByResponse")]
+    System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigCollection> GetVoertuigByAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigenSearchCriteria zoekCriteria);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudsopdrachtToeMet" +
+        "VoertuigEnKlant", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudsopdrachtToeMet" +
+        "VoertuigEnKlantResponse")]
+    void VoegOnderhoudsopdrachtToeMetVoertuigEnKlant(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudsopdrachtToeMet" +
+        "VoertuigEnKlant", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudsopdrachtToeMet" +
+        "VoertuigEnKlantResponse")]
+    System.Threading.Tasks.Task VoegOnderhoudsopdrachtToeMetVoertuigEnKlantAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht);
+}
+
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+public interface IPcSOnderhoudServiceChannel : IPcSOnderhoudService, System.ServiceModel.IClientChannel
+{
+}
+
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+public partial class PcSOnderhoudServiceClient : System.ServiceModel.ClientBase<IPcSOnderhoudService>, IPcSOnderhoudService
+{
+    
+    public PcSOnderhoudServiceClient()
+    {
+    }
+    
+    public PcSOnderhoudServiceClient(string endpointConfigurationName) : 
+            base(endpointConfigurationName)
+    {
+    }
+    
+    public PcSOnderhoudServiceClient(string endpointConfigurationName, string remoteAddress) : 
+            base(endpointConfigurationName, remoteAddress)
+    {
+    }
+    
+    public PcSOnderhoudServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+            base(endpointConfigurationName, remoteAddress)
+    {
+    }
+    
+    public PcSOnderhoudServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+            base(binding, remoteAddress)
+    {
+    }
+    
+    public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.KlantenCollection GetAllKlanten()
+    {
+        return base.Channel.GetAllKlanten();
+    }
+    
+    public System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.KlantenCollection> GetAllKlantenAsync()
+    {
+        return base.Channel.GetAllKlantenAsync();
+    }
+    
+    public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigCollection GetVoertuigBy(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigenSearchCriteria zoekCriteria)
+    {
+        return base.Channel.GetVoertuigBy(zoekCriteria);
+    }
+    
+    public System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigCollection> GetVoertuigByAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigenSearchCriteria zoekCriteria)
+    {
+        return base.Channel.GetVoertuigByAsync(zoekCriteria);
+    }
+    
+    public void VoegOnderhoudsopdrachtToeMetVoertuigEnKlant(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht)
+    {
+        base.Channel.VoegOnderhoudsopdrachtToeMetVoertuigEnKlant(onderhoudsopdracht);
+    }
+    
+    public System.Threading.Tasks.Task VoegOnderhoudsopdrachtToeMetVoertuigEnKlantAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht)
+    {
+        return base.Channel.VoegOnderhoudsopdrachtToeMetVoertuigEnKlantAsync(onderhoudsopdracht);
     }
 }
