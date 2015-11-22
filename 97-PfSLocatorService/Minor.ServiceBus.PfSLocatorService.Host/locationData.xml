@@ -15,4 +15,10 @@
     <profile>Development</profile>
     <metadataAddress>http://localhost:30412/BSKlantEnVoertuigBeheer.svc/mex</metadataAddress>
   </serviceLocation>
+  <serviceLocation>
+    <name>PcSOnderhoud</name>
+    <profile>Development</profile>
+    <metadataAddress>http://localhost:22501/PcSOnderhoud.svc/mex</metadataAddress>
+  </serviceLocation>
+  
 </locationData>
