@@ -152,10 +152,9 @@ namespace Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.Agent
 }
 namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent
 {
-    using System;
     using System.Runtime.Serialization;
-
-
+    
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Voertuig", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
@@ -444,11 +443,6 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent
             {
                 this.AchternaamField = value;
             }
-        }
-
-        public static implicit operator Persoon(Schema.Klant v)
-        {
-            throw new NotImplementedException();
         }
     }
     
