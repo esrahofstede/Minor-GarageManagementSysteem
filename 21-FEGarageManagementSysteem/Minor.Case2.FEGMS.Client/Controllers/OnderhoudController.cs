@@ -125,10 +125,7 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                 HttpCookie klantgegevensCookie = Request.Cookies.Get("Klantgegevens");
                 var klantgegevens = new JavaScriptSerializer().Deserialize<InsertKlantgegevensVM>(klantgegevensCookie.Value);
 
-                HttpCookie voertuiggegevensCookie = Request.Cookies.Get("Voertuiggegevens");
-                var voertuiggegevens = new JavaScriptSerializer().Deserialize<InsertVoertuiggegevensVM>(voertuiggegevensCookie.Value);
-
-                var voertuig = Mapper.MapToVoertuig(leasemaatschappijgegevens, klantgegevens, voertuiggegevens);
+                var voertuig = Mapper.MapToVoertuig(leasemaatschappijgegevens, klantgegevens, model);
 
                 agent.VoegVoertuigMetKlantToe(voertuig);
 
@@ -169,7 +166,6 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                 var onderhoudsopdracht = Mapper.MapToOnderhoudsopdracht(model, leasemaatschappijgegevens, klantgegevens, voertuiggegevens);
 
                 return RedirectToAction("Index");
-
             }
 
             return View(model);

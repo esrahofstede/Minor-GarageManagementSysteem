@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
 using Minor.ServiceBus.Agent.Implementation;
+using System.ServiceModel;
 
 namespace Minor.Case2.FEGMS.Agent
 {
@@ -35,10 +36,14 @@ namespace Minor.Case2.FEGMS.Agent
         /// <param name="voertuig">Voertuig and Klant</param>
         public void VoegVoertuigMetKlantToe(Voertuig voertuig)
         {
-            var proxy = _factory.CreateAgent();
+            try {
+                var proxy = _factory.CreateAgent();
+                proxy.VoegVoertuigMetKlantToe(voertuig);
+            }
+            catch(FaultException ex)
+            {
 
-            proxy.VoegVoertuigMetKlantToe(voertuig);
-
+            }
         }
     }
 }

@@ -61,6 +61,21 @@ namespace Minor.Case2.FEGMS.Client.Helper
 
         public static Voertuig MapToVoertuig(InsertLeasemaatschappijGegevensVM leasemaatschappijgegevens, InsertKlantgegevensVM klantgegevens, InsertVoertuiggegevensVM voertuiggegevens)
         {
+            if(klantgegevens == null)
+            {
+                throw new ArgumentNullException(nameof(klantgegevens), "Value cannot be null");
+            }
+
+            if (leasemaatschappijgegevens == null)
+            {
+                throw new ArgumentNullException(nameof(leasemaatschappijgegevens), "Value cannot be null");
+            }
+
+            if (voertuiggegevens == null)
+            {
+                throw new ArgumentNullException(nameof(voertuiggegevens), "Value cannot be null");
+            }
+
             var bestuurder = new Persoon
             {
                 Voornaam = klantgegevens.Voornaam,

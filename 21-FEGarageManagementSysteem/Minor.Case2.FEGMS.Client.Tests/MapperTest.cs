@@ -113,5 +113,79 @@ namespace Minor.Case2.FEGMS.Client.Tests
             Assert.AreEqual(voertuiggegevens.Merk, result.Merk);
             Assert.AreEqual(voertuiggegevens.Type, result.Type);
         }
+
+        [TestMethod]
+        public void MapToVoertuigKlantgegevensNullTest()
+        {
+            // Arrange
+            bool exceptionWasThrown = false;
+            string exceptionMessage = string.Empty;
+            InsertKlantgegevensVM klantgegevens = null;
+            InsertLeasemaatschappijGegevensVM leasemaatschappij = DummyData.GetLeasemaatschappijGegevens();
+            InsertVoertuiggegevensVM voertuiggegevens = DummyData.GetVoertuiggegevens();
+            
+            try {
+                // Act
+                var result = Mapper.MapToVoertuig(leasemaatschappij, klantgegevens, voertuiggegevens);
+            }
+            catch(ArgumentNullException ex)
+            {
+                exceptionWasThrown = true;
+                exceptionMessage = ex.Message;
+            }
+
+            Assert.IsTrue(exceptionWasThrown);
+            Assert.AreEqual("Value cannot be null\r\nParameter name: klantgegevens", exceptionMessage);
+        }
+
+        [TestMethod]
+        public void MapToVoertuigLeasemaatschappijNullTest()
+        {
+            // Arrange
+            bool exceptionWasThrown = false;
+            string exceptionMessage = string.Empty;
+            InsertKlantgegevensVM klantgegevens = DummyData.GetKlantGegevens(false);
+            InsertLeasemaatschappijGegevensVM leasemaatschappij = null;
+            InsertVoertuiggegevensVM voertuiggegevens = DummyData.GetVoertuiggegevens();
+
+            try
+            {
+                // Act
+                var result = Mapper.MapToVoertuig(leasemaatschappij, klantgegevens, voertuiggegevens);
+            }
+            catch (ArgumentNullException ex)
+            {
+                exceptionWasThrown = true;
+                exceptionMessage = ex.Message;
+            }
+
+            Assert.IsTrue(exceptionWasThrown);
+            Assert.AreEqual("Value cannot be null\r\nParameter name: leasemaatschappijgegevens", exceptionMessage);
+        }
+
+        [TestMethod]
+        public void MapToVoertuigVoertuiggegevensNullTest()
+        {
+            // Arrange
+            bool exceptionWasThrown = false;
+            string exceptionMessage = string.Empty;
+            InsertKlantgegevensVM klantgegevens = DummyData.GetKlantGegevens(false);
+            InsertLeasemaatschappijGegevensVM leasemaatschappij = DummyData.GetLeasemaatschappijGegevens();
+            InsertVoertuiggegevensVM voertuiggegevens = null;
+
+            try
+            {
+                // Act
+                var result = Mapper.MapToVoertuig(leasemaatschappij, klantgegevens, voertuiggegevens);
+            }
+            catch (ArgumentNullException ex)
+            {
+                exceptionWasThrown = true;
+                exceptionMessage = ex.Message;
+            }
+
+            Assert.IsTrue(exceptionWasThrown);
+            Assert.AreEqual("Value cannot be null\r\nParameter name: voertuiggegevens", exceptionMessage);
+        }
     }
 }
