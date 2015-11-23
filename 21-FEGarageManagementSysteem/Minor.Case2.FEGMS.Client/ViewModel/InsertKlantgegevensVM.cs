@@ -11,7 +11,6 @@ namespace Minor.Case2.FEGMS.Client.ViewModel
     {
         [Required(ErrorMessage = "{0} is een verplicht veld")]
         public string Voornaam { get; set; }
-        [Required(ErrorMessage = "{0} is een verplicht veld")]
         public string Tussenvoegsel { get; set; }
         [Required(ErrorMessage = "{0} is een verplicht veld")]
         public string Achternaam { get; set; }
