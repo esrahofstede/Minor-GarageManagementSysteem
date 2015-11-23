@@ -610,9 +610,9 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
         
         private minorcase2bsvoertuigenklantbeheer.v1.schema.Voertuig VoertuigField;
         
-        private bool ApkField;
+        private bool APKField;
         
-        private minorcase2bsvoertuigenklantbeheer.v1.schema.OnderhoudsWerkzaamheden OnderhoudswerkzaamhedenField;
+        private minorcase2bsvoertuigenklantbeheer.v1.schema.Onderhoudswerkzaamheden OnderhoudswerkzaamhedenField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -692,20 +692,20 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
-        public bool Apk
+        public bool APK
         {
             get
             {
-                return this.ApkField;
+                return this.APKField;
             }
             set
             {
-                this.ApkField = value;
+                this.APKField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=6)]
-        public minorcase2bsvoertuigenklantbeheer.v1.schema.OnderhoudsWerkzaamheden Onderhoudswerkzaamheden
+        public minorcase2bsvoertuigenklantbeheer.v1.schema.Onderhoudswerkzaamheden Onderhoudswerkzaamheden
         {
             get
             {
@@ -720,8 +720,8 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="OnderhoudsWerkzaamheden", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
-    public partial class OnderhoudsWerkzaamheden : object, System.Runtime.Serialization.IExtensibleDataObject
+    [System.Runtime.Serialization.DataContractAttribute(Name="Onderhoudswerkzaamheden", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
+    public partial class Onderhoudswerkzaamheden : object, System.Runtime.Serialization.IExtensibleDataObject
     {
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
