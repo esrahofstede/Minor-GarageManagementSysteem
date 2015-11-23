@@ -11,6 +11,11 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
 {
     public class PcSOnderhoudServiceHandler : IPcSOnderhoudService
     {
+        public PcSOnderhoudServiceHandler()
+        {
+            log4net.Config.XmlConfigurator.Configure();
+        }
+
         public KlantenCollection GetAllKlanten()
         {
             throw new NotImplementedException();

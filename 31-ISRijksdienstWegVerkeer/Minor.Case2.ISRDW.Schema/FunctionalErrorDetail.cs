@@ -27,6 +27,8 @@ namespace Minor.Case2.All.V1.Schema
         
         private string MessageField;
         
+        private object DataField;
+        
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -62,6 +64,19 @@ namespace Minor.Case2.All.V1.Schema
             set
             {
                 this.MessageField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=2)]
+        public object Data
+        {
+            get
+            {
+                return this.DataField;
+            }
+            set
+            {
+                this.DataField = value;
             }
         }
     }

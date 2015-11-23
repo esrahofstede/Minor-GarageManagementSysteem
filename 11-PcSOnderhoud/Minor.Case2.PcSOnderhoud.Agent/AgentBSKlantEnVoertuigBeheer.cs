@@ -1,4 +1,5 @@
-﻿using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
+﻿using log4net;
+using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
 using Minor.Case2.Exceptions.V1.Schema;
 using Minor.ServiceBus.Agent.Implementation;
 using System;
@@ -8,6 +9,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
 {
     public class AgentBSKlantEnVoertuigBeheer
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(AgentBSKlantEnVoertuigBeheer));
         private ServiceFactory<IBSVoertuigEnKlantbeheer> _factory;
 
         public AgentBSKlantEnVoertuigBeheer() {}

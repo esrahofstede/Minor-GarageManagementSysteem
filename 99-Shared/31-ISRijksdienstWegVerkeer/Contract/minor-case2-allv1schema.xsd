@@ -16,6 +16,13 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
+      <xs:element name="Data" nillable="true" type="xs:anyType">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
   <xs:element name="FunctionalErrorDetail" nillable="true" type="tns:FunctionalErrorDetail" />
