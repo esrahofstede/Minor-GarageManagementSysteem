@@ -8,6 +8,9 @@ using Minor.ServiceBus.Agent.Implementation;
 
 namespace Minor.Case2.FEGMS.Agent
 {
+    /// <summary>
+    /// Connection to PcSOnderhoud
+    /// </summary>
     public class AgentPcSOnderhoud
     {
         private ServiceFactory<IPcSOnderhoudService> _factory;
@@ -26,6 +29,10 @@ namespace Minor.Case2.FEGMS.Agent
             //proxy..VoegOnderhoudsopdrachtToeMetVoertuigEnKlant(opdracht);
         }
 
+        /// <summary>
+        /// Submit Voertuig and Klant to the PcSOnderhoud
+        /// </summary>
+        /// <param name="voertuig">Voertuig and Klant</param>
         public void VoegVoertuigMetKlantToe(Voertuig voertuig)
         {
             var proxy = _factory.CreateAgent();
