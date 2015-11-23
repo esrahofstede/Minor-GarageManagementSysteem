@@ -5,7 +5,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
 {
     public class AgentBSKlantEnVoertuigBeheer
     {
-        //private ServiceFactory<BSVoertuigenEnKlantBeheerService> _factory;
+        private ServiceFactory<IBSVoertuigEnKlantbeheer> _factory;
 
         public AgentBSKlantEnVoertuigBeheer()
         {
