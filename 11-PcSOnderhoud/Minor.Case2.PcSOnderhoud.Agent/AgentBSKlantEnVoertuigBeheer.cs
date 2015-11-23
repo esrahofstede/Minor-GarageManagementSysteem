@@ -12,7 +12,10 @@ namespace Minor.Case2.PcSOnderhoud.Agent
         private static readonly ILog logger = LogManager.GetLogger(typeof(AgentBSKlantEnVoertuigBeheer));
         private ServiceFactory<IBSVoertuigEnKlantbeheer> _factory;
 
-        public AgentBSKlantEnVoertuigBeheer() {}
+        public AgentBSKlantEnVoertuigBeheer()
+        {
+            _factory = new ServiceFactory<IBSVoertuigEnKlantbeheer>("BSVoertuigEnKlantBeheer");
+        }
 
         [CLSCompliant(false)]
         public AgentBSKlantEnVoertuigBeheer(ServiceFactory<IBSVoertuigEnKlantbeheer> factory)
@@ -22,14 +25,19 @@ namespace Minor.Case2.PcSOnderhoud.Agent
 
         public void VoegVoertuigMetKlantToe(Voertuig voertuig)
         {
-            var proxy = _factory.CreateAgent();
+            IBSVoertuigEnKlantbeheer proxy;
             try
             {
+                proxy = _factory.CreateAgent();
                 proxy.VoegVoertuigMetKlantToe(voertuig);
             }
             catch (FaultException<FunctionalErrorDetail[]> ex)
             {
                 
+            }
+            catch (InvalidOperationException ex)
+            {
+                logger.Fatal(ex.InnerException.Message);
             }
             
         }

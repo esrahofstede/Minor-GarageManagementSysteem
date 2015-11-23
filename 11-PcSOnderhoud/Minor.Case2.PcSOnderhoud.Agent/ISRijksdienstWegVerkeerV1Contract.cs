@@ -945,6 +945,20 @@ namespace Minor.Case2.Exceptions.V1.Schema
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="FunctionalErrorDetail", Namespace="urn:minor-case2-all:v1:schema")]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.Exceptions.V1.Schema.FunctionalErrorDetail[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.SendRdwKeuringsverzoekRequestMessage))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.SendRdwKeuringsverzoekResponseMessage))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Garage))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Keuringsverzoek))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.KlantenCollection))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Klant))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Persoon))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Leasemaatschappij))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigenSearchCriteria))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigCollection))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.OnderhoudsWerkzaamheden))]
     public partial class FunctionalErrorDetail : object, System.Runtime.Serialization.IExtensibleDataObject
     {
         
@@ -953,6 +967,8 @@ namespace Minor.Case2.Exceptions.V1.Schema
         private int ErrorCodeField;
         
         private string MessageField;
+        
+        private object DataField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -989,6 +1005,19 @@ namespace Minor.Case2.Exceptions.V1.Schema
             set
             {
                 this.MessageField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=2)]
+        public object Data
+        {
+            get
+            {
+                return this.DataField;
+            }
+            set
+            {
+                this.DataField = value;
             }
         }
     }
