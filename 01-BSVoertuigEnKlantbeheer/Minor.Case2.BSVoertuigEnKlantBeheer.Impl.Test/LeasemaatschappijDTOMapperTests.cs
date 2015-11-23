@@ -12,13 +12,13 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
             // Arange
             BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij dto = new BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij
             {
-                klantnummer = 100,
+                Klantnummer = 100,
                 Naam = "Sixt",
-                Emailadres = "info@sixt.nl",
-                Adres = "Utrechtseweg 10",
-                Postcode = "1234AB",
+                //Emailadres = "info@sixt.nl",
+                //Adres = "Utrechtseweg 10",
+                //Postcode = "1234AB",
                 Telefoonnummer = "040-1234567",
-                Woonplaats = "Utrecht"
+                //Woonplaats = "Utrecht"
             };
 
             // Act
@@ -49,7 +49,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
             var result = LeasemaatschappijDTOMapper.MapEntityToDTO(entity);
 
             // Assert
-            Assert.AreEqual(100, result.klantnummer);
+            Assert.AreEqual(100, result.Klantnummer);
             Assert.AreEqual("Sixt", result.Naam);
         }
     }

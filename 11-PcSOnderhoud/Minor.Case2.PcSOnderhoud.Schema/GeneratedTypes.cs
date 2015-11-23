@@ -25,19 +25,11 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private long idField;
+        private long IDField;
         
-        private long klantnummerField;
-        
-        private string AdresField;
-        
-        private string PostcodeField;
-        
-        private string WoonplaatsField;
+        private long KlantnummerField;
         
         private string TelefoonnummerField;
-        
-        private string EmailadresField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -52,71 +44,32 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long id
+        public long ID
         {
             get
             {
-                return this.idField;
+                return this.IDField;
             }
             set
             {
-                this.idField = value;
+                this.IDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long Klantnummer
+        {
+            get
+            {
+                return this.KlantnummerField;
+            }
+            set
+            {
+                this.KlantnummerField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public long klantnummer
-        {
-            get
-            {
-                return this.klantnummerField;
-            }
-            set
-            {
-                this.klantnummerField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
-        public string Adres
-        {
-            get
-            {
-                return this.AdresField;
-            }
-            set
-            {
-                this.AdresField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
-        public string Postcode
-        {
-            get
-            {
-                return this.PostcodeField;
-            }
-            set
-            {
-                this.PostcodeField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
-        public string Woonplaats
-        {
-            get
-            {
-                return this.WoonplaatsField;
-            }
-            set
-            {
-                this.WoonplaatsField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
         public string Telefoonnummer
         {
             get
@@ -126,19 +79,6 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
             set
             {
                 this.TelefoonnummerField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=6)]
-        public string Emailadres
-        {
-            get
-            {
-                return this.EmailadresField;
-            }
-            set
-            {
-                this.EmailadresField = value;
             }
         }
     }
@@ -154,6 +94,14 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         private string TussenvoegselField;
         
         private string AchternaamField;
+        
+        private string AdresField;
+        
+        private string PostcodeField;
+        
+        private string WoonplaatsField;
+        
+        private string EmailadresField;
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
         public string Voornaam
@@ -191,6 +139,58 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
             set
             {
                 this.AchternaamField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
+        public string Adres
+        {
+            get
+            {
+                return this.AdresField;
+            }
+            set
+            {
+                this.AdresField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
+        public string Postcode
+        {
+            get
+            {
+                return this.PostcodeField;
+            }
+            set
+            {
+                this.PostcodeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
+        public string Woonplaats
+        {
+            get
+            {
+                return this.WoonplaatsField;
+            }
+            set
+            {
+                this.WoonplaatsField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=6)]
+        public string Emailadres
+        {
+            get
+            {
+                return this.EmailadresField;
+            }
+            set
+            {
+                this.EmailadresField = value;
             }
         }
     }
@@ -350,7 +350,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private long IdField;
+        private long IDField;
         
         private string KentekenField;
         
@@ -375,15 +375,15 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long Id
+        public long ID
         {
             get
             {
-                return this.IdField;
+                return this.IDField;
             }
             set
             {
-                this.IdField = value;
+                this.IDField = value;
             }
         }
         
@@ -567,7 +567,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=6)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
         public string Status
         {
             get

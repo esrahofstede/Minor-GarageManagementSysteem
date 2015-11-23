@@ -15,7 +15,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Contract
         KlantenCollection GetAllKlanten();
 
         [OperationContract]
-        VoertuigCollection GetVoertuigBy(VoertuigenSearchCriteria zoekCriteria);
+        VoertuigenCollection GetVoertuigBy(VoertuigenSearchCriteria zoekCriteria);
 
         [OperationContract]
         void VoegVoertuigMetKlantToe(Voertuig voertuig);

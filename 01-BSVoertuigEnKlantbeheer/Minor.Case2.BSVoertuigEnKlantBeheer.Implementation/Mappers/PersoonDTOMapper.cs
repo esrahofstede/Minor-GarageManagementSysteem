@@ -6,8 +6,8 @@
         {
             Entities.Persoon entity = new Entities.Persoon
             {
-                ID = dto.id,
-                Klantnummer = dto.klantnummer,
+                ID = dto.ID,
+                Klantnummer = dto.Klantnummer,
                 Voornaam = dto.Voornaam,
                 Tussenvoegsel = dto.Tussenvoegsel,
                 Achternaam = dto.Achternaam,
@@ -24,8 +24,8 @@
         {
             BSVoertuigEnKlantbeheer.V1.Schema.Persoon dto = new BSVoertuigEnKlantbeheer.V1.Schema.Persoon
             {
-                id = entity.ID,
-                klantnummer = entity.Klantnummer,
+                ID = entity.ID,
+                Klantnummer = entity.Klantnummer,
                 Voornaam = entity.Voornaam,
                 Tussenvoegsel = entity.Tussenvoegsel,
                 Achternaam = entity.Achternaam,

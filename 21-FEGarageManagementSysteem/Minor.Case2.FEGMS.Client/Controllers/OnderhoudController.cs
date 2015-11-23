@@ -1,6 +1,8 @@
-﻿using Minor.Case2.FEGMS.Agent;
+﻿using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
+using Minor.Case2.FEGMS.Agent;
 using Minor.Case2.FEGMS.Client.Helper;
 using Minor.Case2.FEGMS.Client.ViewModel;
+using System;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
@@ -34,7 +36,20 @@ namespace Minor.Case2.FEGMS.Client.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
+
+            var onderhoud = Mapper.MapToOnderhoudsopdracht(GetOnderhoudsopdracht(), GetLeasemaatschappijGegevens(), GetKlantGegevens(true), GetVoertuiggegevens());
+            //onderhoud.Onderhoudswerkzaamheden = new BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudswerkzaamheden
+            //{
+            //    Afmeldingsdatum = DateTime.Now,
+            //    Kilometerstand = 123,
+            //    Onderhoudswerkzaamhedenomschrijving = "werk",
+            //};
+            //onderhoud.Status = "Aan";
+
+
+            _agent.AddOnderhoudsOpdrachtWithKlantAndVoertuig(onderhoud);
             return View();
+
         }
 
         /// <summary>
@@ -181,7 +196,7 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                 HttpCookie voertuiggegevensCookie = Request.Cookies.Get("Voertuiggegevens");
                 var voertuiggegevens = new JavaScriptSerializer().Deserialize<InsertVoertuiggegevensVM>(voertuiggegevensCookie.Value);
                 var onderhoudsopdracht = Mapper.MapToOnderhoudsopdracht(model, leasemaatschappijgegevens, klantgegevens, voertuiggegevens);
-
+                //var o = Dumm
                 _agent.AddOnderhoudsOpdrachtWithKlantAndVoertuig(onderhoudsopdracht);
 
                 return RedirectToAction("Index");
@@ -190,6 +205,53 @@ namespace Minor.Case2.FEGMS.Client.Controllers
             return View(model);
         }
 
-        
+
+        internal static InsertKlantgegevensVM GetKlantGegevens(bool lease)
+        {
+            return new InsertKlantgegevensVM
+            {
+                Voornaam = "Kees",
+                Achternaam = "Caespi",
+                Adres = "Akkerstraat 12",
+                Postcode = "4322 AS",
+                Woonplaats = "Utrecht",
+                Lease = lease,
+                Telefoonnummer = "0612345678",
+                Emailadres = "info@caespi.nl",
+                Tussenvoegsel = "g",
+            };
+        }
+
+        internal static InsertLeasemaatschappijGegevensVM GetLeasemaatschappijGegevens()
+        {
+            return new InsertLeasemaatschappijGegevensVM
+            {
+                Naam = "Sixt",
+                Telefoonnummer = "0687654321",
+                
+            };
+        }
+
+        internal static InsertVoertuiggegevensVM GetVoertuiggegevens()
+        {
+            return new InsertVoertuiggegevensVM
+            {
+                Kenteken = "KS-23-GF",
+                Merk = "Volkswagen",
+                Type = "Polo",
+            };
+        }
+
+        internal static InsertOnderhoudsopdrachtVM GetOnderhoudsopdracht()
+        {
+            return new InsertOnderhoudsopdrachtVM
+            {
+                AanmeldingsDatum = new DateTime(2015, 11, 23),
+                APK = true,
+                Kilometerstand = 12345,
+                Onderhoudsomschrijving = "APK + Koppeling vervangen",
+            };
+        }
+
     }
 }

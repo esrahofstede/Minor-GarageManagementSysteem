@@ -6,14 +6,14 @@
         {
             Entities.Leasemaatschappij entity = new Entities.Leasemaatschappij
             {
-                ID = dto.id,
-                Klantnummer = dto.klantnummer,
+                ID = dto.ID,
+                Klantnummer = dto.Klantnummer,
                 Naam = dto.Naam,
-                Adres = dto.Adres,
-                Postcode = dto.Postcode,
-                Emailadres = dto.Emailadres,
+                //Adres = dto.Adres,
+                //Postcode = dto.Postcode,
+                //Emailadres = dto.Emailadres,
                 Telefoonnummer = dto.Telefoonnummer,
-                Woonplaats = dto.Woonplaats
+                //Woonplaats = dto.Woonplaats
             };
             return entity;
         }
@@ -22,14 +22,14 @@
         {
             BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij dto = new BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij
             {
-                id = entity.ID,
-                klantnummer = entity.Klantnummer,
+                ID = entity.ID,
+                Klantnummer = entity.Klantnummer,
                 Naam = entity.Naam,
-                Adres = entity.Adres,
-                Postcode = entity.Postcode,
-                Emailadres = entity.Emailadres,
+                //Adres = entity.Adres,
+                //Postcode = entity.Postcode,
+                //Emailadres = entity.Emailadres,
                 Telefoonnummer = entity.Telefoonnummer,
-                Woonplaats = entity.Woonplaats
+                //Woonplaats = entity.Woonplaats
             };
             return dto;
         }

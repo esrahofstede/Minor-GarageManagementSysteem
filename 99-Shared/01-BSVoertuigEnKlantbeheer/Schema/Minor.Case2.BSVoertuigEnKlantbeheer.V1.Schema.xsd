@@ -9,13 +9,9 @@
   
   <xs:complexType name="Klant">
     <xs:sequence>
-      <xs:element name="id" type="xs:long" minOccurs="0" />
-      <xs:element name="klantnummer" type="xs:long" />
-      <xs:element name="Adres" nillable="true" type="xs:string" />
-      <xs:element name="Postcode" nillable="true" type="xs:string" />
-      <xs:element name="Woonplaats" nillable="true"  type="xs:string" />
+      <xs:element name="ID" type="xs:long" minOccurs="0" />
+      <xs:element name="Klantnummer" type="xs:long" minOccurs="0" />
       <xs:element name="Telefoonnummer" nillable="true" type="xs:string" />
-      <xs:element name="Emailadres" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
 
@@ -33,7 +29,7 @@
 
   <xs:complexType name="VoertuigenSearchCriteria">
     <xs:sequence>
-      <xs:element name="Id" type="xs:long" minOccurs="0" />
+      <xs:element name="ID" type="xs:long" minOccurs="0" />
       <xs:element name ="Kenteken" type="xs:string" />
       <xs:element name="Merk" type="xs:string" />
       <xs:element name="Type" type="xs:string" />
@@ -49,6 +45,10 @@
           <xs:element name="Voornaam" type="xs:string" />
           <xs:element name="Tussenvoegsel" nillable="true" type="xs:string" />
           <xs:element name="Achternaam" type="xs:string" />
+          <xs:element name="Adres" nillable="true" type="xs:string" />
+          <xs:element name="Postcode" nillable="true" type="xs:string" />
+          <xs:element name="Woonplaats" nillable="true"  type="xs:string" />
+          <xs:element name="Emailadres" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -83,7 +83,7 @@
       <xs:element name="Onderhoudsomschrijving" type="xs:string" />
       <xs:element name="Voertuig" type="bsvk:Voertuig" />
       <xs:element name="APK" type="xs:boolean" />
-      <xs:element name="Status" type="xs:string" />
+      <xs:element name="Status" type="xs:string" minOccurs="0" />
       <xs:element name="Onderhoudswerkzaamheden" type="bsvk:Onderhoudswerkzaamheden" nillable="true" />
     </xs:sequence>
   </xs:complexType>

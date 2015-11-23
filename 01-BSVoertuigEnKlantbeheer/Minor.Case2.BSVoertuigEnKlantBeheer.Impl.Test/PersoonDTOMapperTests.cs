@@ -12,7 +12,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
             // Arange
             BSVoertuigEnKlantbeheer.V1.Schema.Persoon dto = new BSVoertuigEnKlantbeheer.V1.Schema.Persoon
             {
-                klantnummer = 100,
+                Klantnummer = 100,
                 Voornaam = "Gerard",
                 Tussenvoegsel = "",
                 Achternaam = "Vos"  ,
@@ -53,7 +53,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
             var result = PersoonDTOMapper.MapEntityToDTO(entity);
 
             // Assert
-            Assert.AreEqual(100, result.klantnummer);
+            Assert.AreEqual(100, result.Klantnummer);
             Assert.AreEqual("Gerard", result.Voornaam);
         }
     }

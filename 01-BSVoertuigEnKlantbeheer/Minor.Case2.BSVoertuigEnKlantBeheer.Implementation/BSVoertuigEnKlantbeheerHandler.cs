@@ -65,7 +65,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
         /// </summary>
         /// <param name="zoekCriteria"></param>
         /// <returns></returns>
-        public VoertuigCollection GetVoertuigBy(VoertuigenSearchCriteria zoekCriteria)
+        public VoertuigenCollection GetVoertuigBy(VoertuigenSearchCriteria zoekCriteria)
         {
             throw new NotImplementedException();
         }

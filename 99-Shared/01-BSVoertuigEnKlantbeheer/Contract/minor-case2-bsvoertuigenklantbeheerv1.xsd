@@ -23,7 +23,7 @@
   <xs:element name="GetVoertuigByResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="GetVoertuigByResult" nillable="true" xmlns:q3="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q3:VoertuigCollection" />
+        <xs:element minOccurs="0" name="GetVoertuigByResult" nillable="true" xmlns:q3="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q3:VoertuigenCollection" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

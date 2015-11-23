@@ -36,11 +36,7 @@ namespace Minor.Case2.FEGMS.Agent.Tests
             return new Leasemaatschappij
             {
                 Naam = "Sixt",
-                Adres = "Akkerstraat",
-                Emailadres = "info@sixt.nl",
-                Postcode = "4812 RT",
                 Telefoonnummer = "0621448522",
-                Woonplaats = "Utrecht",
             };
         }
 
