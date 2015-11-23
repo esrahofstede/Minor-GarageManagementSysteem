@@ -8,17 +8,19 @@ using System.Threading.Tasks;
 
 namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappings
 {
-    public class OnderhoudsOpdrachtMapping : EntityTypeConfiguration<OnderhoudsOpdracht>
+    public class OnderhoudsOpdrachtMapping : EntityTypeConfiguration<Onderhoudsopdracht>
     {
         public OnderhoudsOpdrachtMapping()
         {
+            this.ToTable("OnderhoudsOpdracht");
+
             this.HasKey(o => o.ID);
 
-            this.Property(o => o.OnderhoudsOmschrijving)
+            this.Property(o => o.Onderhoudsomschrijving)
                 .HasMaxLength(300);
 
             this.HasRequired(o => o.Voertuig);
-            this.HasOptional(o => o.OnderhoudsWerkzaamheden);
+            this.HasOptional(o => o.Onderhoudswerkzaamheden);
         }
     }
 }

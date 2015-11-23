@@ -49,20 +49,20 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
                 },
                 Voertuig = new Voertuig
                 {
-                    kenteken = "12-AA-BB",
-                    merk = "ford",
-                    type = "focus",
-                    bestuurder = new Persoon
+                    Kenteken = "12-AA-BB",
+                    Merk = "ford",
+                    Type = "focus",
+                    Bestuurder = new Persoon
                     {
-                        voornaam = "jan",
-                        achternaam = "jansen"
+                        Voornaam = "jan",
+                        Achternaam = "jansen"
                     },
-                    eigenaar = new Persoon
+                    Eigenaar = new Persoon
                     {
-                        voornaam = "jan",
-                        achternaam = "jansen"
+                        Voornaam = "jan",
+                        Achternaam = "jansen"
                     },
-                    id = 1
+                    Id = 1
                 },
                 Keuringsverzoek = new ISRijksdienstWegVerkeer.V1.Schema.Keuringsverzoek
                 {

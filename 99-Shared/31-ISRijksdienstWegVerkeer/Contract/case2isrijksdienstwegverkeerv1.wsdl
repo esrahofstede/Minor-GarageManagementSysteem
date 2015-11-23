@@ -3,6 +3,7 @@
   <wsdl:types>
     <xsd:schema targetNamespace="urn:case2:isrijksdienstwegverkeer:v1/Imports">
       <xsd:import namespace="urn:case2:isrijksdienstwegverkeer:v1" />
+      <xsd:import namespace="urn:minor-case2-all:v1:schema" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="urn:minor-case2-isrijksdienstwegverkeer:v1:messages" />
       <xsd:import namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" />
@@ -15,10 +16,14 @@
   <wsdl:message name="IISRDWService_RequestKeuringsverzoek_OutputMessage">
     <wsdl:part name="parameters" element="tns:RequestKeuringsverzoekResponse" />
   </wsdl:message>
+  <wsdl:message name="IISRDWService_RequestKeuringsverzoek_ArrayOfFunctionalErrorDetailFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q1="urn:minor-case2-all:v1:schema" element="q1:ArrayOfFunctionalErrorDetail" />
+  </wsdl:message>
   <wsdl:portType name="IISRDWService">
     <wsdl:operation name="RequestKeuringsverzoek">
       <wsdl:input wsaw:Action="urn:case2:isrijksdienstwegverkeer:v1/IISRDWService/RequestKeuringsverzoek" message="tns:IISRDWService_RequestKeuringsverzoek_InputMessage" />
       <wsdl:output wsaw:Action="urn:case2:isrijksdienstwegverkeer:v1/IISRDWService/RequestKeuringsverzoekResponse" message="tns:IISRDWService_RequestKeuringsverzoek_OutputMessage" />
+      <wsdl:fault wsaw:Action="urn:case2:isrijksdienstwegverkeer:v1/IISRDWService/RequestKeuringsverzoekArrayOfFunctionalErrorDetailFault" name="ArrayOfFunctionalErrorDetailFault" message="tns:IISRDWService_RequestKeuringsverzoek_ArrayOfFunctionalErrorDetailFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="DefaultBinding_IISRDWService" type="tns:IISRDWService">
@@ -31,6 +36,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ArrayOfFunctionalErrorDetailFault">
+        <soap:fault name="ArrayOfFunctionalErrorDetailFault" use="literal" />
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
 </wsdl:definitions>

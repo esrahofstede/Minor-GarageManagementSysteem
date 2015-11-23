@@ -20,4 +20,10 @@
     <profile>Production</profile>
     <metadataAddress>http://localhost/Caespi/BSVoertuigEnKlantBeheer.svc/mex</metadataAddress>
   </serviceLocation>
+  <serviceLocation>
+    <name>PcSOnderhoud</name>
+    <profile>Development</profile>
+    <metadataAddress>http://localhost:22501/PcSOnderhoud.svc/mex</metadataAddress>
+  </serviceLocation>
+  
 </locationData>

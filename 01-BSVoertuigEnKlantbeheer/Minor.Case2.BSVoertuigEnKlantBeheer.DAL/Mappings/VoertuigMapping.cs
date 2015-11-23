@@ -34,8 +34,10 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappings
 
             this.HasMany(v => v.OnderhoudsOpdrachten);
 
-            this.HasOptional(v => v.Eigenaar);
-            this.HasRequired(v => v.Bestuurder);
+            this.Ignore(v => v.Bestuurder);
+            this.Ignore(v => v.Eigenaar);
+            //this.HasOptional(v => v.Eigenaar);
+            //this.HasRequired(v => v.Bestuurder);
 
         }
     }

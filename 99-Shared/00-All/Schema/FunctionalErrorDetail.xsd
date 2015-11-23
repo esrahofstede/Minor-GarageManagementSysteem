@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Minor"
+    targetNamespace="urn:minor-case2-all:v1:schema"
+    xmlns:tns="urn:minor-case2-all:v1:schema"
+    elementFormDefault="qualified"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="FunctionalErrorDetail" type="tns:FunctionalErrorDetail"/>
+
+
+  <xs:complexType name="FunctionalErrorDetail">
+    <xs:sequence>
+      <xs:element name="ErrorCode" type="xs:int" />
+      <xs:element name="Message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  
+</xs:schema>

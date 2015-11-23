@@ -8,8 +8,13 @@
   <xs:element name="KlantenCollection" nillable="true" type="tns:KlantenCollection" />
   <xs:complexType name="Klant">
     <xs:sequence>
-      <xs:element name="id" type="xs:long" />
-      <xs:element name="klantnummer" type="xs:long" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element name="Klantnummer" type="xs:long" />
+      <xs:element name="Adres" nillable="true" type="xs:string" />
+      <xs:element name="Postcode" nillable="true" type="xs:string" />
+      <xs:element name="Woonplaats" nillable="true" type="xs:string" />
+      <xs:element name="Telefoonnummer" nillable="true" type="xs:string" />
+      <xs:element name="Emailadres" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Klant" nillable="true" type="tns:Klant" />
@@ -32,11 +37,6 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element name="Adres" nillable="true" type="xs:string" />
-          <xs:element name="Postcode" nillable="true" type="xs:string" />
-          <xs:element name="Woonplaats" nillable="true" type="xs:string" />
-          <xs:element name="Telefoonnummer" nillable="true" type="xs:string" />
-          <xs:element name="Emailadres" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -53,41 +53,6 @@
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:element name="Adres" nillable="true" type="xs:string">
-            <xs:annotation>
-              <xs:appinfo>
-                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="Postcode" nillable="true" type="xs:string">
-            <xs:annotation>
-              <xs:appinfo>
-                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="Woonplaats" nillable="true" type="xs:string">
-            <xs:annotation>
-              <xs:appinfo>
-                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="Telefoonnummer" nillable="true" type="xs:string">
-            <xs:annotation>
-              <xs:appinfo>
-                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="Emailadres" nillable="true" type="xs:string">
-            <xs:annotation>
-              <xs:appinfo>
-                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -95,7 +60,7 @@
   <xs:element name="Leasemaatschappij" nillable="true" type="tns:Leasemaatschappij" />
   <xs:complexType name="VoertuigenSearchCriteria">
     <xs:sequence>
-      <xs:element name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
       <xs:element name="Kenteken" nillable="true" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
@@ -142,7 +107,7 @@
   <xs:element name="VoertuigCollection" nillable="true" type="tns:VoertuigCollection" />
   <xs:complexType name="Voertuig">
     <xs:sequence>
-      <xs:element name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
       <xs:element name="Kenteken" nillable="true" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
@@ -183,7 +148,7 @@
   <xs:element name="Voertuig" nillable="true" type="tns:Voertuig" />
   <xs:complexType name="Onderhoudsopdracht">
     <xs:sequence>
-      <xs:element name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
       <xs:element name="Aanmeldingsdatum" type="xs:dateTime" />
       <xs:element name="Kilometerstand" type="xs:long" />
       <xs:element name="Onderhoudsomschrijving" nillable="true" type="xs:string">
@@ -200,22 +165,16 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="Apk" type="xs:boolean" />
-      <xs:element name="Onderhoudswerkzaamheden" nillable="true" type="tns:OnderhoudsWerkzaamheden" />
+      <xs:element name="APK" type="xs:boolean" />
+      <xs:element name="Onderhoudswerkzaamheden" nillable="true" type="tns:Onderhoudswerkzaamheden" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Onderhoudsopdracht" nillable="true" type="tns:Onderhoudsopdracht" />
-  <xs:complexType name="OnderhoudsWerkzaamheden">
+  <xs:complexType name="Onderhoudswerkzaamheden">
     <xs:sequence>
-      <xs:element name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
       <xs:element name="Afmeldingsdatum" type="xs:dateTime" />
-      <xs:element name="Kilometerstand" nillable="true" type="xs:string">
-        <xs:annotation>
-          <xs:appinfo>
-            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
+      <xs:element name="Kilometerstand" type="xs:long" />
       <xs:element name="Onderhoudswerkzaamhedenomschrijving" nillable="true" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
@@ -225,5 +184,5 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="OnderhoudsWerkzaamheden" nillable="true" type="tns:OnderhoudsWerkzaamheden" />
+  <xs:element name="Onderhoudswerkzaamheden" nillable="true" type="tns:Onderhoudswerkzaamheden" />
 </xs:schema>

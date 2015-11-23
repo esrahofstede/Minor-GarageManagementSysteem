@@ -83,6 +83,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Minor.Case2.PcSOnderhoud.Contract\02 - Contract.csproj">
+      <Project>{762c4f35-ca0f-4dd6-bc7a-9d21127a27a0}</Project>
+      <Name>02 - Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Minor.Case2.PcSOnderhoud.Implementatie\04 - Implementation.csproj">
       <Project>{46bc1a16-6fe6-4340-a28f-be701c6786d5}</Project>
       <Name>04 - Implementation</Name>

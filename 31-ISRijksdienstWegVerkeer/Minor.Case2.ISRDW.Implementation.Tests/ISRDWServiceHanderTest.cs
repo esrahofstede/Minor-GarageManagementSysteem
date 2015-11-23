@@ -16,7 +16,7 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
             var rdwRequestMessage = Mapper.MapToRDWRequestMessage(requestMessage);
             //Assert
             Assert.AreEqual(requestMessage.Garage.Kvk, rdwRequestMessage.keuringsverzoek.keuringsinstantie.kvk);
-            Assert.AreEqual(requestMessage.Voertuig.kenteken, rdwRequestMessage.keuringsverzoek.voertuig.kenteken);
+            Assert.AreEqual(requestMessage.Voertuig.Kenteken, rdwRequestMessage.keuringsverzoek.voertuig.kenteken);
             Assert.AreEqual(requestMessage.Keuringsverzoek.CorrolatieId, rdwRequestMessage.keuringsverzoek.correlatieId);
         }
 

@@ -13,8 +13,10 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Entities
         public string Merk { get; set; }
         public string Type { get; set; }
 
-        public virtual Persoon Eigenaar { get; set; }
-        public virtual Klant Bestuurder { get; set; }
-        public virtual ICollection<OnderhoudsOpdracht> OnderhoudsOpdrachten { get; set; }
+        public Klant Eigenaar { get; set; }
+        public Persoon Bestuurder { get; set; }
+        public long EigenaarID { get; set; }
+        public long BestuurderID { get; set; }
+        public virtual ICollection<Onderhoudsopdracht> OnderhoudsOpdrachten { get; set; }
     }
 }

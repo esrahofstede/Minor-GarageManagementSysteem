@@ -9,8 +9,13 @@
   
   <xs:complexType name="Klant">
     <xs:sequence>
-      <xs:element name="id" type="xs:long" />
+      <xs:element name="id" type="xs:long" minOccurs="0" />
       <xs:element name="klantnummer" type="xs:long" />
+      <xs:element name="Adres" nillable="true" type="xs:string" />
+      <xs:element name="Postcode" nillable="true" type="xs:string" />
+      <xs:element name="Woonplaats" nillable="true"  type="xs:string" />
+      <xs:element name="Telefoonnummer" nillable="true" type="xs:string" />
+      <xs:element name="Emailadres" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
 
@@ -28,7 +33,7 @@
 
   <xs:complexType name="VoertuigenSearchCriteria">
     <xs:sequence>
-      <xs:element name="Id" type="xs:long" />
+      <xs:element name="Id" type="xs:long" minOccurs="0" />
       <xs:element name ="Kenteken" type="xs:string" />
       <xs:element name="Merk" type="xs:string" />
       <xs:element name="Type" type="xs:string" />
@@ -44,11 +49,6 @@
           <xs:element name="Voornaam" type="xs:string" />
           <xs:element name="Tussenvoegsel" nillable="true" type="xs:string" />
           <xs:element name="Achternaam" type="xs:string" />
-          <xs:element name="Adres" nillable="true" type="xs:string" />
-          <xs:element name="Postcode" nillable="true" type="xs:string" />
-          <xs:element name="Woonplaats" nillable="true"  type="xs:string" />
-          <xs:element name="Telefoonnummer" nillable="true" type="xs:string" />
-          <xs:element name="Emailadres" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -59,11 +59,6 @@
       <xs:extension base="bsvk:Klant">
         <xs:sequence>
           <xs:element name="Naam" type="xs:string" />
-          <xs:element name="Adres" type="xs:date" />
-          <xs:element name="Postcode" type="xs:string" />
-          <xs:element name="Woonplaats" type="xs:string" />
-          <xs:element name="Telefoonnummer" type="xs:string" />
-          <xs:element name="Emailadres" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -71,7 +66,7 @@
 
   <xs:complexType name="Voertuig">
     <xs:sequence>
-      <xs:element name="Id" type="xs:long" />
+      <xs:element name="Id" type="xs:long" minOccurs="0" />
       <xs:element name="Kenteken" type="xs:string" />
       <xs:element name="Merk" type="xs:string" />
       <xs:element name="Type" type="xs:string" />
@@ -82,7 +77,7 @@
 
   <xs:complexType name="Onderhoudsopdracht">
     <xs:sequence>
-      <xs:element name="Id" type="xs:long" />
+      <xs:element name="Id" type="xs:long" minOccurs="0" />
       <xs:element name="Aanmeldingsdatum" type="xs:dateTime" />
       <xs:element name="Kilometerstand" type="xs:long" />
       <xs:element name="Onderhoudsomschrijving" type="xs:string" />
@@ -94,9 +89,9 @@
 
   <xs:complexType name="OnderhoudsWerkzaamheden">
     <xs:sequence>
-      <xs:element name="Id" type="xs:long" />
+      <xs:element name="Id" type="xs:long" minOccurs="0" />
       <xs:element name="Afmeldingsdatum" type="xs:dateTime" />
-      <xs:element name="Kilometerstand" type="xs:string" />
+      <xs:element name="Kilometerstand" type="xs:long" />
       <xs:element name="Onderhoudswerkzaamhedenomschrijving" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

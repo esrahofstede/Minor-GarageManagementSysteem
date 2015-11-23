@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
+using System.ServiceModel;
 
 namespace Minor.Case2.PcSOnderhoud.Implementation
 {
@@ -17,7 +18,7 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
 
         public void VoegOnderhoudsopdrachtToeMetVoertuigEnKlant(Onderhoudsopdracht onderhoudsopdracht)
         {
-            throw new NotImplementedException();
+            throw new FaultException("Not yet implemented");
         }
 
         public VoertuigCollection GetVoertuigBy(VoertuigenSearchCriteria zoekCriteria)

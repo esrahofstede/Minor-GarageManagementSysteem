@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Minor.Case2.BSVoertuigEnKlantBeheer.Entities
 {
-    public class OnderhoudsWerkzaamheden
+    public class Onderhoudswerkzaamheden
     {
         public long ID { get; set; }
-        public DateTime AfmeldingsDatum { get; set; }
+        public DateTime Afmeldingsdatum { get; set; }
         public long Kilometerstand { get; set; }
         public string Omschrijving { get; set; }
 
-        public virtual OnderhoudsOpdracht OnderhoudsOpdracht { get; set; }
+        public virtual Onderhoudsopdracht Onderhoudsopdracht { get; set; }
 
     }
 }
