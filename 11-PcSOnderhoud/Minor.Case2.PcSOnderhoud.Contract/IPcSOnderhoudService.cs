@@ -18,7 +18,10 @@ namespace Minor.Case2.PcSOnderhoud.Contract
         VoertuigCollection GetVoertuigBy(VoertuigenSearchCriteria zoekCriteria);
 
         [OperationContract]
-        void VoegOnderhoudsopdrachtToeMetVoertuigEnKlant(Onderhoudsopdracht onderhoudsopdracht);
+        void VoegVoertuigMetKlantToe(Voertuig voertuig);
+
+        [OperationContract]
+        void VoegOnderhoudsopdrachtToe(Onderhoudsopdracht onderhoudsopdracht);
     }
     
 }

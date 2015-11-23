@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Minor.Case2.PcSOnderhoud.Agent
 {
+    
     public class AgentISRDW
     {
         private ServiceFactory<IISRDWService> _factory;
@@ -19,6 +20,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             _factory = new ServiceFactory<IISRDWService>("ISRDWService");
         }
 
+        [CLSCompliant(false)]
         public AgentISRDW(ServiceFactory<IISRDWService> factory)
         {
             _factory = factory;

@@ -79,7 +79,13 @@
  /n:urn:minor-case2-isrijksdienstwegverkeer:v1:schema,Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema ^
  /out:"ISRijksdienstWegVerkeerV1Contract.cs" ^
  "$(SolutionDir)..\99-Shared\31-ISRijksdienstWegVerkeer\Contract\*.wsdl" ^
- "$(SolutionDir)..\99-Shared\31-ISRijksdienstWegVerkeer\Contract\*.xsd"</PreBuildEvent>
+ "$(SolutionDir)..\99-Shared\31-ISRijksdienstWegVerkeer\Contract\case2isrijksdienstwegverkeerv1.xsd" ^
+ "$(SolutionDir)..\99-Shared\31-ISRijksdienstWegVerkeer\Contract\minor-case2-allv1schema.xsd" ^
+ "$(SolutionDir)..\99-Shared\31-ISRijksdienstWegVerkeer\Contract\minor-case2-isrijksdienstwegverkeerv1messages.xsd" ^
+ "$(SolutionDir)..\99-Shared\31-ISRijksdienstWegVerkeer\Contract\minor-case2-isrijksdienstwegverkeerv1schema.xsd" ^
+ "$(SolutionDir)..\99-Shared\01-BSVoertuigEnKlantbeheer\Contract\*.wsdl" ^
+ "$(SolutionDir)..\99-Shared\01-BSVoertuigEnKlantbeheer\Contract\minor-case2-bsvoertuigenklantbeheerv1.xsd" ^
+ "$(SolutionDir)..\99-Shared\01-BSVoertuigEnKlantbeheer\Contract\minor-case2-bsvoertuigenklantbeheerv1schema.xsd"</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

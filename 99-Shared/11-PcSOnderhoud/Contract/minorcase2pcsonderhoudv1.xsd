@@ -27,14 +27,26 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="VoegOnderhoudsopdrachtToeMetVoertuigEnKlant">
+  <xs:element name="VoegVoertuigMetKlantToe">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="onderhoudsopdracht" nillable="true" xmlns:q4="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q4:Onderhoudsopdracht" />
+        <xs:element minOccurs="0" name="voertuig" nillable="true" xmlns:q4="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q4:Voertuig" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="VoegOnderhoudsopdrachtToeMetVoertuigEnKlantResponse">
+  <xs:element name="VoegVoertuigMetKlantToeResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VoegOnderhoudsopdrachtToe">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="onderhoudsopdracht" nillable="true" xmlns:q5="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q5:Onderhoudsopdracht" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VoegOnderhoudsopdrachtToeResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>

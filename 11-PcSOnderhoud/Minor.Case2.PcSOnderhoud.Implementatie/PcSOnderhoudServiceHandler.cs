@@ -16,12 +16,17 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             throw new NotImplementedException();
         }
 
-        public void VoegOnderhoudsopdrachtToeMetVoertuigEnKlant(Onderhoudsopdracht onderhoudsopdracht)
+        public VoertuigCollection GetVoertuigBy(VoertuigenSearchCriteria zoekCriteria)
         {
-            throw new FaultException("Not yet implemented");
+            throw new NotImplementedException();
         }
 
-        public VoertuigCollection GetVoertuigBy(VoertuigenSearchCriteria zoekCriteria)
+        public void VoegOnderhoudsopdrachtToe(Onderhoudsopdracht onderhoudsopdracht)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void VoegVoertuigMetKlantToe(Voertuig voertuig)
         {
             throw new NotImplementedException();
         }

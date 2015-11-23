@@ -19,11 +19,17 @@
   <wsdl:message name="IPcSOnderhoudService_GetVoertuigBy_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetVoertuigByResponse" />
   </wsdl:message>
-  <wsdl:message name="IPcSOnderhoudService_VoegOnderhoudsopdrachtToeMetVoertuigEnKlant_InputMessage">
-    <wsdl:part name="parameters" element="tns:VoegOnderhoudsopdrachtToeMetVoertuigEnKlant" />
+  <wsdl:message name="IPcSOnderhoudService_VoegVoertuigMetKlantToe_InputMessage">
+    <wsdl:part name="parameters" element="tns:VoegVoertuigMetKlantToe" />
   </wsdl:message>
-  <wsdl:message name="IPcSOnderhoudService_VoegOnderhoudsopdrachtToeMetVoertuigEnKlant_OutputMessage">
-    <wsdl:part name="parameters" element="tns:VoegOnderhoudsopdrachtToeMetVoertuigEnKlantResponse" />
+  <wsdl:message name="IPcSOnderhoudService_VoegVoertuigMetKlantToe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VoegVoertuigMetKlantToeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPcSOnderhoudService_VoegOnderhoudsopdrachtToe_InputMessage">
+    <wsdl:part name="parameters" element="tns:VoegOnderhoudsopdrachtToe" />
+  </wsdl:message>
+  <wsdl:message name="IPcSOnderhoudService_VoegOnderhoudsopdrachtToe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VoegOnderhoudsopdrachtToeResponse" />
   </wsdl:message>
   <wsdl:portType name="IPcSOnderhoudService">
     <wsdl:operation name="GetAllKlanten">
@@ -34,9 +40,13 @@
       <wsdl:input wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetVoertuigBy" message="tns:IPcSOnderhoudService_GetVoertuigBy_InputMessage" />
       <wsdl:output wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetVoertuigByResponse" message="tns:IPcSOnderhoudService_GetVoertuigBy_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="VoegOnderhoudsopdrachtToeMetVoertuigEnKlant">
-      <wsdl:input wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudsopdrachtToeMetVoertuigEnKlant" message="tns:IPcSOnderhoudService_VoegOnderhoudsopdrachtToeMetVoertuigEnKlant_InputMessage" />
-      <wsdl:output wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudsopdrachtToeMetVoertuigEnKlantResponse" message="tns:IPcSOnderhoudService_VoegOnderhoudsopdrachtToeMetVoertuigEnKlant_OutputMessage" />
+    <wsdl:operation name="VoegVoertuigMetKlantToe">
+      <wsdl:input wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegVoertuigMetKlantToe" message="tns:IPcSOnderhoudService_VoegVoertuigMetKlantToe_InputMessage" />
+      <wsdl:output wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegVoertuigMetKlantToeResponse" message="tns:IPcSOnderhoudService_VoegVoertuigMetKlantToe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VoegOnderhoudsopdrachtToe">
+      <wsdl:input wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudsopdrachtToe" message="tns:IPcSOnderhoudService_VoegOnderhoudsopdrachtToe_InputMessage" />
+      <wsdl:output wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudsopdrachtToeResponse" message="tns:IPcSOnderhoudService_VoegOnderhoudsopdrachtToe_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="DefaultBinding_IPcSOnderhoudService" type="tns:IPcSOnderhoudService">
@@ -59,8 +69,17 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="VoegOnderhoudsopdrachtToeMetVoertuigEnKlant">
-      <soap:operation soapAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudsopdrachtToeMetVoertuigEnKlant" style="document" />
+    <wsdl:operation name="VoegVoertuigMetKlantToe">
+      <soap:operation soapAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegVoertuigMetKlantToe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VoegOnderhoudsopdrachtToe">
+      <soap:operation soapAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudsopdrachtToe" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

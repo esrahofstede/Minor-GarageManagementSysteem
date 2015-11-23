@@ -8,8 +8,8 @@
   <xs:element name="KlantenCollection" nillable="true" type="tns:KlantenCollection" />
   <xs:complexType name="Klant">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Id" type="xs:long" />
-      <xs:element name="Klantnummer" type="xs:long" />
+      <xs:element minOccurs="0" name="id" type="xs:long" />
+      <xs:element name="klantnummer" type="xs:long" />
       <xs:element name="Adres" nillable="true" type="xs:string" />
       <xs:element name="Postcode" nillable="true" type="xs:string" />
       <xs:element name="Woonplaats" nillable="true" type="xs:string" />
@@ -165,12 +165,12 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="APK" type="xs:boolean" />
-      <xs:element name="Onderhoudswerkzaamheden" nillable="true" type="tns:Onderhoudswerkzaamheden" />
+      <xs:element name="Apk" type="xs:boolean" />
+      <xs:element name="Onderhoudswerkzaamheden" nillable="true" type="tns:OnderhoudsWerkzaamheden" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Onderhoudsopdracht" nillable="true" type="tns:Onderhoudsopdracht" />
-  <xs:complexType name="Onderhoudswerkzaamheden">
+  <xs:complexType name="OnderhoudsWerkzaamheden">
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="xs:long" />
       <xs:element name="Afmeldingsdatum" type="xs:dateTime" />
@@ -184,5 +184,5 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Onderhoudswerkzaamheden" nillable="true" type="tns:Onderhoudswerkzaamheden" />
+  <xs:element name="OnderhoudsWerkzaamheden" nillable="true" type="tns:OnderhoudsWerkzaamheden" />
 </xs:schema>
