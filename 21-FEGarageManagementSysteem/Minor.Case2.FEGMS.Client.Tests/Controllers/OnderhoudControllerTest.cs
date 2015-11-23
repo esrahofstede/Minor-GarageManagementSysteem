@@ -21,6 +21,21 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
     public class OnderhoudControllerTest
     {
         [TestMethod]
+        public void IndexTest()
+        {
+            // Arrange
+            var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
+            OnderhoudController controller = new OnderhoudController(mock.Object);
+
+            // Act
+            ViewResult result = controller.Index() as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsNull(result.Model);
+        }
+
+        [TestMethod]
         public void InsertKlantgegevens()
         {
             // Arrange
@@ -158,7 +173,7 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
         }
 
         [TestMethod]
-        public void InsertVoertuiggegevensPostTest()
+        public void InsertVoertuiggegevensWithLeasePostTest()
         {
             // Arrange
             var serializer = new JavaScriptSerializer();
@@ -172,6 +187,41 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             var httpContext = new HttpContextWrapper(new HttpContext(request, response));
             controller.ControllerContext = new ControllerContext(httpContext, new RouteData(), controller);
            
+            //Set klantcookie
+            var klantgegevensCookie = new HttpCookie("Klantgegevens", serializer.Serialize(DummyData.GetKlantGegevens(true)));
+            controller.HttpContext.Request.Cookies.Add(klantgegevensCookie);
+            var leasemaatschappijCookie = new HttpCookie("LeasemaatschappijGegevens", serializer.Serialize(DummyData.GetLeasemaatschappijGegevens()));
+            controller.HttpContext.Request.Cookies.Add(leasemaatschappijCookie);
+
+            // Act
+            RedirectToRouteResult result = controller.InsertVoertuiggegevens(voertuiggegevens) as RedirectToRouteResult;
+            var cookie = controller.HttpContext.Response.Cookies.Get("Voertuiggegevens");
+
+            var voertuigFromCookie = serializer.Deserialize<InsertVoertuiggegevensVM>(cookie.Value);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("InsertOnderhoudsopdracht", result.RouteValues.First().Value);
+            Assert.AreEqual(voertuiggegevens.Kenteken, voertuigFromCookie.Kenteken);
+            Assert.AreEqual(voertuiggegevens.Merk, voertuigFromCookie.Merk);
+            Assert.AreEqual(voertuiggegevens.Type, voertuigFromCookie.Type);
+        }
+
+        [TestMethod]
+        public void InsertVoertuiggegevensWithoutLeasePostTest()
+        {
+            // Arrange
+            var serializer = new JavaScriptSerializer();
+            var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
+            mock.Setup(agent => agent.VoegVoertuigMetKlantToe(It.IsAny<Voertuig>()));
+            OnderhoudController controller = new OnderhoudController(mock.Object);
+            InsertVoertuiggegevensVM voertuiggegevens = DummyData.GetVoertuiggegevens();
+
+            var request = new HttpRequest("", "http://example.com/", "");
+            var response = new HttpResponse(TextWriter.Null);
+            var httpContext = new HttpContextWrapper(new HttpContext(request, response));
+            controller.ControllerContext = new ControllerContext(httpContext, new RouteData(), controller);
+
             //Set klantcookie
             var klantgegevensCookie = new HttpCookie("Klantgegevens", serializer.Serialize(DummyData.GetKlantGegevens(false)));
             controller.HttpContext.Request.Cookies.Add(klantgegevensCookie);

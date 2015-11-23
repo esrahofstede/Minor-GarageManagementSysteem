@@ -43,12 +43,26 @@ namespace Minor.Case2.FEGMS.Agent
         {
             try {
                 var proxy = _factory.CreateAgent();
-                proxy.VoegVoertuigMetKlantToe(voertuig);
+                proxy.VoegVoertuigMetKlantToe(voertuig); 
             }
             catch(FaultException ex)
             {
 
             }
+        }
+
+        public VoertuigenCollection FindVoertuigBy(VoertuigenSearchCriteria critera)
+        {
+            try
+            {
+                var proxy = _factory.CreateAgent();
+                return proxy.GetVoertuigBy(critera);
+            }
+            catch (FaultException ex)
+            {
+
+            }
+            return null;
         }
     }
 }

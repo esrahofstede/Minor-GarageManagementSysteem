@@ -30,6 +30,9 @@ namespace Minor.Case2.ISRDW.Implementation
             return response;
         }
 
+        /// <summary>
+        /// Contstructor to instantiate the RDWAdapter
+        /// </summary>
         public RDWAdapter()
         {
             _rdwService = new RDWService();
@@ -37,7 +40,7 @@ namespace Minor.Case2.ISRDW.Implementation
         }
 
         /// <summary>
-        /// Creates an instance of the RDWAdapter and can be injected with an IRDWService
+        /// Creates an instance of the RDWAdapter and can be injected with an IRDWService and ILoggingManager
         /// </summary>
         /// <param name="rdwService">Injectable IRDWService</param>
         public RDWAdapter(IRDWService rdwService, ILoggingManager loggingManager)

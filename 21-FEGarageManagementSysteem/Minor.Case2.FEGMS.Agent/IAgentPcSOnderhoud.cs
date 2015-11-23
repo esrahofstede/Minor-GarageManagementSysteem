@@ -6,5 +6,6 @@ namespace Minor.Case2.FEGMS.Agent
     {
         void AddOnderhoudsOpdrachtWithKlantAndVoertuig(Onderhoudsopdracht opdracht);
         void VoegVoertuigMetKlantToe(Voertuig voertuig);
+        VoertuigenCollection FindVoertuigBy(VoertuigenSearchCriteria critera);
     }
 }

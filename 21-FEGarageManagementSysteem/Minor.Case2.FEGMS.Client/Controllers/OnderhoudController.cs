@@ -19,12 +19,19 @@ namespace Minor.Case2.FEGMS.Client.Controllers
             _agent = new AgentPcSOnderhoud();
         }
 
+        /// <summary>
+        /// Creates an instance of the OnderhoudController and can be injected with an IAgentPcSOnderhoud
+        /// </summary>
+        /// <param name="agent">Injectable IAgentPcSOnderhoud</param>
         public OnderhoudController(IAgentPcSOnderhoud agent)
         {
             _agent = agent;
         }
 
-        // GET: Onderhoud
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             return View();
@@ -174,6 +181,8 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                 HttpCookie voertuiggegevensCookie = Request.Cookies.Get("Voertuiggegevens");
                 var voertuiggegevens = new JavaScriptSerializer().Deserialize<InsertVoertuiggegevensVM>(voertuiggegevensCookie.Value);
                 var onderhoudsopdracht = Mapper.MapToOnderhoudsopdracht(model, leasemaatschappijgegevens, klantgegevens, voertuiggegevens);
+
+                _agent.AddOnderhoudsOpdrachtWithKlantAndVoertuig(onderhoudsopdracht);
 
                 return RedirectToAction("Index");
             }
