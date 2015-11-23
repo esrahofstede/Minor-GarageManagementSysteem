@@ -45,6 +45,10 @@
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -94,7 +98,7 @@
   <ItemGroup>
     <Compile Include="DummyData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="Controllers\OnderhoudControllerTest.cs" />
     <Compile Include="MapperTest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +109,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Minor.Case2.FEGMS.Agent\06 - Agent.csproj">
+      <Project>{8dd84afe-7e12-431d-a3d3-de280f3b4db2}</Project>
+      <Name>06 - Agent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Minor.Case2.FEGMS.Client\02-Client.csproj">
       <Project>{992A1970-2532-4E4F-B9CF-234AC22905E8}</Project>
       <Name>02-Client</Name>

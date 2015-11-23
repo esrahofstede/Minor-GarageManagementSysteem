@@ -66,11 +66,6 @@ namespace Minor.Case2.FEGMS.Client.Helper
                 throw new ArgumentNullException(nameof(klantgegevens), "Value cannot be null");
             }
 
-            if (leasemaatschappijgegevens == null)
-            {
-                throw new ArgumentNullException(nameof(leasemaatschappijgegevens), "Value cannot be null");
-            }
-
             if (voertuiggegevens == null)
             {
                 throw new ArgumentNullException(nameof(voertuiggegevens), "Value cannot be null");
@@ -92,6 +87,11 @@ namespace Minor.Case2.FEGMS.Client.Helper
 
             if (klantgegevens.Lease)
             {
+                if (leasemaatschappijgegevens == null)
+                {
+                    throw new ArgumentNullException(nameof(leasemaatschappijgegevens), "Value cannot be null");
+                }
+
                 eigenaar = new Leasemaatschappij
                 {
                     Naam = leasemaatschappijgegevens.Naam,

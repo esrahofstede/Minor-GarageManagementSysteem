@@ -9,14 +9,19 @@ namespace Minor.Case2.FEGMS.Client.Controllers
 {
     public class OnderhoudController : Controller
     {
-        AgentPcSOnderhoud agent;
+        IAgentPcSOnderhoud _agent;
 
         /// <summary>
         /// Contstructor to instantiate the agent
         /// </summary>
         public OnderhoudController()
         {
-            agent = new AgentPcSOnderhoud();
+            _agent = new AgentPcSOnderhoud();
+        }
+
+        public OnderhoudController(IAgentPcSOnderhoud agent)
+        {
+            _agent = agent;
         }
 
         // GET: Onderhoud
@@ -48,7 +53,7 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                 var serializedKlantgegevens = new JavaScriptSerializer().Serialize(model);
 
                 HttpCookie KlantgegevensCookie = new HttpCookie("Klantgegevens", serializedKlantgegevens);
-                Response.SetCookie(KlantgegevensCookie);
+                Response.Cookies.Add(KlantgegevensCookie);
 
                 if (model.Lease)
                 {
@@ -84,7 +89,7 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                 var serializedLeasmaatschappijGegevens = new JavaScriptSerializer().Serialize(model);
 
                 HttpCookie leasemaatschappijCookie = new HttpCookie("LeasemaatschappijGegevens", serializedLeasmaatschappijGegevens);
-                Response.SetCookie(leasemaatschappijCookie);
+                Response.Cookies.Add(leasemaatschappijCookie);
 
                 return RedirectToAction("InsertVoertuiggegevens");
             }
@@ -112,24 +117,29 @@ namespace Minor.Case2.FEGMS.Client.Controllers
         {
             if (ModelState.IsValid)
             {
-                var serializedVoertuiggegevens = new JavaScriptSerializer().Serialize(model);
+                var serializer = new JavaScriptSerializer();
+                var serializedVoertuiggegevens = serializer.Serialize(model);
        
                 HttpCookie leasemaatschappijCookie = Request.Cookies.Get("LeasemaatschappijGegevens");
 
                 InsertLeasemaatschappijGegevensVM leasemaatschappijgegevens = null;
                 if (leasemaatschappijCookie != null)
                 {
-                    leasemaatschappijgegevens = new JavaScriptSerializer().Deserialize<InsertLeasemaatschappijGegevensVM>(leasemaatschappijCookie.Value);
+                    leasemaatschappijgegevens = serializer.Deserialize<InsertLeasemaatschappijGegevensVM>(leasemaatschappijCookie.Value);
                 }
 
                 HttpCookie klantgegevensCookie = Request.Cookies.Get("Klantgegevens");
-                var klantgegevens = new JavaScriptSerializer().Deserialize<InsertKlantgegevensVM>(klantgegevensCookie.Value);
+                var klantgegevens = serializer.Deserialize<InsertKlantgegevensVM>(klantgegevensCookie.Value);
+
+
+                HttpCookie voertuiggegevensCookie = new HttpCookie("Voertuiggegevens", serializedVoertuiggegevens);
+                Response.Cookies.Add(voertuiggegevensCookie);
 
                 var voertuig = Mapper.MapToVoertuig(leasemaatschappijgegevens, klantgegevens, model);
 
-                agent.VoegVoertuigMetKlantToe(voertuig);
+                _agent.VoegVoertuigMetKlantToe(voertuig);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("InsertOnderhoudsopdracht");
             }
 
             return View(model);

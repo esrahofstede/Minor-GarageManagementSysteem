@@ -12,7 +12,7 @@ namespace Minor.Case2.FEGMS.Agent
     /// <summary>
     /// Connection to PcSOnderhoud
     /// </summary>
-    public class AgentPcSOnderhoud
+    public class AgentPcSOnderhoud : IAgentPcSOnderhoud
     {
         private ServiceFactory<IPcSOnderhoudService> _factory;
 
@@ -23,11 +23,16 @@ namespace Minor.Case2.FEGMS.Agent
 
         public void AddOnderhoudsOpdrachtWithKlantAndVoertuig(Onderhoudsopdracht opdracht)
         {
-            var proxy = _factory.CreateAgent();
-            
-            //proxy.
-            
-            //proxy..VoegOnderhoudsopdrachtToeMetVoertuigEnKlant(opdracht);
+            try
+            {
+                var proxy = _factory.CreateAgent();
+                proxy.VoegOnderhoudsopdrachtToe(opdracht);
+            }
+            catch (FaultException ex)
+            {
+
+            }
+
         }
 
         /// <summary>

@@ -139,12 +139,12 @@ namespace Minor.Case2.FEGMS.Client.Tests
         }
 
         [TestMethod]
-        public void MapToVoertuigLeasemaatschappijNullTest()
+        public void MapToVoertuigLeasemaatschappijNullAndLeaseIsTrueTest()
         {
             // Arrange
             bool exceptionWasThrown = false;
             string exceptionMessage = string.Empty;
-            InsertKlantgegevensVM klantgegevens = DummyData.GetKlantGegevens(false);
+            InsertKlantgegevensVM klantgegevens = DummyData.GetKlantGegevens(true);
             InsertLeasemaatschappijGegevensVM leasemaatschappij = null;
             InsertVoertuiggegevensVM voertuiggegevens = DummyData.GetVoertuiggegevens();
 
