@@ -23,7 +23,7 @@
   <xs:element name="GetVoertuigByResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="GetVoertuigByResult" nillable="true" xmlns:q3="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q3:VoertuigCollection" />
+        <xs:element minOccurs="0" name="GetVoertuigByResult" nillable="true" xmlns:q3="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q3:VoertuigenCollection" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -47,6 +47,18 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="VoegOnderhoudsopdrachtToeResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WijzigOnderhoudsopdracht">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="onderhoudsopdracht" nillable="true" xmlns:q6="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q6:Onderhoudsopdracht" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WijzigOnderhoudsopdrachtResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>

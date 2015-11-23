@@ -33,6 +33,11 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             throw new NotImplementedException();
         }
 
+        public void WijzigOnderhoudsopdracht(Onderhoudsopdracht onderhoudsopdracht)
+        {
+            throw new NotImplementedException();
+        }
+
         public void VoegVoertuigMetKlantToe(Voertuig voertuig)
         {
             BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Klant klant = new BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Persoon

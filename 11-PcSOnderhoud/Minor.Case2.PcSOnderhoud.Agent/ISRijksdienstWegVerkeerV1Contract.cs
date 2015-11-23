@@ -898,6 +898,8 @@ namespace Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent
         
         private string CorrolatieIdField;
         
+        private int KilometerstandField;
+        
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -933,6 +935,19 @@ namespace Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent
             set
             {
                 this.CorrolatieIdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
+        public int Kilometerstand
+        {
+            get
+            {
+                return this.KilometerstandField;
+            }
+            set
+            {
+                this.KilometerstandField = value;
             }
         }
     }

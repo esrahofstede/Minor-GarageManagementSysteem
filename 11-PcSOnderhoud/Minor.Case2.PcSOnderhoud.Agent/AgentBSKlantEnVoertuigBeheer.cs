@@ -23,11 +23,6 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             _factory = factory;
         }
 
-        public static explicit operator AgentBSKlantEnVoertuigBeheer(KlantenCollection v)
-        {
-            throw new NotImplementedException();
-        }
-
         public void VoegVoertuigMetKlantToe(Voertuig voertuig)
         {
             IBSVoertuigEnKlantbeheer proxy;

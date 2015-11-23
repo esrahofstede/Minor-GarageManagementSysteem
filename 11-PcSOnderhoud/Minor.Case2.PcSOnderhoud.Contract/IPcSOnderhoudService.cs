@@ -22,6 +22,9 @@ namespace Minor.Case2.PcSOnderhoud.Contract
 
         [OperationContract]
         void VoegOnderhoudsopdrachtToe(Onderhoudsopdracht onderhoudsopdracht);
+
+        [OperationContract]
+        void WijzigOnderhoudsopdracht(Onderhoudsopdracht onderhoudsopdracht);
     }
     
 }
