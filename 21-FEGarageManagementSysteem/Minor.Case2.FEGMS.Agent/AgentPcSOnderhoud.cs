@@ -16,10 +16,22 @@ namespace Minor.Case2.FEGMS.Agent
         {
             _factory = new ServiceFactory<IPcSOnderhoudService>("PcSOnderhoud");
         }
+
         public void AddOnderhoudsOpdrachtWithKlantAndVoertuig(Onderhoudsopdracht opdracht)
         {
             var proxy = _factory.CreateAgent();
-            proxy.VoegOnderhoudsopdrachtToeMetVoertuigEnKlant(opdracht);
+            
+            //proxy.
+            
+            //proxy..VoegOnderhoudsopdrachtToeMetVoertuigEnKlant(opdracht);
+        }
+
+        public void VoegVoertuigMetKlantToe(Voertuig voertuig)
+        {
+            var proxy = _factory.CreateAgent();
+
+            proxy.VoegVoertuigMetKlantToe(voertuig);
+
         }
     }
 }

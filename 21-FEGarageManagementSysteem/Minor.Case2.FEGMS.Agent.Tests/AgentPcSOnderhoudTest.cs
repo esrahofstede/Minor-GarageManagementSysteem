@@ -7,18 +7,18 @@ namespace Minor.Case2.FEGMS.Agent.Tests
     [TestClass]
     public class AgentPcSOnderhoudTest
     {
-        [TestMethod]
-        public void TestMethod1()
-        { 
-            //Arrange
-            AgentPcSOnderhoud agent = new AgentPcSOnderhoud();
-            Onderhoudsopdracht opdracht = DummyData.GetDummyOnderhoudsopdracht();
+        //[TestMethod]
+        //public void TestMethod1()
+        //{ 
+        //    //Arrange
+        //    AgentPcSOnderhoud agent = new AgentPcSOnderhoud();
+        //    Onderhoudsopdracht opdracht = DummyData.GetDummyOnderhoudsopdracht();
             
-            //Act
-            agent.AddOnderhoudsOpdrachtWithKlantAndVoertuig(opdracht);
+        //    //Act
+        //    agent.AddOnderhoudsOpdrachtWithKlantAndVoertuig(opdracht);
 
-            //Assert
-        }
+        //    //Assert
+        //}
 
 
     }

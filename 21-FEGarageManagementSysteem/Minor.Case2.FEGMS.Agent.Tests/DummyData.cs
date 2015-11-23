@@ -9,8 +9,6 @@ namespace Minor.Case2.FEGMS.Agent.Tests
         {
             return new Persoon
             {
-                
-                Klantnummer = 123123,
                 Voornaam = "Piet",
                 Achternaam = "Pietersen",
                 Adres = "Kerkstraat 12",
@@ -37,7 +35,6 @@ namespace Minor.Case2.FEGMS.Agent.Tests
         {
             return new Leasemaatschappij
             {
-                Klantnummer = 101010,
                 Naam = "Sixt",
                 Adres = "Akkerstraat",
                 Emailadres = "info@sixt.nl",

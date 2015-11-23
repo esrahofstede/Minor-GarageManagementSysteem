@@ -32,9 +32,9 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private long IdField;
+        private long idField;
         
-        private long KlantnummerField;
+        private long klantnummerField;
         
         private string AdresField;
         
@@ -59,28 +59,28 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long Id
+        public long id
         {
             get
             {
-                return this.IdField;
+                return this.idField;
             }
             set
             {
-                this.IdField = value;
+                this.idField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public long Klantnummer
+        public long klantnummer
         {
             get
             {
-                return this.KlantnummerField;
+                return this.klantnummerField;
             }
             set
             {
-                this.KlantnummerField = value;
+                this.klantnummerField = value;
             }
         }
         
@@ -679,15 +679,21 @@ public interface IPcSOnderhoudService
     [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetVoertuigBy", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetVoertuigByResponse")]
     System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigCollection> GetVoertuigByAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigenSearchCriteria zoekCriteria);
     
-    [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudsopdrachtToeMet" +
-        "VoertuigEnKlant", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudsopdrachtToeMet" +
-        "VoertuigEnKlantResponse")]
-    void VoegOnderhoudsopdrachtToeMetVoertuigEnKlant(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht);
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegVoertuigMetKlantToe", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegVoertuigMetKlantToeRespo" +
+        "nse")]
+    void VoegVoertuigMetKlantToe(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig);
     
-    [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudsopdrachtToeMet" +
-        "VoertuigEnKlant", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudsopdrachtToeMet" +
-        "VoertuigEnKlantResponse")]
-    System.Threading.Tasks.Task VoegOnderhoudsopdrachtToeMetVoertuigEnKlantAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht);
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegVoertuigMetKlantToe", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegVoertuigMetKlantToeRespo" +
+        "nse")]
+    System.Threading.Tasks.Task VoegVoertuigMetKlantToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudsopdrachtToe", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudsopdrachtToeRes" +
+        "ponse")]
+    void VoegOnderhoudsopdrachtToe(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudsopdrachtToe", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudsopdrachtToeRes" +
+        "ponse")]
+    System.Threading.Tasks.Task VoegOnderhoudsopdrachtToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -744,13 +750,23 @@ public partial class PcSOnderhoudServiceClient : System.ServiceModel.ClientBase<
         return base.Channel.GetVoertuigByAsync(zoekCriteria);
     }
     
-    public void VoegOnderhoudsopdrachtToeMetVoertuigEnKlant(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht)
+    public void VoegVoertuigMetKlantToe(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig)
     {
-        base.Channel.VoegOnderhoudsopdrachtToeMetVoertuigEnKlant(onderhoudsopdracht);
+        base.Channel.VoegVoertuigMetKlantToe(voertuig);
     }
     
-    public System.Threading.Tasks.Task VoegOnderhoudsopdrachtToeMetVoertuigEnKlantAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht)
+    public System.Threading.Tasks.Task VoegVoertuigMetKlantToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig)
     {
-        return base.Channel.VoegOnderhoudsopdrachtToeMetVoertuigEnKlantAsync(onderhoudsopdracht);
+        return base.Channel.VoegVoertuigMetKlantToeAsync(voertuig);
+    }
+    
+    public void VoegOnderhoudsopdrachtToe(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht)
+    {
+        base.Channel.VoegOnderhoudsopdrachtToe(onderhoudsopdracht);
+    }
+    
+    public System.Threading.Tasks.Task VoegOnderhoudsopdrachtToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht)
+    {
+        return base.Channel.VoegOnderhoudsopdrachtToeAsync(onderhoudsopdracht);
     }
 }
