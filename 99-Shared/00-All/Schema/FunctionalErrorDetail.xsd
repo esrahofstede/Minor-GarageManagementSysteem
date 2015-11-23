@@ -12,6 +12,7 @@
     <xs:sequence>
       <xs:element name="ErrorCode" type="xs:int" />
       <xs:element name="Message" type="xs:string" />
+      <xs:element name="Data" type="xs:anyType" ></xs:element>
     </xs:sequence>
   </xs:complexType>
   

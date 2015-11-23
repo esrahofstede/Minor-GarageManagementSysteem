@@ -11,7 +11,7 @@
 [assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn:minor-case2-isrijksdienstwegverkeer:v1:messages", ClrNamespace="Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages")]
 [assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn:minor-case2-bsvoertuigenklantbeheer:v1:schema", ClrNamespace="Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema")]
 [assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn:minor-case2-isrijksdienstwegverkeer:v1:schema", ClrNamespace="Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema")]
-[assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn:minor-case2-all:v1:schema", ClrNamespace="minorcase2all.v1.schema")]
+[assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn:minor-case2-all:v1:schema", ClrNamespace="Minor.Case2.Exceptions.V1.Schema")]
 
 namespace Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages
 {
@@ -937,7 +937,7 @@ namespace Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema
         }
     }
 }
-namespace minorcase2all.v1.schema
+namespace Minor.Case2.Exceptions.V1.Schema
 {
     using System.Runtime.Serialization;
     
@@ -1002,7 +1002,7 @@ public interface IISRDWService
     
     [System.ServiceModel.OperationContractAttribute(Action="urn:case2:isrijksdienstwegverkeer:v1/IISRDWService/RequestKeuringsverzoek", ReplyAction="urn:case2:isrijksdienstwegverkeer:v1/IISRDWService/RequestKeuringsverzoekResponse" +
         "")]
-    [System.ServiceModel.FaultContractAttribute(typeof(minorcase2all.v1.schema.FunctionalErrorDetail[]), Action="urn:case2:isrijksdienstwegverkeer:v1/IISRDWService/RequestKeuringsverzoekArrayOfF" +
+    [System.ServiceModel.FaultContractAttribute(typeof(Minor.Case2.Exceptions.V1.Schema.FunctionalErrorDetail[]), Action="urn:case2:isrijksdienstwegverkeer:v1/IISRDWService/RequestKeuringsverzoekArrayOfF" +
         "unctionalErrorDetailFault", Name="ArrayOfFunctionalErrorDetail", Namespace="urn:minor-case2-all:v1:schema")]
     Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.SendRdwKeuringsverzoekResponseMessage RequestKeuringsverzoek(Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.SendRdwKeuringsverzoekRequestMessage message);
     

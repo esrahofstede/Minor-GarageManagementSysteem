@@ -77,6 +77,7 @@
  /n:urn:minor-case2-bsvoertuigenklantbeheer:v1:schema,Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema ^
  /n:urn:minor-case2-isrijksdienstwegverkeer:v1:messages,Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages ^
  /n:urn:minor-case2-isrijksdienstwegverkeer:v1:schema,Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema ^
+ /n:urn:minor-case2-all:v1:schema,Minor.Case2.Exceptions.V1.Schema ^
  /out:"ISRijksdienstWegVerkeerV1Contract.cs" ^
  "$(SolutionDir)..\99-Shared\31-ISRijksdienstWegVerkeer\Contract\*.wsdl" ^
  "$(SolutionDir)..\99-Shared\31-ISRijksdienstWegVerkeer\Contract\case2isrijksdienstwegverkeerv1.xsd" ^

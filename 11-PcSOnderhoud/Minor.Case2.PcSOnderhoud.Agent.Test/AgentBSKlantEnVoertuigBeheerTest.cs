@@ -21,7 +21,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             var voertuig = new Voertuig();
 
             //Act
-            agent.VoegOnderhoudsopdrachtMetVoertuigEnKlantToe(voertuig);
+            
 
             //Assert
             Assert.IsTrue(true);
