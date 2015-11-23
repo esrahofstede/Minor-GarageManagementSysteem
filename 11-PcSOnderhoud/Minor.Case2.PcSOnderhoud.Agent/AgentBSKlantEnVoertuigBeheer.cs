@@ -1,5 +1,5 @@
 ﻿using log4net;
-using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
+using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent;
 using Minor.Case2.Exceptions.V1.Schema;
 using Minor.ServiceBus.Agent.Implementation;
 using System;
@@ -21,6 +21,11 @@ namespace Minor.Case2.PcSOnderhoud.Agent
         public AgentBSKlantEnVoertuigBeheer(ServiceFactory<IBSVoertuigEnKlantbeheer> factory)
         {
             _factory = factory;
+        }
+
+        public static explicit operator AgentBSKlantEnVoertuigBeheer(KlantenCollection v)
+        {
+            throw new NotImplementedException();
         }
 
         public void VoegVoertuigMetKlantToe(Voertuig voertuig)

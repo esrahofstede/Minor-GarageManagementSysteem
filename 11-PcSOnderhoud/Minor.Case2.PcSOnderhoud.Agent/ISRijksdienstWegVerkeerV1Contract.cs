@@ -8,12 +8,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn:minor-case2-isrijksdienstwegverkeer:v1:messages", ClrNamespace="Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages")]
-[assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn:minor-case2-bsvoertuigenklantbeheer:v1:schema", ClrNamespace="Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema")]
-[assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn:minor-case2-isrijksdienstwegverkeer:v1:schema", ClrNamespace="Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema")]
+[assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn:minor-case2-isrijksdienstwegverkeer:v1:messages", ClrNamespace="Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.Agent")]
+[assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn:minor-case2-bsvoertuigenklantbeheer:v1:schema", ClrNamespace="Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent")]
+[assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn:minor-case2-isrijksdienstwegverkeer:v1:schema", ClrNamespace="Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent")]
 [assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn:minor-case2-all:v1:schema", ClrNamespace="Minor.Case2.Exceptions.V1.Schema")]
 
-namespace Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages
+namespace Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.Agent
 {
     using System.Runtime.Serialization;
     
@@ -26,11 +26,11 @@ namespace Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig VoertuigField;
+        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig VoertuigField;
         
-        private Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Garage GarageField;
+        private Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent.Garage GarageField;
         
-        private Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Keuringsverzoek KeuringsverzoekField;
+        private Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent.Keuringsverzoek KeuringsverzoekField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -45,7 +45,7 @@ namespace Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
-        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig Voertuig
+        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig Voertuig
         {
             get
             {
@@ -58,7 +58,7 @@ namespace Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=1)]
-        public Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Garage Garage
+        public Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent.Garage Garage
         {
             get
             {
@@ -71,7 +71,7 @@ namespace Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=2)]
-        public Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Keuringsverzoek Keuringsverzoek
+        public Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent.Keuringsverzoek Keuringsverzoek
         {
             get
             {
@@ -94,7 +94,7 @@ namespace Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages
         
         private string KentekenField;
         
-        private Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Keuringsverzoek KeuringsverzoekField;
+        private Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent.Keuringsverzoek KeuringsverzoekField;
         
         private bool SteekproefField;
         
@@ -124,7 +124,7 @@ namespace Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
-        public Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Keuringsverzoek Keuringsverzoek
+        public Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent.Keuringsverzoek Keuringsverzoek
         {
             get
             {
@@ -150,11 +150,12 @@ namespace Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages
         }
     }
 }
-namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
+namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent
 {
+    using System;
     using System.Runtime.Serialization;
-    
-    
+
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Voertuig", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
@@ -171,9 +172,9 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         
         private string TypeField;
         
-        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Klant EigenaarField;
+        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Klant EigenaarField;
         
-        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Persoon BestuurderField;
+        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Persoon BestuurderField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -240,7 +241,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
-        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Klant Eigenaar
+        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Klant Eigenaar
         {
             get
             {
@@ -253,7 +254,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=5)]
-        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Persoon Bestuurder
+        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Persoon Bestuurder
         {
             get
             {
@@ -269,8 +270,8 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Klant", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Persoon))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Leasemaatschappij))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Persoon))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Leasemaatschappij))]
     public partial class Klant : object, System.Runtime.Serialization.IExtensibleDataObject
     {
         
@@ -397,7 +398,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Persoon", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
-    public partial class Persoon : Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Klant
+    public partial class Persoon : Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Klant
     {
         
         private string VoornaamField;
@@ -444,12 +445,17 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
                 this.AchternaamField = value;
             }
         }
+
+        public static implicit operator Persoon(Schema.Klant v)
+        {
+            throw new NotImplementedException();
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Leasemaatschappij", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
-    public partial class Leasemaatschappij : Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Klant
+    public partial class Leasemaatschappij : Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Klant
     {
         
         private string NaamField;
@@ -471,7 +477,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.CollectionDataContractAttribute(Name="KlantenCollection", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema", ItemName="Klant")]
-    public class KlantenCollection : System.Collections.Generic.List<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Klant>
+    public class KlantenCollection : System.Collections.Generic.List<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Klant>
     {
     }
     
@@ -491,9 +497,9 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         
         private string TypeField;
         
-        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Klant EigenaarField;
+        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Klant EigenaarField;
         
-        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Persoon BestuurderField;
+        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Persoon BestuurderField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -560,7 +566,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
-        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Klant Eigenaar
+        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Klant Eigenaar
         {
             get
             {
@@ -573,7 +579,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=5)]
-        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Persoon Bestuurder
+        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Persoon Bestuurder
         {
             get
             {
@@ -589,7 +595,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.CollectionDataContractAttribute(Name="VoertuigCollection", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema", ItemName="Voertuig")]
-    public class VoertuigCollection : System.Collections.Generic.List<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig>
+    public class VoertuigCollection : System.Collections.Generic.List<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig>
     {
     }
     
@@ -609,11 +615,11 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         
         private string OnderhoudsomschrijvingField;
         
-        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig VoertuigField;
+        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig VoertuigField;
         
         private bool ApkField;
         
-        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.OnderhoudsWerkzaamheden OnderhoudswerkzaamhedenField;
+        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.OnderhoudsWerkzaamheden OnderhoudswerkzaamhedenField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -680,7 +686,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
-        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig Voertuig
+        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig Voertuig
         {
             get
             {
@@ -706,7 +712,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=6)]
-        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.OnderhoudsWerkzaamheden Onderhoudswerkzaamheden
+        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.OnderhoudsWerkzaamheden Onderhoudswerkzaamheden
         {
             get
             {
@@ -800,7 +806,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         }
     }
 }
-namespace Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema
+namespace Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent
 {
     using System.Runtime.Serialization;
     
@@ -946,19 +952,19 @@ namespace Minor.Case2.Exceptions.V1.Schema
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="FunctionalErrorDetail", Namespace="urn:minor-case2-all:v1:schema")]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.Exceptions.V1.Schema.FunctionalErrorDetail[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.SendRdwKeuringsverzoekRequestMessage))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.SendRdwKeuringsverzoekResponseMessage))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Garage))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Keuringsverzoek))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.KlantenCollection))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Klant))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Persoon))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Leasemaatschappij))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigenSearchCriteria))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigCollection))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.OnderhoudsWerkzaamheden))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.Agent.SendRdwKeuringsverzoekRequestMessage))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.Agent.SendRdwKeuringsverzoekResponseMessage))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent.Garage))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent.Keuringsverzoek))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Klant))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Persoon))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Leasemaatschappij))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.VoertuigenSearchCriteria))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.VoertuigCollection))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.OnderhoudsWerkzaamheden))]
     public partial class FunctionalErrorDetail : object, System.Runtime.Serialization.IExtensibleDataObject
     {
         
@@ -1033,11 +1039,11 @@ public interface IISRDWService
         "")]
     [System.ServiceModel.FaultContractAttribute(typeof(Minor.Case2.Exceptions.V1.Schema.FunctionalErrorDetail[]), Action="urn:case2:isrijksdienstwegverkeer:v1/IISRDWService/RequestKeuringsverzoekArrayOfF" +
         "unctionalErrorDetailFault", Name="ArrayOfFunctionalErrorDetail", Namespace="urn:minor-case2-all:v1:schema")]
-    Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.SendRdwKeuringsverzoekResponseMessage RequestKeuringsverzoek(Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.SendRdwKeuringsverzoekRequestMessage message);
+    Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.Agent.SendRdwKeuringsverzoekResponseMessage RequestKeuringsverzoek(Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.Agent.SendRdwKeuringsverzoekRequestMessage message);
     
     [System.ServiceModel.OperationContractAttribute(Action="urn:case2:isrijksdienstwegverkeer:v1/IISRDWService/RequestKeuringsverzoek", ReplyAction="urn:case2:isrijksdienstwegverkeer:v1/IISRDWService/RequestKeuringsverzoekResponse" +
         "")]
-    System.Threading.Tasks.Task<Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.SendRdwKeuringsverzoekResponseMessage> RequestKeuringsverzoekAsync(Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.SendRdwKeuringsverzoekRequestMessage message);
+    System.Threading.Tasks.Task<Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.Agent.SendRdwKeuringsverzoekResponseMessage> RequestKeuringsverzoekAsync(Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.Agent.SendRdwKeuringsverzoekRequestMessage message);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1074,12 +1080,12 @@ public partial class ISRDWServiceClient : System.ServiceModel.ClientBase<IISRDWS
     {
     }
     
-    public Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.SendRdwKeuringsverzoekResponseMessage RequestKeuringsverzoek(Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.SendRdwKeuringsverzoekRequestMessage message)
+    public Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.Agent.SendRdwKeuringsverzoekResponseMessage RequestKeuringsverzoek(Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.Agent.SendRdwKeuringsverzoekRequestMessage message)
     {
         return base.Channel.RequestKeuringsverzoek(message);
     }
     
-    public System.Threading.Tasks.Task<Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.SendRdwKeuringsverzoekResponseMessage> RequestKeuringsverzoekAsync(Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.SendRdwKeuringsverzoekRequestMessage message)
+    public System.Threading.Tasks.Task<Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.Agent.SendRdwKeuringsverzoekResponseMessage> RequestKeuringsverzoekAsync(Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.Agent.SendRdwKeuringsverzoekRequestMessage message)
     {
         return base.Channel.RequestKeuringsverzoekAsync(message);
     }
@@ -1093,42 +1099,42 @@ public interface IBSVoertuigEnKlantbeheer
     [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllKlanten" +
         "", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllKlanten" +
         "Response")]
-    Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.KlantenCollection GetAllKlanten();
+    Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection GetAllKlanten();
     
     [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllKlanten" +
         "", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllKlanten" +
         "Response")]
-    System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.KlantenCollection> GetAllKlantenAsync();
+    System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection> GetAllKlantenAsync();
     
     [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetVoertuigBy" +
         "", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetVoertuigBy" +
         "Response")]
-    Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigCollection GetVoertuigBy(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigenSearchCriteria zoekCriteria);
+    Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.VoertuigCollection GetVoertuigBy(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.VoertuigenSearchCriteria zoekCriteria);
     
     [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetVoertuigBy" +
         "", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetVoertuigBy" +
         "Response")]
-    System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigCollection> GetVoertuigByAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigenSearchCriteria zoekCriteria);
+    System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.VoertuigCollection> GetVoertuigByAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.VoertuigenSearchCriteria zoekCriteria);
     
     [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/VoegVoertuigM" +
         "etKlantToe", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/VoegVoertuigM" +
         "etKlantToeResponse")]
-    void VoegVoertuigMetKlantToe(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig);
+    void VoegVoertuigMetKlantToe(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig voertuig);
     
     [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/VoegVoertuigM" +
         "etKlantToe", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/VoegVoertuigM" +
         "etKlantToeResponse")]
-    System.Threading.Tasks.Task VoegVoertuigMetKlantToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig);
+    System.Threading.Tasks.Task VoegVoertuigMetKlantToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig voertuig);
     
     [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/VoegOnderhoud" +
         "sopdrachtToe", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/VoegOnderhoud" +
         "sopdrachtToeResponse")]
-    void VoegOnderhoudsopdrachtToe(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht);
+    void VoegOnderhoudsopdrachtToe(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht onderhoudsopdracht);
     
     [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/VoegOnderhoud" +
         "sopdrachtToe", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/VoegOnderhoud" +
         "sopdrachtToeResponse")]
-    System.Threading.Tasks.Task VoegOnderhoudsopdrachtToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht);
+    System.Threading.Tasks.Task VoegOnderhoudsopdrachtToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht onderhoudsopdracht);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1165,42 +1171,42 @@ public partial class BSVoertuigEnKlantbeheerClient : System.ServiceModel.ClientB
     {
     }
     
-    public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.KlantenCollection GetAllKlanten()
+    public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection GetAllKlanten()
     {
         return base.Channel.GetAllKlanten();
     }
     
-    public System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.KlantenCollection> GetAllKlantenAsync()
+    public System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection> GetAllKlantenAsync()
     {
         return base.Channel.GetAllKlantenAsync();
     }
     
-    public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigCollection GetVoertuigBy(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigenSearchCriteria zoekCriteria)
+    public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.VoertuigCollection GetVoertuigBy(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.VoertuigenSearchCriteria zoekCriteria)
     {
         return base.Channel.GetVoertuigBy(zoekCriteria);
     }
     
-    public System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigCollection> GetVoertuigByAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigenSearchCriteria zoekCriteria)
+    public System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.VoertuigCollection> GetVoertuigByAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.VoertuigenSearchCriteria zoekCriteria)
     {
         return base.Channel.GetVoertuigByAsync(zoekCriteria);
     }
     
-    public void VoegVoertuigMetKlantToe(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig)
+    public void VoegVoertuigMetKlantToe(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig voertuig)
     {
         base.Channel.VoegVoertuigMetKlantToe(voertuig);
     }
     
-    public System.Threading.Tasks.Task VoegVoertuigMetKlantToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig)
+    public System.Threading.Tasks.Task VoegVoertuigMetKlantToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig voertuig)
     {
         return base.Channel.VoegVoertuigMetKlantToeAsync(voertuig);
     }
     
-    public void VoegOnderhoudsopdrachtToe(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht)
+    public void VoegOnderhoudsopdrachtToe(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht onderhoudsopdracht)
     {
         base.Channel.VoegOnderhoudsopdrachtToe(onderhoudsopdracht);
     }
     
-    public System.Threading.Tasks.Task VoegOnderhoudsopdrachtToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht)
+    public System.Threading.Tasks.Task VoegOnderhoudsopdrachtToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht onderhoudsopdracht)
     {
         return base.Channel.VoegOnderhoudsopdrachtToeAsync(onderhoudsopdracht);
     }

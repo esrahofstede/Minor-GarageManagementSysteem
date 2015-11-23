@@ -1,12 +1,12 @@
 ﻿using Minor.ServiceBus.Agent.Implementation;
-using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
-using Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema;
-using Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages;
+using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent;
+using Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.Agent;
 
 namespace Minor.Case2.PcSOnderhoud.Agent
 {
