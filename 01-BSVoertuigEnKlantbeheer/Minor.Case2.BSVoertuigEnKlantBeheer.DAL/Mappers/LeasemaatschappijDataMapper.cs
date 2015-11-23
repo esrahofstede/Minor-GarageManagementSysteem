@@ -21,12 +21,13 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappers
             return GetCollection(context).Where(p => p.ID == id).Single();
         }
 
-        public override void Insert(Leasemaatschappij leasemaatschappij)
+        public override long Insert(Leasemaatschappij leasemaatschappij)
         {
             using (var context = new KlantContext())
             {
                 context.Klanten.Add(leasemaatschappij);
                 context.SaveChanges();
+                return leasemaatschappij.ID;
             }
         }
 

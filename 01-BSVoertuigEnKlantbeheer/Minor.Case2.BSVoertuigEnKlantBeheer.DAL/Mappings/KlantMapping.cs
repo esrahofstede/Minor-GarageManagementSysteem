@@ -21,9 +21,9 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappings
             this.Property(k => k.Klantnummer)
                 .IsRequired();
 
-            //this.Property(k => k.Klantnummer)
-            //    .HasColumnAnnotation("Index",
-            //    new IndexAnnotation(new IndexAttribute("IX_Klantnr") { IsUnique = true }));
+            this.Property(k => k.Klantnummer)
+                .HasColumnAnnotation("Index",
+                new IndexAnnotation(new IndexAttribute("IX_Klantnr") { IsUnique = true }));
 
             this.Property(k => k.Adres).HasMaxLength(300);
             this.Property(k => k.Postcode).HasMaxLength(8);
@@ -31,7 +31,6 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappings
             this.Property(k => k.Telefoonnummer).HasMaxLength(300);
             this.Property(k => k.Emailadres).HasMaxLength(300);
 
-            //this.HasMany(k => k.Voertuigen);
         }
     }
 }

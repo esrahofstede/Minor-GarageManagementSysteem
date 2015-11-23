@@ -1,17 +1,10 @@
-﻿using Minor.Case2.BSVoertuigEnKlantBeheer.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
+﻿namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
 {
     public class LeasemaatschappijDTOMapper
     {
-        public static Minor.Case2.BSVoertuigEnKlantBeheer.Entities.Leasemaatschappij MapDTOToEntity(Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij dto)
+        public static Entities.Leasemaatschappij MapDTOToEntity(BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij dto)
         {
-            Leasemaatschappij entity = new Leasemaatschappij
+            Entities.Leasemaatschappij entity = new Entities.Leasemaatschappij
             {
                 ID = dto.id,
                 Klantnummer = dto.klantnummer,
@@ -25,9 +18,9 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
             return entity;
         }
 
-        public static Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij MapEntityToDTO(Minor.Case2.BSVoertuigEnKlantBeheer.Entities.Leasemaatschappij entity)
+        public static BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij MapEntityToDTO(Entities.Leasemaatschappij entity)
         {
-            Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij dto = new Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij
+            BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij dto = new BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij
             {
                 id = entity.ID,
                 klantnummer = entity.Klantnummer,

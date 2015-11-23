@@ -1,7 +1,5 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers;
-using Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema;
 
 namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
 {
@@ -12,7 +10,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
         public void MapPersoonDTOToPersoonEntityTest()
         {
             // Arange
-            Persoon dto = new Persoon
+            BSVoertuigEnKlantbeheer.V1.Schema.Persoon dto = new BSVoertuigEnKlantbeheer.V1.Schema.Persoon
             {
                 klantnummer = 100,
                 Voornaam = "Gerard",
@@ -38,7 +36,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
         public void MapPersoonEntityToPersoonDTOTest()
         {
             // Arange
-            Minor.Case2.BSVoertuigEnKlantBeheer.Entities.Persoon entity = new Minor.Case2.BSVoertuigEnKlantBeheer.Entities.Persoon
+            Entities.Persoon entity = new Entities.Persoon
             {
                 Klantnummer = 100,
                 Voornaam = "Gerard",

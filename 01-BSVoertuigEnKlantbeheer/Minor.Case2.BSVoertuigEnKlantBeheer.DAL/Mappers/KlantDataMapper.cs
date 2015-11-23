@@ -20,12 +20,13 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappers
             return GetCollection(context).Where(p => p.ID == id).Single();
         }
 
-        public override void Insert(Klant klant)
+        public override long Insert(Klant klant)
         {
             using (var context = new KlantContext())
             {
                 context.Klanten.Add(klant);
                 context.SaveChanges();
+                return klant.ID;
             }
         }
 

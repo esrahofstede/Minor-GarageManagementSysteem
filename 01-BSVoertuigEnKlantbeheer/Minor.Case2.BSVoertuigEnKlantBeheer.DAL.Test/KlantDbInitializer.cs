@@ -15,7 +15,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
         {
             Persoon p1 = new Persoon
             {
-                Klantnummer = 000001,
+                Klantnummer = 1,
                 Voornaam = "Jan",
                 Achternaam = "Jansen"
 
@@ -23,15 +23,15 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
 
             Persoon p2 = new Persoon
             {
-                Klantnummer = 000002,
+                Klantnummer = 2,
                 Voornaam = "Kees",
-                Telefoonnummer = "de",
+                Tussenvoegsel = "de",
                 Achternaam = "Koning"
             };
 
             Leasemaatschappij l1 = new Leasemaatschappij
             {
-                Klantnummer = 000010,
+                Klantnummer = 3,
                 Naam = "Lease"
             };
         

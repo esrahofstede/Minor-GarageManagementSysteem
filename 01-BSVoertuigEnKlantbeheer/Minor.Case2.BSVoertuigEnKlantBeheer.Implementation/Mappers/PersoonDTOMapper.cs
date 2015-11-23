@@ -1,18 +1,10 @@
-﻿//using minorcase2bsvoertuigenklantbeheer.v1.schema;
-using Minor.Case2.BSVoertuigEnKlantBeheer.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
+﻿namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
 {
     public class PersoonDTOMapper
     {
-        public static Minor.Case2.BSVoertuigEnKlantBeheer.Entities.Persoon MapDTOToEntity(Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Persoon dto)
+        public static Entities.Persoon MapDTOToEntity(BSVoertuigEnKlantbeheer.V1.Schema.Persoon dto)
         {
-            Persoon entity = new Persoon
+            Entities.Persoon entity = new Entities.Persoon
             {
                 ID = dto.id,
                 Klantnummer = dto.klantnummer,
@@ -28,9 +20,9 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
             return entity;
         }
 
-        public static Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Persoon MapEntityToDTO(Minor.Case2.BSVoertuigEnKlantBeheer.Entities.Persoon entity)
+        public static BSVoertuigEnKlantbeheer.V1.Schema.Persoon MapEntityToDTO(Entities.Persoon entity)
         {
-            Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Persoon dto = new Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Persoon
+            BSVoertuigEnKlantbeheer.V1.Schema.Persoon dto = new BSVoertuigEnKlantbeheer.V1.Schema.Persoon
             {
                 id = entity.ID,
                 klantnummer = entity.Klantnummer,

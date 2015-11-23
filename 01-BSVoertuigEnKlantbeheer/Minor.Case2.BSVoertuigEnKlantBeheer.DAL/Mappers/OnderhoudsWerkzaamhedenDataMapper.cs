@@ -21,12 +21,13 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappers
             return GetCollection(context).Where(p => p.ID == id).Single();
         }
 
-        public override void Insert(Onderhoudswerkzaamheden onderhoudsWerkzaamheden)
+        public override long Insert(Onderhoudswerkzaamheden onderhoudsWerkzaamheden)
         {
             using (var context = new VoertuigContext())
             {
                 context.OnderhoudsWerkzaamheden.Add(onderhoudsWerkzaamheden);
                 context.SaveChanges();
+                return onderhoudsWerkzaamheden.ID;
             }
         }
 

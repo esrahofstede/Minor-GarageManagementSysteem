@@ -55,39 +55,40 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappers
 
         private Voertuig AddKlantenToVoertuig(Voertuig voertuig)
         {
-            if (voertuig.BestuurderKlantnummer != 0)
+            if (voertuig.BestuurderID != 0)
             {
-                voertuig.Bestuurder = new PersoonDataMapper().FindAllBy(k => k.Klantnummer == voertuig.BestuurderKlantnummer).SingleOrDefault();
+                voertuig.Bestuurder = new PersoonDataMapper().FindAllBy(k => k.ID == voertuig.BestuurderID).SingleOrDefault();
             }
-            if (voertuig.EigenaarKlantnummer != 0)
+            if (voertuig.EigenaarID != 0)
             {
-                voertuig.Eigenaar = new KlantDataMapper().FindAllBy(k => k.Klantnummer == voertuig.EigenaarKlantnummer).SingleOrDefault();
+                voertuig.Eigenaar = new KlantDataMapper().FindAllBy(k => k.ID == voertuig.EigenaarID).SingleOrDefault();
             }
             return voertuig;
         }
 
-        public override void Insert(Voertuig voertuig)
+        public override long Insert(Voertuig voertuig)
         {
             using (var context = new VoertuigContext())
             {
                 if (voertuig.Bestuurder != null)
                 {
-                    Persoon persoon = new PersoonDataMapper().FindAllBy(k => k.Klantnummer == voertuig.Bestuurder.Klantnummer).SingleOrDefault();
+                    Persoon persoon = new PersoonDataMapper().FindAllBy(k => k.ID == voertuig.Bestuurder.ID).SingleOrDefault();
                     if (persoon != null)
                     {
-                        voertuig.BestuurderKlantnummer = persoon.Klantnummer;
+                        voertuig.BestuurderID = persoon.ID;
                     }
                 }
                 if (voertuig.Eigenaar != null)
                 {
-                    Klant klant = new KlantDataMapper().FindAllBy(k => k.Klantnummer == voertuig.Eigenaar.Klantnummer).SingleOrDefault();
+                    Klant klant = new KlantDataMapper().FindAllBy(k => k.ID == voertuig.Eigenaar.ID).SingleOrDefault();
                     if (klant != null)
                     {
-                        voertuig.EigenaarKlantnummer = klant.Klantnummer;
+                        voertuig.EigenaarID = klant.ID;
                     }
                 }
                 context.Voertuigen.Add(voertuig);
                 context.SaveChanges();
+                return voertuig.ID;
             }
         }
 

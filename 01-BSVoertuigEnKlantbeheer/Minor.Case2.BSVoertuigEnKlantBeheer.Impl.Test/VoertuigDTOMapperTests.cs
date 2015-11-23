@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers;
 
 namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
@@ -12,14 +10,14 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
         public void MapVoertuigDTOToVoertuigEntityMetPersoonTest()
         {
             // Arange
-            Voertuig dto = new Voertuig
+            BSVoertuigEnKlantbeheer.V1.Schema.Voertuig dto = new BSVoertuigEnKlantbeheer.V1.Schema.Voertuig
             {
                 Kenteken = "12-AA-AA",
-                Bestuurder = new Persoon
+                Bestuurder = new BSVoertuigEnKlantbeheer.V1.Schema.Persoon
                 {
                     Voornaam = "Henk"
                 },
-                Eigenaar = new Persoon
+                Eigenaar = new BSVoertuigEnKlantbeheer.V1.Schema.Persoon
                 {
                     Voornaam = "Henk"
                 },
@@ -43,14 +41,14 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
         public void MapVoertuigDTOToVoertuigEntityMetLeasemaatschappijTest()
         {
             // Arange
-            Voertuig dto = new Voertuig
+            BSVoertuigEnKlantbeheer.V1.Schema.Voertuig dto = new BSVoertuigEnKlantbeheer.V1.Schema.Voertuig
             {
                 Kenteken = "12-AA-AA",
-                Bestuurder = new Persoon
+                Bestuurder = new BSVoertuigEnKlantbeheer.V1.Schema.Persoon
                 {
                     Voornaam = "Henk"
                 },
-                Eigenaar = new Leasemaatschappij
+                Eigenaar = new BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij
                 {
                     Naam = "Sixt"
                 },

@@ -23,12 +23,12 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
                 {
                     Klantnummer = 1
                 },
-                BestuurderKlantnummer = 1,
+                BestuurderID = 1,
                 Eigenaar = new Persoon
                 {
                     Klantnummer = 1
                 },
-                EigenaarKlantnummer = 1
+                EigenaarID = 1
                
             };
 

@@ -52,7 +52,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappers
         protected abstract T Find(Key id, Context context);
 
 
-        public abstract void Insert(T item);
+        public abstract long Insert(T item);
         public abstract void Update(T item);
         public abstract void Delete(T item);
     }

@@ -12,7 +12,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappers
         IEnumerable<T> FindAll();
         IEnumerable<T> FindAllBy(Expression<Func<T, bool>> filter);
         T FindByID(Key id);
-        void Insert(T item);
+        long Insert(T item);
         void Update(T item);
         void Delete(T item);
     }

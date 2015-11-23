@@ -22,9 +22,9 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappings
                 .IsRequired()
                 .HasMaxLength(8);
 
-            //this.Property(v => v.Kenteken)
-            //    .HasColumnAnnotation("Index",
-            //    new IndexAnnotation(new IndexAttribute("IX_Kenteken") { IsUnique = true }));
+            this.Property(v => v.Kenteken)
+                .HasColumnAnnotation("Index",
+                new IndexAnnotation(new IndexAttribute("IX_Kenteken") { IsUnique = true }));
 
             this.Property(v => v.Merk)
                 .HasMaxLength(300);
@@ -36,8 +36,6 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappings
 
             this.Ignore(v => v.Bestuurder);
             this.Ignore(v => v.Eigenaar);
-            //this.HasOptional(v => v.Eigenaar);
-            //this.HasRequired(v => v.Bestuurder);
 
         }
     }

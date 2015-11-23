@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema;
 using Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers;
 
 namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
@@ -11,7 +10,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
         public void MapLeasemaatschappijDTOToLeasemaatschappijEntityTest()
         {
             // Arange
-            Leasemaatschappij dto = new Leasemaatschappij
+            BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij dto = new BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij
             {
                 klantnummer = 100,
                 Naam = "Sixt",
@@ -35,7 +34,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
         public void MapLeasemaatschappijEntityToLeasemaatschappijDTOTest()
         {
             // Arange
-            Minor.Case2.BSVoertuigEnKlantBeheer.Entities.Leasemaatschappij entity = new Minor.Case2.BSVoertuigEnKlantBeheer.Entities.Leasemaatschappij
+            Entities.Leasemaatschappij entity = new Entities.Leasemaatschappij
             {
                 Klantnummer = 100,
                 Naam = "Sixt",
