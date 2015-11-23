@@ -5,6 +5,9 @@ using Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages;
 using Minor.ServiceBus.Agent.Implementation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent;
+using Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent;
+using Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.Agent;
 
 namespace Minor.Case2.PcSOnderhoud.Agent.Tests
 {
