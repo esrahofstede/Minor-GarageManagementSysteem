@@ -95,6 +95,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Minor.Case2.ISRDW.Contract\02 - Contract.csproj">
+      <Project>{ee2155d2-4752-493f-b525-d26d43ee9f0b}</Project>
+      <Name>02 - Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Minor.Case2.ISRDW.Implementatie\04 - Implementation.csproj">
       <Project>{597d4dd4-0496-40ff-806c-10fb1310d518}</Project>
       <Name>04 - Implementation</Name>

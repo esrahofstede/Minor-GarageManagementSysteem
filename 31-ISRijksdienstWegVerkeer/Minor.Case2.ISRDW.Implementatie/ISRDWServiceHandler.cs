@@ -8,6 +8,7 @@ using System.Text;
 using Minor.Case2.ISRijksdienstWegVerkeer.V1.Messages;
 using Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema;
 using Minor.Case2.All.V1.Schema;
+using log4net;
 
 namespace Minor.Case2.ISRDW.Implementation
 {
@@ -15,6 +16,8 @@ namespace Minor.Case2.ISRDW.Implementation
 
     public class ISRDWServiceHandler : IISRDWService
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(ISRDWServiceHandler));
+
         public ISRDWServiceHandler()
         {
             log4net.Config.XmlConfigurator.Configure();
@@ -28,31 +31,42 @@ namespace Minor.Case2.ISRDW.Implementation
         {
             var list = new List<FunctionalErrorDetail>();
 
-            if (message.Garage == null)
+            if (message == null)
             {
                 list.Add(new FunctionalErrorDetail
                 {
                     ErrorCode = 100,
-                    Message = "Garage cannot be null"
+                    Message = "message cannot be null"
                 });
             }
-
-            if (message.Keuringsverzoek == null)
+            else
             {
-                list.Add(new FunctionalErrorDetail
+                if (message.Garage == null)
                 {
-                    ErrorCode = 101,
-                    Message = "Keuringsverzoek cannot be null"
-                });
-            }
+                    list.Add(new FunctionalErrorDetail
+                    {
+                        ErrorCode = 101,
+                        Message = "Garage cannot be null"
+                    });
+                }
 
-            if (message.Voertuig == null)
-            {
-                list.Add(new FunctionalErrorDetail
+                if (message.Keuringsverzoek == null)
                 {
-                    ErrorCode = 102,
-                    Message = "Voertuig cannot be null"
-                });
+                    list.Add(new FunctionalErrorDetail
+                    {
+                        ErrorCode = 102,
+                        Message = "Keuringsverzoek cannot be null"
+                    });
+                }
+
+                if (message.Voertuig == null)
+                {
+                    list.Add(new FunctionalErrorDetail
+                    {
+                        ErrorCode = 103,
+                        Message = "Voertuig cannot be null"
+                    });
+                }
             }
 
             if(list.Any())
@@ -68,6 +82,7 @@ namespace Minor.Case2.ISRDW.Implementation
             }
             catch (Exception ex)
             {
+                logger.Fatal("Fatal error, Exception: " + ex.Message);
                 throw new FaultException(ex.Message);
             }
         }

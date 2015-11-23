@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using log4net;
 using System.ServiceModel;
+using System.Globalization;
 
 namespace Minor.Case2.ISRDW.Implementation.RDWIntegration
 {
@@ -13,8 +14,6 @@ namespace Minor.Case2.ISRDW.Implementation.RDWIntegration
     /// </summary>
     public class RDWService : IRDWService
     {
-        private static readonly ILog logger = LogManager.GetLogger(typeof(RDWService));
-
         /// <summary>
         /// Submits the APK verzoek to the RDW API
         /// </summary>
@@ -29,25 +28,18 @@ namespace Minor.Case2.ISRDW.Implementation.RDWIntegration
 
         private static string PostMessage(string url, string message)
         {
-            try {
-                byte[] bodyBytes = Encoding.UTF8.GetBytes(message);
-                WebRequest request = HttpWebRequest.Create(url);
-                request.Method = "POST";
-                request.ContentType = "text/xml";
-                request.ContentLength = bodyBytes.Length;
-                Stream requestStream = request.GetRequestStream();
-                requestStream.Write(bodyBytes, 0, bodyBytes.Length);
+            byte[] bodyBytes = Encoding.UTF8.GetBytes(message);
+            WebRequest request = HttpWebRequest.Create(url);
+            request.Method = "POST";
+            request.ContentType = "text/xml";
+            request.ContentLength = bodyBytes.Length;
+            Stream requestStream = request.GetRequestStream();
+            requestStream.Write(bodyBytes, 0, bodyBytes.Length);
 
-                WebResponse response = request.GetResponse();
-                StreamReader reader = new StreamReader(response.GetResponseStream());
-                string returnMessage = reader.ReadToEnd();
-                return returnMessage;
-            }
-            catch(WebException ex)
-            {
-                logger.Fatal($"Fatal error, unable to connect to {url}. Exception:  {ex.Message}");
-                throw new CommunicationException($"Unable to connect to {url}");
-            }
+            WebResponse response = request.GetResponse();
+            StreamReader reader = new StreamReader(response.GetResponseStream());
+            string returnMessage = reader.ReadToEnd();
+            return returnMessage;
         }
     }
 }
