@@ -1,4 +1,5 @@
 ﻿using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
+using Minor.Case2.FEGMS.Agent;
 using Minor.Case2.FEGMS.Client.Helper;
 using Minor.Case2.FEGMS.Client.ViewModel;
 using System;
@@ -12,6 +13,13 @@ namespace Minor.Case2.FEGMS.Client.Controllers
 {
     public class OnderhoudController : Controller
     {
+        AgentPcSOnderhoud agent;
+
+        public OnderhoudController()
+        {
+            agent = new AgentPcSOnderhoud();
+        }
+
         // GET: Onderhoud
         public ActionResult Index()
         {
@@ -72,9 +80,6 @@ namespace Minor.Case2.FEGMS.Client.Controllers
 
         public ActionResult InsertVoertuiggegevens()
         {
-            HttpCookie leasemaatschappijCookie = Request.Cookies.Get("LeasemaatschappijGegevens");
-            var leasemaatschappijgegevens = new JavaScriptSerializer().Deserialize<InsertLeasemaatschappijGegevensVM>(leasemaatschappijCookie.Value);
-
             return View();
         }
 
@@ -85,8 +90,24 @@ namespace Minor.Case2.FEGMS.Client.Controllers
             {
                 var serializedVoertuiggegevens = new JavaScriptSerializer().Serialize(model);
 
-                HttpCookie voertuiggegevensCookie = new HttpCookie("Voertuiggegevens", serializedVoertuiggegevens);
-                Response.SetCookie(voertuiggegevensCookie);
+                
+                HttpCookie leasemaatschappijCookie = Request.Cookies.Get("LeasemaatschappijGegevens");
+
+                InsertLeasemaatschappijGegevensVM leasemaatschappijgegevens = null;
+                if (leasemaatschappijCookie != null)
+                {
+                    leasemaatschappijgegevens = new JavaScriptSerializer().Deserialize<InsertLeasemaatschappijGegevensVM>(leasemaatschappijCookie.Value);
+                }
+
+                HttpCookie klantgegevensCookie = Request.Cookies.Get("Klantgegevens");
+                var klantgegevens = new JavaScriptSerializer().Deserialize<InsertKlantgegevensVM>(klantgegevensCookie.Value);
+
+                HttpCookie voertuiggegevensCookie = Request.Cookies.Get("Voertuiggegevens");
+                var voertuiggegevens = new JavaScriptSerializer().Deserialize<InsertVoertuiggegevensVM>(voertuiggegevensCookie.Value);
+
+                var voertuig = Mapper.MapToVoertuig(leasemaatschappijgegevens, klantgegevens, voertuiggegevens);
+
+                agent.VoegVoertuigMetKlantToe(voertuig);
 
                 return RedirectToAction("InsertOnderhoudsopdracht");
             }

@@ -221,6 +221,10 @@
     <WCFMetadataStorage Include="Service References\ISRDWServiceReferenceService\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Minor.Case2.FEGMS.Agent\06 - Agent.csproj">
+      <Project>{8dd84afe-7e12-431d-a3d3-de280f3b4db2}</Project>
+      <Name>06 - Agent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Minor.Case2.FEGMS.Schema\01-Schema.csproj">
       <Project>{c541088d-7d4e-4c5f-bd17-36ad6538932b}</Project>
       <Name>01-Schema</Name>
