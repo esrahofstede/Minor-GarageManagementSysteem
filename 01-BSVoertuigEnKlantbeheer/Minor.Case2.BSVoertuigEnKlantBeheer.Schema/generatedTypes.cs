@@ -8,9 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn:minor-case2-bsvoertuigenklantbeheer:v1:schema", ClrNamespace="minorcase2bsvoertuigenklantbeheer.v1.schema")]
+[assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn:minor-case2-bsvoertuigenklantbeheer:v1:schema", ClrNamespace="Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema")]
 
-namespace minorcase2bsvoertuigenklantbeheer.v1.schema
+namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
 {
     using System.Runtime.Serialization;
     
@@ -18,8 +18,8 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Klant", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(minorcase2bsvoertuigenklantbeheer.v1.schema.Persoon))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(minorcase2bsvoertuigenklantbeheer.v1.schema.Leasemaatschappij))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Persoon))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij))]
     public partial class Klant : object, System.Runtime.Serialization.IExtensibleDataObject
     {
         
@@ -146,7 +146,7 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Persoon", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
-    public partial class Persoon : minorcase2bsvoertuigenklantbeheer.v1.schema.Klant
+    public partial class Persoon : Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Klant
     {
         
         private string VoornaamField;
@@ -198,7 +198,7 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Leasemaatschappij", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
-    public partial class Leasemaatschappij : minorcase2bsvoertuigenklantbeheer.v1.schema.Klant
+    public partial class Leasemaatschappij : Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Klant
     {
         
         private string NaamField;
@@ -220,14 +220,14 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.CollectionDataContractAttribute(Name="KlantenCollection", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema", ItemName="Klant")]
-    public class KlantenCollection : System.Collections.Generic.List<minorcase2bsvoertuigenklantbeheer.v1.schema.Klant>
+    public class KlantenCollection : System.Collections.Generic.List<Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Klant>
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.CollectionDataContractAttribute(Name="VoertuigCollection", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema", ItemName="Voertuig")]
-    public class VoertuigCollection : System.Collections.Generic.List<minorcase2bsvoertuigenklantbeheer.v1.schema.Voertuig>
+    public class VoertuigCollection : System.Collections.Generic.List<Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Voertuig>
     {
     }
     
@@ -247,9 +247,9 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
         
         private string TypeField;
         
-        private minorcase2bsvoertuigenklantbeheer.v1.schema.Klant EigenaarField;
+        private Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Klant EigenaarField;
         
-        private minorcase2bsvoertuigenklantbeheer.v1.schema.Persoon BestuurderField;
+        private Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Persoon BestuurderField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -316,7 +316,7 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
-        public minorcase2bsvoertuigenklantbeheer.v1.schema.Klant Eigenaar
+        public Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Klant Eigenaar
         {
             get
             {
@@ -329,7 +329,7 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=5)]
-        public minorcase2bsvoertuigenklantbeheer.v1.schema.Persoon Bestuurder
+        public Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Persoon Bestuurder
         {
             get
             {
@@ -358,9 +358,9 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
         
         private string TypeField;
         
-        private minorcase2bsvoertuigenklantbeheer.v1.schema.Klant EigenaarField;
+        private Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Klant EigenaarField;
         
-        private minorcase2bsvoertuigenklantbeheer.v1.schema.Persoon BestuurderField;
+        private Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Persoon BestuurderField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -427,7 +427,7 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
-        public minorcase2bsvoertuigenklantbeheer.v1.schema.Klant Eigenaar
+        public Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Klant Eigenaar
         {
             get
             {
@@ -440,7 +440,7 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=5)]
-        public minorcase2bsvoertuigenklantbeheer.v1.schema.Persoon Bestuurder
+        public Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Persoon Bestuurder
         {
             get
             {
@@ -469,11 +469,11 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
         
         private string OnderhoudsomschrijvingField;
         
-        private minorcase2bsvoertuigenklantbeheer.v1.schema.Voertuig VoertuigField;
+        private Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Voertuig VoertuigField;
         
-        private bool ApkField;
+        private bool APKField;
         
-        private minorcase2bsvoertuigenklantbeheer.v1.schema.OnderhoudsWerkzaamheden OnderhoudswerkzaamhedenField;
+        private Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Onderhoudswerkzaamheden OnderhoudswerkzaamhedenField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -540,7 +540,7 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
-        public minorcase2bsvoertuigenklantbeheer.v1.schema.Voertuig Voertuig
+        public Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Voertuig Voertuig
         {
             get
             {
@@ -553,20 +553,20 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
-        public bool Apk
+        public bool APK
         {
             get
             {
-                return this.ApkField;
+                return this.APKField;
             }
             set
             {
-                this.ApkField = value;
+                this.APKField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=6)]
-        public minorcase2bsvoertuigenklantbeheer.v1.schema.OnderhoudsWerkzaamheden Onderhoudswerkzaamheden
+        public Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Onderhoudswerkzaamheden Onderhoudswerkzaamheden
         {
             get
             {
@@ -581,8 +581,8 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="OnderhoudsWerkzaamheden", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
-    public partial class OnderhoudsWerkzaamheden : object, System.Runtime.Serialization.IExtensibleDataObject
+    [System.Runtime.Serialization.DataContractAttribute(Name="Onderhoudswerkzaamheden", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
+    public partial class Onderhoudswerkzaamheden : object, System.Runtime.Serialization.IExtensibleDataObject
     {
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;

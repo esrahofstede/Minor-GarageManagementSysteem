@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using minorcase2bsvoertuigenklantbeheer.v1.schema;
+using Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers;
+using Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema;
 
 namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
 {
@@ -11,9 +12,8 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
         public void MapPersoonDTOToPersoonEntityTest()
         {
             // Arange
-            Persoon klantDTO = new Persoon
+            Persoon dto = new Persoon
             {
-                id = 1,
                 klantnummer = 100,
                 Voornaam = "Gerard",
                 Tussenvoegsel = "",
@@ -26,8 +26,37 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
             };
 
             // Act
-            //PersoonDTOMapper
+            var result = PersoonDTOMapper.MapDTOToEntity(dto);
+
             // Assert
+            Assert.AreEqual(100, result.Klantnummer);
+            Assert.AreEqual("Gerard", result.Voornaam);
+
+        }
+
+        [TestMethod]
+        public void MapPersoonEntityToPersoonDTOTest()
+        {
+            // Arange
+            Minor.Case2.BSVoertuigEnKlantBeheer.Entities.Persoon entity = new Minor.Case2.BSVoertuigEnKlantBeheer.Entities.Persoon
+            {
+                Klantnummer = 100,
+                Voornaam = "Gerard",
+                Tussenvoegsel = "",
+                Achternaam = "Vos",
+                Emailadres = "gerard@vos.nl",
+                Adres = "Utrechtseweg 10",
+                Postcode = "1234AB",
+                Telefoonnummer = "040-1234567",
+                Woonplaats = "Utrecht"
+            };
+
+            // Act
+            var result = PersoonDTOMapper.MapEntityToDTO(entity);
+
+            // Assert
+            Assert.AreEqual(100, result.klantnummer);
+            Assert.AreEqual("Gerard", result.Voornaam);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using minorcase2bsvoertuigenklantbeheer.v1.schema;
+﻿using Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema;
 using System;
 using System.Collections.Generic;
 using System.Linq;

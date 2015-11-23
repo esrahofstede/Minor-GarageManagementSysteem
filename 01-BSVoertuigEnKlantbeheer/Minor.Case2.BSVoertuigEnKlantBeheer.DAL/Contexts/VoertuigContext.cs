@@ -14,7 +14,6 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Contexts
     {
         public VoertuigContext() : base("BSVoertuigBeheerDB")
         {
-
         }
 
         public DbSet<Voertuig> Voertuigen { get; set; }
