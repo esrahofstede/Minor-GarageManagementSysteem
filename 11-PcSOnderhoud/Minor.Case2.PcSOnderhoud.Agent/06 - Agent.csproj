@@ -60,6 +60,8 @@
   <ItemGroup>
     <Compile Include="AgentBSKlantEnVoertuigBeheer.cs" />
     <Compile Include="AgentISRDW.cs" />
+    <Compile Include="BSKlantEnVoertuigMapper.cs" />
+    <Compile Include="Exceptions\FunctionalException.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ISRijksdienstWegVerkeerV1Contract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,10 +79,10 @@
   <PropertyGroup>
     <PreBuildEvent>"C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6 Tools\svcutil.exe" ^
  /d:"$(ProjectDir) " ^
- /n:urn:minor-case2-bsvoertuigenklantbeheer:v1:messages,Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Messages ^
- /n:urn:minor-case2-bsvoertuigenklantbeheer:v1:schema,Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema ^
- /n:urn:minor-case2-isrijksdienstwegverkeer:v1:messages,Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages ^
- /n:urn:minor-case2-isrijksdienstwegverkeer:v1:schema,Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema ^
+ /n:urn:minor-case2-bsvoertuigenklantbeheer:v1:messages,Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Messages.Agent ^
+ /n:urn:minor-case2-bsvoertuigenklantbeheer:v1:schema,Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent ^
+ /n:urn:minor-case2-isrijksdienstwegverkeer:v1:messages,Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.Agent ^
+ /n:urn:minor-case2-isrijksdienstwegverkeer:v1:schema,Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent ^
  /n:urn:minor-case2-all:v1:schema,Minor.Case2.Exceptions.V1.Schema ^
  /out:"ISRijksdienstWegVerkeerV1Contract.cs" ^
  "$(SolutionDir)..\99-Shared\31-ISRijksdienstWegVerkeer\Contract\*.wsdl" ^

@@ -59,6 +59,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Minor.Case2.PcSOnderhoud.Agent\06 - Agent.csproj">
+      <Project>{bbb1f82f-297c-47f9-a3d6-491daef9cd05}</Project>
+      <Name>06 - Agent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Minor.Case2.PcSOnderhoud.Contract\02 - Contract.csproj">
       <Project>{762c4f35-ca0f-4dd6-bc7a-9d21127a27a0}</Project>
       <Name>02 - Contract</Name>
