@@ -9,8 +9,8 @@ namespace Minor.Case2.PcSOnderhoud.Agent
 {
     public class AgentBSKlantEnVoertuigBeheer
     {
-        private static readonly ILog logger = LogManager.GetLogger(typeof(AgentBSKlantEnVoertuigBeheer));
-        private ServiceFactory<IBSVoertuigEnKlantbeheer> _factory;
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(AgentBSKlantEnVoertuigBeheer));
+        private readonly ServiceFactory<IBSVoertuigEnKlantbeheer> _factory;
 
         public AgentBSKlantEnVoertuigBeheer()
         {
@@ -25,10 +25,9 @@ namespace Minor.Case2.PcSOnderhoud.Agent
 
         public void VoegVoertuigMetKlantToe(Voertuig voertuig)
         {
-            IBSVoertuigEnKlantbeheer proxy;
             try
             {
-                proxy = _factory.CreateAgent();
+                var proxy = _factory.CreateAgent();
                 proxy.VoegVoertuigMetKlantToe(voertuig);
             }
             catch (FaultException<FunctionalErrorDetail[]> ex)
@@ -37,7 +36,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             }
             catch (InvalidOperationException ex)
             {
-                logger.Fatal(ex.InnerException.Message);
+                Logger.Fatal(ex.InnerException.Message);
             }
             
         }
@@ -50,13 +49,11 @@ namespace Minor.Case2.PcSOnderhoud.Agent
 
         public KlantenCollection GetAllKlanten()
         {
-            KlantenCollection klanten;
             var proxy = _factory.CreateAgent();
             try
             {
-                klanten = proxy.GetAllKlanten();
+                var klanten = proxy.GetAllKlanten();
                 return klanten;
-                
             }
             catch (FaultException<FunctionalErrorDetail[]> ex)
             {
