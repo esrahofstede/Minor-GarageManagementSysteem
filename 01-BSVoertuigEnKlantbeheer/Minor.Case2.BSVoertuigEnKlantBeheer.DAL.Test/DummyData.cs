@@ -27,8 +27,8 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
                 Kenteken = "NL-123-G",
                 Merk = "Citroen",
                 Type = "C3",
-                EigenaarID = 1,
-                BestuurderID = 2,           
+                EigenaarKlantnummer = 2,
+                BestuurderKlantnummer = 2,           
             };
         }
 

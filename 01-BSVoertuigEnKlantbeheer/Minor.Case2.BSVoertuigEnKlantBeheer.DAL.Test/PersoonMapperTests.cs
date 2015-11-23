@@ -57,19 +57,5 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
                 Assert.AreEqual(3, result.Count());
             }
         }
-
-        [Ignore] //Bij de relatie tussen voertuig en klant gaat nog iets mis
-        [TestMethod]
-        public void HasPersoonAVoertuigTest()
-        {
-            // Arrange
-            var target = new PersoonDataMapper();
-
-            // Act
-            IEnumerable<Persoon> result = target.FindAll();
-
-            // Assert
-            //Assert.AreEqual(1, result.First().Voertuigen.Count());
-        }
     }
 }

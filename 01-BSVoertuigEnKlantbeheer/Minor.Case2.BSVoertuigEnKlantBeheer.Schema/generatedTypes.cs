@@ -29,6 +29,16 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
         
         private long klantnummerField;
         
+        private string AdresField;
+        
+        private string PostcodeField;
+        
+        private string WoonplaatsField;
+        
+        private string TelefoonnummerField;
+        
+        private string EmailadresField;
+        
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -41,7 +51,7 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public long id
         {
             get
@@ -66,6 +76,71 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
                 this.klantnummerField = value;
             }
         }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
+        public string Adres
+        {
+            get
+            {
+                return this.AdresField;
+            }
+            set
+            {
+                this.AdresField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
+        public string Postcode
+        {
+            get
+            {
+                return this.PostcodeField;
+            }
+            set
+            {
+                this.PostcodeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
+        public string Woonplaats
+        {
+            get
+            {
+                return this.WoonplaatsField;
+            }
+            set
+            {
+                this.WoonplaatsField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
+        public string Telefoonnummer
+        {
+            get
+            {
+                return this.TelefoonnummerField;
+            }
+            set
+            {
+                this.TelefoonnummerField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=6)]
+        public string Emailadres
+        {
+            get
+            {
+                return this.EmailadresField;
+            }
+            set
+            {
+                this.EmailadresField = value;
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -79,16 +154,6 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
         private string TussenvoegselField;
         
         private string AchternaamField;
-        
-        private string AdresField;
-        
-        private string PostcodeField;
-        
-        private string WoonplaatsField;
-        
-        private string TelefoonnummerField;
-        
-        private string EmailadresField;
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
         public string Voornaam
@@ -128,71 +193,6 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
                 this.AchternaamField = value;
             }
         }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
-        public string Adres
-        {
-            get
-            {
-                return this.AdresField;
-            }
-            set
-            {
-                this.AdresField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
-        public string Postcode
-        {
-            get
-            {
-                return this.PostcodeField;
-            }
-            set
-            {
-                this.PostcodeField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
-        public string Woonplaats
-        {
-            get
-            {
-                return this.WoonplaatsField;
-            }
-            set
-            {
-                this.WoonplaatsField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=6)]
-        public string Telefoonnummer
-        {
-            get
-            {
-                return this.TelefoonnummerField;
-            }
-            set
-            {
-                this.TelefoonnummerField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=7)]
-        public string Emailadres
-        {
-            get
-            {
-                return this.EmailadresField;
-            }
-            set
-            {
-                this.EmailadresField = value;
-            }
-        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -202,16 +202,6 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
     {
         
         private string NaamField;
-        
-        private string AdresField;
-        
-        private string PostcodeField;
-        
-        private string WoonplaatsField;
-        
-        private string TelefoonnummerField;
-        
-        private string EmailadresField;
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
         public string Naam
@@ -223,71 +213,6 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
             set
             {
                 this.NaamField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=1)]
-        public string Adres
-        {
-            get
-            {
-                return this.AdresField;
-            }
-            set
-            {
-                this.AdresField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=2)]
-        public string Postcode
-        {
-            get
-            {
-                return this.PostcodeField;
-            }
-            set
-            {
-                this.PostcodeField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=3)]
-        public string Woonplaats
-        {
-            get
-            {
-                return this.WoonplaatsField;
-            }
-            set
-            {
-                this.WoonplaatsField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
-        public string Telefoonnummer
-        {
-            get
-            {
-                return this.TelefoonnummerField;
-            }
-            set
-            {
-                this.TelefoonnummerField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=5)]
-        public string Emailadres
-        {
-            get
-            {
-                return this.EmailadresField;
-            }
-            set
-            {
-                this.EmailadresField = value;
             }
         }
     }
@@ -338,7 +263,7 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public long Id
         {
             get
@@ -449,7 +374,7 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public long Id
         {
             get
@@ -562,7 +487,7 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public long Id
         {
             get
@@ -682,7 +607,7 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public long Id
         {
             get

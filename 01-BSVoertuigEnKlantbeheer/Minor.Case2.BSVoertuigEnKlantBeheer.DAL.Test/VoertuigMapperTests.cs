@@ -43,28 +43,28 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
             Assert.AreEqual(1, result.Count());
         }
 
-        //[TestMethod]
-        //public void AddVoertuigToDatabaseTest()
-        //{
-        //    using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress))
-        //    {
-        //        // Arrange
-        //        var target = new VoertuigDataMapper();
+        [TestMethod]
+        public void AddVoertuigToDatabaseTest()
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                // Arrange
+                var target = new VoertuigDataMapper();
 
-        //        // Act
-        //        target.Insert(DummyData.GetDummyVoertuig());
-        //        IEnumerable<Voertuig> result = target.FindAll();
+                // Act
+                target.Insert(DummyData.GetDummyVoertuig());
+                IEnumerable<Voertuig> result = target.FindAll();
 
-        //        // Assert
-        //        Assert.AreEqual(2, result.Count());
-        //    }
-        //}
+                // Assert
+                Assert.AreEqual(2, result.Count());
+            }
+        }
 
         [TestMethod]
         public void AddVoertuigWithBestuurderToDatabaseTest()
         {
-            //using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required))
-            //{
+            using (TransactionScope scope = new TransactionScope())
+            {
                 // Arrange
                 var target = new VoertuigDataMapper();
 
@@ -75,7 +75,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
 
                 // Assert
                 Assert.AreEqual("Kees", voornaam);
-            //}
+            }
         }
 
         [TestMethod]
