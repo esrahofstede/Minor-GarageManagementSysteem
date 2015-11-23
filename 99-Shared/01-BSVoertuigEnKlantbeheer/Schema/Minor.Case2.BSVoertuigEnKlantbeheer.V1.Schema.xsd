@@ -25,7 +25,7 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="VoertuigCollection">
+  <xs:complexType name="VoertuigenCollection">
     <xs:sequence>
       <xs:element name ="Voertuig" type="bsvk:Voertuig" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
