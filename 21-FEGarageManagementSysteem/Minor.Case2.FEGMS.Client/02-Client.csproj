@@ -132,6 +132,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Mapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\ISRDWServiceReferenceService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -139,6 +140,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\InsertLeasemaatschappijGegevensVM.cs" />
+    <Compile Include="ViewModel\InsertOnderhoudsopdrachtVM.cs" />
     <Compile Include="ViewModel\InsertVoertuiggegevensVM.cs" />
     <Compile Include="ViewModel\InsertKlantgegevensVM.cs" />
   </ItemGroup>
@@ -193,6 +195,9 @@
     <Content Include="Views\RdwControlle\Execute.cshtml" />
     <Content Include="Views\RdwControlle\Index.cshtml" />
     <Content Include="Views\Onderhoud\InsertKlantgegevens.cshtml" />
+    <Content Include="Views\Onderhoud\InsertVoertuiggegevens.cshtml" />
+    <Content Include="Views\Onderhoud\InsertOnderhoudsopdracht.cshtml" />
+    <Content Include="Views\Onderhoud\InsertLeasemaatschappijGegevens.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

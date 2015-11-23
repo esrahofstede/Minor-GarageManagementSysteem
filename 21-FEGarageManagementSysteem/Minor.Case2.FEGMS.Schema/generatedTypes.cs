@@ -32,7 +32,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private long idField;
+        private long IdField;
         
         private long KlantnummerField;
         
@@ -59,19 +59,19 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long id
+        public long Id
         {
             get
             {
-                return this.idField;
+                return this.IdField;
             }
             set
             {
-                this.idField = value;
+                this.IdField = value;
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
         public long Klantnummer
         {
             get
