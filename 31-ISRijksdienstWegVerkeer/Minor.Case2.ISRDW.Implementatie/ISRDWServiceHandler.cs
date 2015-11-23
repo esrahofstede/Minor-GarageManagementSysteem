@@ -55,6 +55,11 @@ namespace Minor.Case2.ISRDW.Implementation
                 });
             }
 
+            if(list.Any())
+            {
+                throw new FaultException<FunctionalErrorDetail[]>(list.ToArray());
+            }
+
             try
             {
                 var apkKeuringsverzoekRequestMessage = Mapper.MapToRDWRequestMessage(message);
