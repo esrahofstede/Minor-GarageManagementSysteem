@@ -47,7 +47,18 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Minor.Case2.BSVoertuigEnKlantBeheer.Schema\01 - Schema.csproj">
+      <Project>{424b127b-d82e-4feb-9cdf-8babc624da68}</Project>
+      <Name>01 - Schema</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6 Tools\svcutil.exe" ^
+ /d:"$(SolutionDir)..\99-Shared\01-BSVoertuigEnKlantbeheer\Contract" ^
+ Minor.Case2.BSVoertuigEnKlantbeheer.Contract.dll</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

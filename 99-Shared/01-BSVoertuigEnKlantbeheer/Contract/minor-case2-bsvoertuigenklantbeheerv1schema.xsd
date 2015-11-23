@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" elementFormDefault="qualified" targetNamespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="KlantenCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Klant" nillable="true" type="tns:Klant" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="KlantenCollection" nillable="true" type="tns:KlantenCollection" />
+  <xs:complexType name="Klant">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:long" />
+      <xs:element name="klantnummer" type="xs:long" />
+      <xs:element name="Adres" nillable="true" type="xs:string" />
+      <xs:element name="Postcode" nillable="true" type="xs:string" />
+      <xs:element name="Woonplaats" nillable="true" type="xs:string" />
+      <xs:element name="Telefoonnummer" nillable="true" type="xs:string" />
+      <xs:element name="Emailadres" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Klant" nillable="true" type="tns:Klant" />
+  <xs:complexType name="Persoon">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Klant">
+        <xs:sequence>
+          <xs:element name="Voornaam" nillable="true" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Tussenvoegsel" nillable="true" type="xs:string" />
+          <xs:element name="Achternaam" nillable="true" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Persoon" nillable="true" type="tns:Persoon" />
+  <xs:complexType name="Leasemaatschappij">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Klant">
+        <xs:sequence>
+          <xs:element name="Naam" nillable="true" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Leasemaatschappij" nillable="true" type="tns:Leasemaatschappij" />
+  <xs:complexType name="VoertuigenSearchCriteria">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element name="Kenteken" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Merk" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Type" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Eigenaar" nillable="true" type="tns:Klant">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Bestuurder" nillable="true" type="tns:Persoon">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VoertuigenSearchCriteria" nillable="true" type="tns:VoertuigenSearchCriteria" />
+  <xs:complexType name="VoertuigCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Voertuig" nillable="true" type="tns:Voertuig" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VoertuigCollection" nillable="true" type="tns:VoertuigCollection" />
+  <xs:complexType name="Voertuig">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element name="Kenteken" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Merk" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Type" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Eigenaar" nillable="true" type="tns:Klant">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Bestuurder" nillable="true" type="tns:Persoon">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Voertuig" nillable="true" type="tns:Voertuig" />
+  <xs:complexType name="Onderhoudsopdracht">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element name="Aanmeldingsdatum" type="xs:dateTime" />
+      <xs:element name="Kilometerstand" type="xs:long" />
+      <xs:element name="Onderhoudsomschrijving" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Voertuig" nillable="true" type="tns:Voertuig">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Apk" type="xs:boolean" />
+      <xs:element name="Onderhoudswerkzaamheden" nillable="true" type="tns:OnderhoudsWerkzaamheden" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Onderhoudsopdracht" nillable="true" type="tns:Onderhoudsopdracht" />
+  <xs:complexType name="OnderhoudsWerkzaamheden">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element name="Afmeldingsdatum" type="xs:dateTime" />
+      <xs:element name="Kilometerstand" type="xs:long" />
+      <xs:element name="Onderhoudswerkzaamhedenomschrijving" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OnderhoudsWerkzaamheden" nillable="true" type="tns:OnderhoudsWerkzaamheden" />
+</xs:schema>
