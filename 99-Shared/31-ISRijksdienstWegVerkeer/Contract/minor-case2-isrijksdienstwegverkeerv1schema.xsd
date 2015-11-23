@@ -43,6 +43,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
+      <xs:element name="Kilometerstand" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Keuringsverzoek" nillable="true" type="tns:Keuringsverzoek" />

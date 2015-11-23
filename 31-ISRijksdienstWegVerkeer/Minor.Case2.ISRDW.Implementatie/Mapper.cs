@@ -42,7 +42,7 @@ namespace Minor.Case2.ISRDW.Implementation
                 voertuig = new keuringsverzoekVoertuig
                 {
                     kenteken = message.Voertuig.Kenteken,
-                    kilometerstand = 0,
+                    kilometerstand = message.Keuringsverzoek.Kilometerstand,
                     naam = message.Voertuig.Bestuurder.Achternaam,
                     type = voertuigtype.personenauto,
                 }
