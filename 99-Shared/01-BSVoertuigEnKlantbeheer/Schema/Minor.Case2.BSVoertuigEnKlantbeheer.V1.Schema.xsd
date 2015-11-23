@@ -83,6 +83,7 @@
       <xs:element name="Onderhoudsomschrijving" type="xs:string" />
       <xs:element name="Voertuig" type="bsvk:Voertuig" />
       <xs:element name="APK" type="xs:boolean" />
+      <xs:element name="Status" type="xs:string" />
       <xs:element name="Onderhoudswerkzaamheden" type="bsvk:Onderhoudswerkzaamheden" nillable="true" />
     </xs:sequence>
   </xs:complexType>

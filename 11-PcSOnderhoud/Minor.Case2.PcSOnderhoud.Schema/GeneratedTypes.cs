@@ -226,8 +226,8 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="VoertuigCollection", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema", ItemName="Voertuig")]
-    public class VoertuigCollection : System.Collections.Generic.List<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig>
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="VoertuigenCollection", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema", ItemName="Voertuig")]
+    public class VoertuigenCollection : System.Collections.Generic.List<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig>
     {
     }
     

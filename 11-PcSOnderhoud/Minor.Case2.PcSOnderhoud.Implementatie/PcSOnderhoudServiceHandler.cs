@@ -23,7 +23,7 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             return null;
         }
 
-        public VoertuigCollection GetVoertuigBy(VoertuigenSearchCriteria zoekCriteria)
+        public VoertuigenCollection GetVoertuigBy(VoertuigenSearchCriteria zoekCriteria)
         {
             throw new NotImplementedException();
         }
