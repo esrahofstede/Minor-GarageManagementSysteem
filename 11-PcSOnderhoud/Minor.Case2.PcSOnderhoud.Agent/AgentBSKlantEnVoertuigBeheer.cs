@@ -11,6 +11,11 @@ namespace Minor.Case2.PcSOnderhoud.Agent
         {
         }
 
+        public AgentBSKlantEnVoertuigBeheer(ServiceFactory<IBSVoertuigEnKlantbeheer> factory)
+        {
+            _factory = factory;
+        }
+
         public void VoegOnderhoudsopdrachtMetVoertuigEnKlantToe(Voertuig voertuig)
         {
             throw new System.NotImplementedException();
