@@ -58,23 +58,29 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="Leasemaatschappij" nillable="true" type="tns:Leasemaatschappij" />
-  <xs:complexType name="VoertuigenSearchCriteria">
+  <xs:complexType name="OnderhoudsopdrachtZoekCriteria">
     <xs:sequence>
       <xs:element minOccurs="0" name="ID" type="xs:long" />
-      <xs:element name="Kenteken" nillable="true" type="xs:string" />
-      <xs:element name="Merk" nillable="true" type="xs:string" />
-      <xs:element name="Type" nillable="true" type="xs:string" />
-      <xs:element name="Eigenaar" nillable="true" type="tns:Klant" />
-      <xs:element name="Bestuurder" nillable="true" type="tns:Persoon" />
+      <xs:element name="Aanmeldingsdatum" type="xs:dateTime" />
+      <xs:element name="Kilometerstand" type="xs:long" />
+      <xs:element name="Onderhoudsomschrijving" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Voertuig" nillable="true" type="tns:Voertuig">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="APK" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="VoertuigenSearchCriteria" nillable="true" type="tns:VoertuigenSearchCriteria" />
-  <xs:complexType name="VoertuigenCollection">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Voertuig" nillable="true" type="tns:Voertuig" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="VoertuigenCollection" nillable="true" type="tns:VoertuigenCollection" />
+  <xs:element name="OnderhoudsopdrachtZoekCriteria" nillable="true" type="tns:OnderhoudsopdrachtZoekCriteria" />
   <xs:complexType name="Voertuig">
     <xs:sequence>
       <xs:element minOccurs="0" name="ID" type="xs:long" />
@@ -123,6 +129,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Voertuig" nillable="true" type="tns:Voertuig" />
+  <xs:complexType name="OnderhoudsopdrachtenCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Onderhoudsopdracht" nillable="true" type="tns:Onderhoudsopdracht" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OnderhoudsopdrachtenCollection" nillable="true" type="tns:OnderhoudsopdrachtenCollection" />
   <xs:complexType name="Onderhoudsopdracht">
     <xs:sequence>
       <xs:element minOccurs="0" name="ID" type="xs:long" />
@@ -162,4 +174,21 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Onderhoudswerkzaamheden" nillable="true" type="tns:Onderhoudswerkzaamheden" />
+  <xs:complexType name="VoertuigenSearchCriteria">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element name="Kenteken" nillable="true" type="xs:string" />
+      <xs:element name="Merk" nillable="true" type="xs:string" />
+      <xs:element name="Type" nillable="true" type="xs:string" />
+      <xs:element name="Eigenaar" nillable="true" type="tns:Klant" />
+      <xs:element name="Bestuurder" nillable="true" type="tns:Persoon" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VoertuigenSearchCriteria" nillable="true" type="tns:VoertuigenSearchCriteria" />
+  <xs:complexType name="VoertuigenCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Voertuig" nillable="true" type="tns:Voertuig" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VoertuigenCollection" nillable="true" type="tns:VoertuigenCollection" />
 </xs:schema>
