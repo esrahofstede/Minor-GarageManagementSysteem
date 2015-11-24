@@ -31,11 +31,11 @@
   <wsdl:message name="IBSVoertuigEnKlantbeheer_VoegOnderhoudsopdrachtToe_OutputMessage">
     <wsdl:part name="parameters" element="tns:VoegOnderhoudsopdrachtToeResponse" />
   </wsdl:message>
-  <wsdl:message name="IBSVoertuigEnKlantbeheer_MeldVoertuigKlaar_InputMessage">
-    <wsdl:part name="parameters" element="tns:MeldVoertuigKlaar" />
+  <wsdl:message name="IBSVoertuigEnKlantbeheer_UpdateVoertuig_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateVoertuig" />
   </wsdl:message>
-  <wsdl:message name="IBSVoertuigEnKlantbeheer_MeldVoertuigKlaar_OutputMessage">
-    <wsdl:part name="parameters" element="tns:MeldVoertuigKlaarResponse" />
+  <wsdl:message name="IBSVoertuigEnKlantbeheer_UpdateVoertuig_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateVoertuigResponse" />
   </wsdl:message>
   <wsdl:portType name="IBSVoertuigEnKlantbeheer">
     <wsdl:operation name="GetAllKlanten">
@@ -54,9 +54,9 @@
       <wsdl:input wsaw:Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/VoegOnderhoudsopdrachtToe" message="tns:IBSVoertuigEnKlantbeheer_VoegOnderhoudsopdrachtToe_InputMessage" />
       <wsdl:output wsaw:Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/VoegOnderhoudsopdrachtToeResponse" message="tns:IBSVoertuigEnKlantbeheer_VoegOnderhoudsopdrachtToe_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="MeldVoertuigKlaar">
-      <wsdl:input wsaw:Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/MeldVoertuigKlaar" message="tns:IBSVoertuigEnKlantbeheer_MeldVoertuigKlaar_InputMessage" />
-      <wsdl:output wsaw:Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/MeldVoertuigKlaarResponse" message="tns:IBSVoertuigEnKlantbeheer_MeldVoertuigKlaar_OutputMessage" />
+    <wsdl:operation name="UpdateVoertuig">
+      <wsdl:input wsaw:Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/UpdateVoertuig" message="tns:IBSVoertuigEnKlantbeheer_UpdateVoertuig_InputMessage" />
+      <wsdl:output wsaw:Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/UpdateVoertuigResponse" message="tns:IBSVoertuigEnKlantbeheer_UpdateVoertuig_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="DefaultBinding_IBSVoertuigEnKlantbeheer" type="tns:IBSVoertuigEnKlantbeheer">
@@ -97,8 +97,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="MeldVoertuigKlaar">
-      <soap:operation soapAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/MeldVoertuigKlaar" style="document" />
+    <wsdl:operation name="UpdateVoertuig">
+      <soap:operation soapAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/UpdateVoertuig" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

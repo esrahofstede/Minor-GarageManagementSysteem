@@ -28,7 +28,8 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
                 {
                     Klantnummer = 1
                 },
-                EigenaarID = 1,              
+                EigenaarID = 1,
+                Status = "Klaar"              
             };
 
             Onderhoudswerkzaamheden ow1 = new Onderhoudswerkzaamheden

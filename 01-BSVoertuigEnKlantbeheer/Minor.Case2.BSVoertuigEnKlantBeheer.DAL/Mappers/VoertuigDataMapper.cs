@@ -94,7 +94,17 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappers
 
         public override void Update(Voertuig item)
         {
-            throw new NotImplementedException();
+            using (var context = new VoertuigContext())
+            {
+                Voertuig voertuig = context.Voertuigen.Where(v => v.Kenteken == item.Kenteken).FirstOrDefault();
+                if(voertuig != null)
+                {
+                    voertuig.Merk = item.Merk;
+                    voertuig.Type = item.Type;
+                    voertuig.Status = item.Status;   
+                }
+                context.SaveChanges();
+            }
         }
 
         public override void Delete(Voertuig item)
