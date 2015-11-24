@@ -17,6 +17,6 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Entities
         public Persoon Bestuurder { get; set; }
         public long EigenaarID { get; set; }
         public long BestuurderID { get; set; }
-        public virtual ICollection<Onderhoudsopdracht> OnderhoudsOpdrachten { get; set; }
+        public virtual ICollection<Onderhoudsopdracht> OnderhoudsOpdrachten { get; }
     }
 }

@@ -4,6 +4,7 @@
       <Word>Beheer</Word>
       <Word>Klant</Word>
       <Word>Voertuig</Word>
+      <Word>En</Word>
       <Word>Woonplaats</Word>
       <Word>Voornaam</Word>
       <Word>Achternaam</Word>
@@ -28,6 +29,12 @@
       <Word>Adres</Word>
       <Word>Werkzaamheden</Word>
       <Word>Voertuigen</Word>
+      <Word>Aanmeldingsdatum</Word>
+      <Word>Onderhoudsopdracht</Word>
+      <Word>Onderhoudswerkzaamheden</Word>
+      <Word>Afmeldingsdatum</Word>
+      <Word>Onderhoudsomschrijving</Word>
+
     </Recognized> 
   </Words> 
   <Acronyms> 
