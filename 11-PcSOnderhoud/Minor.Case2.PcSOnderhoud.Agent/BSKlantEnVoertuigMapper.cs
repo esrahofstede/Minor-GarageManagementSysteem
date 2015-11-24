@@ -243,5 +243,15 @@ namespace Minor.Case2.PcSOnderhoud.Agent
                 Voertuig = AgentToSchemaVoertuigMapper(searchCriteria.Voertuig),
             };
         }
+
+        public AgentSchema.Onderhoudswerkzaamheden SchemaToAgentOnderhoudswerkzaamhedenMapper(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Schema.Onderhoudswerkzaamheden AgentToSchemaOnderhoudswerkzaamhedenMapper(AgentSchema.Onderhoudswerkzaamheden onderhoudswerkzaamheden)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

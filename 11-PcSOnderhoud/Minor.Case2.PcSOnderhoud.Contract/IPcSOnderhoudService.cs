@@ -30,7 +30,7 @@ namespace Minor.Case2.PcSOnderhoud.Contract
         bool MeldVoertuigKlaar(Schema.Voertuig voertuig, AgentSchema.Garage garage);
 
         [OperationContract]
-        Schema.Onderhoudsopdracht GetHuidigeOnderhoudsopdrachtBy(Schema.VoertuigenSearchCriteria searchCriteria);
+        Schema.Onderhoudsopdracht GetHuidigeOnderhoudsopdrachtBy(Schema.OnderhoudsopdrachtZoekCriteria searchCriteria);
 
         [OperationContract]
         void VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden);

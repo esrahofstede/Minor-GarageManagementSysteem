@@ -55,18 +55,32 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
                 CorrolatieId = Guid.NewGuid().ToString()
             };
             voertuig.Status = "Klaar";
+            
+            bool steekproef = agentIS.SendAPKKeuringsverzoek(voertuig, garage, keuringsverzoek).Steekproef;
+            if (!steekproef)
+            {
+                voertuig.Status = "Afgemeld";
+            }
             agentBS.UpdateVoertuig(voertuig);
-            return agentIS.SendAPKKeuringsverzoek(voertuig, garage, keuringsverzoek).Steekproef;
+            return steekproef;
         }
 
-        public Schema.Onderhoudsopdracht GetHuidigeOnderhoudsopdrachtBy(Schema.VoertuigenSearchCriteria searchCriteria)
+        public Schema.Onderhoudsopdracht GetHuidigeOnderhoudsopdrachtBy(Schema.OnderhoudsopdrachtZoekCriteria searchCriteria)
         {
-            
+            AgentBSKlantEnVoertuigBeheer agent = new AgentBSKlantEnVoertuigBeheer();
+            var onderhoudsopdrachten = agent.GetOnderhoudsOpdrachtenBy(searchCriteria);
+            if (onderhoudsopdrachten.Count == 0)
+            {
+                return null;
+            }
+            Schema.Onderhoudsopdracht onderhoudsopdracht = onderhoudsopdrachten.OrderByDescending(o => o.Aanmeldingsdatum).FirstOrDefault();
+            return onderhoudsopdracht;
         }
 
         public void VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden)
         {
-            throw new NotImplementedException();
+            AgentBSKlantEnVoertuigBeheer agent = new AgentBSKlantEnVoertuigBeheer();
+            
         }
 
         public void VoegVoertuigMetKlantToe(Schema.Voertuig voertuig)
