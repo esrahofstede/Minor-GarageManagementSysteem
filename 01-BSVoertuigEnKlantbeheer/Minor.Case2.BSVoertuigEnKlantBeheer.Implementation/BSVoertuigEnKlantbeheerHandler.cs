@@ -15,7 +15,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
     [CLSCompliant(false)]
     public class BSVoertuigEnKlantbeheerHandler : IBSVoertuigEnKlantbeheer
     {
-        IDataMapper<Entities.Persoon, long>  _persoonDataMapper;
+        IDataMapper<Entities.Persoon, long> _persoonDataMapper;
         IDataMapper<Entities.Leasemaatschappij, long> _leaseDataMapper;
         IDataMapper<Entities.Voertuig, long> _voertuigDataMapper;
         IDataMapper<Entities.Onderhoudsopdracht, long> _onderhoudsDataMapper;
@@ -34,8 +34,8 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
         /// <param name="persoonDataMapper"></param>
         /// <param name="leaseDataMapper"></param>
         /// <param name="voertuigDataMapper"></param>
-        public BSVoertuigEnKlantbeheerHandler(IDataMapper<Entities.Persoon, long> persoonDataMapper, 
-                                              IDataMapper<Entities.Leasemaatschappij, long> leaseDataMapper, 
+        public BSVoertuigEnKlantbeheerHandler(IDataMapper<Entities.Persoon, long> persoonDataMapper,
+                                              IDataMapper<Entities.Leasemaatschappij, long> leaseDataMapper,
                                               IDataMapper<Entities.Voertuig, long> voertuigDataMapper)
         {
             _persoonDataMapper = persoonDataMapper;
@@ -124,7 +124,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
             Random rnd = new Random();
 
             //bestuurder is always a persoon
-            if(v.Bestuurder != null)
+            if (v.Bestuurder != null)
             {
                 v.Bestuurder.Klantnummer = rnd.Next(100000, 999999); //sorry
                 bestuurderID = _persoonDataMapper.Insert(v.Bestuurder);
@@ -164,7 +164,8 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
         /// <param name="voertuig"></param>
         public void UpdateVoertuig(BSVoertuigEnKlantbeheer.V1.Schema.Voertuig voertuig)
         {
-            throw new NotImplementedException();
+            Entities.Voertuig v = VoertuigDTOMapper.MapDTOToEntity(voertuig);
+            _voertuigDataMapper.Update(v);
         }
     }
 }

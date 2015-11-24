@@ -36,7 +36,8 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
                     ID = 2
                 },
                 EigenaarID = 2,
-                BestuurderID = 2,           
+                BestuurderID = 2,
+                Status = "Aangemeld"
             };
         }
 

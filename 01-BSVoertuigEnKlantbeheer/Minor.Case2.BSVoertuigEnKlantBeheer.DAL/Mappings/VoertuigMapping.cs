@@ -32,8 +32,8 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappings
             this.Property(v => v.Type)
                 .HasMaxLength(300);
 
-            //this.Property(v => v.Status)
-            //    .HasMaxLength(300);
+            this.Property(v => v.Status)
+                .HasMaxLength(300);
 
             this.HasMany(v => v.OnderhoudsOpdrachten);
 

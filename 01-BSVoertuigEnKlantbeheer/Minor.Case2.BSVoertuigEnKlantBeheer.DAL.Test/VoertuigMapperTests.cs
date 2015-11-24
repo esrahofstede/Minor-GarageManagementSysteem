@@ -103,5 +103,31 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
             // Assert
             Assert.IsNotNull(result.First().Eigenaar);
         }
+
+        [TestMethod]
+        public void UpdateStatusOfVoertuigTest()
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                // Arrange
+                var target = new VoertuigDataMapper();
+
+                var oldDummyVoertuig = DummyData.GetDummyVoertuig();
+                var updatedDummyVoertuig = DummyData.GetDummyVoertuig();
+                updatedDummyVoertuig.Status = "Afgemeld";
+                
+                // Act
+
+                target.Insert(DummyData.GetDummyVoertuig());
+                var beforeResult = target.FindAllBy(v => v.Kenteken == "AZ-AZ-AZ").FirstOrDefault();
+
+                target.Update(updatedDummyVoertuig);
+                var afterResult = target.FindAllBy(v => v.Kenteken == "AZ-AZ-AZ").FirstOrDefault();
+
+                // Assert
+                Assert.AreEqual("Aangemeld", beforeResult.Status);
+                Assert.AreEqual("Afgemeld", afterResult.Status);
+            };
+        }
     }
 }

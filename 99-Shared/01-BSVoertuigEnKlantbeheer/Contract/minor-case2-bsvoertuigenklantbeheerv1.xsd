@@ -51,14 +51,14 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="MeldVoertuigKlaar">
+  <xs:element name="UpdateVoertuig">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="voertuig" nillable="true" xmlns:q6="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q6:Voertuig" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="MeldVoertuigKlaarResponse">
+  <xs:element name="UpdateVoertuigResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
