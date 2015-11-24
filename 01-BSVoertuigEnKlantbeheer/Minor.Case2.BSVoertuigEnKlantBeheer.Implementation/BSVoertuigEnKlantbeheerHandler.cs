@@ -18,12 +18,14 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
         IDataMapper<Entities.Persoon, long>  _persoonDataMapper;
         IDataMapper<Entities.Leasemaatschappij, long> _leaseDataMapper;
         IDataMapper<Entities.Voertuig, long> _voertuigDataMapper;
+        IDataMapper<Entities.Onderhoudsopdracht, long> _onderhoudsDataMapper;
 
         public BSVoertuigEnKlantbeheerHandler()
         {
             _persoonDataMapper = new PersoonDataMapper();
             _leaseDataMapper = new LeasemaatschappijDataMapper();
             _voertuigDataMapper = new VoertuigDataMapper();
+            _onderhoudsDataMapper = new OnderhoudsOpdrachtDataMapper();
         }
 
         /// <summary>
@@ -147,19 +149,20 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
         }
 
         /// <summary>
-        /// Update a existing onderhoudsopdracht
-        /// </summary>
-        /// <param name="onderhoudsopdracht"></param>
-        public void WijzigOnderhoudsopdracht(BSVoertuigEnKlantbeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Add a new onderhoudsopdracht to the database
         /// </summary>
         /// <param name="onderhoudsopdracht"></param>
         public void VoegOnderhoudsopdrachtToe(BSVoertuigEnKlantbeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht)
+        {
+            Entities.Onderhoudsopdracht o = OnderhoudsOpdrachtDTOMapper.MapDTOToEntity(onderhoudsopdracht);
+            _onderhoudsDataMapper.Insert(o);
+        }
+
+        /// <summary>
+        /// Update the voertuig object
+        /// </summary>
+        /// <param name="voertuig"></param>
+        public void UpdateVoertuig(BSVoertuigEnKlantbeheer.V1.Schema.Voertuig voertuig)
         {
             throw new NotImplementedException();
         }

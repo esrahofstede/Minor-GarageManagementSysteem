@@ -24,7 +24,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
         {
             return new Voertuig
             {
-                Kenteken = "NL-123-G",
+                Kenteken = "AZ-AZ-AZ",
                 Merk = "Citroen",
                 Type = "C3",
                 Eigenaar = new Persoon

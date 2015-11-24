@@ -8,26 +8,36 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
         public static Entities.Voertuig MapDTOToEntity(BSVoertuigEnKlantbeheer.V1.Schema.Voertuig dto)
         {
             Entities.Klant eigenaar = null;
-            if (dto.Eigenaar.GetType() == typeof(BSVoertuigEnKlantbeheer.V1.Schema.Persoon))
+            Entities.Persoon bestuurder = null;
+
+            if (dto.Eigenaar != null)
             {
-                eigenaar = PersoonDTOMapper.MapDTOToEntity((BSVoertuigEnKlantbeheer.V1.Schema.Persoon)dto.Eigenaar);
+                if (dto.Eigenaar.GetType() == typeof(BSVoertuigEnKlantbeheer.V1.Schema.Persoon))
+                {
+                    eigenaar = PersoonDTOMapper.MapDTOToEntity((BSVoertuigEnKlantbeheer.V1.Schema.Persoon)dto.Eigenaar);
+                }
+                else
+                {
+                    eigenaar = LeasemaatschappijDTOMapper.MapDTOToEntity((BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij)dto.Eigenaar);
+                }
             }
-            else
+            if (dto.Bestuurder != null)
             {
-                eigenaar = LeasemaatschappijDTOMapper.MapDTOToEntity((BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij)dto.Eigenaar);
+                bestuurder = PersoonDTOMapper.MapDTOToEntity(dto.Bestuurder);
             }
+
 
             Entities.Voertuig entity = new Entities.Voertuig
             {
-                ID = dto.Id,
+                ID = dto.ID,
                 Kenteken = dto.Kenteken,
-                Bestuurder = PersoonDTOMapper.MapDTOToEntity(dto.Bestuurder),
-                BestuurderID = PersoonDTOMapper.MapDTOToEntity(dto.Bestuurder).Klantnummer,
+                Bestuurder = bestuurder,
+                BestuurderID = bestuurder?.Klantnummer ?? 0,
                 Eigenaar = eigenaar,
-                EigenaarID = eigenaar.Klantnummer,
+                EigenaarID = eigenaar?.Klantnummer ?? 0,
                 Merk = dto.Merk,
                 Type = dto.Type,
-                //TODO onderhoudsopdrachten
+                Status = dto.Status,
             };
             return entity;
         }
@@ -35,24 +45,33 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
         public static BSVoertuigEnKlantbeheer.V1.Schema.Voertuig MapEntityToDTO(Entities.Voertuig entity)
         {
             BSVoertuigEnKlantbeheer.V1.Schema.Klant eigenaar = null;
-            if (entity.Eigenaar.GetType() == typeof(Entities.Persoon))
+            BSVoertuigEnKlantbeheer.V1.Schema.Persoon bestuurder = null;
+
+            if (entity.Eigenaar != null)
             {
-                eigenaar = PersoonDTOMapper.MapEntityToDTO((Entities.Persoon)entity.Eigenaar);
+                if (entity.Eigenaar.GetType() == typeof(Entities.Persoon))
+                {
+                    eigenaar = PersoonDTOMapper.MapEntityToDTO((Entities.Persoon)entity.Eigenaar);
+                }
+                else
+                {
+                    eigenaar = LeasemaatschappijDTOMapper.MapEntityToDTO((Entities.Leasemaatschappij)entity.Eigenaar);
+                }
             }
-            else
+            if(entity.Bestuurder != null)
             {
-                eigenaar = LeasemaatschappijDTOMapper.MapEntityToDTO((Entities.Leasemaatschappij)entity.Eigenaar);
+                bestuurder = PersoonDTOMapper.MapEntityToDTO(entity.Bestuurder);
             }
 
             BSVoertuigEnKlantbeheer.V1.Schema.Voertuig dto = new BSVoertuigEnKlantbeheer.V1.Schema.Voertuig
             {
-                Id = entity.ID,
+                ID = entity.ID,
                 Kenteken = entity.Kenteken,
-                Bestuurder = PersoonDTOMapper.MapEntityToDTO(entity.Bestuurder),
+                Bestuurder = bestuurder,
                 Eigenaar = eigenaar,
                 Merk = entity.Merk,
                 Type = entity.Type,
-                //TODO onderhoudsopdrachten
+                Status = entity.Status,
             };
             return dto;
         }

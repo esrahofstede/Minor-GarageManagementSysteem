@@ -68,6 +68,7 @@
     <Compile Include="BSVoertuigEnKlantbeheerHandlerTests.cs" />
     <Compile Include="DummyData.cs" />
     <Compile Include="LeasemaatschappijDTOMapperTests.cs" />
+    <Compile Include="OnderhoudsOpdrachtDTOMapperTests.cs" />
     <Compile Include="PersoonDTOMapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VoertuigDTOMapperTests.cs" />

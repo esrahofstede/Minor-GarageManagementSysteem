@@ -70,7 +70,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
 
                 // Act
                 target.Insert(DummyData.GetDummyVoertuig());
-                IEnumerable<Voertuig> result = target.FindAllBy(v => v.Kenteken == "NL-123-G");
+                IEnumerable<Voertuig> result = target.FindAllBy(v => v.Kenteken == "AZ-AZ-AZ");
                 string voornaam = result.First().Bestuurder.Voornaam;
 
                 // Assert

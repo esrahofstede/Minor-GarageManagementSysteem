@@ -23,6 +23,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
                 },
                 Merk = "Ford",
                 Type = "Focus",
+                Status = "Aangemeld"
             };
 
             // Act
@@ -30,6 +31,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
 
             // Assert
             Assert.AreEqual("12-AA-AA", result.Kenteken);
+            Assert.AreEqual("Aangemeld", result.Status);
             Assert.AreEqual(typeof(Entities.Persoon), result.Bestuurder.GetType());
             Assert.AreEqual(typeof(Entities.Persoon), result.Eigenaar.GetType());
             Assert.AreEqual("Henk", ((Entities.Persoon)result.Eigenaar).Voornaam);
@@ -54,6 +56,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
                 },
                 Merk = "Ford",
                 Type = "Focus",
+                Status = "Aangemeld"
             };
 
             // Act
@@ -61,6 +64,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
 
             // Assert
             Assert.AreEqual("12-AA-AA", result.Kenteken);
+            Assert.AreEqual("Aangemeld", result.Status);
             Assert.AreEqual(typeof(Entities.Persoon), result.Bestuurder.GetType());
             Assert.AreEqual(typeof(Entities.Leasemaatschappij), result.Eigenaar.GetType());
             Assert.AreEqual("Sixt", ((Entities.Leasemaatschappij)result.Eigenaar).Naam);
