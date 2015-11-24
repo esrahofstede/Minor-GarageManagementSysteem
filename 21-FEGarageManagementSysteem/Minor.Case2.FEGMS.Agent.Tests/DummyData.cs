@@ -61,5 +61,25 @@ namespace Minor.Case2.FEGMS.Agent.Tests
                 Onderhoudswerkzaamhedenomschrijving = "Lampen vervangen",
             };
         }
+
+        internal static VoertuigenSearchCriteria GetSearchCriteria()
+        {
+            return new VoertuigenSearchCriteria
+            {
+                Kenteken = "DS-344-S",
+            };
+        }
+        public static VoertuigenCollection GetVoertuigenCollection()
+        {
+            var voertuigen = new VoertuigenCollection();
+            voertuigen.Add(new Voertuig
+            {
+                Kenteken = "DS-344-S",
+            });
+
+
+            return voertuigen;
+
+        }
     }
 }

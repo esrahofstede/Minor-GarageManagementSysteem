@@ -200,6 +200,7 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             var voertuigFromCookie = serializer.Deserialize<InsertVoertuiggegevensVM>(cookie.Value);
 
             // Assert
+            mock.Verify(agent => agent.VoegVoertuigMetKlantToe(It.IsAny<Voertuig>()));
             Assert.IsNotNull(result);
             Assert.AreEqual("InsertOnderhoudsopdracht", result.RouteValues.First().Value);
             Assert.AreEqual(voertuiggegevens.Kenteken, voertuigFromCookie.Kenteken);
@@ -233,6 +234,7 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             var voertuigFromCookie = serializer.Deserialize<InsertVoertuiggegevensVM>(cookie.Value);
 
             // Assert
+            mock.Verify(agent => agent.VoegVoertuigMetKlantToe(It.IsAny<Voertuig>()));
             Assert.IsNotNull(result);
             Assert.AreEqual("InsertOnderhoudsopdracht", result.RouteValues.First().Value);
             Assert.AreEqual(voertuiggegevens.Kenteken, voertuigFromCookie.Kenteken);
@@ -283,6 +285,57 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             // Act
             RedirectToRouteResult result = controller.InsertOnderhoudsopdracht(onderhoudsopdracht) as RedirectToRouteResult;
             var cookie = controller.HttpContext.Response.Cookies.Get("Voertuiggegevens");
+
+            // Assert
+            mock.Verify(agent => agent.AddOnderhoudsOpdrachtWithKlantAndVoertuig(It.IsAny<Onderhoudsopdracht>()));
+            Assert.IsNotNull(result);
+            Assert.AreEqual("InsertedOnderhoudsopdracht", result.RouteValues.First().Value);
+        }
+
+        [TestMethod]
+        public void InsertedOnderhoudsopdrachtTest()
+        {
+            // Arrange
+            var serializer = new JavaScriptSerializer();
+            var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
+            OnderhoudController controller = new OnderhoudController(mock.Object);
+            Onderhoudsopdracht onderhoudsopdracht = DummyData.GetDummyOnderhoudsopdracht();
+
+            var request = new HttpRequest("", "http://example.com/", "");
+            var response = new HttpResponse(TextWriter.Null);
+            var httpContext = new HttpContextWrapper(new HttpContext(request, response));
+            controller.ControllerContext = new ControllerContext(httpContext, new RouteData(), controller);
+
+            //Set Onderhoudsopdracht
+            var onderhoudsopdrachtCookie = new HttpCookie("Onderhoudsopdracht", serializer.Serialize(onderhoudsopdracht));
+            controller.HttpContext.Request.Cookies.Add(onderhoudsopdrachtCookie);     
+
+            // Act
+            ViewResult result = controller.InsertedOnderhoudsopdracht() as ViewResult;
+
+            // Assert
+            Assert.IsInstanceOfType(result.Model, typeof(Onderhoudsopdracht));
+            var opdracht = result.Model as Onderhoudsopdracht;
+            Assert.AreEqual("NL-123-G", opdracht.Voertuig.Kenteken);
+            Assert.AreEqual("0612345678", opdracht.Voertuig.Bestuurder.Telefoonnummer);
+            Assert.AreEqual("0621448522", opdracht.Voertuig.Eigenaar.Telefoonnummer);
+        }
+
+        [TestMethod]
+        public void InsertedOnderhoudsopdrachtNullCookieTest()
+        {
+            // Arrange
+            var serializer = new JavaScriptSerializer();
+            var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
+            OnderhoudController controller = new OnderhoudController(mock.Object);
+
+            var request = new HttpRequest("", "http://example.com/", "");
+            var response = new HttpResponse(TextWriter.Null);
+            var httpContext = new HttpContextWrapper(new HttpContext(request, response));
+            controller.ControllerContext = new ControllerContext(httpContext, new RouteData(), controller);
+
+            // Act
+            RedirectToRouteResult result = controller.InsertedOnderhoudsopdracht() as RedirectToRouteResult;
 
             // Assert
             Assert.IsNotNull(result);

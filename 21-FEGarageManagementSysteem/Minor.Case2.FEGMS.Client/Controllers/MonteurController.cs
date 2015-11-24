@@ -31,17 +31,20 @@ namespace Minor.Case2.FEGMS.Client.Controllers
             _agent = agent;
         }
 
-        // GET: Monteur
-        public ActionResult Index()
-        {
-            return View();
-        }
-
+        /// <summary>
+        /// Show the form to Klaarmelden
+        /// </summary>
+        /// <returns>View</returns>
         public ActionResult Klaarmelden()
         {
             return View();
         }
 
+        /// <summary>
+        /// Post the inserted data from a KlaarmeldenVM
+        /// </summary>
+        /// <param name="model">KlaarmeldenVM with kenteken</param>
+        /// <returns>View</returns>
         [HttpPost]
         public ActionResult Klaarmelden(KlaarmeldenVM model)
         {
