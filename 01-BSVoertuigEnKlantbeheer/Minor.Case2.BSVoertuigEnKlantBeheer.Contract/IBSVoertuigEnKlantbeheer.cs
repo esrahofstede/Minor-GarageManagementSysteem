@@ -21,7 +21,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Contract
         OnderhoudsopdrachtenCollection GetOnderhoudsopdrachtenBy(VoertuigenSearchCriteria zoekCriteria);
 
         [OperationContract]
-        VoertuigenCollection GetVoertuigBy(VoertuigenSearchCriteria zoekCriteria);
+        VoertuigenCollection GetVoertuigBy(OnderhoudsopdrachtZoekCriteria zoekCriteria);
 
         [OperationContract]
         void VoegVoertuigMetKlantToe(Voertuig voertuig);

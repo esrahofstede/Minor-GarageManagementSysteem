@@ -68,7 +68,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
             return klantenCollection;
         }
 
-        public OnderhoudsopdrachtenCollection GetOnderhoudsopdrachtenBy(VoertuigenSearchCriteria zoekCriteria)
+        public OnderhoudsopdrachtenCollection GetOnderhoudsopdrachtenBy(OnderhoudsopdrachtZoekCriteria zoekCriteria)
         {
             throw new NotImplementedException();
         }
