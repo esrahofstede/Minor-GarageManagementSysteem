@@ -228,9 +228,27 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
             
         }
 
+        /// <summary>
+        /// Get all onderhoudsopdrachten filtered by zoekCriteria, for now we only filter on kenteken from a voertuig
+        /// </summary>
+        /// <param name="zoekCriteria"></param>
+        /// <returns></returns>
         public OnderhoudsopdrachtenCollection GetOnderhoudsopdrachtenBy(OnderhoudsopdrachtZoekCriteria zoekCriteria)
         {
-            throw new NotImplementedException();
+            OnderhoudsopdrachtenCollection onderhoudsopdrachtenCollection = new OnderhoudsopdrachtenCollection();
+
+            IEnumerable<Entities.Onderhoudsopdracht> onderhoudsopdrachten = _onderhoudsDataMapper.FindAll();
+  
+            if (zoekCriteria.Voertuig != null && !string.IsNullOrEmpty(zoekCriteria.Voertuig.Kenteken))
+            {
+                onderhoudsopdrachten = onderhoudsopdrachten.Where(v => v.Voertuig.Kenteken == zoekCriteria.Voertuig.Kenteken);
+            }
+
+            foreach (var onderhoudsEntity in onderhoudsopdrachten.ToList())
+            {
+                onderhoudsopdrachtenCollection.Add(OnderhoudsOpdrachtDTOMapper.MapEntityToDTO(onderhoudsEntity));
+            }
+            return onderhoudsopdrachtenCollection;
         }
 
         /// <summary>

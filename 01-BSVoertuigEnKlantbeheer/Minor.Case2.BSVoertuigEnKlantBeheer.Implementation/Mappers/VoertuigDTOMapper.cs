@@ -4,12 +4,12 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
 {
     [CLSCompliant(false)]
     public static class VoertuigDTOMapper
-    {
+    {   
         public static Entities.Voertuig MapDTOToEntity(BSVoertuigEnKlantbeheer.V1.Schema.Voertuig dto)
         {
             if (dto == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("dto", "dto is null");
             }
             Entities.Klant eigenaar = null;
             Entities.Persoon bestuurder = null;
@@ -50,7 +50,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
         {
             if (entity == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("entity", "entity is null");
             }
 
             BSVoertuigEnKlantbeheer.V1.Schema.Klant eigenaar = null;

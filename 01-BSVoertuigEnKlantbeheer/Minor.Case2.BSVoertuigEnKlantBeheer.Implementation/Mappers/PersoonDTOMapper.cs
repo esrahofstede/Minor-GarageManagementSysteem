@@ -9,7 +9,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
         {
             if (dto == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("dto", "dto is null");
             }
             Entities.Persoon entity = new Entities.Persoon
             {
@@ -31,7 +31,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
         {
             if (entity == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("entity", "entity is null");
             }
             BSVoertuigEnKlantbeheer.V1.Schema.Persoon dto = new BSVoertuigEnKlantbeheer.V1.Schema.Persoon
             {
