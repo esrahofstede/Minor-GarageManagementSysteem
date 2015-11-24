@@ -475,5 +475,451 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             Assert.AreEqual(expected.Tussenvoegsel, result.Tussenvoegsel);
             Assert.AreEqual(expected.Adres, result.Adres);
         }
+
+        [TestMethod]
+        public void AgentToSchemaVoertuigMapperReturnsVoertuig()
+        {
+            //Arrange
+            AgentSchema.Voertuig voertuig = new AgentSchema.Voertuig
+            {
+                Id = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus"
+            };
+
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.AgentToSchemaVoertuigMapper(voertuig);
+
+            //Assert
+            Assert.AreEqual(typeof(Schema.Voertuig), result.GetType());
+        }
+
+        [TestMethod]
+        public void AgentToAgentVoertuigMapperReturnsNullIfEmpty()
+        {
+            //Arrange
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.AgentToSchemaVoertuigMapper(null);
+
+            //Assert
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void AgentToSchemaVoertuigMapperReturnsCorrectData()
+        {
+            //Arrange
+            AgentSchema.Voertuig voertuig = new AgentSchema.Voertuig
+            {
+                Id = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus"
+            };
+
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.AgentToSchemaVoertuigMapper(voertuig);
+
+            //Assert
+            Assert.AreEqual(voertuig.Kenteken, result.Kenteken);
+            Assert.AreEqual(voertuig.Merk, result.Merk);
+            Assert.AreEqual(voertuig.Type, result.Type);
+        }
+
+        [TestMethod]
+        public void AgentToSchemaVoertuigMapperReturnsCorrectDataBestuurderPersoon()
+        {
+            //Arrange
+            AgentSchema.Voertuig voertuig = new AgentSchema.Voertuig
+            {
+                Id = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus",
+                Bestuurder = new AgentSchema.Persoon
+                {
+                    ID = 111211,
+                    Voornaam = "Marco",
+                    Achternaam = "Pil",
+                    Adres = "St. Jacobsstraat 18",
+                    Emailadres = "marcop@gmail.com",
+                    Klantnummer = 123456,
+                    Postcode = "1574YD",
+                    Telefoonnummer = "038-40154541",
+                    Woonplaats = "Utrecht"
+                }
+            };
+
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.AgentToSchemaVoertuigMapper(voertuig);
+
+            //Assert
+            Assert.AreEqual(voertuig.Kenteken, result.Kenteken);
+            Assert.AreEqual(voertuig.Merk, result.Merk);
+            Assert.AreEqual(voertuig.Type, result.Type);
+            Assert.AreEqual(voertuig.Bestuurder.Voornaam, result.Bestuurder.Voornaam);
+        }
+
+        [TestMethod]
+        public void SchemaToAgentVoertuigMapperReturnsCorrectDataBestuurderPersoonEigenaarPersoon()
+        {
+            AgentSchema.Persoon persoon = new AgentSchema.Persoon
+            {
+                ID = 111211,
+                Voornaam = "Marco",
+                Achternaam = "Pil",
+                Adres = "St. Jacobsstraat 18",
+                Emailadres = "marcop@gmail.com",
+                Klantnummer = 123456,
+                Postcode = "1574YD",
+                Telefoonnummer = "038-40154541",
+                Woonplaats = "Utrecht"
+            };
+
+            //Arrange
+            AgentSchema.Voertuig voertuig = new AgentSchema.Voertuig
+            {
+                Id = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus",
+                Bestuurder = persoon,
+                Eigenaar = persoon
+            };
+
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentVoertuigMapper(voertuig);
+            AgentSchema.Persoon actual = (AgentSchema.Persoon) result.Eigenaar;
+
+            //Assert
+            Assert.AreEqual(voertuig.Kenteken, result.Kenteken);
+            Assert.AreEqual(voertuig.Merk, result.Merk);
+            Assert.AreEqual(voertuig.Type, result.Type);
+            Assert.AreEqual(voertuig.Bestuurder.Voornaam, result.Bestuurder.Voornaam);
+            Assert.AreEqual(voertuig.Eigenaar.Klantnummer, result.Eigenaar.Klantnummer);
+            Assert.AreEqual(persoon.Voornaam, actual.Voornaam);
+        }
+
+
+        [TestMethod]
+        public void SchemaToAgentVoertuigMapperReturnsCorrectDataBestuurderPersoonEigenaarLease()
+        {
+            Schema.Persoon persoon = new Schema.Persoon
+            {
+                ID = 111211,
+                Voornaam = "Marco",
+                Achternaam = "Pil",
+                Adres = "St. Jacobsstraat 18",
+                Emailadres = "marcop@gmail.com",
+                Klantnummer = 123456,
+                Postcode = "1574YD",
+                Telefoonnummer = "038-40154541",
+                Woonplaats = "Utrecht"
+            };
+
+            Schema.Leasemaatschappij leasemaatschappij = new Schema.Leasemaatschappij
+            {
+                ID = 111211,
+                Klantnummer = 123456,
+                Naam = "Infosupprt",
+                Telefoonnummer = "038-40154541",
+            };
+
+            //Arrange
+            Schema.Voertuig voertuig = new Schema.Voertuig
+            {
+                ID = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus",
+                Bestuurder = persoon,
+                Eigenaar = leasemaatschappij
+            };
+
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentVoertuigMapper(voertuig);
+            AgentSchema.Leasemaatschappij actual = (AgentSchema.Leasemaatschappij) result.Eigenaar;
+
+            //Assert
+            Assert.AreEqual(voertuig.Kenteken, result.Kenteken);
+            Assert.AreEqual(voertuig.Merk, result.Merk);
+            Assert.AreEqual(voertuig.Type, result.Type);
+            Assert.AreEqual(voertuig.Bestuurder.Voornaam, result.Bestuurder.Voornaam);
+            Assert.AreEqual(voertuig.Eigenaar.Klantnummer, result.Eigenaar.Klantnummer);
+            Assert.AreEqual(leasemaatschappij.Naam, actual.Naam);
+        }
+
+        [TestMethod]
+        public void SchemaToAgentVoertuigMapperReturnsEigenaarLease()
+        {
+            Schema.Leasemaatschappij leasemaatschappij = new Schema.Leasemaatschappij
+            {
+                ID = 111211,
+                Klantnummer = 123456,
+                Naam = "Infosupprt",
+                Telefoonnummer = "038-40154541",
+            };
+
+            //Arrange
+            Schema.Voertuig voertuig = new Schema.Voertuig
+            {
+                ID = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus",
+                Eigenaar = leasemaatschappij
+            };
+
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentVoertuigMapper(voertuig);
+            var actual = result.Eigenaar;
+
+            //Assert
+            Assert.AreEqual(typeof(AgentSchema.Leasemaatschappij), actual.GetType());
+        }
+
+        [TestMethod]
+        public void SchemaToAgentVoertuigMapperReturnsVoertuig()
+        {
+            //Arrange
+            Schema.Voertuig voertuig = new Schema.Voertuig
+            {
+                ID = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus"
+            };
+
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentVoertuigMapper(voertuig);
+
+            //Assert
+            Assert.AreEqual(typeof(AgentSchema.Voertuig), result.GetType());
+        }
+
+        [TestMethod]
+        public void SchemaToAgentVoertuigMapperReturnsNullIfEmpty()
+        {
+            //Arrange
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentVoertuigMapper(null);
+
+            //Assert
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void SchemaToAgentVoertuigMapperReturnsCorrectData()
+        {
+            //Arrange
+            Schema.Voertuig voertuig = new Schema.Voertuig
+            {
+                ID = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus"
+            };
+
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentVoertuigMapper(voertuig);
+
+            //Assert
+            Assert.AreEqual(voertuig.Kenteken, result.Kenteken);
+            Assert.AreEqual(voertuig.Merk, result.Merk);
+            Assert.AreEqual(voertuig.Type, result.Type);
+        }
+
+        [TestMethod]
+        public void SchemaToAgentVoertuigMapperReturnsCorrectDataBestuurderPersoon()
+        {
+            //Arrange
+            Schema.Voertuig voertuig = new Schema.Voertuig
+            {
+                ID = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus",
+                Bestuurder = new Schema.Persoon
+                {
+                    ID = 111211,
+                    Voornaam = "Marco",
+                    Achternaam = "Pil",
+                    Adres = "St. Jacobsstraat 18",
+                    Emailadres = "marcop@gmail.com",
+                    Klantnummer = 123456,
+                    Postcode = "1574YD",
+                    Telefoonnummer = "038-40154541",
+                    Woonplaats = "Utrecht"
+                }
+            };
+
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentVoertuigMapper(voertuig);
+
+            //Assert
+            Assert.AreEqual(voertuig.Kenteken, result.Kenteken);
+            Assert.AreEqual(voertuig.Merk, result.Merk);
+            Assert.AreEqual(voertuig.Type, result.Type);
+            Assert.AreEqual(voertuig.Bestuurder.Voornaam, result.Bestuurder.Voornaam);
+        }
+
+        [TestMethod]
+        public void SchemaToAgentVoertuigMapperReturnsCorrectDataBestuurderPersoonEigenaarPersoon()
+        {
+            Schema.Persoon persoon = new Schema.Persoon
+            {
+                ID = 111211,
+                Voornaam = "Marco",
+                Achternaam = "Pil",
+                Adres = "St. Jacobsstraat 18",
+                Emailadres = "marcop@gmail.com",
+                Klantnummer = 123456,
+                Postcode = "1574YD",
+                Telefoonnummer = "038-40154541",
+                Woonplaats = "Utrecht"
+            };
+
+            //Arrange
+            Schema.Voertuig voertuig = new Schema.Voertuig
+            {
+                ID = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus",
+                Bestuurder = persoon,
+                Eigenaar = persoon
+            };
+
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentVoertuigMapper(voertuig);
+            AgentSchema.Persoon actual = (AgentSchema.Persoon)result.Eigenaar;
+
+            //Assert
+            Assert.AreEqual(voertuig.Kenteken, result.Kenteken);
+            Assert.AreEqual(voertuig.Merk, result.Merk);
+            Assert.AreEqual(voertuig.Type, result.Type);
+            Assert.AreEqual(voertuig.Bestuurder.Voornaam, result.Bestuurder.Voornaam);
+            Assert.AreEqual(voertuig.Eigenaar.Klantnummer, result.Eigenaar.Klantnummer);
+            Assert.AreEqual(persoon.Voornaam, actual.Voornaam);
+        }
+
+
+        [TestMethod]
+        public void SchemaToAgentVoertuigMapperReturnsCorrectDataBestuurderPersoonEigenaarLease()
+        {
+            Schema.Persoon persoon = new Schema.Persoon
+            {
+                ID = 111211,
+                Voornaam = "Marco",
+                Achternaam = "Pil",
+                Adres = "St. Jacobsstraat 18",
+                Emailadres = "marcop@gmail.com",
+                Klantnummer = 123456,
+                Postcode = "1574YD",
+                Telefoonnummer = "038-40154541",
+                Woonplaats = "Utrecht"
+            };
+
+            Schema.Leasemaatschappij leasemaatschappij = new Schema.Leasemaatschappij
+            {
+                ID = 111211,
+                Klantnummer = 123456,
+                Naam = "Infosupprt",
+                Telefoonnummer = "038-40154541",
+            };
+
+            //Arrange
+            Schema.Voertuig voertuig = new Schema.Voertuig
+            {
+                ID = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus",
+                Bestuurder = persoon,
+                Eigenaar = leasemaatschappij
+            };
+
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentVoertuigMapper(voertuig);
+            AgentSchema.Leasemaatschappij actual = (AgentSchema.Leasemaatschappij)result.Eigenaar;
+
+            //Assert
+            Assert.AreEqual(voertuig.Kenteken, result.Kenteken);
+            Assert.AreEqual(voertuig.Merk, result.Merk);
+            Assert.AreEqual(voertuig.Type, result.Type);
+            Assert.AreEqual(voertuig.Bestuurder.Voornaam, result.Bestuurder.Voornaam);
+            Assert.AreEqual(voertuig.Eigenaar.Klantnummer, result.Eigenaar.Klantnummer);
+            Assert.AreEqual(leasemaatschappij.Naam, actual.Naam);
+        }
+
+        [TestMethod]
+        public void SchemaToAgentVoertuigMapperReturnsEigenaarLease()
+        {
+            Schema.Leasemaatschappij leasemaatschappij = new Schema.Leasemaatschappij
+            {
+                ID = 111211,
+                Klantnummer = 123456,
+                Naam = "Infosupprt",
+                Telefoonnummer = "038-40154541",
+            };
+
+            //Arrange
+            Schema.Voertuig voertuig = new Schema.Voertuig
+            {
+                ID = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus",
+                Eigenaar = leasemaatschappij
+            };
+
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentVoertuigMapper(voertuig);
+            var actual = result.Eigenaar;
+
+            //Assert
+            Assert.AreEqual(typeof(AgentSchema.Leasemaatschappij), actual.GetType());
+        }
     }
 }

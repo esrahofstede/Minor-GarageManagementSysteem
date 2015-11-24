@@ -1159,6 +1159,16 @@ public interface IBSVoertuigEnKlantbeheer
         "sopdrachtToe", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/VoegOnderhoud" +
         "sopdrachtToeResponse")]
     System.Threading.Tasks.Task VoegOnderhoudsopdrachtToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht onderhoudsopdracht);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/WijzigOnderho" +
+        "udsopdracht", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/WijzigOnderho" +
+        "udsopdrachtResponse")]
+    void WijzigOnderhoudsopdracht(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht onderhoudsopdracht);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/WijzigOnderho" +
+        "udsopdracht", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/WijzigOnderho" +
+        "udsopdrachtResponse")]
+    System.Threading.Tasks.Task WijzigOnderhoudsopdrachtAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht onderhoudsopdracht);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1233,5 +1243,15 @@ public partial class BSVoertuigEnKlantbeheerClient : System.ServiceModel.ClientB
     public System.Threading.Tasks.Task VoegOnderhoudsopdrachtToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht onderhoudsopdracht)
     {
         return base.Channel.VoegOnderhoudsopdrachtToeAsync(onderhoudsopdracht);
+    }
+    
+    public void WijzigOnderhoudsopdracht(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht onderhoudsopdracht)
+    {
+        base.Channel.WijzigOnderhoudsopdracht(onderhoudsopdracht);
+    }
+    
+    public System.Threading.Tasks.Task WijzigOnderhoudsopdrachtAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht onderhoudsopdracht)
+    {
+        return base.Channel.WijzigOnderhoudsopdrachtAsync(onderhoudsopdracht);
     }
 }

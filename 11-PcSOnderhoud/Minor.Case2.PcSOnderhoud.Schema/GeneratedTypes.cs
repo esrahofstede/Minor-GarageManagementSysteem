@@ -239,7 +239,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private long IdField;
+        private long IDField;
         
         private string KentekenField;
         
@@ -264,15 +264,15 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long Id
+        public long ID
         {
             get
             {
-                return this.IdField;
+                return this.IDField;
             }
             set
             {
-                this.IdField = value;
+                this.IDField = value;
             }
         }
         
@@ -461,7 +461,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private long IdField;
+        private long IDField;
         
         private System.DateTime AanmeldingsdatumField;
         
@@ -490,15 +490,15 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long Id
+        public long ID
         {
             get
             {
-                return this.IdField;
+                return this.IDField;
             }
             set
             {
-                this.IdField = value;
+                this.IDField = value;
             }
         }
         
@@ -602,7 +602,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private long IdField;
+        private long IDField;
         
         private System.DateTime AfmeldingsdatumField;
         
@@ -623,15 +623,15 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long Id
+        public long ID
         {
             get
             {
-                return this.IdField;
+                return this.IDField;
             }
             set
             {
-                this.IdField = value;
+                this.IDField = value;
             }
         }
         

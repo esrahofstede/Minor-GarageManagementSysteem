@@ -107,7 +107,7 @@
   <xs:element name="VoertuigenCollection" nillable="true" type="tns:VoertuigenCollection" />
   <xs:complexType name="Voertuig">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
       <xs:element name="Kenteken" nillable="true" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
@@ -148,7 +148,7 @@
   <xs:element name="Voertuig" nillable="true" type="tns:Voertuig" />
   <xs:complexType name="Onderhoudsopdracht">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
       <xs:element name="Aanmeldingsdatum" type="xs:dateTime" />
       <xs:element name="Kilometerstand" type="xs:long" />
       <xs:element name="Onderhoudsomschrijving" nillable="true" type="xs:string">
@@ -179,7 +179,7 @@
   <xs:element name="Onderhoudsopdracht" nillable="true" type="tns:Onderhoudsopdracht" />
   <xs:complexType name="Onderhoudswerkzaamheden">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
       <xs:element name="Afmeldingsdatum" type="xs:dateTime" />
       <xs:element name="Kilometerstand" type="xs:long" />
       <xs:element name="Onderhoudswerkzaamhedenomschrijving" nillable="true" type="xs:string">

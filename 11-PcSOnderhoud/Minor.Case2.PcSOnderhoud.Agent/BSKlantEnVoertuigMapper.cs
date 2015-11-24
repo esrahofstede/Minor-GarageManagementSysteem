@@ -118,6 +118,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
 
             return new AgentSchema.Voertuig
             {
+                 Id= voertuig.ID,
                  Kenteken = voertuig.Kenteken,
                  Merk = voertuig.Merk,
                  Type = voertuig.Type,
@@ -125,6 +126,22 @@ namespace Minor.Case2.PcSOnderhoud.Agent
                  Bestuurder = SchemaToAgentPersoonMapper(voertuig.Bestuurder),
             };
         }
+        public Schema.Voertuig AgentToSchemaVoertuigMapper(AgentSchema.Voertuig voertuig)
+        {
+            if (voertuig == null)
+            {
+                return null;
+            }
 
+            return new Schema.Voertuig
+            {
+                ID = voertuig.Id,
+                Kenteken = voertuig.Kenteken,
+                Merk = voertuig.Merk,
+                Type = voertuig.Type,
+                Eigenaar = AgentToSchemaKlantMapper(voertuig.Eigenaar),
+                Bestuurder = AgentToSchemaPersoonMapper(voertuig.Bestuurder)
+            };
+        }
     }
 }
