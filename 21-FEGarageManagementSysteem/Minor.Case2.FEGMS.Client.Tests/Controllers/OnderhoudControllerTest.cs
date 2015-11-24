@@ -325,7 +325,7 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             // Arrange
             var serializer = new JavaScriptSerializer();
             var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
-            mock.Setup(agent => agent.AddOnderhoudsOpdrachtWithKlantAndVoertuig(It.IsAny<Onderhoudsopdracht>()));
+            mock.Setup(agent => agent.AddOnderhoudsopdrachtWithKlantAndVoertuig(It.IsAny<Onderhoudsopdracht>()));
             OnderhoudController controller = new OnderhoudController(mock.Object);
             InsertOnderhoudsopdrachtVM onderhoudsopdracht = DummyData.GetOnderhoudsopdracht();
 
@@ -349,7 +349,7 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             var cookie = controller.HttpContext.Response.Cookies.Get("Voertuiggegevens");
 
             // Assert
-            mock.Verify(agent => agent.AddOnderhoudsOpdrachtWithKlantAndVoertuig(It.IsAny<Onderhoudsopdracht>()));
+            mock.Verify(agent => agent.AddOnderhoudsopdrachtWithKlantAndVoertuig(It.IsAny<Onderhoudsopdracht>()));
             Assert.IsNotNull(result);
             Assert.AreEqual("InsertedOnderhoudsopdracht", result.RouteValues.First().Value);
         }

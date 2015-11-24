@@ -492,23 +492,23 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="VoertuigenSearchCriteria", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
-    public partial class VoertuigenSearchCriteria : object, System.Runtime.Serialization.IExtensibleDataObject
+    [System.Runtime.Serialization.DataContractAttribute(Name="OnderhoudsopdrachtZoekCriteria", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
+    public partial class OnderhoudsopdrachtZoekCriteria : object, System.Runtime.Serialization.IExtensibleDataObject
     {
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         private long IDField;
         
-        private string KentekenField;
+        private System.DateTime AanmeldingsdatumField;
         
-        private string MerkField;
+        private long KilometerstandField;
         
-        private string TypeField;
+        private string OnderhoudsomschrijvingField;
         
-        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Klant EigenaarField;
+        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig VoertuigField;
         
-        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Persoon BestuurderField;
+        private bool APKField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -535,76 +535,76 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public string Kenteken
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
+        public System.DateTime Aanmeldingsdatum
         {
             get
             {
-                return this.KentekenField;
+                return this.AanmeldingsdatumField;
             }
             set
             {
-                this.KentekenField = value;
+                this.AanmeldingsdatumField = value;
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public string Merk
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
+        public long Kilometerstand
         {
             get
             {
-                return this.MerkField;
+                return this.KilometerstandField;
             }
             set
             {
-                this.MerkField = value;
+                this.KilometerstandField = value;
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public string Type
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=3)]
+        public string Onderhoudsomschrijving
         {
             get
             {
-                return this.TypeField;
+                return this.OnderhoudsomschrijvingField;
             }
             set
             {
-                this.TypeField = value;
+                this.OnderhoudsomschrijvingField = value;
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
-        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Klant Eigenaar
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
+        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig Voertuig
         {
             get
             {
-                return this.EigenaarField;
+                return this.VoertuigField;
             }
             set
             {
-                this.EigenaarField = value;
+                this.VoertuigField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
-        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Persoon Bestuurder
+        public bool APK
         {
             get
             {
-                return this.BestuurderField;
+                return this.APKField;
             }
             set
             {
-                this.BestuurderField = value;
+                this.APKField = value;
             }
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="VoertuigenCollection", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema", ItemName="Voertuig")]
-    public class VoertuigenCollection : System.Collections.Generic.List<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig>
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="OnderhoudsopdrachtenCollection", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema", ItemName="Onderhoudsopdracht")]
+    public class OnderhoudsopdrachtenCollection : System.Collections.Generic.List<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht>
     {
     }
     
@@ -814,6 +814,124 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent
             }
         }
     }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="VoertuigenSearchCriteria", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
+    public partial class VoertuigenSearchCriteria : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private long IDField;
+        
+        private string KentekenField;
+        
+        private string MerkField;
+        
+        private string TypeField;
+        
+        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Klant EigenaarField;
+        
+        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Persoon BestuurderField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long ID
+        {
+            get
+            {
+                return this.IDField;
+            }
+            set
+            {
+                this.IDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public string Kenteken
+        {
+            get
+            {
+                return this.KentekenField;
+            }
+            set
+            {
+                this.KentekenField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public string Merk
+        {
+            get
+            {
+                return this.MerkField;
+            }
+            set
+            {
+                this.MerkField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public string Type
+        {
+            get
+            {
+                return this.TypeField;
+            }
+            set
+            {
+                this.TypeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
+        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Klant Eigenaar
+        {
+            get
+            {
+                return this.EigenaarField;
+            }
+            set
+            {
+                this.EigenaarField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
+        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Persoon Bestuurder
+        {
+            get
+            {
+                return this.BestuurderField;
+            }
+            set
+            {
+                this.BestuurderField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="VoertuigenCollection", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema", ItemName="Voertuig")]
+    public class VoertuigenCollection : System.Collections.Generic.List<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig>
+    {
+    }
 }
 namespace Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent
 {
@@ -984,11 +1102,13 @@ namespace Minor.Case2.Exceptions.V1.Schema
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Klant))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Persoon))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Leasemaatschappij))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.VoertuigenSearchCriteria))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.VoertuigenCollection))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.OnderhoudsopdrachtZoekCriteria))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.OnderhoudsopdrachtenCollection))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudswerkzaamheden))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.VoertuigenSearchCriteria))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.VoertuigenCollection))]
     public partial class FunctionalErrorDetail : object, System.Runtime.Serialization.IExtensibleDataObject
     {
         
@@ -1130,6 +1250,26 @@ public interface IBSVoertuigEnKlantbeheer
         "Response")]
     System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection> GetAllKlantenAsync();
     
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllLeasema" +
+        "atschappijen", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllLeasema" +
+        "atschappijenResponse")]
+    Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection GetAllLeasemaatschappijen();
+    
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllLeasema" +
+        "atschappijen", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllLeasema" +
+        "atschappijenResponse")]
+    System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection> GetAllLeasemaatschappijenAsync();
+    
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetOnderhouds" +
+        "opdrachtenBy", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetOnderhouds" +
+        "opdrachtenByResponse")]
+    Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.OnderhoudsopdrachtenCollection GetOnderhoudsopdrachtenBy(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.OnderhoudsopdrachtZoekCriteria zoekCriteria);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetOnderhouds" +
+        "opdrachtenBy", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetOnderhouds" +
+        "opdrachtenByResponse")]
+    System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.OnderhoudsopdrachtenCollection> GetOnderhoudsopdrachtenByAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.OnderhoudsopdrachtZoekCriteria zoekCriteria);
+    
     [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetVoertuigBy" +
         "", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetVoertuigBy" +
         "Response")]
@@ -1213,6 +1353,26 @@ public partial class BSVoertuigEnKlantbeheerClient : System.ServiceModel.ClientB
     public System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection> GetAllKlantenAsync()
     {
         return base.Channel.GetAllKlantenAsync();
+    }
+    
+    public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection GetAllLeasemaatschappijen()
+    {
+        return base.Channel.GetAllLeasemaatschappijen();
+    }
+    
+    public System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection> GetAllLeasemaatschappijenAsync()
+    {
+        return base.Channel.GetAllLeasemaatschappijenAsync();
+    }
+    
+    public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.OnderhoudsopdrachtenCollection GetOnderhoudsopdrachtenBy(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.OnderhoudsopdrachtZoekCriteria zoekCriteria)
+    {
+        return base.Channel.GetOnderhoudsopdrachtenBy(zoekCriteria);
+    }
+    
+    public System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.OnderhoudsopdrachtenCollection> GetOnderhoudsopdrachtenByAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.OnderhoudsopdrachtZoekCriteria zoekCriteria)
+    {
+        return base.Channel.GetOnderhoudsopdrachtenByAsync(zoekCriteria);
     }
     
     public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.VoertuigenCollection GetVoertuigBy(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.VoertuigenSearchCriteria zoekCriteria)

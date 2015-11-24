@@ -42,6 +42,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -55,6 +56,7 @@
   <ItemGroup>
     <Compile Include="AgentPcSOnderhoud.cs" />
     <Compile Include="IAgentPcSOnderhoud.cs" />
+    <Compile Include="KeuringsinstantieConfigSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

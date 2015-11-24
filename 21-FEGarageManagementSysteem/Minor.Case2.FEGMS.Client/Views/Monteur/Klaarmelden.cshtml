@@ -6,10 +6,10 @@
 
 <h2>Klaarmelden</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -28,20 +28,29 @@
         </div>
     </div>
 }
-@if(!string.IsNullOrEmpty(Model?.Message))
+@if (!string.IsNullOrEmpty(Model?.Message))
 {
-    <h1>@Model.Message</h1>
-}
-
-@if (Model != null && Model.APK)
-{
-    <h1 style="color: red;">Er is een steekproef voor deze auto!</h1>
+    <h2 style="text-align:center;">@Model.Message</h2>
 }
 
 @if (Model?.Voertuig != null)
 {
+
+    if (Model != null)
+    {
+        if (Model.Steekproef)
+        {
+            <h1 style="color: red; text-align:center;">Er is een steekproef voor deze auto!</h1>
+        }
+        else
+        {
+            <h1 style="color: green; text-align:center;">Er is geen steekproef voor deze auto!</h1>
+        }
+    }
+
     <div>
         <hr />
+        <h4>Gegevens van de auto</h4>
         <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.Voertuig.Kenteken)

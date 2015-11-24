@@ -209,5 +209,49 @@ namespace Minor.Case2.PcSOnderhoud.Agent
                 Type = searchCriteria.Type,
             };
         }
+
+        public AgentSchema.OnderhoudsopdrachtZoekCriteria SchemaToAgentOnderhoudsOpdrachtSearchCriteriaMapper(Schema.OnderhoudsopdrachtZoekCriteria searchCriteria)
+        {
+            if (searchCriteria == null)
+            {
+                return null;
+            }
+            return new AgentSchema.OnderhoudsopdrachtZoekCriteria
+            {
+                ID = searchCriteria.ID,
+                Aanmeldingsdatum = searchCriteria.Aanmeldingsdatum,
+                APK = searchCriteria.APK,
+                Kilometerstand = searchCriteria.Kilometerstand,
+                Onderhoudsomschrijving = searchCriteria.Onderhoudsomschrijving,
+                Voertuig = SchemaToAgentVoertuigMapper(searchCriteria.Voertuig),
+            };
+        }
+
+        public Schema.OnderhoudsopdrachtZoekCriteria AgentToSchemaOnderhoudsOpdrachtSearchCriteriaMapper(AgentSchema.OnderhoudsopdrachtZoekCriteria searchCriteria)
+        {
+            if (searchCriteria == null)
+            {
+                return null;
+            }
+            return new Schema.OnderhoudsopdrachtZoekCriteria
+            {
+                ID = searchCriteria.ID,
+                Aanmeldingsdatum = searchCriteria.Aanmeldingsdatum,
+                APK = searchCriteria.APK,
+                Kilometerstand = searchCriteria.Kilometerstand,
+                Onderhoudsomschrijving = searchCriteria.Onderhoudsomschrijving,
+                Voertuig = AgentToSchemaVoertuigMapper(searchCriteria.Voertuig),
+            };
+        }
+
+        public AgentSchema.Onderhoudswerkzaamheden SchemaToAgentOnderhoudswerkzaamhedenMapper(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Schema.Onderhoudswerkzaamheden AgentToSchemaOnderhoudswerkzaamhedenMapper(AgentSchema.Onderhoudswerkzaamheden onderhoudswerkzaamheden)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
