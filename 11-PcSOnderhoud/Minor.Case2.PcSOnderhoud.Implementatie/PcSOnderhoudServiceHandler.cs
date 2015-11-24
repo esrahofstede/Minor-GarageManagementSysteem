@@ -24,6 +24,11 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             return null;
         }
 
+        public Schema.KlantenCollection GetAllLeaseMaatschappijen()
+        {
+            throw new NotImplementedException();
+        }
+
         public Schema.VoertuigenCollection GetVoertuigBy(Schema.VoertuigenSearchCriteria zoekCriteria)
         {
             AgentBSKlantEnVoertuigBeheer agent = new AgentBSKlantEnVoertuigBeheer();

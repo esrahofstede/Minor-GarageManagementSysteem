@@ -107,6 +107,32 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             return new Schema.VoertuigenCollection();
         }
 
+        public Schema.OnderhoudsopdrachtZoekCriteria GetOnderhoudsOpdrachtenBy(Schema.OnderhoudsopdrachtZoekCriteria criteria)
+        {
+            try
+            {
+                BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+                var proxy = _factory.CreateAgent();
+
+                //AgentSchema.Onder voertuigen = proxy
+                //    .Get
+                //var query = from voertuig in voertuigen
+                //            select mapper.AgentToSchemaVoertuigMapper(voertuig);
+                //Schema.VoertuigenCollection voertuigenCollection = new Schema.VoertuigenCollection();
+                //voertuigenCollection.AddRange(query);
+                //return voertuigenCollection;
+            }
+            catch (FaultException<FunctionalErrorDetail[]> ex)
+            {
+
+            }
+            catch (InvalidOperationException ex)
+            {
+                Logger.Fatal(ex.InnerException.Message);
+            }
+            return null;
+        }
+
         public Schema.KlantenCollection GetAllKlanten()
         {
             var proxy = _factory.CreateAgent();
