@@ -159,7 +159,7 @@ namespace Minor.Case2.FEGMS.Client.Controllers
 
                 var voertuig = Mapper.MapToVoertuig(leasemaatschappijgegevens, klantgegevens, model);
 
-                _agent.VoegVoertuigMetKlantToe(voertuig);
+                //_agent.VoegVoertuigMetKlantToe(voertuig);
 
                 return RedirectToAction("InsertOnderhoudsopdracht");
             }
@@ -187,24 +187,49 @@ namespace Minor.Case2.FEGMS.Client.Controllers
         {
             if (ModelState.IsValid)
             {
+                var serializer = new JavaScriptSerializer();
                 HttpCookie leasemaatschappijCookie = Request.Cookies.Get("LeasemaatschappijGegevens");
-                var leasemaatschappijgegevens = new JavaScriptSerializer().Deserialize<InsertLeasemaatschappijGegevensVM>(leasemaatschappijCookie.Value);
+                var leasemaatschappijgegevens = serializer.Deserialize<InsertLeasemaatschappijGegevensVM>(leasemaatschappijCookie.Value);
+                leasemaatschappijCookie.Expires = DateTime.Now.AddDays(-1);
 
                 HttpCookie klantgegevensCookie = Request.Cookies.Get("Klantgegevens");
-                var klantgegevens = new JavaScriptSerializer().Deserialize<InsertKlantgegevensVM>(klantgegevensCookie.Value);
+                var klantgegevens = serializer.Deserialize<InsertKlantgegevensVM>(klantgegevensCookie.Value);
+                klantgegevensCookie.Expires = DateTime.Now.AddDays(-1);
 
                 HttpCookie voertuiggegevensCookie = Request.Cookies.Get("Voertuiggegevens");
-                var voertuiggegevens = new JavaScriptSerializer().Deserialize<InsertVoertuiggegevensVM>(voertuiggegevensCookie.Value);
-                var onderhoudsopdracht = Mapper.MapToOnderhoudsopdracht(model, leasemaatschappijgegevens, klantgegevens, voertuiggegevens);
-                //var o = Dumm
-                _agent.AddOnderhoudsOpdrachtWithKlantAndVoertuig(onderhoudsopdracht);
+                var voertuiggegevens = serializer.Deserialize<InsertVoertuiggegevensVM>(voertuiggegevensCookie.Value);
+                voertuiggegevensCookie.Expires = DateTime.Now.AddDays(-1);
 
-                return RedirectToAction("Index");
+                var onderhoudsopdracht = Mapper.MapToOnderhoudsopdracht(model, leasemaatschappijgegevens, klantgegevens, voertuiggegevens);
+                HttpCookie onderhoudsCookie = new HttpCookie("Onderhoudsopdracht", serializer.Serialize(onderhoudsopdracht));
+                Response.Cookies.Add(onderhoudsCookie);
+
+                //_agent.AddOnderhoudsOpdrachtWithKlantAndVoertuig(onderhoudsopdracht);
+
+                return RedirectToAction("InsertedOnderhoudsopdracht");
             }
 
             return View(model);
         }
 
+        /// <summary>
+        /// Displays the onderhoudsopdrachtCookie on the screen
+        /// </summary>
+        /// <returns>View</returns>
+        public ActionResult InsertedOnderhoudsopdracht()
+        {
+            HttpCookie onderhoudsopdrachtCookie = Request.Cookies.Get("Onderhoudsopdracht");
+
+            if (onderhoudsopdrachtCookie == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var onderhoudsopdracht = new JavaScriptSerializer().Deserialize<Onderhoudsopdracht>(onderhoudsopdrachtCookie.Value);
+            onderhoudsopdrachtCookie.Expires = DateTime.Now.AddDays(-1);
+
+            return View(onderhoudsopdracht);
+        }
 
         internal static InsertKlantgegevensVM GetKlantGegevens(bool lease)
         {

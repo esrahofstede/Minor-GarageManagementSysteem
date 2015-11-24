@@ -9,39 +9,72 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
 {
     internal static class DummyData
     {
-        public static Persoon GetDummyPersoon()
+        internal static IEnumerable<Voertuig> GetDummyVoertuigCollection()
         {
-            return new Persoon
+            List<Voertuig> voertuigen = new List<Voertuig>();
+            var v1 = new Voertuig
             {
                 ID = 1,
-                Klantnummer = 1,
-                Voornaam = "Piet",
-                Achternaam = "Pietersen",
+                Kenteken = "NL-123-1",
+                Merk = "Volkswagen",
+                Type = "Polo",
+                Bestuurder = new Persoon(),
+                Eigenaar = new Persoon(),
             };
-        }
-
-        public static Leasemaatschappij GetDummyLeasemaatschappij()
-        {
-            return new Leasemaatschappij
+            var v2 = new Voertuig
             {
                 ID = 2,
-                Klantnummer = 2,
-                Naam = "Sixt",
+                Kenteken = "NL-123-2",
+                Merk = "Volkswagen",
+                Type = "Golf",
+                Bestuurder = new Persoon(),
+                Eigenaar = new Persoon(),
             };
-        }
-
-        public static Voertuig GetDummyVoertuig()
-        {
-            return new Voertuig
+            var v3 = new Voertuig
             {
-                ID = 1,
-                Kenteken = "NL-123-G",
+                ID = 3,
+                Kenteken = "NL-123-3",
                 Merk = "Citroen",
                 Type = "C3",
-                EigenaarID = 1,
-                BestuurderID = 1,
+                Bestuurder = new Persoon(),
+                Eigenaar = new Persoon(),
             };
+
+            voertuigen.AddRange(new Voertuig[] { v1, v2, v3 });
+            return voertuigen;
         }
 
+        internal static IEnumerable<Persoon> GetDummyPersoonCollection()
+        {
+            List<Persoon> personen = new List<Persoon>();
+            var p1 = new Persoon
+            {
+                ID = 1,
+                Voornaam = "Jan"
+            };
+            var p2 = new Persoon
+            {
+                ID = 2,
+                Voornaam = "Peter"
+            };
+
+            personen.AddRange(new Persoon[] { p1, p2 });
+
+            return personen;
+        }
+
+        internal static IEnumerable<Leasemaatschappij> GetDummyLeasemaatschappijCollection()
+        {
+            List<Leasemaatschappij> leasemaatschappijen = new List<Leasemaatschappij>();
+            var l1 = new Leasemaatschappij
+            {
+                ID = 3,
+                Naam = "Sixt"
+                
+            };
+            leasemaatschappijen.AddRange(new Leasemaatschappij[] { l1 });
+
+            return leasemaatschappijen;
+        }
     }
 }

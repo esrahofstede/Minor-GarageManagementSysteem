@@ -27,6 +27,10 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
 
             //Assert
             var all = manager.FindAll();
+
+            mock.Verify(datamapper => datamapper.Insert(It.IsAny<Logging>()));
+            mock.Verify(datamapper => datamapper.FindAll());
+
             var lastLogItem = all.Last();
 
             Assert.AreEqual(new DateTime(2015, 11, 18, 11, 13, 00), lastLogItem.Time);
@@ -54,6 +58,10 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
 
             //Assert
             var all = manager.FindAll();
+
+            mock.Verify(datamapper => datamapper.Insert(It.IsAny<Logging>()));
+            mock.Verify(datamapper => datamapper.FindAll());
+
             var lastLogItem = all.Last();
 
             Assert.AreEqual(new DateTime(2015, 11, 18, 11, 13, 00), lastLogItem.Time);
@@ -77,10 +85,7 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
             bool exceptionWasThrown = false;
             string exceptionMessage = string.Empty;
             var mock = new Mock<IDataMapper<Logging, long>>(MockBehavior.Strict);
-            mock.Setup(datamapper => datamapper.Insert(It.IsAny<Logging>()));
-            mock.Setup(datamapper => datamapper.FindAll()).Returns(DummyData.GetAllKeuringsregistratieLoggings());
-
-
+   
             LoggingManager manager = new LoggingManager(mock.Object);
             apkKeuringsverzoekRequestMessage requestmessage = null;
 
@@ -107,9 +112,6 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
             bool exceptionWasThrown = false;
             string exceptionMessage = string.Empty;
             var mock = new Mock<IDataMapper<Logging, long>>(MockBehavior.Strict);
-            mock.Setup(datamapper => datamapper.Insert(It.IsAny<Logging>()));
-            mock.Setup(datamapper => datamapper.FindAll()).Returns(DummyData.GetAllKeuringsregistratieLoggings());
-
 
             LoggingManager manager = new LoggingManager(mock.Object);
             apkKeuringsverzoekResponseMessage responsemessage = null;

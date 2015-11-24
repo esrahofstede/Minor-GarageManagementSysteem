@@ -199,6 +199,7 @@
     <Content Include="Views\Onderhoud\InsertLeasemaatschappijGegevens.cshtml" />
     <Content Include="Views\Onderhoud\Index.cshtml" />
     <Content Include="Views\Monteur\Klaarmelden.cshtml" />
+    <Content Include="Views\Onderhoud\InsertedOnderhoudsopdracht.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
