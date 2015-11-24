@@ -108,5 +108,23 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             }
             return AgentToSchemaLeaseMaatschappijMapper((AgentSchema.Leasemaatschappij)klant);
         }
+
+        public AgentSchema.Voertuig SchemaToAgentVoertuigMapper(Schema.Voertuig voertuig)
+        {
+            if (voertuig == null)
+            {
+                return null;
+            }
+
+            return new AgentSchema.Voertuig
+            {
+                 Kenteken = voertuig.Kenteken,
+                 Merk = voertuig.Merk,
+                 Type = voertuig.Type,
+                 Eigenaar = SchemaToAgentKlantMapper(voertuig.Eigenaar),
+                 Bestuurder = SchemaToAgentPersoonMapper(voertuig.Bestuurder),
+            };
+        }
+
     }
 }
