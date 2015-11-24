@@ -3,7 +3,7 @@
 namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
 {
     [CLSCompliant(false)]
-    public class PersoonDTOMapper
+    public static class PersoonDTOMapper
     {
         public static Entities.Persoon MapDTOToEntity(BSVoertuigEnKlantbeheer.V1.Schema.Persoon dto)
         {

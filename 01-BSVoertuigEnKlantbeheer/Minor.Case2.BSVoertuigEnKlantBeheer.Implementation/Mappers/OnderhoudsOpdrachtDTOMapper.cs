@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
 {
     [CLSCompliant(false)]
-    public class OnderhoudsOpdrachtDTOMapper
+    public static class OnderhoudsOpdrachtDTOMapper
     {
         public static Entities.Onderhoudsopdracht MapDTOToEntity(BSVoertuigEnKlantbeheer.V1.Schema.Onderhoudsopdracht dto)
         {

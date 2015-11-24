@@ -36,6 +36,7 @@
       <Acronym>APK</Acronym>
       <Acronym>ID</Acronym>
       <Acronym>DTO</Acronym>
+      <Acronym>VoertuigEn</Acronym>
     </CasingExceptions> 
   </Acronyms> 
 </Dictionary>

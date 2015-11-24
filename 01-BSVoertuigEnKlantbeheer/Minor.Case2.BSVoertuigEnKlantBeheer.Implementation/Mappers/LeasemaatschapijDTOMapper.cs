@@ -3,7 +3,7 @@
 namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
 {
     [CLSCompliant(false)]
-    public class LeasemaatschappijDTOMapper
+    public static class LeasemaatschappijDTOMapper
     {
         public static Entities.Leasemaatschappij MapDTOToEntity(BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij dto)
         {
