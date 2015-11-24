@@ -128,7 +128,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\MonteurController.cs" />
     <Compile Include="Controllers\OnderhoudController.cs" />
-    <Compile Include="Controllers\RdwControlleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,8 +191,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <None Include="Service References\ISRDWServiceReferenceService\ISRDWServiceHandler.wsdl" />
-    <Content Include="Views\RdwControlle\Execute.cshtml" />
-    <Content Include="Views\RdwControlle\Index.cshtml" />
     <Content Include="Views\Onderhoud\InsertKlantgegevens.cshtml" />
     <Content Include="Views\Onderhoud\InsertVoertuiggegevens.cshtml" />
     <Content Include="Views\Onderhoud\InsertOnderhoudsopdracht.cshtml" />

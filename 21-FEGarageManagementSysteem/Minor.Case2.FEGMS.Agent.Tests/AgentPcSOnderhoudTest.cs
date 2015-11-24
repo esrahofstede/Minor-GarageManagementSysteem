@@ -70,11 +70,11 @@ namespace Minor.Case2.FEGMS.Agent.Tests
         }
 
         [TestMethod]
-        public void MeldVoertuigKlaarTest()
+        public void MeldVoertuigKlaarWithoutSteekproefTest()
         {
             //Arrange
             var serviceMock = new Mock<IPcSOnderhoudService>(MockBehavior.Strict);
-            serviceMock.Setup(service => service.MeldVoertuigKlaar(It.IsAny<Voertuig>()));
+            serviceMock.Setup(service => service.MeldVoertuigKlaar(It.IsAny<Voertuig>())).Returns(false);
             var factoryMock = new Mock<ServiceFactory<IPcSOnderhoudService>>(MockBehavior.Strict);
             factoryMock.Setup(factory => factory.CreateAgent()).Returns(serviceMock.Object);
 
@@ -82,12 +82,34 @@ namespace Minor.Case2.FEGMS.Agent.Tests
             var voertuig = DummyData.GetDummyVoertuig();
 
             //Act
-            agent.MeldVoertuigKlaar(voertuig);
+            var resultSteekproef = agent.MeldVoertuigKlaar(voertuig);
 
             //Assert
+            Assert.IsFalse(resultSteekproef);
             factoryMock.Verify(factory => factory.CreateAgent());
             serviceMock.Verify(service => service.MeldVoertuigKlaar(It.IsAny<Voertuig>()));
         }
 
+
+        [TestMethod]
+        public void MeldVoertuigKlaarWithSteekproefTest()
+        {
+            //Arrange
+            var serviceMock = new Mock<IPcSOnderhoudService>(MockBehavior.Strict);
+            serviceMock.Setup(service => service.MeldVoertuigKlaar(It.IsAny<Voertuig>())).Returns(true);
+            var factoryMock = new Mock<ServiceFactory<IPcSOnderhoudService>>(MockBehavior.Strict);
+            factoryMock.Setup(factory => factory.CreateAgent()).Returns(serviceMock.Object);
+
+            AgentPcSOnderhoud agent = new AgentPcSOnderhoud(factoryMock.Object);
+            var voertuig = DummyData.GetDummyVoertuig();
+
+            //Act
+            var resultSteekproef = agent.MeldVoertuigKlaar(voertuig);
+
+            //Assert
+            Assert.IsTrue(resultSteekproef);
+            factoryMock.Verify(factory => factory.CreateAgent());
+            serviceMock.Verify(service => service.MeldVoertuigKlaar(It.IsAny<Voertuig>()));
+        }
     }
 }

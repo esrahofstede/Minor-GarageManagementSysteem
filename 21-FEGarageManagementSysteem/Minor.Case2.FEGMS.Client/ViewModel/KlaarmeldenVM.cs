@@ -14,6 +14,6 @@ namespace Minor.Case2.FEGMS.Client.ViewModel
         public string Kenteken { get; set; }
         public Voertuig Voertuig { get; set; }
         public string Message { get; set; }
-        public bool APK { get; set; }
+        public bool Steekproef { get; set; }
     }
 }

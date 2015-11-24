@@ -100,10 +100,11 @@ namespace Minor.Case2.FEGMS.Client.Controllers
             bool cookiesSet = true;
             foreach(var name in names)
             {
-                HttpCookie leasemaatschappijCookie = Request.Cookies.Get(name);
-                if(leasemaatschappijCookie == null)
+                HttpCookie cookie = Request.Cookies.Get(name);
+                if(cookie == null)
                 {
                     cookiesSet = false;
+                    break;
                 }
             }
             return cookiesSet;
