@@ -239,7 +239,7 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private long IdField;
+        private long IDField;
         
         private string KentekenField;
         
@@ -250,6 +250,8 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
         private Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Klant EigenaarField;
         
         private Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Persoon BestuurderField;
+        
+        private string StatusField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -264,15 +266,15 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long Id
+        public long ID
         {
             get
             {
-                return this.IdField;
+                return this.IDField;
             }
             set
             {
-                this.IdField = value;
+                this.IDField = value;
             }
         }
         
@@ -338,6 +340,19 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
             set
             {
                 this.BestuurderField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
+        public string Status
+        {
+            get
+            {
+                return this.StatusField;
+            }
+            set
+            {
+                this.StatusField = value;
             }
         }
     }
@@ -461,7 +476,7 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private long IdField;
+        private long IDField;
         
         private System.DateTime AanmeldingsdatumField;
         
@@ -472,8 +487,6 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
         private Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Voertuig VoertuigField;
         
         private bool APKField;
-        
-        private string StatusField;
         
         private Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Onderhoudswerkzaamheden OnderhoudswerkzaamhedenField;
         
@@ -490,15 +503,15 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long Id
+        public long ID
         {
             get
             {
-                return this.IdField;
+                return this.IDField;
             }
             set
             {
-                this.IdField = value;
+                this.IDField = value;
             }
         }
         
@@ -567,20 +580,7 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
-        public string Status
-        {
-            get
-            {
-                return this.StatusField;
-            }
-            set
-            {
-                this.StatusField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=7)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=6)]
         public Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Onderhoudswerkzaamheden Onderhoudswerkzaamheden
         {
             get
@@ -602,7 +602,7 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private long IdField;
+        private long IDField;
         
         private System.DateTime AfmeldingsdatumField;
         
@@ -623,15 +623,15 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long Id
+        public long ID
         {
             get
             {
-                return this.IdField;
+                return this.IDField;
             }
             set
             {
-                this.IdField = value;
+                this.IDField = value;
             }
         }
         
