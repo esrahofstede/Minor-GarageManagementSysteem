@@ -21,6 +21,11 @@ namespace Minor.Case2.FEGMS.Agent
             _factory = new ServiceFactory<IPcSOnderhoudService>("PcSOnderhoud");
         }
 
+        public AgentPcSOnderhoud(ServiceFactory<IPcSOnderhoudService> factory)
+        {
+            _factory = factory;
+        }
+
         public void AddOnderhoudsOpdrachtWithKlantAndVoertuig(Onderhoudsopdracht opdracht)
         {
             try
