@@ -72,6 +72,7 @@
       <xs:element name="Type" type="xs:string" />
       <xs:element name="Eigenaar" type="bsvk:Klant" />
       <xs:element name="Bestuurder" type="bsvk:Persoon" />
+      <xs:element name="Status" type="xs:string" minOccurs="0" />
     </xs:sequence>
   </xs:complexType>
 
@@ -83,7 +84,6 @@
       <xs:element name="Onderhoudsomschrijving" type="xs:string" />
       <xs:element name="Voertuig" type="bsvk:Voertuig" />
       <xs:element name="APK" type="xs:boolean" />
-      <xs:element name="Status" type="xs:string" minOccurs="0" />
       <xs:element name="Onderhoudswerkzaamheden" type="bsvk:Onderhoudswerkzaamheden" nillable="true" />
     </xs:sequence>
   </xs:complexType>
