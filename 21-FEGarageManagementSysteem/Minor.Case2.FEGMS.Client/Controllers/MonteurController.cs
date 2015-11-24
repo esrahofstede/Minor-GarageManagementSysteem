@@ -1,12 +1,8 @@
 ﻿using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
 using Minor.Case2.FEGMS.Agent;
 using Minor.Case2.FEGMS.Client.ViewModel;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
 
 namespace Minor.Case2.FEGMS.Client.Controllers
 {
@@ -61,7 +57,14 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                 {
                     model.Voertuig = voertuigen.First();
                     model.Steekproef = _agent.MeldVoertuigKlaar(model.Voertuig);
-                    model.Message = $"De auto met het kenteken {model.Kenteken} is klaargemeld.";
+                    if(model.Steekproef)
+                    {
+                        model.Message = $"De auto met het kenteken {model.Kenteken} is klaargemeld.";
+                    }
+                    else
+                    {
+                        model.Message = $"De auto met het kenteken {model.Kenteken} is afgemeld.";
+                    }
                 }
                 else
                 {

@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
 using Moq;
 using Minor.ServiceBus.Agent.Implementation;
+using Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema;
 
 namespace Minor.Case2.FEGMS.Agent.Tests
 {
@@ -22,7 +23,7 @@ namespace Minor.Case2.FEGMS.Agent.Tests
             var onderhoudsopdracht = DummyData.GetDummyOnderhoudsopdracht();
 
             //Act
-            agent.AddOnderhoudsOpdrachtWithKlantAndVoertuig(onderhoudsopdracht);
+            agent.AddOnderhoudsopdrachtWithKlantAndVoertuig(onderhoudsopdracht);
 
             //Assert
             factoryMock.Verify(factory => factory.CreateAgent(), Times.Once());
@@ -74,7 +75,7 @@ namespace Minor.Case2.FEGMS.Agent.Tests
         {
             //Arrange
             var serviceMock = new Mock<IPcSOnderhoudService>(MockBehavior.Strict);
-            serviceMock.Setup(service => service.MeldVoertuigKlaar(It.IsAny<Voertuig>())).Returns(false);
+            serviceMock.Setup(service => service.MeldVoertuigKlaar(It.IsAny<Voertuig>(), It.IsAny<Garage>())).Returns(false);
             var factoryMock = new Mock<ServiceFactory<IPcSOnderhoudService>>(MockBehavior.Strict);
             factoryMock.Setup(factory => factory.CreateAgent()).Returns(serviceMock.Object);
 
@@ -87,7 +88,7 @@ namespace Minor.Case2.FEGMS.Agent.Tests
             //Assert
             Assert.IsFalse(resultSteekproef);
             factoryMock.Verify(factory => factory.CreateAgent());
-            serviceMock.Verify(service => service.MeldVoertuigKlaar(It.IsAny<Voertuig>()));
+            serviceMock.Verify(service => service.MeldVoertuigKlaar(It.IsAny<Voertuig>(), It.IsAny<Garage>()));
         }
 
 
@@ -96,7 +97,7 @@ namespace Minor.Case2.FEGMS.Agent.Tests
         {
             //Arrange
             var serviceMock = new Mock<IPcSOnderhoudService>(MockBehavior.Strict);
-            serviceMock.Setup(service => service.MeldVoertuigKlaar(It.IsAny<Voertuig>())).Returns(true);
+            serviceMock.Setup(service => service.MeldVoertuigKlaar(It.IsAny<Voertuig>(), It.IsAny<Garage>())).Returns(true);
             var factoryMock = new Mock<ServiceFactory<IPcSOnderhoudService>>(MockBehavior.Strict);
             factoryMock.Setup(factory => factory.CreateAgent()).Returns(serviceMock.Object);
 
@@ -109,7 +110,7 @@ namespace Minor.Case2.FEGMS.Agent.Tests
             //Assert
             Assert.IsTrue(resultSteekproef);
             factoryMock.Verify(factory => factory.CreateAgent());
-            serviceMock.Verify(service => service.MeldVoertuigKlaar(It.IsAny<Voertuig>()));
+            serviceMock.Verify(service => service.MeldVoertuigKlaar(It.IsAny<Voertuig>(), It.IsAny<Garage>()));
         }
     }
 }

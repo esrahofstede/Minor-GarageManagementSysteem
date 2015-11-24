@@ -37,20 +37,7 @@ namespace Minor.Case2.FEGMS.Client.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-
-            //var onderhoud = Mapper.MapToOnderhoudsopdracht(GetOnderhoudsopdracht(), GetLeasemaatschappijGegevens(), GetKlantGegevens(true), GetVoertuiggegevens());
-            //onderhoud.Onderhoudswerkzaamheden = new BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudswerkzaamheden
-            //{
-            //    Afmeldingsdatum = DateTime.Now,
-            //    Kilometerstand = 123,
-            //    Onderhoudswerkzaamhedenomschrijving = "werk",
-            //};
-            //onderhoud.Status = "Aan";
-
-
-            //_agent.AddOnderhoudsOpdrachtWithKlantAndVoertuig(onderhoud);
             return View();
-
         }
 
         /// <summary>
@@ -121,7 +108,10 @@ namespace Minor.Case2.FEGMS.Client.Controllers
             {
                 return RedirectToAction("InsertKlantgegevens");
             }
-            return View();
+            InsertLeasemaatschappijGegevensVM model = new InsertLeasemaatschappijGegevensVM();
+            model.Leasemaatschappijen = _agent.GetAllLeasemaatschappijen().Select(lease => new SelectListItem { Value = lease.ID.ToString(), Text = lease.Naam });
+            model.Exist = true;
+            return View(model);
         }
 
         /// <summary>
@@ -141,7 +131,8 @@ namespace Minor.Case2.FEGMS.Client.Controllers
 
                 return RedirectToAction("InsertVoertuiggegevens");
             }
-           
+
+            model.Leasemaatschappijen = _agent.GetAllLeasemaatschappijen().Select(lease => new SelectListItem { Value = lease.ID.ToString(), Text = lease.Naam });
             return View(model);
         }
 
@@ -247,7 +238,7 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                 HttpCookie onderhoudsCookie = new HttpCookie("Onderhoudsopdracht", serializer.Serialize(onderhoudsopdracht));
                 Response.Cookies.Add(onderhoudsCookie);
 
-                _agent.AddOnderhoudsOpdrachtWithKlantAndVoertuig(onderhoudsopdracht);
+                _agent.AddOnderhoudsopdrachtWithKlantAndVoertuig(onderhoudsopdracht);
 
                 return RedirectToAction("InsertedOnderhoudsopdracht");
             }

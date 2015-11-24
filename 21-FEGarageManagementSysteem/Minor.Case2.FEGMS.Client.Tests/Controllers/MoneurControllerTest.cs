@@ -49,7 +49,7 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
 
             var klaarmeldenVW = result.Model as KlaarmeldenVM;
             Assert.IsNotNull(klaarmelden.Voertuig);
-            Assert.AreEqual("De auto met het kenteken DS-344-S is klaargemeld.", klaarmelden.Message);
+            Assert.AreEqual("De auto met het kenteken DS-344-S is afgemeld.", klaarmelden.Message);
             Assert.AreEqual("DS-344-S", klaarmelden.Voertuig.Kenteken);
             Assert.IsFalse(klaarmelden.Steekproef);
         }
