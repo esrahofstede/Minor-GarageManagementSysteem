@@ -269,7 +269,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
         public string Kenteken
         {
             get
@@ -282,7 +282,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
         public string Merk
         {
             get
@@ -295,7 +295,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
         public string Type
         {
             get
@@ -308,7 +308,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
         public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Klant Eigenaar
         {
             get
@@ -321,7 +321,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=5)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
         public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Persoon Bestuurder
         {
             get
@@ -350,7 +350,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private long IdField;
+        private long IDField;
         
         private string KentekenField;
         
@@ -361,6 +361,8 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Klant EigenaarField;
         
         private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Persoon BestuurderField;
+        
+        private string StatusField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -375,15 +377,15 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long Id
+        public long ID
         {
             get
             {
-                return this.IdField;
+                return this.IDField;
             }
             set
             {
-                this.IdField = value;
+                this.IDField = value;
             }
         }
         
@@ -451,6 +453,19 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
                 this.BestuurderField = value;
             }
         }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
+        public string Status
+        {
+            get
+            {
+                return this.StatusField;
+            }
+            set
+            {
+                this.StatusField = value;
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -461,7 +476,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private long IdField;
+        private long IDField;
         
         private System.DateTime AanmeldingsdatumField;
         
@@ -472,8 +487,6 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig VoertuigField;
         
         private bool APKField;
-        
-        private string StatusField;
         
         private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudswerkzaamheden OnderhoudswerkzaamhedenField;
         
@@ -490,15 +503,15 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long Id
+        public long ID
         {
             get
             {
-                return this.IdField;
+                return this.IDField;
             }
             set
             {
-                this.IdField = value;
+                this.IDField = value;
             }
         }
         
@@ -567,20 +580,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
-        public string Status
-        {
-            get
-            {
-                return this.StatusField;
-            }
-            set
-            {
-                this.StatusField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=7)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=6)]
         public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudswerkzaamheden Onderhoudswerkzaamheden
         {
             get
@@ -602,7 +602,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private long IdField;
+        private long IDField;
         
         private System.DateTime AfmeldingsdatumField;
         
@@ -623,15 +623,15 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long Id
+        public long ID
         {
             get
             {
-                return this.IdField;
+                return this.IDField;
             }
             set
             {
-                this.IdField = value;
+                this.IDField = value;
             }
         }
         
@@ -711,10 +711,10 @@ public interface IPcSOnderhoudService
     System.Threading.Tasks.Task VoegOnderhoudsopdrachtToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht);
     
     [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/MeldVoertuigKlaar", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/MeldVoertuigKlaarResponse")]
-    void MeldVoertuigKlaar(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig);
+    bool MeldVoertuigKlaar(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig);
     
     [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/MeldVoertuigKlaar", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/MeldVoertuigKlaarResponse")]
-    System.Threading.Tasks.Task MeldVoertuigKlaarAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig);
+    System.Threading.Tasks.Task<bool> MeldVoertuigKlaarAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -791,12 +791,12 @@ public partial class PcSOnderhoudServiceClient : System.ServiceModel.ClientBase<
         return base.Channel.VoegOnderhoudsopdrachtToeAsync(onderhoudsopdracht);
     }
     
-    public void MeldVoertuigKlaar(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig)
+    public bool MeldVoertuigKlaar(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig)
     {
-        base.Channel.MeldVoertuigKlaar(voertuig);
+        return base.Channel.MeldVoertuigKlaar(voertuig);
     }
     
-    public System.Threading.Tasks.Task MeldVoertuigKlaarAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig)
+    public System.Threading.Tasks.Task<bool> MeldVoertuigKlaarAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig)
     {
         return base.Channel.MeldVoertuigKlaarAsync(voertuig);
     }

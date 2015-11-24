@@ -69,7 +69,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             {
                 BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
                 var proxy = _factory.CreateAgent();
-                //proxy.UpdateVoertuig(mapper.SchemaToAgentVoertuigMapper(voertuig));
+                proxy.UpdateVoertuig(mapper.SchemaToAgentVoertuigMapper(voertuig));
             }
             catch (FaultException<FunctionalErrorDetail[]> ex)
             {

@@ -70,17 +70,18 @@ namespace Minor.Case2.FEGMS.Agent
             return null;
         }
 
-        public void MeldVoertuigKlaar(Voertuig voertuig)
+        public bool MeldVoertuigKlaar(Voertuig voertuig)
         {
             try
             {
                 var proxy = _factory.CreateAgent();
-                proxy.MeldVoertuigKlaar(voertuig);
+                return proxy.MeldVoertuigKlaar(voertuig);
             }
             catch (FaultException ex)
             {
 
             }
+            return false;
         }
     }
 }

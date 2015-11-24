@@ -16,7 +16,7 @@ namespace Minor.Case2.FEGMS.Client
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Onderhoud", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

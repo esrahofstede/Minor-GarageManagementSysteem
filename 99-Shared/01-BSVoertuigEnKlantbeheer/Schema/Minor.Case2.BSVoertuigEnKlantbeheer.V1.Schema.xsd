@@ -30,11 +30,11 @@
   <xs:complexType name="VoertuigenSearchCriteria">
     <xs:sequence>
       <xs:element name="ID" type="xs:long" minOccurs="0" />
-      <xs:element name ="Kenteken" type="xs:string" />
-      <xs:element name="Merk" type="xs:string" />
-      <xs:element name="Type" type="xs:string" />
-      <xs:element name="Eigenaar" type="bsvk:Klant" />
-      <xs:element name="Bestuurder" type="bsvk:Persoon" />
+      <xs:element name ="Kenteken" type="xs:string" nillable="true" />
+      <xs:element name="Merk" type="xs:string" nillable="true" />
+      <xs:element name="Type" type="xs:string" nillable="true" />
+      <xs:element name="Eigenaar" type="bsvk:Klant" nillable="true" />
+      <xs:element name="Bestuurder" type="bsvk:Persoon" nillable="true" />
     </xs:sequence>
   </xs:complexType>
   

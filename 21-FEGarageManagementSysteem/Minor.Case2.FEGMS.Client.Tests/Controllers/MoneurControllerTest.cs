@@ -49,7 +49,31 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
 
             var klaarmeldenVW = result.Model as KlaarmeldenVM;
             Assert.IsNotNull(klaarmelden.Voertuig);
+            Assert.AreEqual("De auto met het kenteken DS-344-S is klaargemeld.", klaarmelden.Message);
             Assert.AreEqual("DS-344-S", klaarmelden.Voertuig.Kenteken);
+        }
+
+        [TestMethod]
+        public void KlaarmeldenPostVoertuigNotFoundTest()
+        {
+            // Arrange
+            var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
+            mock.Setup(agent => agent.GetVoertuigBy(It.IsAny<VoertuigenSearchCriteria>())).Returns(new VoertuigenCollection());
+            MonteurController controller = new MonteurController(mock.Object);
+            KlaarmeldenVM klaarmelden = DummyData.GetKlaarmelden();
+
+            // Act
+            ViewResult result = controller.Klaarmelden(klaarmelden) as ViewResult;
+
+            // Assert
+            mock.Verify(agent => agent.GetVoertuigBy(It.IsAny<VoertuigenSearchCriteria>()));
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result.Model, typeof(KlaarmeldenVM));
+
+            var klaarmeldenVW = result.Model as KlaarmeldenVM;
+            Assert.IsNull(klaarmelden.Voertuig);
+            Assert.AreEqual("De auto met het kenteken DS-344-S kon niet worden gevonden in het systeem.", klaarmelden.Message);
         }
     }
 }

@@ -3,6 +3,7 @@ using Minor.Case2.FEGMS.Agent;
 using Minor.Case2.FEGMS.Client.Helper;
 using Minor.Case2.FEGMS.Client.ViewModel;
 using System;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
@@ -89,12 +90,36 @@ namespace Minor.Case2.FEGMS.Client.Controllers
             return View(model);
         }
 
+        private bool AreCookieSet(params string[] names)
+        {
+            if(!names.Any())
+            {
+                return false;
+            }
+
+            bool cookiesSet = true;
+            foreach(var name in names)
+            {
+                HttpCookie leasemaatschappijCookie = Request.Cookies.Get(name);
+                if(leasemaatschappijCookie == null)
+                {
+                    cookiesSet = false;
+                }
+            }
+            return cookiesSet;
+        }
+
+
         /// <summary>
         /// Show the form to insert Leasemaatschappijgegevens
         /// </summary>
         /// <returns>view</returns>
         public ActionResult InsertLeasemaatschappijGegevens()
         {
+            if (!AreCookieSet("Klantgegevens"))
+            {
+                return RedirectToAction("InsertKlantgegevens");
+            }
             return View();
         }
 
@@ -125,6 +150,10 @@ namespace Minor.Case2.FEGMS.Client.Controllers
         /// <returns>View</returns>
         public ActionResult InsertVoertuiggegevens()
         {
+            if (!AreCookieSet("Klantgegevens"))
+            {
+                return RedirectToAction("InsertKlantgegevens");
+            }
             return View();
         }
 
@@ -173,6 +202,10 @@ namespace Minor.Case2.FEGMS.Client.Controllers
         /// <returns>View</returns>
         public ActionResult InsertOnderhoudsopdracht()
         {
+            if (!AreCookieSet("Klantgegevens", "Voertuiggegevens"))
+            {
+                return RedirectToAction("InsertKlantgegevens");
+            }
             return View();
         }
 
@@ -188,17 +221,26 @@ namespace Minor.Case2.FEGMS.Client.Controllers
             if (ModelState.IsValid)
             {
                 var serializer = new JavaScriptSerializer();
+
                 HttpCookie leasemaatschappijCookie = Request.Cookies.Get("LeasemaatschappijGegevens");
-                var leasemaatschappijgegevens = serializer.Deserialize<InsertLeasemaatschappijGegevensVM>(leasemaatschappijCookie.Value);
-                leasemaatschappijCookie.Expires = DateTime.Now.AddDays(-1);
+
+                InsertLeasemaatschappijGegevensVM leasemaatschappijgegevens = null;
+                if (leasemaatschappijCookie != null)
+                {
+                    leasemaatschappijgegevens = serializer.Deserialize<InsertLeasemaatschappijGegevensVM>(leasemaatschappijCookie.Value);
+                    leasemaatschappijCookie.Expires = DateTime.Now.AddDays(-1);
+                    Response.Cookies.Add(leasemaatschappijCookie);
+                }
 
                 HttpCookie klantgegevensCookie = Request.Cookies.Get("Klantgegevens");
                 var klantgegevens = serializer.Deserialize<InsertKlantgegevensVM>(klantgegevensCookie.Value);
                 klantgegevensCookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(klantgegevensCookie);
 
                 HttpCookie voertuiggegevensCookie = Request.Cookies.Get("Voertuiggegevens");
                 var voertuiggegevens = serializer.Deserialize<InsertVoertuiggegevensVM>(voertuiggegevensCookie.Value);
                 voertuiggegevensCookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(voertuiggegevensCookie);
 
                 var onderhoudsopdracht = Mapper.MapToOnderhoudsopdracht(model, leasemaatschappijgegevens, klantgegevens, voertuiggegevens);
                 HttpCookie onderhoudsCookie = new HttpCookie("Onderhoudsopdracht", serializer.Serialize(onderhoudsopdracht));
@@ -227,6 +269,7 @@ namespace Minor.Case2.FEGMS.Client.Controllers
 
             var onderhoudsopdracht = new JavaScriptSerializer().Deserialize<Onderhoudsopdracht>(onderhoudsopdrachtCookie.Value);
             onderhoudsopdrachtCookie.Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies.Add(onderhoudsopdrachtCookie);
 
             return View(onderhoudsopdracht);
         }
