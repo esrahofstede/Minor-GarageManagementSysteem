@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace Minor.Case2.FEGMS.Client.Controllers
 {
@@ -41,16 +42,22 @@ namespace Minor.Case2.FEGMS.Client.Controllers
             return View();
         }
 
+        [HttpPost]
         public ActionResult Klaarmelden(KlaarmeldenVM model)
         {
             if (ModelState.IsValid)
             {
                 var searchCriteria = new VoertuigenSearchCriteria
                 {
-
+                    Kenteken = model.Kenteken,
                 };
 
                 var voertuigen = _agent.FindVoertuigBy(searchCriteria);
+
+                if(voertuigen.Any())
+                {
+                    model.Voertuig = voertuigen.First();                   
+                }
             }
             return View(model);
         }

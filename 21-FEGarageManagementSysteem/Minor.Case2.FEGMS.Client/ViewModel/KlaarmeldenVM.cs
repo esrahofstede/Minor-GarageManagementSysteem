@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace Minor.Case2.FEGMS.Client.ViewModel
     {
         [Required]
         public string Kenteken { get; set; }
+        public Voertuig Voertuig { get; set; }
     }
 }

@@ -1,0 +1,55 @@
+﻿@model Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht
+
+@{
+    ViewBag.Title = "InsertedOnderhoudsopdracht";
+}
+
+<h2>Onderhoudsopdracht ingevoerd</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Voertuig.Kenteken)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Voertuig.Kenteken)
+        </dd>
+    </dl>
+
+    @if (Model.Voertuig.Bestuurder.Telefoonnummer != Model.Voertuig.Eigenaar.Telefoonnummer)
+    {
+        <dl class="dl-horizontal">
+            <dt>
+                Leasemaatschappij
+            </dt>
+            <dd></dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Voertuig.Eigenaar.Telefoonnummer)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Voertuig.Eigenaar.Telefoonnummer)
+            </dd>
+        </dl>
+    }
+    <dl class="dl-horizontal">
+        <dt>
+            Bestuurder
+        </dt>
+        <dd></dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Voertuig.Bestuurder.Telefoonnummer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Voertuig.Bestuurder.Telefoonnummer)
+        </dd>
+    </dl>
+
+</div>
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@
