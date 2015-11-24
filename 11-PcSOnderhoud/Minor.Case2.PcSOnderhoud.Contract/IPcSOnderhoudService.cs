@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using AgentSchema = Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent;
 using Schema = Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
 
 namespace Minor.Case2.PcSOnderhoud.Contract
@@ -24,7 +25,13 @@ namespace Minor.Case2.PcSOnderhoud.Contract
         void VoegOnderhoudsopdrachtToe(Schema.Onderhoudsopdracht onderhoudsopdracht);
 
         [OperationContract]
-        bool MeldVoertuigKlaar(Schema.Voertuig voertuig);
+        bool MeldVoertuigKlaar(Schema.Voertuig voertuig, AgentSchema.Garage garage);
+
+        [OperationContract]
+        Schema.Onderhoudsopdracht GetHuidigGetHuidigeOnderhoudsopdrachtBy(Schema.VoertuigenSearchCriteria searchCriteria);
+
+        [OperationContract]
+        void VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden);
     }
-    
+
 }

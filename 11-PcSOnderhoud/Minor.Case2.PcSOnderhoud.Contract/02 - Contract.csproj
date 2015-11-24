@@ -75,6 +75,10 @@
     <Content Include="LocationData.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Minor.Case2.PcSOnderhoud.Agent\06 - Agent.csproj">
+      <Project>{BBB1F82F-297C-47F9-A3D6-491DAEF9CD05}</Project>
+      <Name>06 - Agent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Minor.Case2.PcSOnderhoud.Schema\01 - Schema.csproj">
       <Project>{b63a86e2-42ee-4b35-8816-706b3ced8090}</Project>
       <Name>01 - Schema</Name>

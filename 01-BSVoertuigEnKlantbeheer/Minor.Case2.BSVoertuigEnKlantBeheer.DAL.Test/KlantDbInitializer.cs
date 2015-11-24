@@ -17,7 +17,8 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
             {
                 Klantnummer = 1,
                 Voornaam = "Jan",
-                Achternaam = "Jansen"
+                Achternaam = "Jansen",
+                Telefoonnummer = "0506784343",
 
             };
 
@@ -26,13 +27,16 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
                 Klantnummer = 2,
                 Voornaam = "Kees",
                 Tussenvoegsel = "de",
-                Achternaam = "Koning"
+                Achternaam = "Koning",
+                Telefoonnummer = "0405556767",
             };
 
             Leasemaatschappij l1 = new Leasemaatschappij
             {
                 Klantnummer = 3,
-                Naam = "Lease"
+                Naam = "Lease",
+                Telefoonnummer = "030657744",
+                
             };
         
             context.Klanten.AddRange(new Persoon[] { p1, p2 });

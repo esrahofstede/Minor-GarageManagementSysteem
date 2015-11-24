@@ -37,17 +37,11 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             agent.VoegOnderhoudsopdrachtToe(onderhoudsopdracht);
         }
 
-        public bool MeldVoertuigKlaar(Schema.Voertuig voertuig)
+        public bool MeldVoertuigKlaar(Schema.Voertuig voertuig, Garage garage)
         {
             AgentBSKlantEnVoertuigBeheer agentBS = new AgentBSKlantEnVoertuigBeheer();
             AgentISRDW agentIS = new AgentISRDW();
-            Garage garage = new Garage
-            {
-                Kvk = "123245645",
-                Naam = "Caespi",
-                Type = "Garage",
-                Plaats = "Deventer"
-            };
+            
             Keuringsverzoek keuringsverzoek = new Keuringsverzoek
             {
                 Kilometerstand = 100000,
@@ -58,7 +52,17 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             agentBS.UpdateVoertuig(voertuig);
             return agentIS.SendAPKKeuringsverzoek(voertuig, garage, keuringsverzoek).Steekproef;
         }
-        
+
+        public Schema.Onderhoudsopdracht GetHuidigGetHuidigeOnderhoudsopdrachtBy(Schema.VoertuigenSearchCriteria searchCriteria)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden)
+        {
+            throw new NotImplementedException();
+        }
+
         public void VoegVoertuigMetKlantToe(Schema.Voertuig voertuig)
         {
             AgentBSKlantEnVoertuigBeheer agent = new AgentBSKlantEnVoertuigBeheer();

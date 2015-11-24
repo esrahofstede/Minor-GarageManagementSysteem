@@ -20,6 +20,14 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappings
                     .HasMaxLength(300);
             this.Property(p => p.Achternaam)
                     .HasMaxLength(300);
+            this.Property(p => p.Adres)
+                    .HasMaxLength(300);
+            this.Property(p => p.Postcode)
+                    .HasMaxLength(8);
+            this.Property(p => p.Woonplaats)
+                    .HasMaxLength(300);
+            this.Property(k => k.Emailadres)
+                    .HasMaxLength(300);
         }
     }
 }

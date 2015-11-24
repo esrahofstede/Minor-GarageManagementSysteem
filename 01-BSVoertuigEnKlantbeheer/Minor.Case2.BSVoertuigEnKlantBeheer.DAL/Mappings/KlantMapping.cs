@@ -25,11 +25,8 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappings
                 .HasColumnAnnotation("Index",
                 new IndexAnnotation(new IndexAttribute("IX_Klantnr") { IsUnique = true }));
 
-            this.Property(k => k.Adres).HasMaxLength(300);
-            this.Property(k => k.Postcode).HasMaxLength(8);
-            this.Property(k => k.Woonplaats).HasMaxLength(300);
-            this.Property(k => k.Telefoonnummer).HasMaxLength(300);
-            this.Property(k => k.Emailadres).HasMaxLength(300);
+            this.Property(k => k.Telefoonnummer)
+                .HasMaxLength(300);
 
         }
     }

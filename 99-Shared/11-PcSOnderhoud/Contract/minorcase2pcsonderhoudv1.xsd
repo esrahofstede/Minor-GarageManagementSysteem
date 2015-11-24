@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="urn:minor:case2:pcsonderhoud:v1" elementFormDefault="qualified" targetNamespace="urn:minor:case2:pcsonderhoud:v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" />
+  <xs:import namespace="urn:minor-case2-isrijksdienstwegverkeer:v1:schema" />
   <xs:element name="GetAllKlanten">
     <xs:complexType>
       <xs:sequence />
@@ -55,6 +56,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="voertuig" nillable="true" xmlns:q6="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q6:Voertuig" />
+        <xs:element minOccurs="0" name="garage" nillable="true" xmlns:q7="urn:minor-case2-isrijksdienstwegverkeer:v1:schema" type="q7:Garage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -63,6 +65,32 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="MeldVoertuigKlaarResult" type="xs:boolean" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetHuidigGetHuidigeOnderhoudsopdrachtBy">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="searchCriteria" nillable="true" xmlns:q8="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q8:VoertuigenSearchCriteria" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetHuidigGetHuidigeOnderhoudsopdrachtByResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetHuidigGetHuidigeOnderhoudsopdrachtByResult" nillable="true" xmlns:q9="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q9:Onderhoudsopdracht" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VoegOnderhoudswerkzaamhedenToe">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="onderhoudswerkzaamheden" nillable="true" xmlns:q10="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q10:Onderhoudswerkzaamheden" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VoegOnderhoudswerkzaamhedenToeResponse">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
 </xs:schema>
