@@ -27,6 +27,14 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Test
                 Kenteken = "NL-123-G",
                 Merk = "Citroen",
                 Type = "C3",
+                Eigenaar = new Persoon
+                {
+                    ID = 2
+                },
+                Bestuurder = new Persoon
+                {
+                    ID = 2
+                },
                 EigenaarID = 2,
                 BestuurderID = 2,           
             };

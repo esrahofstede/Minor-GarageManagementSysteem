@@ -8,9 +8,11 @@ using System.Threading.Tasks;
 using Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema;
 using Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappers;
 using Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers;
+using Minor.Case2.BSVoertuigEnKlantBeheer.Entities;
 
 namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
 {
+    [CLSCompliant(false)]
     public class BSVoertuigEnKlantbeheerHandler : IBSVoertuigEnKlantbeheer
     {
         IDataMapper<Entities.Persoon, long>  _persoonDataMapper;
@@ -39,6 +41,11 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
             _voertuigDataMapper = voertuigDataMapper;
         }
 
+        public BSVoertuigEnKlantbeheerHandler(IDataMapper<Entities.Voertuig, long> voertuigDataMapper)
+        {
+            _voertuigDataMapper = voertuigDataMapper;
+        }
+
         /// <summary>
         /// Get all Personen and Leasemaatschappijen from the database
         /// </summary>
@@ -52,8 +59,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
                 klantenCollection.Add(PersoonDTOMapper.MapEntityToDTO(persoonEntity));
             }
 
-            LeasemaatschappijDataMapper leasemaatschappijDataMapper = new LeasemaatschappijDataMapper();
-            foreach (var leaseEntity in leasemaatschappijDataMapper.FindAll())
+            foreach (var leaseEntity in _leaseDataMapper.FindAll())
             {
                 klantenCollection.Add(LeasemaatschappijDTOMapper.MapEntityToDTO(leaseEntity));
             }
@@ -67,14 +73,48 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
         /// <returns></returns>
         public VoertuigenCollection GetVoertuigBy(VoertuigenSearchCriteria zoekCriteria)
         {
-            throw new NotImplementedException();
+            VoertuigenCollection voertuigenCollection = new VoertuigenCollection();
+
+            IEnumerable<Entities.Voertuig> voertuigen = _voertuigDataMapper.FindAll();
+
+            if (!string.IsNullOrEmpty(zoekCriteria.Kenteken))
+            {
+                voertuigen = voertuigen.Where(v => v.Kenteken == zoekCriteria.Kenteken);
+            }
+            if (zoekCriteria.ID > 0)
+            {
+                voertuigen = voertuigen.Where(v => v.ID == zoekCriteria.ID);
+            }
+            if (!string.IsNullOrEmpty(zoekCriteria.Merk))
+            {
+                voertuigen = voertuigen.Where(v => v.Merk == zoekCriteria.Merk);
+            }
+            if (!string.IsNullOrEmpty(zoekCriteria.Type))
+            {
+                voertuigen = voertuigen.Where(v => v.Type == zoekCriteria.Type);
+            }
+            if (zoekCriteria.Bestuurder != null && zoekCriteria.Bestuurder.ID > 0)
+            {
+                voertuigen = voertuigen.Where(v => v.Bestuurder.ID == zoekCriteria.Bestuurder.ID);
+            }
+            if (zoekCriteria.Eigenaar != null && zoekCriteria.Eigenaar.ID > 0)
+            {
+                voertuigen = voertuigen.Where(v => v.Eigenaar.ID == zoekCriteria.Eigenaar.ID);
+            }
+
+            foreach (var voertuigEntity in voertuigen.ToList())
+            {
+                voertuigenCollection.Add(VoertuigDTOMapper.MapEntityToDTO(voertuigEntity));
+            }
+            return voertuigenCollection;
+
         }
 
         /// <summary>
         /// Add a new voertuig to the database with new klant and leasemaatschappij
         /// </summary>
         /// <param name="voertuig"></param>
-        public void VoegVoertuigMetKlantToe(Voertuig voertuig)
+        public void VoegVoertuigMetKlantToe(BSVoertuigEnKlantbeheer.V1.Schema.Voertuig voertuig)
         {
             Entities.Voertuig v = VoertuigDTOMapper.MapDTOToEntity(voertuig);
             long bestuurderID = -1;
@@ -110,7 +150,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
         /// Update a existing onderhoudsopdracht
         /// </summary>
         /// <param name="onderhoudsopdracht"></param>
-        public void WijzigOnderhoudsopdracht(Onderhoudsopdracht onderhoudsopdracht)
+        public void WijzigOnderhoudsopdracht(BSVoertuigEnKlantbeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht)
         {
             throw new NotImplementedException();
         }
@@ -119,7 +159,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
         /// Add a new onderhoudsopdracht to the database
         /// </summary>
         /// <param name="onderhoudsopdracht"></param>
-        public void VoegOnderhoudsopdrachtToe(Onderhoudsopdracht onderhoudsopdracht)
+        public void VoegOnderhoudsopdrachtToe(BSVoertuigEnKlantbeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht)
         {
             throw new NotImplementedException();
         }
