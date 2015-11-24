@@ -38,6 +38,7 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
         public void MeldVoertuigKlaar(Voertuig voertuig)
         {
             AgentBSKlantEnVoertuigBeheer agent = new AgentBSKlantEnVoertuigBeheer();
+            voertuig.Status = "Klaar";
             agent.UpdateVoertuig(voertuig);
         }
         
