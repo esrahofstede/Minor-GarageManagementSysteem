@@ -28,12 +28,12 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
         }
 
         [TestMethod]
-        public void KlaarmeldenPostTest()
+        public void KlaarmeldenPostWithoutSteekproefTest()
         {
             // Arrange
             var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
             mock.Setup(agent => agent.GetVoertuigBy(It.IsAny<VoertuigenSearchCriteria>())).Returns(DummyData.GetVoertuigenCollection());
-            mock.Setup(agent => agent.MeldVoertuigKlaar(It.IsAny<Voertuig>()));
+            mock.Setup(agent => agent.MeldVoertuigKlaar(It.IsAny<Voertuig>())).Returns(false);
             MonteurController controller = new MonteurController(mock.Object);
             KlaarmeldenVM klaarmelden = DummyData.GetKlaarmelden();
 
@@ -51,6 +51,34 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             Assert.IsNotNull(klaarmelden.Voertuig);
             Assert.AreEqual("De auto met het kenteken DS-344-S is klaargemeld.", klaarmelden.Message);
             Assert.AreEqual("DS-344-S", klaarmelden.Voertuig.Kenteken);
+            Assert.IsFalse(klaarmelden.Steekproef);
+        }
+
+        [TestMethod]
+        public void KlaarmeldenPostWithSteekproefTest()
+        {
+            // Arrange
+            var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
+            mock.Setup(agent => agent.GetVoertuigBy(It.IsAny<VoertuigenSearchCriteria>())).Returns(DummyData.GetVoertuigenCollection());
+            mock.Setup(agent => agent.MeldVoertuigKlaar(It.IsAny<Voertuig>())).Returns(true);
+            MonteurController controller = new MonteurController(mock.Object);
+            KlaarmeldenVM klaarmelden = DummyData.GetKlaarmelden();
+
+            // Act
+            ViewResult result = controller.Klaarmelden(klaarmelden) as ViewResult;
+
+            // Assert
+            mock.Verify(agent => agent.GetVoertuigBy(It.IsAny<VoertuigenSearchCriteria>()));
+            mock.Verify(agent => agent.MeldVoertuigKlaar(It.IsAny<Voertuig>()));
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result.Model, typeof(KlaarmeldenVM));
+
+            var klaarmeldenVW = result.Model as KlaarmeldenVM;
+            Assert.IsNotNull(klaarmelden.Voertuig);
+            Assert.AreEqual("De auto met het kenteken DS-344-S is klaargemeld.", klaarmelden.Message);
+            Assert.AreEqual("DS-344-S", klaarmelden.Voertuig.Kenteken);
+            Assert.IsTrue(klaarmelden.Steekproef);
         }
 
         [TestMethod]
