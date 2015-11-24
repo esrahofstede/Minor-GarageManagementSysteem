@@ -88,6 +88,23 @@
     </xs:sequence>
   </xs:complexType>
 
+  <xs:complexType name="OnderhoudsopdrachtenCollection">
+    <xs:sequence>
+      <xs:element name ="Onderhoudsopdracht" type="bsvk:Onderhoudsopdracht" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="OnderhoudsopdrachtZoekCriteria">
+    <xs:sequence>
+      <xs:element name="ID" type="xs:long" minOccurs="0" />
+      <xs:element name="Aanmeldingsdatum" type="xs:dateTime" />
+      <xs:element name="Kilometerstand" type="xs:long" />
+      <xs:element name="Onderhoudsomschrijving" type="xs:string" />
+      <xs:element name="Voertuig" type="bsvk:Voertuig" />
+      <xs:element name="APK" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  
   <xs:complexType name="Onderhoudswerkzaamheden">
     <xs:sequence>
       <xs:element name="ID" type="xs:long" minOccurs="0" />
@@ -97,4 +114,6 @@
     </xs:sequence>
   </xs:complexType>
 
+  
+  
 </xs:schema>
