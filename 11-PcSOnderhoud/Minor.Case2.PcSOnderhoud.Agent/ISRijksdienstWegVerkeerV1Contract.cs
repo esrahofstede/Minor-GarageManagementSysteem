@@ -1160,15 +1160,15 @@ public interface IBSVoertuigEnKlantbeheer
         "sopdrachtToeResponse")]
     System.Threading.Tasks.Task VoegOnderhoudsopdrachtToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht onderhoudsopdracht);
     
-    [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/WijzigOnderho" +
-        "udsopdracht", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/WijzigOnderho" +
-        "udsopdrachtResponse")]
-    void WijzigOnderhoudsopdracht(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht onderhoudsopdracht);
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/MeldVoertuigK" +
+        "laar", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/MeldVoertuigK" +
+        "laarResponse")]
+    void MeldVoertuigKlaar(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig voertuig);
     
-    [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/WijzigOnderho" +
-        "udsopdracht", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/WijzigOnderho" +
-        "udsopdrachtResponse")]
-    System.Threading.Tasks.Task WijzigOnderhoudsopdrachtAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht onderhoudsopdracht);
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/MeldVoertuigK" +
+        "laar", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/MeldVoertuigK" +
+        "laarResponse")]
+    System.Threading.Tasks.Task MeldVoertuigKlaarAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig voertuig);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1245,13 +1245,13 @@ public partial class BSVoertuigEnKlantbeheerClient : System.ServiceModel.ClientB
         return base.Channel.VoegOnderhoudsopdrachtToeAsync(onderhoudsopdracht);
     }
     
-    public void WijzigOnderhoudsopdracht(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht onderhoudsopdracht)
+    public void MeldVoertuigKlaar(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig voertuig)
     {
-        base.Channel.WijzigOnderhoudsopdracht(onderhoudsopdracht);
+        base.Channel.MeldVoertuigKlaar(voertuig);
     }
     
-    public System.Threading.Tasks.Task WijzigOnderhoudsopdrachtAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht onderhoudsopdracht)
+    public System.Threading.Tasks.Task MeldVoertuigKlaarAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig voertuig)
     {
-        return base.Channel.WijzigOnderhoudsopdrachtAsync(onderhoudsopdracht);
+        return base.Channel.MeldVoertuigKlaarAsync(voertuig);
     }
 }

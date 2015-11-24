@@ -1,12 +1,14 @@
 ﻿using Minor.ServiceBus.Agent.Implementation;
 using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent;
-using Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent;
+using AgentISSchema = Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.Agent;
+using AgentISMessages = Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.Agent;
+using Schema = Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
+using AgentBSSchema = Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent;
 
 namespace Minor.Case2.PcSOnderhoud.Agent
 {
@@ -25,16 +27,22 @@ namespace Minor.Case2.PcSOnderhoud.Agent
         {
             _factory = factory;
         }
-        public SendRdwKeuringsverzoekResponseMessage SendAPKKeuringsverzoek(Voertuig voertuig, Garage garage, Keuringsverzoek keuringsverzoek)
+        public AgentISMessages.SendRdwKeuringsverzoekResponseMessage SendAPKKeuringsverzoek(Schema.Voertuig voertuig, AgentISSchema.Garage garage, AgentISSchema.Keuringsverzoek keuringsverzoek)
         {
             var proxy =_factory.CreateAgent();
-            var apkKeuringsverzoek = new SendRdwKeuringsverzoekRequestMessage
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+            var apkKeuringsverzoek = new AgentISMessages.SendRdwKeuringsverzoekRequestMessage
             {
-                Voertuig = voertuig,
+                Voertuig = mapper.SchemaToAgentVoertuigMapper(voertuig),
                 Garage =  garage,
-                Keuringsverzoek = keuringsverzoek
+                Keuringsverzoek = new AgentISSchema.Keuringsverzoek
+                {
+                    Kilometerstand = 1000,
+                    Date = DateTime.Now,
+                    CorrolatieId = Guid.NewGuid().ToString()
+                }
             };
-            var result = proxy.RequestKeuringsverzoek(apkKeuringsverzoek);
+            AgentISMessages.SendRdwKeuringsverzoekResponseMessage result = proxy.RequestKeuringsverzoek(apkKeuringsverzoek);
             return result;
         }
     }

@@ -179,5 +179,35 @@ namespace Minor.Case2.PcSOnderhoud.Agent
                 Voertuig = AgentToSchemaVoertuigMapper(onderhoudsopdracht.Voertuig)
             };
         }
+
+        public Schema.VoertuigenSearchCriteria AgentToSchemaVoertuigSearchCriteriaMapper(AgentSchema.VoertuigenSearchCriteria searchCriteria)
+        {
+            if (searchCriteria == null)
+            {
+                return null;
+            }
+            return new Schema.VoertuigenSearchCriteria
+            {
+                ID = searchCriteria.ID,
+                Kenteken = searchCriteria.Kenteken,
+                Merk = searchCriteria.Merk,
+                Type = searchCriteria.Type,
+            };
+        }
+
+        public AgentSchema.VoertuigenSearchCriteria SchemaToAgentVoertuigSearchCriteriaMapper(Schema.VoertuigenSearchCriteria searchCriteria)
+        {
+            if (searchCriteria == null)
+            {
+                return null;
+            }
+            return new AgentSchema.VoertuigenSearchCriteria
+            {
+                ID = searchCriteria.ID,
+                Kenteken = searchCriteria.Kenteken,
+                Merk = searchCriteria.Merk,
+                Type = searchCriteria.Type,
+            };
+        }
     }
 }

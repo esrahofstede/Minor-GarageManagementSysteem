@@ -88,14 +88,8 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             {
                 BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
                 var proxy = _factory.CreateAgent();
-                AgentSchema.VoertuigenSearchCriteria searchCriteria = new AgentSchema.VoertuigenSearchCriteria
-                {
-                    ID = criteria.ID,
-                    Kenteken = criteria.Kenteken,
-                    Merk = criteria.Merk,
-                    Type = criteria.Type
-                };
-                AgentSchema.VoertuigenCollection voertuigen = proxy.GetVoertuigBy(searchCriteria);
+                AgentSchema.VoertuigenCollection voertuigen = proxy
+                    .GetVoertuigBy(mapper.SchemaToAgentVoertuigSearchCriteriaMapper(criteria));
                 var query = from voertuig in voertuigen
                     select mapper.AgentToSchemaVoertuigMapper(voertuig);
                 Schema.VoertuigenCollection voertuigenCollection = new Schema.VoertuigenCollection();

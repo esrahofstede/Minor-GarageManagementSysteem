@@ -60,7 +60,9 @@
   </xs:element>
   <xs:element name="MeldVoertuigKlaarResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="MeldVoertuigKlaarResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
 </xs:schema>
