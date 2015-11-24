@@ -32,7 +32,8 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
         {
             // Arrange
             var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
-            mock.Setup(agent => agent.FindVoertuigBy(It.IsAny<VoertuigenSearchCriteria>())).Returns(DummyData.GetVoertuigenCollection());
+            mock.Setup(agent => agent.GetVoertuigBy(It.IsAny<VoertuigenSearchCriteria>())).Returns(DummyData.GetVoertuigenCollection());
+            mock.Setup(agent => agent.MeldVoertuigKlaar(It.IsAny<Voertuig>()));
             MonteurController controller = new MonteurController(mock.Object);
             KlaarmeldenVM klaarmelden = DummyData.GetKlaarmelden();
 
@@ -40,7 +41,9 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             ViewResult result = controller.Klaarmelden(klaarmelden) as ViewResult;
 
             // Assert
-            mock.Verify(agent => agent.FindVoertuigBy(It.IsAny<VoertuigenSearchCriteria>()));
+            mock.Verify(agent => agent.GetVoertuigBy(It.IsAny<VoertuigenSearchCriteria>()));
+            mock.Verify(agent => agent.MeldVoertuigKlaar(It.IsAny<Voertuig>()));
+
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result.Model, typeof(KlaarmeldenVM));
 

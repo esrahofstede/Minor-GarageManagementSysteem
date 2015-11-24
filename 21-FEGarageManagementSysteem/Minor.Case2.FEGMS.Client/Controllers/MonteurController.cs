@@ -55,11 +55,12 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                     Kenteken = model.Kenteken,
                 };
 
-                var voertuigen = _agent.FindVoertuigBy(searchCriteria);
+                var voertuigen = _agent.GetVoertuigBy(searchCriteria);
 
                 if(voertuigen.Any())
                 {
-                    model.Voertuig = voertuigen.First();                   
+                    model.Voertuig = voertuigen.First();
+                    _agent.MeldVoertuigKlaar(model.Voertuig);           
                 }
             }
             return View(model);

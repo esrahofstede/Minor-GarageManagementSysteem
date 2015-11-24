@@ -56,7 +56,7 @@ namespace Minor.Case2.FEGMS.Agent
             }
         }
 
-        public VoertuigenCollection FindVoertuigBy(VoertuigenSearchCriteria critera)
+        public VoertuigenCollection GetVoertuigBy(VoertuigenSearchCriteria critera)
         {
             try
             {
@@ -68,6 +68,19 @@ namespace Minor.Case2.FEGMS.Agent
 
             }
             return null;
+        }
+
+        public void MeldVoertuigKlaar(Voertuig voertuig)
+        {
+            try
+            {
+                var proxy = _factory.CreateAgent();
+                proxy.MeldVoertuigKlaar(voertuig);
+            }
+            catch (FaultException ex)
+            {
+
+            }
         }
     }
 }

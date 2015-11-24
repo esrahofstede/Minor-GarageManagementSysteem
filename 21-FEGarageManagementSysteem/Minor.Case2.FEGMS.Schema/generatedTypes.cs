@@ -710,13 +710,11 @@ public interface IPcSOnderhoudService
         "ponse")]
     System.Threading.Tasks.Task VoegOnderhoudsopdrachtToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht);
     
-    [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/WijzigOnderhoudsopdracht", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/WijzigOnderhoudsopdrachtResp" +
-        "onse")]
-    void WijzigOnderhoudsopdracht(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht);
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/MeldVoertuigKlaar", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/MeldVoertuigKlaarResponse")]
+    void MeldVoertuigKlaar(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig);
     
-    [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/WijzigOnderhoudsopdracht", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/WijzigOnderhoudsopdrachtResp" +
-        "onse")]
-    System.Threading.Tasks.Task WijzigOnderhoudsopdrachtAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht);
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/MeldVoertuigKlaar", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/MeldVoertuigKlaarResponse")]
+    System.Threading.Tasks.Task MeldVoertuigKlaarAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -793,13 +791,13 @@ public partial class PcSOnderhoudServiceClient : System.ServiceModel.ClientBase<
         return base.Channel.VoegOnderhoudsopdrachtToeAsync(onderhoudsopdracht);
     }
     
-    public void WijzigOnderhoudsopdracht(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht)
+    public void MeldVoertuigKlaar(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig)
     {
-        base.Channel.WijzigOnderhoudsopdracht(onderhoudsopdracht);
+        base.Channel.MeldVoertuigKlaar(voertuig);
     }
     
-    public System.Threading.Tasks.Task WijzigOnderhoudsopdrachtAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht)
+    public System.Threading.Tasks.Task MeldVoertuigKlaarAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig)
     {
-        return base.Channel.WijzigOnderhoudsopdrachtAsync(onderhoudsopdracht);
+        return base.Channel.MeldVoertuigKlaarAsync(voertuig);
     }
 }

@@ -62,13 +62,32 @@ namespace Minor.Case2.FEGMS.Agent.Tests
             var searchCriteria = DummyData.GetSearchCriteria();
 
             //Act
-            agent.FindVoertuigBy(searchCriteria);
+            agent.GetVoertuigBy(searchCriteria);
 
             //Assert
             factoryMock.Verify(factory => factory.CreateAgent());
             serviceMock.Verify(service => service.GetVoertuigBy(It.IsAny<VoertuigenSearchCriteria>()));
         }
 
+        [TestMethod]
+        public void MeldVoertuigKlaarTest()
+        {
+            //Arrange
+            var serviceMock = new Mock<IPcSOnderhoudService>(MockBehavior.Strict);
+            serviceMock.Setup(service => service.MeldVoertuigKlaar(It.IsAny<Voertuig>()));
+            var factoryMock = new Mock<ServiceFactory<IPcSOnderhoudService>>(MockBehavior.Strict);
+            factoryMock.Setup(factory => factory.CreateAgent()).Returns(serviceMock.Object);
+
+            AgentPcSOnderhoud agent = new AgentPcSOnderhoud(factoryMock.Object);
+            var voertuig = DummyData.GetDummyVoertuig();
+
+            //Act
+            agent.MeldVoertuigKlaar(voertuig);
+
+            //Assert
+            factoryMock.Verify(factory => factory.CreateAgent());
+            serviceMock.Verify(service => service.MeldVoertuigKlaar(It.IsAny<Voertuig>()));
+        }
 
     }
 }
