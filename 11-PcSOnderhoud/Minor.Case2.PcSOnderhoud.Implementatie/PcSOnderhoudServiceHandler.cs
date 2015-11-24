@@ -37,17 +37,11 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             agent.VoegOnderhoudsopdrachtToe(onderhoudsopdracht);
         }
 
-        public bool MeldVoertuigKlaar(Schema.Voertuig voertuig)
+        public bool MeldVoertuigKlaar(Schema.Voertuig voertuig, Garage garage)
         {
             AgentBSKlantEnVoertuigBeheer agentBS = new AgentBSKlantEnVoertuigBeheer();
             AgentISRDW agentIS = new AgentISRDW();
-            Garage garage = new Garage
-            {
-                Kvk = "123245645",
-                Naam = "Caespi",
-                Type = "Garage",
-                Plaats = "Deventer"
-            };
+            
             Keuringsverzoek keuringsverzoek = new Keuringsverzoek
             {
                 Kilometerstand = 100000,
