@@ -62,7 +62,7 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
                         Voornaam = "jan",
                         Achternaam = "jansen"
                     },
-                    Id = 1
+                    ID = 1
                 },
                 Keuringsverzoek = new ISRijksdienstWegVerkeer.V1.Schema.Keuringsverzoek
                 {
