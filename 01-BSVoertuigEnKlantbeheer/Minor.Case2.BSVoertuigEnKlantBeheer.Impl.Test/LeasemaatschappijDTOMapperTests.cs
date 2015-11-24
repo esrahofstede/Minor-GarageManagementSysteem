@@ -38,11 +38,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
             {
                 Klantnummer = 100,
                 Naam = "Sixt",
-                Emailadres = "info@sixt.nl",
-                Adres = "Utrechtseweg 10",
-                Postcode = "1234AB",
                 Telefoonnummer = "040-1234567",
-                Woonplaats = "Utrecht"
             };
 
             // Act
