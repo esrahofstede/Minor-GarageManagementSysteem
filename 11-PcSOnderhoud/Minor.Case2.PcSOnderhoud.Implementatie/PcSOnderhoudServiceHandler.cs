@@ -25,7 +25,8 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
 
         public VoertuigenCollection GetVoertuigBy(VoertuigenSearchCriteria zoekCriteria)
         {
-            throw new NotImplementedException();
+            AgentBSKlantEnVoertuigBeheer agent = new AgentBSKlantEnVoertuigBeheer();
+            return agent.GetVoertuigBy(zoekCriteria);
         }
 
         public void VoegOnderhoudsopdrachtToe(Onderhoudsopdracht onderhoudsopdracht)
