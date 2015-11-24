@@ -18,10 +18,10 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Contract
         KlantenCollection GetAllLeasemaatschappijen();
 
         [OperationContract]
-        OnderhoudsopdrachtenCollection GetOnderhoudsopdrachtenBy(VoertuigenSearchCriteria zoekCriteria);
+        OnderhoudsopdrachtenCollection GetOnderhoudsopdrachtenBy(OnderhoudsopdrachtZoekCriteria zoekCriteria);
 
         [OperationContract]
-        VoertuigenCollection GetVoertuigBy(OnderhoudsopdrachtZoekCriteria zoekCriteria);
+        VoertuigenCollection GetVoertuigBy(VoertuigenSearchCriteria zoekCriteria);
 
         [OperationContract]
         void VoegVoertuigMetKlantToe(Voertuig voertuig);

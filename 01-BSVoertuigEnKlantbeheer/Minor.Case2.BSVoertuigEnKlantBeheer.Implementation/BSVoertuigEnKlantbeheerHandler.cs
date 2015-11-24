@@ -68,10 +68,6 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
             return klantenCollection;
         }
 
-        public OnderhoudsopdrachtenCollection GetOnderhoudsopdrachtenBy(OnderhoudsopdrachtZoekCriteria zoekCriteria)
-        {
-            throw new NotImplementedException();
-        }
 
         /// <summary>
         /// Get all Personen and Leasemaatschappijen from the database
@@ -232,6 +228,11 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
             
         }
 
+        public OnderhoudsopdrachtenCollection GetOnderhoudsopdrachtenBy(OnderhoudsopdrachtZoekCriteria zoekCriteria)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Update the voertuig object
         /// </summary>
@@ -253,5 +254,6 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
                 throw new FaultException<FunctionalErrorDetail[]>(new FunctionalErrorDetail[] { ex });
             }           
         }
+
     }
 }
