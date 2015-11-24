@@ -107,20 +107,20 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             return new Schema.VoertuigenCollection();
         }
 
-        public Schema.OnderhoudsopdrachtZoekCriteria GetOnderhoudsOpdrachtenBy(Schema.OnderhoudsopdrachtZoekCriteria criteria)
+        public Schema.OnderhoudsopdrachtenCollection GetOnderhoudsOpdrachtenBy(Schema.OnderhoudsopdrachtZoekCriteria criteria)
         {
             try
             {
                 BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
                 var proxy = _factory.CreateAgent();
 
-                //AgentSchema.Onder voertuigen = proxy
-                //    .Get
-                //var query = from voertuig in voertuigen
-                //            select mapper.AgentToSchemaVoertuigMapper(voertuig);
-                //Schema.VoertuigenCollection voertuigenCollection = new Schema.VoertuigenCollection();
-                //voertuigenCollection.AddRange(query);
-                //return voertuigenCollection;
+                var onderhoudsopdrachten = proxy
+                    .GetOnderhoudsopdrachtenBy(mapper.SchemaToAgentOnderhoudsOpdrachtSearchCriteriaMapper(criteria));
+                var query = from onderhoudsopdracht in onderhoudsopdrachten
+                            select mapper.AgentToSchemaOnderhoudsopdrachtMapper(onderhoudsopdracht);
+                var onderhoudsopdrachtenCollection = new Schema.OnderhoudsopdrachtenCollection();
+                onderhoudsopdrachtenCollection.AddRange(query);
+                return onderhoudsopdrachtenCollection;
             }
             catch (FaultException<FunctionalErrorDetail[]> ex)
             {
@@ -147,6 +147,24 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             }
             return null;
         }
-        
+        public Schema.KlantenCollection GetAllLeasemaatschappijen()
+        {
+            var proxy = _factory.CreateAgent();
+            try
+            {
+                var mapper = new BSKlantEnVoertuigMapper();
+                var leasemaatschappijen = proxy.GetAllLeasemaatschappijen();
+                var query = from leasemaatschappij in leasemaatschappijen
+                    select mapper.AgentToSchemaKlantMapper(leasemaatschappij);
+                var leasemaatschappijenCollection = new Schema.KlantenCollection();
+                return leasemaatschappijenCollection;
+            }
+            catch (FaultException<FunctionalErrorDetail[]> ex)
+            {
+
+            }
+            return new Schema.KlantenCollection();
+        }
+
     }
 }

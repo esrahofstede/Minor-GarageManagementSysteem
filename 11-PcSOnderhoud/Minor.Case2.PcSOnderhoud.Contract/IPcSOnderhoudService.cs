@@ -15,7 +15,7 @@ namespace Minor.Case2.PcSOnderhoud.Contract
         [OperationContract]
         Schema.KlantenCollection GetAllKlanten();
 
-        Schema.KlantenCollection GetAllLeaseMaatschappijen();
+        Schema.KlantenCollection GetAllLeasemaatschappijen();
 
         [OperationContract]
         Schema.VoertuigenCollection GetVoertuigBy(Schema.VoertuigenSearchCriteria zoekCriteria);
@@ -30,7 +30,7 @@ namespace Minor.Case2.PcSOnderhoud.Contract
         bool MeldVoertuigKlaar(Schema.Voertuig voertuig, AgentSchema.Garage garage);
 
         [OperationContract]
-        Schema.Onderhoudsopdracht GetHuidigGetHuidigeOnderhoudsopdrachtBy(Schema.VoertuigenSearchCriteria searchCriteria);
+        Schema.Onderhoudsopdracht GetHuidigeOnderhoudsopdrachtBy(Schema.VoertuigenSearchCriteria searchCriteria);
 
         [OperationContract]
         void VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden);

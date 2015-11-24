@@ -67,17 +67,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetHuidigGetHuidigeOnderhoudsopdrachtBy">
+  <xs:element name="GetHuidigeOnderhoudsopdrachtBy">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="searchCriteria" nillable="true" xmlns:q8="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q8:VoertuigenSearchCriteria" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetHuidigGetHuidigeOnderhoudsopdrachtByResponse">
+  <xs:element name="GetHuidigeOnderhoudsopdrachtByResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="GetHuidigGetHuidigeOnderhoudsopdrachtByResult" nillable="true" xmlns:q9="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q9:Onderhoudsopdracht" />
+        <xs:element minOccurs="0" name="GetHuidigeOnderhoudsopdrachtByResult" nillable="true" xmlns:q9="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q9:Onderhoudsopdracht" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

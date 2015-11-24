@@ -24,9 +24,10 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             return null;
         }
 
-        public Schema.KlantenCollection GetAllLeaseMaatschappijen()
+        public Schema.KlantenCollection GetAllLeasemaatschappijen()
         {
-            throw new NotImplementedException();
+            AgentBSKlantEnVoertuigBeheer agent = new AgentBSKlantEnVoertuigBeheer();
+            return agent.GetAllLeasemaatschappijen(); ;
         }
 
         public Schema.VoertuigenCollection GetVoertuigBy(Schema.VoertuigenSearchCriteria zoekCriteria)
@@ -58,9 +59,9 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             return agentIS.SendAPKKeuringsverzoek(voertuig, garage, keuringsverzoek).Steekproef;
         }
 
-        public Schema.Onderhoudsopdracht GetHuidigGetHuidigeOnderhoudsopdrachtBy(Schema.VoertuigenSearchCriteria searchCriteria)
+        public Schema.Onderhoudsopdracht GetHuidigeOnderhoudsopdrachtBy(Schema.VoertuigenSearchCriteria searchCriteria)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden)
