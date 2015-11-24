@@ -118,12 +118,13 @@ namespace Minor.Case2.PcSOnderhoud.Agent
 
             return new AgentSchema.Voertuig
             {
-                 Id= voertuig.ID,
+                 ID = voertuig.ID,
                  Kenteken = voertuig.Kenteken,
                  Merk = voertuig.Merk,
                  Type = voertuig.Type,
                  Eigenaar = SchemaToAgentKlantMapper(voertuig.Eigenaar),
                  Bestuurder = SchemaToAgentPersoonMapper(voertuig.Bestuurder),
+                 Status = voertuig.Status
             };
         }
         public Schema.Voertuig AgentToSchemaVoertuigMapper(AgentSchema.Voertuig voertuig)
@@ -135,12 +136,47 @@ namespace Minor.Case2.PcSOnderhoud.Agent
 
             return new Schema.Voertuig
             {
-                ID = voertuig.Id,
+                ID = voertuig.ID,
                 Kenteken = voertuig.Kenteken,
                 Merk = voertuig.Merk,
                 Type = voertuig.Type,
                 Eigenaar = AgentToSchemaKlantMapper(voertuig.Eigenaar),
-                Bestuurder = AgentToSchemaPersoonMapper(voertuig.Bestuurder)
+                Bestuurder = AgentToSchemaPersoonMapper(voertuig.Bestuurder),
+                Status = voertuig.Status
+            };
+        }
+
+        public AgentSchema.Onderhoudsopdracht SchemaToAgentOnderhoudsopdrachtMapper(Schema.Onderhoudsopdracht onderhoudsopdracht)
+        {
+            if (onderhoudsopdracht == null)
+            {
+                return null;
+            }
+            return new AgentSchema.Onderhoudsopdracht
+            {
+                ID = onderhoudsopdracht.ID,
+                Aanmeldingsdatum = onderhoudsopdracht.Aanmeldingsdatum,
+                Onderhoudsomschrijving = onderhoudsopdracht.Onderhoudsomschrijving,
+                APK = onderhoudsopdracht.APK,
+                Kilometerstand = onderhoudsopdracht.Kilometerstand,
+                Voertuig = SchemaToAgentVoertuigMapper(onderhoudsopdracht.Voertuig)
+            };
+        }
+
+        public Schema.Onderhoudsopdracht AgentToSchemaOnderhoudsopdrachtMapper(AgentSchema.Onderhoudsopdracht onderhoudsopdracht)
+        {
+            if (onderhoudsopdracht == null)
+            {
+                return null;
+            }
+            return new Schema.Onderhoudsopdracht
+            {
+                ID = onderhoudsopdracht.ID,
+                Aanmeldingsdatum = onderhoudsopdracht.Aanmeldingsdatum,
+                Onderhoudsomschrijving = onderhoudsopdracht.Onderhoudsomschrijving,
+                APK = onderhoudsopdracht.APK,
+                Kilometerstand = onderhoudsopdracht.Kilometerstand,
+                Voertuig = AgentToSchemaVoertuigMapper(onderhoudsopdracht.Voertuig)
             };
         }
     }

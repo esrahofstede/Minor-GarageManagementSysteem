@@ -143,6 +143,13 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Voertuig" nillable="true" type="tns:Voertuig" />
@@ -166,13 +173,6 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="APK" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string">
-        <xs:annotation>
-          <xs:appinfo>
-            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
       <xs:element name="Onderhoudswerkzaamheden" nillable="true" type="tns:Onderhoudswerkzaamheden" />
     </xs:sequence>
   </xs:complexType>
