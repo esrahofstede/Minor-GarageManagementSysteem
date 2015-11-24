@@ -27,7 +27,7 @@ namespace Minor.Case2.PcSOnderhoud.Contract
         bool MeldVoertuigKlaar(Schema.Voertuig voertuig);
 
         [OperationContract]
-        Schema.Onderhoudsopdracht GetHuidigeOnderhoudsopdracht(Schema.Voertuig voertuig);
+        Schema.Onderhoudsopdracht GetHuidigeOnderhoudsopdracht(Schema.VoertuigenSearchCriteria searchCriteria);
 
         [OperationContract]
         void VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden);

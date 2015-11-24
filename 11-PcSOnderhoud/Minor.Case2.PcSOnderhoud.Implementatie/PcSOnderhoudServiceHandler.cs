@@ -59,7 +59,7 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             return agentIS.SendAPKKeuringsverzoek(voertuig, garage, keuringsverzoek).Steekproef;
         }
 
-        public Schema.Onderhoudsopdracht GetHuidigeOnderhoudsopdracht(Schema.Voertuig voertuig)
+        public Schema.Onderhoudsopdracht GetHuidigeOnderhoudsopdracht(Schema.VoertuigenSearchCriteria searchCriteria)
         {
             throw new NotImplementedException();
         }
