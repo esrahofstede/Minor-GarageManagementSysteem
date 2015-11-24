@@ -7,6 +7,10 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
     {
         public static Entities.Leasemaatschappij MapDTOToEntity(BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij dto)
         {
+            if (dto == null)
+            {
+                throw new ArgumentNullException();
+            }
             Entities.Leasemaatschappij entity = new Entities.Leasemaatschappij
             {
                 ID = dto.ID,
@@ -19,6 +23,10 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
 
         public static BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij MapEntityToDTO(Entities.Leasemaatschappij entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException();
+            }
             BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij dto = new BSVoertuigEnKlantbeheer.V1.Schema.Leasemaatschappij
             {
                 ID = entity.ID,

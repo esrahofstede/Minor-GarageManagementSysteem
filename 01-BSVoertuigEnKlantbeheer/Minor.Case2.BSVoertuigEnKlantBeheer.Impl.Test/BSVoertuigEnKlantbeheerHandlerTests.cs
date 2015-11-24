@@ -4,6 +4,9 @@ using Minor.Case2.BSVoertuigEnKlantBeheer.Implementation;
 using Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema;
 using Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappers;
 using Moq;
+using System.Linq.Expressions;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
 {
@@ -25,6 +28,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
 
             persoonMock.Setup(datamapper => datamapper.Insert(It.IsAny<Entities.Persoon>())).Returns(1);
             voertuigMock.Setup(datamapper => datamapper.Insert(It.IsAny<Entities.Voertuig>())).Returns(0);
+            voertuigMock.Setup(datamapper => datamapper.FindAllBy(It.IsAny<Expression<Func<Entities.Voertuig, bool>>>())).Returns(new List<Entities.Voertuig>());
 
 
             Voertuig voertuig = new Voertuig
@@ -60,6 +64,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
             persoonMock.Setup(datamapper => datamapper.Insert(It.IsAny<Entities.Persoon>())).Returns(1);
             leaseMock.Setup(datamapper => datamapper.Insert(It.IsAny<Entities.Leasemaatschappij>())).Returns(2);
             voertuigMock.Setup(datamapper => datamapper.Insert(It.IsAny<Entities.Voertuig>())).Returns(0);
+            voertuigMock.Setup(datamapper => datamapper.FindAllBy(It.IsAny<Expression<Func<Entities.Voertuig, bool>>>())).Returns(new List<Entities.Voertuig>());
 
 
             Voertuig voertuig = new Voertuig
@@ -205,7 +210,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
         }
 
         /// <summary>
-        /// Test if the right voertuig is returned by ID
+        /// Test if the method returns klanten
         /// </summary>
         [TestMethod]
         public void GetAllKlantenTest()
@@ -224,6 +229,72 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
 
             // Assert
             Assert.AreEqual(3, result.ToArray().Length);
+        }
+
+        /// <summary>
+        /// Test if the returns leasemaatschappijen
+        /// </summary>
+        [TestMethod]
+        public void GetAllLeasemaatschappijenTest()
+        {
+            // Arrange
+            var leaseMock = new Mock<IDataMapper<Entities.Leasemaatschappij, long>>(MockBehavior.Strict);
+
+            BSVoertuigEnKlantbeheerHandler handler = new BSVoertuigEnKlantbeheerHandler(null, leaseMock.Object, null);
+
+            leaseMock.Setup(datamapper => datamapper.FindAll()).Returns(DummyData.GetDummyLeasemaatschappijCollection());
+
+            // Act
+            var result = handler.GetAllLeasemaatschappijen();
+
+            // Assert
+            Assert.AreEqual(1, result.ToArray().Length);
+        }
+
+        /// <summary>
+        /// Test if the method returns the good exception when null is passed
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(System.ServiceModel.FaultException<All.V1.Schema.FunctionalErrorDetail[]>))]
+        public void UpdateVoertuigWithNullTest()
+        {
+            // Arrange
+            BSVoertuigEnKlantbeheerHandler handler = new BSVoertuigEnKlantbeheerHandler();
+            // Act
+            handler.UpdateVoertuig(null);
+
+            // Assert
+
+        }
+
+        /// <summary>
+        /// Test if the method returns the good exception when null is passed
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(System.ServiceModel.FaultException<All.V1.Schema.FunctionalErrorDetail[]>))]
+        public void InsertVoertuigWithNullTest()
+        {
+            // Arrange
+            BSVoertuigEnKlantbeheerHandler handler = new BSVoertuigEnKlantbeheerHandler();
+            // Act
+            handler.VoegVoertuigMetKlantToe(null);
+
+            // Assert
+        }
+
+        /// <summary>
+        /// Test if the method returns the good exception when null is passed
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(System.ServiceModel.FaultException<All.V1.Schema.FunctionalErrorDetail[]>))]
+        public void InsertOnderhoudsopdrachtWithNullTest()
+        {
+            // Arrange
+            BSVoertuigEnKlantbeheerHandler handler = new BSVoertuigEnKlantbeheerHandler();
+            // Act
+            handler.VoegOnderhoudsopdrachtToe(null);
+
+            // Assert
         }
     }
 }

@@ -7,6 +7,10 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
     {
         public static Entities.Voertuig MapDTOToEntity(BSVoertuigEnKlantbeheer.V1.Schema.Voertuig dto)
         {
+            if (dto == null)
+            {
+                throw new ArgumentNullException();
+            }
             Entities.Klant eigenaar = null;
             Entities.Persoon bestuurder = null;
 
@@ -44,6 +48,11 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
 
         public static BSVoertuigEnKlantbeheer.V1.Schema.Voertuig MapEntityToDTO(Entities.Voertuig entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             BSVoertuigEnKlantbeheer.V1.Schema.Klant eigenaar = null;
             BSVoertuigEnKlantbeheer.V1.Schema.Persoon bestuurder = null;
 

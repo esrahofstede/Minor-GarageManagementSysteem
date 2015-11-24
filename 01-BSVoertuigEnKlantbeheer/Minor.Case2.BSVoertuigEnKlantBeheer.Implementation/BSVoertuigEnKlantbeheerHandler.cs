@@ -9,6 +9,7 @@ using Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema;
 using Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappers;
 using Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers;
 using Minor.Case2.BSVoertuigEnKlantBeheer.Entities;
+using Minor.Case2.All.V1.Schema;
 
 namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
 {
@@ -43,9 +44,28 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
             _voertuigDataMapper = voertuigDataMapper;
         }
 
+        /// <summary>
+        /// Creates an instance of the dataMapper to inject with IDataMappers
+        /// </summary>
+        /// <param name="voertuigDataMapper"></param>
         public BSVoertuigEnKlantbeheerHandler(IDataMapper<Entities.Voertuig, long> voertuigDataMapper)
         {
             _voertuigDataMapper = voertuigDataMapper;
+        }
+
+        /// <summary>
+        /// Get all Leasemaatschappijen from the database
+        /// </summary>
+        /// <returns>KlantenCollection of Leasemaatschappijen</returns>
+        public KlantenCollection GetAllLeasemaatschappijen()
+        {
+            KlantenCollection klantenCollection = new KlantenCollection();
+
+            foreach (var leaseEntity in _leaseDataMapper.FindAll())
+            {
+                klantenCollection.Add(LeasemaatschappijDTOMapper.MapEntityToDTO(leaseEntity));
+            }
+            return klantenCollection;
         }
 
         /// <summary>
@@ -118,34 +138,70 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
         /// <param name="voertuig"></param>
         public void VoegVoertuigMetKlantToe(BSVoertuigEnKlantbeheer.V1.Schema.Voertuig voertuig)
         {
-            Entities.Voertuig v = VoertuigDTOMapper.MapDTOToEntity(voertuig);
-            long bestuurderID = -1;
+            var list = new List<FunctionalErrorDetail>();
+            Entities.Voertuig nieuwVoertuig;
 
-            Random rnd = new Random();
-
-            //bestuurder is always a persoon
-            if (v.Bestuurder != null)
+            try
             {
-                v.Bestuurder.Klantnummer = rnd.Next(100000, 999999); //sorry
-                bestuurderID = _persoonDataMapper.Insert(v.Bestuurder);
-                v.Bestuurder.ID = bestuurderID;
+                nieuwVoertuig = VoertuigDTOMapper.MapDTOToEntity(voertuig);
+            }
+            catch (ArgumentNullException)
+            {
+                var ex = new FunctionalErrorDetail
+                {
+                    ErrorCode = 404,
+                    Message = "voertuig is null"
+                };
+                throw new FaultException<FunctionalErrorDetail[]>(new FunctionalErrorDetail[] { ex });
+            }
+            
+            if(_voertuigDataMapper.FindAllBy(v => v.Kenteken == nieuwVoertuig.Kenteken).FirstOrDefault() != null)
+            {
+                //Voertuig already exist with kenteken
+                list.Add(new FunctionalErrorDetail
+                {
+                    ErrorCode = 302,
+                    Message = "voertuig with kenteken already exist in the database"
+                });
 
             }
-            //eigenaar is a persoon or a leasemaatschappij
-            if (v.Eigenaar != null)
+            else
             {
-                //persoon is already inserted into the database, we only have to check for a leasemaatschappij
-                if (v.Eigenaar.GetType() == typeof(Entities.Leasemaatschappij))
+                //Voertuig doesnt exist with kenteken
+                long bestuurderID = -1;
+
+                Random rnd = new Random();
+
+                //bestuurder is always a persoon
+                if (nieuwVoertuig.Bestuurder != null)
                 {
-                    v.Eigenaar.Klantnummer = rnd.Next(100000, 999999); //sorry
-                    v.Eigenaar.ID = _leaseDataMapper.Insert((Entities.Leasemaatschappij)v.Eigenaar);
+                    nieuwVoertuig.Bestuurder.Klantnummer = rnd.Next(100000, 999999); //sorry
+                    bestuurderID = _persoonDataMapper.Insert(nieuwVoertuig.Bestuurder);
+                    nieuwVoertuig.Bestuurder.ID = bestuurderID;
+
                 }
-                else
+                //eigenaar is a persoon or a leasemaatschappij
+                if (nieuwVoertuig.Eigenaar != null)
                 {
-                    v.Eigenaar.ID = bestuurderID;
+                    //persoon is already inserted into the database, we only have to check for a leasemaatschappij
+                    if (nieuwVoertuig.Eigenaar.GetType() == typeof(Entities.Leasemaatschappij))
+                    {
+                        nieuwVoertuig.Eigenaar.Klantnummer = rnd.Next(100000, 999999); //sorry
+                        nieuwVoertuig.Eigenaar.ID = _leaseDataMapper.Insert((Entities.Leasemaatschappij)nieuwVoertuig.Eigenaar);
+                    }
+                    else
+                    {
+                        nieuwVoertuig.Eigenaar.ID = bestuurderID;
+                    }
                 }
+                _voertuigDataMapper.Insert(nieuwVoertuig);
             }
-            _voertuigDataMapper.Insert(v);
+
+            if (list.Any())
+            {
+                throw new FaultException<FunctionalErrorDetail[]>(list.ToArray());
+            }
+
         }
 
         /// <summary>
@@ -154,8 +210,21 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
         /// <param name="onderhoudsopdracht"></param>
         public void VoegOnderhoudsopdrachtToe(BSVoertuigEnKlantbeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht)
         {
-            Entities.Onderhoudsopdracht o = OnderhoudsOpdrachtDTOMapper.MapDTOToEntity(onderhoudsopdracht);
-            _onderhoudsDataMapper.Insert(o);
+            try
+            {
+                Entities.Onderhoudsopdracht o = OnderhoudsOpdrachtDTOMapper.MapDTOToEntity(onderhoudsopdracht);
+                _onderhoudsDataMapper.Insert(o);
+            }
+            catch (ArgumentNullException)
+            {
+                var ex = new FunctionalErrorDetail
+                {
+                    ErrorCode = 404,
+                    Message = "onderhoudsopdracht is null"
+                };
+                throw new FaultException<FunctionalErrorDetail[]>(new FunctionalErrorDetail[] { ex });
+            }
+            
         }
 
         /// <summary>
@@ -164,8 +233,20 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
         /// <param name="voertuig"></param>
         public void UpdateVoertuig(BSVoertuigEnKlantbeheer.V1.Schema.Voertuig voertuig)
         {
-            Entities.Voertuig v = VoertuigDTOMapper.MapDTOToEntity(voertuig);
-            _voertuigDataMapper.Update(v);
+            try
+            {
+                Entities.Voertuig v = VoertuigDTOMapper.MapDTOToEntity(voertuig);
+                _voertuigDataMapper.Update(v);
+            }
+            catch (ArgumentNullException)
+            {
+                var ex = new FunctionalErrorDetail
+                {
+                    ErrorCode = 404,
+                    Message = "voertuig is null"
+                };
+                throw new FaultException<FunctionalErrorDetail[]>(new FunctionalErrorDetail[] { ex });
+            }           
         }
     }
 }

@@ -7,6 +7,10 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
     {
         public static Entities.Persoon MapDTOToEntity(BSVoertuigEnKlantbeheer.V1.Schema.Persoon dto)
         {
+            if (dto == null)
+            {
+                throw new ArgumentNullException();
+            }
             Entities.Persoon entity = new Entities.Persoon
             {
                 ID = dto.ID,
@@ -25,6 +29,10 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
 
         public static BSVoertuigEnKlantbeheer.V1.Schema.Persoon MapEntityToDTO(Entities.Persoon entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException();
+            }
             BSVoertuigEnKlantbeheer.V1.Schema.Persoon dto = new BSVoertuigEnKlantbeheer.V1.Schema.Persoon
             {
                 ID = entity.ID,

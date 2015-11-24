@@ -11,6 +11,10 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
     {
         public static Entities.Onderhoudsopdracht MapDTOToEntity(BSVoertuigEnKlantbeheer.V1.Schema.Onderhoudsopdracht dto)
         {
+            if (dto == null)
+            {
+                throw new ArgumentNullException();
+            }
             Entities.Onderhoudsopdracht entity = new Entities.Onderhoudsopdracht
             {
                 ID = dto.ID,
@@ -27,6 +31,10 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
 
         public static BSVoertuigEnKlantbeheer.V1.Schema.Onderhoudsopdracht MapEntityToDTO(Entities.Onderhoudsopdracht entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException();
+            }
             BSVoertuigEnKlantbeheer.V1.Schema.Onderhoudsopdracht dto = new BSVoertuigEnKlantbeheer.V1.Schema.Onderhoudsopdracht
             {
                 ID = entity.ID,
