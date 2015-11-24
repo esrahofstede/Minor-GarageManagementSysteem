@@ -58,7 +58,17 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             agentBS.UpdateVoertuig(voertuig);
             return agentIS.SendAPKKeuringsverzoek(voertuig, garage, keuringsverzoek).Steekproef;
         }
-        
+
+        public Schema.Onderhoudsopdracht GetHuidigeOnderhoudsopdracht(Schema.Voertuig voertuig)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden)
+        {
+            throw new NotImplementedException();
+        }
+
         public void VoegVoertuigMetKlantToe(Schema.Voertuig voertuig)
         {
             AgentBSKlantEnVoertuigBeheer agent = new AgentBSKlantEnVoertuigBeheer();

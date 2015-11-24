@@ -37,6 +37,18 @@
   <wsdl:message name="IPcSOnderhoudService_MeldVoertuigKlaar_OutputMessage">
     <wsdl:part name="parameters" element="tns:MeldVoertuigKlaarResponse" />
   </wsdl:message>
+  <wsdl:message name="IPcSOnderhoudService_GetHuidigeOnderhoudsopdracht_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHuidigeOnderhoudsopdracht" />
+  </wsdl:message>
+  <wsdl:message name="IPcSOnderhoudService_GetHuidigeOnderhoudsopdracht_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHuidigeOnderhoudsopdrachtResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPcSOnderhoudService_VoegOnderhoudswerkzaamhedenToe_InputMessage">
+    <wsdl:part name="parameters" element="tns:VoegOnderhoudswerkzaamhedenToe" />
+  </wsdl:message>
+  <wsdl:message name="IPcSOnderhoudService_VoegOnderhoudswerkzaamhedenToe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VoegOnderhoudswerkzaamhedenToeResponse" />
+  </wsdl:message>
   <wsdl:portType name="IPcSOnderhoudService">
     <wsdl:operation name="GetAllKlanten">
       <wsdl:input wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetAllKlanten" message="tns:IPcSOnderhoudService_GetAllKlanten_InputMessage" />
@@ -57,6 +69,14 @@
     <wsdl:operation name="MeldVoertuigKlaar">
       <wsdl:input wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/MeldVoertuigKlaar" message="tns:IPcSOnderhoudService_MeldVoertuigKlaar_InputMessage" />
       <wsdl:output wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/MeldVoertuigKlaarResponse" message="tns:IPcSOnderhoudService_MeldVoertuigKlaar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHuidigeOnderhoudsopdracht">
+      <wsdl:input wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetHuidigeOnderhoudsopdracht" message="tns:IPcSOnderhoudService_GetHuidigeOnderhoudsopdracht_InputMessage" />
+      <wsdl:output wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetHuidigeOnderhoudsopdrachtResponse" message="tns:IPcSOnderhoudService_GetHuidigeOnderhoudsopdracht_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VoegOnderhoudswerkzaamhedenToe">
+      <wsdl:input wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudswerkzaamhedenToe" message="tns:IPcSOnderhoudService_VoegOnderhoudswerkzaamhedenToe_InputMessage" />
+      <wsdl:output wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudswerkzaamhedenToeResponse" message="tns:IPcSOnderhoudService_VoegOnderhoudswerkzaamhedenToe_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="DefaultBinding_IPcSOnderhoudService" type="tns:IPcSOnderhoudService">
@@ -99,6 +119,24 @@
     </wsdl:operation>
     <wsdl:operation name="MeldVoertuigKlaar">
       <soap:operation soapAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/MeldVoertuigKlaar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHuidigeOnderhoudsopdracht">
+      <soap:operation soapAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetHuidigeOnderhoudsopdracht" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VoegOnderhoudswerkzaamhedenToe">
+      <soap:operation soapAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudswerkzaamhedenToe" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
