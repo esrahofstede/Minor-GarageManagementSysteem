@@ -9,6 +9,7 @@ namespace Minor.Case2.FEGMS.Client.ViewModel
     public class InsertOnderhoudsopdrachtVM
     {
         [Required(ErrorMessage = "{0} is een verplicht veld")]
+        [DataType(DataType.Date)]
         public DateTime AanmeldingsDatum { get; set; }
         [Required(ErrorMessage = "{0} is een verplicht veld")]
         public int Kilometerstand { get; set; }
