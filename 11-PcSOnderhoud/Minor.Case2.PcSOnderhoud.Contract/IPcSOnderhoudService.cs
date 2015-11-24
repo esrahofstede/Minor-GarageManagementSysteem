@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
-using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
+using Schema = Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
 
 namespace Minor.Case2.PcSOnderhoud.Contract
 {
@@ -12,19 +12,19 @@ namespace Minor.Case2.PcSOnderhoud.Contract
     public interface IPcSOnderhoudService
     {
         [OperationContract]
-        KlantenCollection GetAllKlanten();
+        Schema.KlantenCollection GetAllKlanten();
 
         [OperationContract]
-        VoertuigenCollection GetVoertuigBy(VoertuigenSearchCriteria zoekCriteria);
+        Schema.VoertuigenCollection GetVoertuigBy(Schema.VoertuigenSearchCriteria zoekCriteria);
 
         [OperationContract]
-        void VoegVoertuigMetKlantToe(Voertuig voertuig);
+        void VoegVoertuigMetKlantToe(Schema.Voertuig voertuig);
 
         [OperationContract]
-        void VoegOnderhoudsopdrachtToe(Onderhoudsopdracht onderhoudsopdracht);
+        void VoegOnderhoudsopdrachtToe(Schema.Onderhoudsopdracht onderhoudsopdracht);
 
         [OperationContract]
-        void MeldVoertuigKlaar(Voertuig voertuig);
+        bool MeldVoertuigKlaar(Schema.Voertuig voertuig);
     }
     
 }

@@ -1026,7 +1026,9 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             Assert.AreEqual(onderhoudsopdracht.Voertuig.Status, result.Voertuig.Status);
             Assert.AreEqual(onderhoudsopdracht.Voertuig.Kenteken, result.Voertuig.Kenteken);
 
-        }[TestMethod]
+        }
+
+        [TestMethod]
         public void AgentToSchemaOnderhoudsopdrachtMapperReturnsOnderhoudsopdracht()
         {
             //Arrange
@@ -1130,7 +1132,123 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             Assert.AreEqual(onderhoudsopdracht.Onderhoudsomschrijving, result.Onderhoudsomschrijving);
             Assert.AreEqual(onderhoudsopdracht.Voertuig.Status, result.Voertuig.Status);
             Assert.AreEqual(onderhoudsopdracht.Voertuig.Kenteken, result.Voertuig.Kenteken);
+        }
 
+        [TestMethod]
+        public void SchemaToAgentVoertuigenSearchCriteriaMapperReturnsSearchCrit()
+        {
+            //Arrange
+            Schema.VoertuigenSearchCriteria searchCriteria = new Schema.VoertuigenSearchCriteria
+            {
+                ID = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus",
+            };
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentVoertuigSearchCriteriaMapper(searchCriteria);
+
+            //Assert
+            Assert.AreEqual(typeof(AgentSchema.VoertuigenSearchCriteria), result.GetType());
+        }
+
+        [TestMethod]
+        public void SchemaToAgentVoertuigenSearchCriteriaMapperReturnsNullIfEmpty()
+        {
+            //Arrange
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentVoertuigSearchCriteriaMapper(null);
+
+            //Assert
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void SchemaToAgentVoertuigenSearchCriteriaMapperReturnsCorrectData()
+        {
+            //Arrange
+            Schema.VoertuigenSearchCriteria searchCriteria = new Schema.VoertuigenSearchCriteria
+            {
+                ID = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus",
+            };
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentVoertuigSearchCriteriaMapper(searchCriteria);
+
+            //Assert
+            Assert.AreEqual(searchCriteria.ID, result.ID);
+            Assert.AreEqual(searchCriteria.Merk, result.Merk);
+            Assert.AreEqual(searchCriteria.Kenteken, result.Kenteken);
+            Assert.AreEqual(searchCriteria.Type, result.Type);
+        }
+
+
+        [TestMethod]
+        public void AgentToSchemaVoertuigenSearchCriteriaMapperReturnsSearchCrit()
+        {
+            //Arrange
+            AgentSchema.VoertuigenSearchCriteria searchCriteria = new AgentSchema.VoertuigenSearchCriteria
+            {
+                ID = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus",
+            };
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.AgentToSchemaVoertuigSearchCriteriaMapper(searchCriteria);
+
+            //Assert
+            Assert.AreEqual(typeof(Schema.VoertuigenSearchCriteria), result.GetType());
+        }
+
+        [TestMethod]
+        public void AgentToSchemaVoertuigenSearchCriteriaMapperReturnsNullIfEmpty()
+        {
+            //Arrange
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.AgentToSchemaVoertuigSearchCriteriaMapper(null);
+
+            //Assert
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void AgentToSchemaVoertuigenSearchCriteriaMapperReturnsCorrectData()
+        {
+            //Arrange
+            AgentSchema.VoertuigenSearchCriteria searchCriteria = new AgentSchema.VoertuigenSearchCriteria
+            {
+                ID = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus",
+            };
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.AgentToSchemaVoertuigSearchCriteriaMapper(searchCriteria);
+
+            //Assert
+            Assert.AreEqual(searchCriteria.ID, result.ID);
+            Assert.AreEqual(searchCriteria.Merk, result.Merk);
+            Assert.AreEqual(searchCriteria.Kenteken, result.Kenteken);
+            Assert.AreEqual(searchCriteria.Type, result.Type);
         }
     }
 }

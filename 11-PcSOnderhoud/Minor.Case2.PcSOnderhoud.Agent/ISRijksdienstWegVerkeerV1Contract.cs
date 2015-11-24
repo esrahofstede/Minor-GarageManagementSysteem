@@ -535,7 +535,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
         public string Kenteken
         {
             get
@@ -548,7 +548,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
         public string Merk
         {
             get
@@ -561,7 +561,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
         public string Type
         {
             get
@@ -574,7 +574,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
         public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Klant Eigenaar
         {
             get
@@ -587,7 +587,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=5)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
         public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Persoon Bestuurder
         {
             get
@@ -1160,15 +1160,15 @@ public interface IBSVoertuigEnKlantbeheer
         "sopdrachtToeResponse")]
     System.Threading.Tasks.Task VoegOnderhoudsopdrachtToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht onderhoudsopdracht);
     
-    [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/WijzigOnderho" +
-        "udsopdracht", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/WijzigOnderho" +
-        "udsopdrachtResponse")]
-    void WijzigOnderhoudsopdracht(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht onderhoudsopdracht);
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/UpdateVoertui" +
+        "g", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/UpdateVoertui" +
+        "gResponse")]
+    void UpdateVoertuig(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig voertuig);
     
-    [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/WijzigOnderho" +
-        "udsopdracht", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/WijzigOnderho" +
-        "udsopdrachtResponse")]
-    System.Threading.Tasks.Task WijzigOnderhoudsopdrachtAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht onderhoudsopdracht);
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/UpdateVoertui" +
+        "g", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/UpdateVoertui" +
+        "gResponse")]
+    System.Threading.Tasks.Task UpdateVoertuigAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig voertuig);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1245,13 +1245,13 @@ public partial class BSVoertuigEnKlantbeheerClient : System.ServiceModel.ClientB
         return base.Channel.VoegOnderhoudsopdrachtToeAsync(onderhoudsopdracht);
     }
     
-    public void WijzigOnderhoudsopdracht(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht onderhoudsopdracht)
+    public void UpdateVoertuig(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig voertuig)
     {
-        base.Channel.WijzigOnderhoudsopdracht(onderhoudsopdracht);
+        base.Channel.UpdateVoertuig(voertuig);
     }
     
-    public System.Threading.Tasks.Task WijzigOnderhoudsopdrachtAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht onderhoudsopdracht)
+    public System.Threading.Tasks.Task UpdateVoertuigAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig voertuig)
     {
-        return base.Channel.WijzigOnderhoudsopdrachtAsync(onderhoudsopdracht);
+        return base.Channel.UpdateVoertuigAsync(voertuig);
     }
 }

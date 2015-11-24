@@ -60,7 +60,12 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                 if(voertuigen.Any())
                 {
                     model.Voertuig = voertuigen.First();
-                    _agent.MeldVoertuigKlaar(model.Voertuig);           
+                    model.APK = _agent.MeldVoertuigKlaar(model.Voertuig);
+                    model.Message = $"De auto met het kenteken {model.Kenteken} is klaargemeld.";
+                }
+                else
+                {
+                    model.Message = $"De auto met het kenteken {model.Kenteken} kon niet worden gevonden in het systeem.";
                 }
             }
             return View(model);
