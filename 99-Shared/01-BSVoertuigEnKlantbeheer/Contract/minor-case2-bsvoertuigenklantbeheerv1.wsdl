@@ -31,6 +31,12 @@
   <wsdl:message name="IBSVoertuigEnKlantbeheer_VoegOnderhoudsopdrachtToe_OutputMessage">
     <wsdl:part name="parameters" element="tns:VoegOnderhoudsopdrachtToeResponse" />
   </wsdl:message>
+  <wsdl:message name="IBSVoertuigEnKlantbeheer_WijzigOnderhoudsopdracht_InputMessage">
+    <wsdl:part name="parameters" element="tns:WijzigOnderhoudsopdracht" />
+  </wsdl:message>
+  <wsdl:message name="IBSVoertuigEnKlantbeheer_WijzigOnderhoudsopdracht_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WijzigOnderhoudsopdrachtResponse" />
+  </wsdl:message>
   <wsdl:portType name="IBSVoertuigEnKlantbeheer">
     <wsdl:operation name="GetAllKlanten">
       <wsdl:input wsaw:Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllKlanten" message="tns:IBSVoertuigEnKlantbeheer_GetAllKlanten_InputMessage" />
@@ -47,6 +53,10 @@
     <wsdl:operation name="VoegOnderhoudsopdrachtToe">
       <wsdl:input wsaw:Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/VoegOnderhoudsopdrachtToe" message="tns:IBSVoertuigEnKlantbeheer_VoegOnderhoudsopdrachtToe_InputMessage" />
       <wsdl:output wsaw:Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/VoegOnderhoudsopdrachtToeResponse" message="tns:IBSVoertuigEnKlantbeheer_VoegOnderhoudsopdrachtToe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WijzigOnderhoudsopdracht">
+      <wsdl:input wsaw:Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/WijzigOnderhoudsopdracht" message="tns:IBSVoertuigEnKlantbeheer_WijzigOnderhoudsopdracht_InputMessage" />
+      <wsdl:output wsaw:Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/WijzigOnderhoudsopdrachtResponse" message="tns:IBSVoertuigEnKlantbeheer_WijzigOnderhoudsopdracht_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="DefaultBinding_IBSVoertuigEnKlantbeheer" type="tns:IBSVoertuigEnKlantbeheer">
@@ -80,6 +90,15 @@
     </wsdl:operation>
     <wsdl:operation name="VoegOnderhoudsopdrachtToe">
       <soap:operation soapAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/VoegOnderhoudsopdrachtToe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WijzigOnderhoudsopdracht">
+      <soap:operation soapAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/WijzigOnderhoudsopdracht" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

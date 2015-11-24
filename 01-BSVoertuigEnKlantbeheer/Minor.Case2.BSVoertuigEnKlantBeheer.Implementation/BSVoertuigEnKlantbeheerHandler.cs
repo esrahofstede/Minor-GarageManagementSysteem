@@ -71,14 +71,6 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
         }
 
         /// <summary>
-        /// Add a new onderhoudsopdracht to the database
-        /// </summary>
-        /// <param name="onderhoudsopdracht"></param>
-        public void VoegOnderhoudsopdrachtToe(Onderhoudsopdracht onderhoudsopdracht)
-        {
-            throw new NotImplementedException();
-        }
-        /// <summary>
         /// Add a new voertuig to the database with new klant and leasemaatschappij
         /// </summary>
         /// <param name="voertuig"></param>
@@ -112,6 +104,24 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
                 }
             }
             _voertuigDataMapper.Insert(v);
+        }
+
+        /// <summary>
+        /// Update a existing onderhoudsopdracht
+        /// </summary>
+        /// <param name="onderhoudsopdracht"></param>
+        public void WijzigOnderhoudsopdracht(Onderhoudsopdracht onderhoudsopdracht)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Add a new onderhoudsopdracht to the database
+        /// </summary>
+        /// <param name="onderhoudsopdracht"></param>
+        public void VoegOnderhoudsopdrachtToe(Onderhoudsopdracht onderhoudsopdracht)
+        {
+            throw new NotImplementedException();
         }
     }
 }
