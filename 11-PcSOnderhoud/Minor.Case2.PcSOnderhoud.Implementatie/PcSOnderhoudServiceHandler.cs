@@ -33,6 +33,11 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             throw new NotImplementedException();
         }
 
+        public void MeldVoertuigKlaar(Voertuig voertuig)
+        {
+            throw new NotImplementedException();
+        }
+
         public void WijzigOnderhoudsopdracht(Onderhoudsopdracht onderhoudsopdracht)
         {
             throw new NotImplementedException();

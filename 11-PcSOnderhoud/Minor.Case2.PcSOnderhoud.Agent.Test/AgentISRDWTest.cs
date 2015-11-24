@@ -1,11 +1,10 @@
 ﻿using System;
-using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
-using Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema;
-using Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages;
+
 using Minor.ServiceBus.Agent.Implementation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent;
+using AgentSchema = Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent;
+using Schema = Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
 using Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent;
 using Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.Agent;
 
@@ -21,7 +20,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             AgentISRDW agent = new AgentISRDW();
 
             //Act
-            var result = agent.SendAPKKeuringsverzoek(new Voertuig(), new Garage(), new Keuringsverzoek());
+            var result = agent.SendAPKKeuringsverzoek(new AgentSchema.Voertuig(), new Garage(), new Keuringsverzoek());
 
             //Assert
             Assert.AreEqual(typeof(SendRdwKeuringsverzoekResponseMessage), result.GetType());
@@ -38,7 +37,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             AgentISRDW agent = new AgentISRDW(factoryMock.Object);
 
             //Act
-            agent.SendAPKKeuringsverzoek(new Voertuig(), new Garage(), new Keuringsverzoek());
+            agent.SendAPKKeuringsverzoek(new AgentSchema.Voertuig(), new Garage(), new Keuringsverzoek());
 
             //Assert
             Assert.IsTrue(true);
@@ -62,7 +61,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             var agent = new AgentISRDW(factoryMock.Object);
 
             //Act
-            agent.SendAPKKeuringsverzoek(new Voertuig(), new Garage(), new Keuringsverzoek());
+            agent.SendAPKKeuringsverzoek(new AgentSchema.Voertuig(), new Garage(), new Keuringsverzoek());
 
             //Assert
             Assert.IsTrue(true);
@@ -75,17 +74,17 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
         {
             //Arrange
             var keuringsreq = new SendRdwKeuringsverzoekRequestMessage();
-            var voertuig = new Voertuig
+            var voertuig = new AgentSchema.Voertuig
             {
                 Kenteken = "12-AA-AA",
                 Merk = "ford",
                 Type = "focus",
-                Eigenaar = new Persoon
+                Eigenaar = new AgentSchema.Persoon
                 {
                     Voornaam = "Jan",
                     Achternaam = "Jansen"
                 },
-                Bestuurder = new Persoon
+                Bestuurder = new AgentSchema.Persoon
                 {
                     Voornaam = "Jan",
                     Achternaam = "Jansen"
