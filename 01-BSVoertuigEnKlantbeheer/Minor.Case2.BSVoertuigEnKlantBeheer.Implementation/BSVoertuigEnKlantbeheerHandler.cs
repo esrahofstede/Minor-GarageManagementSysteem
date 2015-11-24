@@ -68,6 +68,11 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
             return klantenCollection;
         }
 
+        public OnderhoudsopdrachtenCollection GetOnderhoudsopdrachtenBy(VoertuigenSearchCriteria zoekCriteria)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Get all Personen and Leasemaatschappijen from the database
         /// </summary>
