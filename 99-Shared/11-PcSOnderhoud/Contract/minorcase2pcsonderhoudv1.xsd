@@ -51,14 +51,14 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="WijzigOnderhoudsopdracht">
+  <xs:element name="MeldVoertuigKlaar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="onderhoudsopdracht" nillable="true" xmlns:q6="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q6:Onderhoudsopdracht" />
+        <xs:element minOccurs="0" name="voertuig" nillable="true" xmlns:q6="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q6:Voertuig" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="WijzigOnderhoudsopdrachtResponse">
+  <xs:element name="MeldVoertuigKlaarResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>

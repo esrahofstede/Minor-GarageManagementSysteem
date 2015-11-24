@@ -68,11 +68,16 @@
     <Compile Include="AgentBSKlantEnVoertuigBeheerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AgentISRDWTest.cs" />
+    <Compile Include="AgentBSKlantEnVoertuigMapperTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Minor.Case2.PcSOnderhoud.Agent\06 - Agent.csproj">
       <Project>{bbb1f82f-297c-47f9-a3d6-491daef9cd05}</Project>
       <Name>06 - Agent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Minor.Case2.PcSOnderhoud.Schema\01 - Schema.csproj">
+      <Project>{b63a86e2-42ee-4b35-8816-706b3ced8090}</Project>
+      <Name>01 - Schema</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

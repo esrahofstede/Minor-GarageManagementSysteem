@@ -24,7 +24,7 @@ namespace Minor.Case2.PcSOnderhoud.Contract
         void VoegOnderhoudsopdrachtToe(Onderhoudsopdracht onderhoudsopdracht);
 
         [OperationContract]
-        void WijzigOnderhoudsopdracht(Onderhoudsopdracht onderhoudsopdracht);
+        void MeldVoertuigKlaar(Voertuig voertuig);
     }
     
 }
