@@ -482,7 +482,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             //Arrange
             AgentSchema.Voertuig voertuig = new AgentSchema.Voertuig
             {
-                Id = 111111,
+                ID = 111111,
                 Kenteken = "14-TT-KJ",
                 Merk = "Ford",
                 Type = "Focus"
@@ -517,7 +517,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             //Arrange
             AgentSchema.Voertuig voertuig = new AgentSchema.Voertuig
             {
-                Id = 111111,
+                ID = 111111,
                 Kenteken = "14-TT-KJ",
                 Merk = "Ford",
                 Type = "Focus"
@@ -541,7 +541,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             //Arrange
             AgentSchema.Voertuig voertuig = new AgentSchema.Voertuig
             {
-                Id = 111111,
+                ID = 111111,
                 Kenteken = "14-TT-KJ",
                 Merk = "Ford",
                 Type = "Focus",
@@ -573,7 +573,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
         }
 
         [TestMethod]
-        public void SchemaToAgentVoertuigMapperReturnsCorrectDataBestuurderPersoonEigenaarPersoon()
+        public void AgentToSchemaVoertuigMapperReturnsCorrectDataBestuurderPersoonEigenaarPersoon()
         {
             AgentSchema.Persoon persoon = new AgentSchema.Persoon
             {
@@ -591,7 +591,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             //Arrange
             AgentSchema.Voertuig voertuig = new AgentSchema.Voertuig
             {
-                Id = 111111,
+                ID = 111111,
                 Kenteken = "14-TT-KJ",
                 Merk = "Ford",
                 Type = "Focus",
@@ -603,8 +603,8 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
 
             //Act
-            var result = mapper.SchemaToAgentVoertuigMapper(voertuig);
-            AgentSchema.Persoon actual = (AgentSchema.Persoon) result.Eigenaar;
+            var result = mapper.AgentToSchemaVoertuigMapper(voertuig);
+            Schema.Persoon actual = (Schema.Persoon) result.Eigenaar;
 
             //Assert
             Assert.AreEqual(voertuig.Kenteken, result.Kenteken);
@@ -617,9 +617,9 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
 
 
         [TestMethod]
-        public void SchemaToAgentVoertuigMapperReturnsCorrectDataBestuurderPersoonEigenaarLease()
+        public void AgentToSchemaVoertuigMapperReturnsCorrectDataBestuurderPersoonEigenaarLease()
         {
-            Schema.Persoon persoon = new Schema.Persoon
+            AgentSchema.Persoon persoon = new AgentSchema.Persoon
             {
                 ID = 111211,
                 Voornaam = "Marco",
@@ -632,7 +632,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
                 Woonplaats = "Utrecht"
             };
 
-            Schema.Leasemaatschappij leasemaatschappij = new Schema.Leasemaatschappij
+            AgentSchema.Leasemaatschappij leasemaatschappij = new AgentSchema.Leasemaatschappij
             {
                 ID = 111211,
                 Klantnummer = 123456,
@@ -641,7 +641,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             };
 
             //Arrange
-            Schema.Voertuig voertuig = new Schema.Voertuig
+            AgentSchema.Voertuig voertuig = new AgentSchema.Voertuig
             {
                 ID = 111111,
                 Kenteken = "14-TT-KJ",
@@ -655,8 +655,8 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
 
             //Act
-            var result = mapper.SchemaToAgentVoertuigMapper(voertuig);
-            AgentSchema.Leasemaatschappij actual = (AgentSchema.Leasemaatschappij) result.Eigenaar;
+            var result = mapper.AgentToSchemaVoertuigMapper(voertuig);
+            Schema.Leasemaatschappij actual = (Schema.Leasemaatschappij) result.Eigenaar;
 
             //Assert
             Assert.AreEqual(voertuig.Kenteken, result.Kenteken);
@@ -668,9 +668,9 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
         }
 
         [TestMethod]
-        public void SchemaToAgentVoertuigMapperReturnsEigenaarLease()
+        public void AgentToSchemaVoertuigMapperReturnsEigenaarLease()
         {
-            Schema.Leasemaatschappij leasemaatschappij = new Schema.Leasemaatschappij
+            AgentSchema.Leasemaatschappij leasemaatschappij = new AgentSchema.Leasemaatschappij
             {
                 ID = 111211,
                 Klantnummer = 123456,
@@ -679,7 +679,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             };
 
             //Arrange
-            Schema.Voertuig voertuig = new Schema.Voertuig
+            AgentSchema.Voertuig voertuig = new AgentSchema.Voertuig
             {
                 ID = 111111,
                 Kenteken = "14-TT-KJ",
@@ -692,11 +692,11 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
 
             //Act
-            var result = mapper.SchemaToAgentVoertuigMapper(voertuig);
+            var result = mapper.AgentToSchemaVoertuigMapper(voertuig);
             var actual = result.Eigenaar;
 
             //Assert
-            Assert.AreEqual(typeof(AgentSchema.Leasemaatschappij), actual.GetType());
+            Assert.AreEqual(typeof(Schema.Leasemaatschappij), actual.GetType());
         }
 
         [TestMethod]
@@ -920,6 +920,217 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
 
             //Assert
             Assert.AreEqual(typeof(AgentSchema.Leasemaatschappij), actual.GetType());
+        }
+
+        [TestMethod]
+        public void SchemaToAgentOnderhoudsopdrachtMapperReturnsOnderhoudsopdracht()
+        {
+            //Arrange
+            Schema.Onderhoudsopdracht onderhoudsopdracht = new Schema.Onderhoudsopdracht
+            {
+                ID = 111111,
+                APK = false,
+                Aanmeldingsdatum = DateTime.Now,
+                Kilometerstand = 100000,
+            };
+
+            Schema.Voertuig voertuig = new Schema.Voertuig
+            {
+                ID = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus",
+                Status = "New"
+            };
+            
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentOnderhoudsopdrachtMapper(onderhoudsopdracht);
+
+            //Assert
+            Assert.AreEqual(typeof(AgentSchema.Onderhoudsopdracht), result.GetType());
+        }
+
+        [TestMethod]
+        public void SchemaToAgentOnderhoudsopdrachtMapperReturnsNullIfEmpty()
+        {
+            //Arrange
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentOnderhoudsopdrachtMapper(null);
+
+            //Assert
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void SchemaToAgentOnderhoudsopdrachtMapperReturnsCorrectData()
+        {
+            //Arrange
+            Schema.Onderhoudsopdracht onderhoudsopdracht = new Schema.Onderhoudsopdracht
+            {
+                ID = 111111,
+                APK = false,
+                Aanmeldingsdatum = DateTime.Now,
+                Kilometerstand = 100000,
+                Onderhoudsomschrijving = "Olie verversen"
+            };
+            
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentOnderhoudsopdrachtMapper(onderhoudsopdracht);
+
+            //Assert
+            Assert.AreEqual(onderhoudsopdracht.APK, result.APK);
+            Assert.AreEqual(onderhoudsopdracht.Aanmeldingsdatum, result.Aanmeldingsdatum);
+            Assert.AreEqual(onderhoudsopdracht.Kilometerstand, result.Kilometerstand);
+            Assert.AreEqual(onderhoudsopdracht.Onderhoudsomschrijving, result.Onderhoudsomschrijving);
+        }
+
+        [TestMethod]
+        public void SchemaToAgentOnderhoudsopdrachtMapperReturnsCorrectDataVoertuig()
+        {
+            //Arrange
+            Schema.Voertuig voertuig = new Schema.Voertuig
+            {
+                ID = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus",
+                Status = "New",
+            };
+
+            Schema.Onderhoudsopdracht onderhoudsopdracht = new Schema.Onderhoudsopdracht
+            {
+                ID = 111111,
+                APK = false,
+                Aanmeldingsdatum = DateTime.Now,
+                Kilometerstand = 100000,
+                Voertuig = voertuig
+            };
+            
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentOnderhoudsopdrachtMapper(onderhoudsopdracht);
+
+            //Assert
+            Assert.AreEqual(onderhoudsopdracht.APK, result.APK);
+            Assert.AreEqual(onderhoudsopdracht.Aanmeldingsdatum, result.Aanmeldingsdatum);
+            Assert.AreEqual(onderhoudsopdracht.Kilometerstand, result.Kilometerstand);
+            Assert.AreEqual(onderhoudsopdracht.Onderhoudsomschrijving, result.Onderhoudsomschrijving);
+            Assert.AreEqual(onderhoudsopdracht.Voertuig.Status, result.Voertuig.Status);
+            Assert.AreEqual(onderhoudsopdracht.Voertuig.Kenteken, result.Voertuig.Kenteken);
+
+        }[TestMethod]
+        public void AgentToSchemaOnderhoudsopdrachtMapperReturnsOnderhoudsopdracht()
+        {
+            //Arrange
+            AgentSchema.Onderhoudsopdracht onderhoudsopdracht = new AgentSchema.Onderhoudsopdracht
+            {
+                ID = 111111,
+                APK = false,
+                Aanmeldingsdatum = DateTime.Now,
+                Kilometerstand = 100000,
+                
+            };
+
+            AgentSchema.Voertuig voertuig = new AgentSchema.Voertuig
+            {
+                ID = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus",
+                Status = "New"
+            };
+            
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.AgentToSchemaOnderhoudsopdrachtMapper(onderhoudsopdracht);
+
+            //Assert
+            Assert.AreEqual(typeof(Schema.Onderhoudsopdracht), result.GetType());
+        }
+
+        [TestMethod]
+        public void AgentToSchemaOnderhoudsopdrachtMapperReturnsNullIfEmpty()
+        {
+            //Arrange
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.AgentToSchemaOnderhoudsopdrachtMapper(null);
+
+            //Assert
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void AgentToSchemaOnderhoudsopdrachtMapperReturnsCorrectData()
+        {
+            //Arrange
+            AgentSchema.Onderhoudsopdracht onderhoudsopdracht = new AgentSchema.Onderhoudsopdracht
+            {
+                ID = 111111,
+                APK = false,
+                Aanmeldingsdatum = DateTime.Now,
+                Kilometerstand = 100000,
+                Onderhoudsomschrijving = "Olie verversen"
+            };
+            
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.AgentToSchemaOnderhoudsopdrachtMapper(onderhoudsopdracht);
+
+            //Assert
+            Assert.AreEqual(onderhoudsopdracht.APK, result.APK);
+            Assert.AreEqual(onderhoudsopdracht.Aanmeldingsdatum, result.Aanmeldingsdatum);
+            Assert.AreEqual(onderhoudsopdracht.Kilometerstand, result.Kilometerstand);
+            Assert.AreEqual(onderhoudsopdracht.Onderhoudsomschrijving, result.Onderhoudsomschrijving);
+        }
+
+        [TestMethod]
+        public void AgentToSchemaOnderhoudsopdrachtMapperReturnsCorrectDataVoertuig()
+        {
+            //Arrange
+            AgentSchema.Voertuig voertuig = new AgentSchema.Voertuig
+            {
+                ID = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus",
+                Status = "New",
+            };
+
+            AgentSchema.Onderhoudsopdracht onderhoudsopdracht = new AgentSchema.Onderhoudsopdracht
+            {
+                ID = 111111,
+                APK = false,
+                Aanmeldingsdatum = DateTime.Now,
+                Kilometerstand = 100000,
+                Voertuig = voertuig
+            };
+            
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.AgentToSchemaOnderhoudsopdrachtMapper(onderhoudsopdracht);
+
+            //Assert
+            Assert.AreEqual(onderhoudsopdracht.APK, result.APK);
+            Assert.AreEqual(onderhoudsopdracht.Aanmeldingsdatum, result.Aanmeldingsdatum);
+            Assert.AreEqual(onderhoudsopdracht.Kilometerstand, result.Kilometerstand);
+            Assert.AreEqual(onderhoudsopdracht.Onderhoudsomschrijving, result.Onderhoudsomschrijving);
+            Assert.AreEqual(onderhoudsopdracht.Voertuig.Status, result.Voertuig.Status);
+            Assert.AreEqual(onderhoudsopdracht.Voertuig.Kenteken, result.Voertuig.Kenteken);
+
         }
     }
 }
