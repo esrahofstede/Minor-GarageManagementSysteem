@@ -12,11 +12,15 @@ using AgentBSSchema = Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent;
 
 namespace Minor.Case2.PcSOnderhoud.Agent
 {
-    
+    /// <summary>
+    /// Deze agent is verantwoordelijk voor de communicatie met de ISRDWService
+    /// </summary>
     public class AgentISRDW
     {
         private ServiceFactory<IISRDWService> _factory;
-
+        /// <summary>
+        /// Standaar constructor die een nieuwe ServiceFactory maakt voor de ISRDWService
+        /// </summary>
         public AgentISRDW()
         {
             _factory = new ServiceFactory<IISRDWService>("ISRDWService");

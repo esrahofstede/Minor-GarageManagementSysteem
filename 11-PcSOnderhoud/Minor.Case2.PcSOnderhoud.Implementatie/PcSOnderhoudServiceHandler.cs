@@ -105,8 +105,9 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             return onderhoudsopdracht;
         }
 
-        public bool VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden, Garage garage)
+        public bool? VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden, Garage garage)
         {
+            bool? steekproef = null;
             if (onderhoudswerkzaamheden == null)
             {
                 FunctionalErrorDetail error = new FunctionalErrorDetail {Message = "Onderhoudswerkzaamheden mogen niet null zijn"};
@@ -115,24 +116,31 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             AgentBSVoertuigEnKlantBeheer agentBS = new AgentBSVoertuigEnKlantBeheer();
             AgentISRDW agentIS = new AgentISRDW();
 
-            Schema.OnderhoudsopdrachtZoekCriteria zoekCriteria = new Schema.OnderhoudsopdrachtZoekCriteria();
-            zoekCriteria.ID = onderhoudswerkzaamheden.Onderhoudsopdracht.ID;
+            Schema.OnderhoudsopdrachtZoekCriteria zoekCriteria = new Schema.OnderhoudsopdrachtZoekCriteria
+            {
+                ID = onderhoudswerkzaamheden.Onderhoudsopdracht.ID
+            };
             var onderhoudsopdrachten = agentBS.GetOnderhoudsopdrachtenBy(zoekCriteria);
             var onderhoudsopdracht = onderhoudsopdrachten.First();
-
-            Keuringsverzoek keuringsverzoek = new Keuringsverzoek
+            if (onderhoudsopdracht.APK)
             {
-                Kilometerstand = (int) onderhoudswerkzaamheden.Kilometerstand,
-                Date = onderhoudswerkzaamheden.Afmeldingsdatum,
-                CorrolatieId = Guid.NewGuid().ToString()
-            };
-            onderhoudsopdracht.Voertuig.Status = "Klaar";
+                Keuringsverzoek keuringsverzoek = new Keuringsverzoek
+                {
+                    Kilometerstand = (int)onderhoudswerkzaamheden.Kilometerstand,
+                    Date = onderhoudswerkzaamheden.Afmeldingsdatum,
+                    CorrolatieId = Guid.NewGuid().ToString()
+                };
 
-            bool steekproef = agentIS.SendAPKKeuringsverzoek(onderhoudsopdracht.Voertuig, garage, keuringsverzoek).Steekproef;
-            if (!steekproef)
+                onderhoudsopdracht.Voertuig.Status = "Klaar";
+
+                steekproef = agentIS.SendAPKKeuringsverzoek(onderhoudsopdracht.Voertuig, garage, keuringsverzoek).Steekproef;
+            }
+
+            if (steekproef == null)
             {
                 onderhoudsopdracht.Voertuig.Status = "Afgemeld";
             }
+            
             agentBS.UpdateVoertuig(onderhoudsopdracht.Voertuig);
             agentBS.VoegOnderhoudswerkzaamhedenToe(onderhoudswerkzaamheden);
             return steekproef;
