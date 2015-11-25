@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
 {
+    /// <summary>
+    /// Maps DTO to Entity and vice versa, returns ArgumentNullException when paramter is null
+    /// </summary>
     [CLSCompliant(false)]
     public static class OnderhoudswerkzaamhedenDTOMapper
     {

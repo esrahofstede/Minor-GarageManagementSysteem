@@ -67,7 +67,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="BSVoertuigEnKlantbeheerHandlerTests.cs" />
+    <Compile Include="BSVoertuigEnKlantbeheerCRUDHandlerTests.cs" />
+    <Compile Include="BSVoertuigEnKlantbeheerFilterHandlerTests.cs" />
     <Compile Include="DummyData.cs" />
     <Compile Include="Mappers\LeasemaatschappijDTOMapperTests.cs" />
     <Compile Include="Mappers\OnderhoudsOpdrachtDTOMapperTests.cs" />

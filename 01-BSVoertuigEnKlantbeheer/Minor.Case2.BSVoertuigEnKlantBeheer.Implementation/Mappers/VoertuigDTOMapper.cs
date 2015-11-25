@@ -2,9 +2,13 @@
 
 namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
 {
+    /// <summary>
+    /// Maps DTO to Entity and vice versa, returns ArgumentNullException when paramter is null
+    /// </summary>
     [CLSCompliant(false)]
     public static class VoertuigDTOMapper
     {   
+
         public static Entities.Voertuig MapDTOToEntity(BSVoertuigEnKlantbeheer.V1.Schema.Voertuig dto)
         {
             if (dto == null)
