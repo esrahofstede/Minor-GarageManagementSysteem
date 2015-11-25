@@ -15,7 +15,7 @@ namespace Minor.Case2.FEGMS.Client.Tests
         {
             // Arrange
             InsertKlantgegevensVM klantgegevens = DummyData.GetKlantGegevens(true);
-            InsertLeasemaatschappijGegevensVM leasemaatschappij = DummyData.GetLeasemaatschappijGegevens();
+            InsertLeasemaatschappijGegevensVM leasemaatschappij = DummyData.GetLeasemaatschappijGegevens(false);
             InsertVoertuiggegevensVM voertuiggegevens = DummyData.GetVoertuiggegevens();
             InsertOnderhoudsopdrachtVM onderhoudopdracht = DummyData.GetOnderhoudsopdracht();
 
@@ -53,7 +53,7 @@ namespace Minor.Case2.FEGMS.Client.Tests
         {
             // Arrange
             InsertKlantgegevensVM klantgegevens = DummyData.GetKlantGegevens(true);
-            InsertLeasemaatschappijGegevensVM leasemaatschappij = DummyData.GetLeasemaatschappijGegevens();
+            InsertLeasemaatschappijGegevensVM leasemaatschappij = DummyData.GetLeasemaatschappijGegevens(false);
             InsertVoertuiggegevensVM voertuiggegevens = DummyData.GetVoertuiggegevens();
 
             // Act
@@ -69,6 +69,7 @@ namespace Minor.Case2.FEGMS.Client.Tests
             Assert.AreEqual(klantgegevens.Emailadres, result.Bestuurder.Emailadres);
             Assert.AreEqual(klantgegevens.Telefoonnummer, result.Bestuurder.Telefoonnummer);
 
+            Assert.AreEqual(leasemaatschappij.SelectedLeasemaatschappijID, result.Eigenaar.ID);
             Assert.AreEqual(leasemaatschappij.Telefoonnummer, result.Eigenaar.Telefoonnummer);
             Assert.AreEqual(leasemaatschappij.Naam, ((Leasemaatschappij)result.Eigenaar).Naam);
 
@@ -82,7 +83,7 @@ namespace Minor.Case2.FEGMS.Client.Tests
         {
             // Arrange
             InsertKlantgegevensVM klantgegevens = DummyData.GetKlantGegevens(false);
-            InsertLeasemaatschappijGegevensVM leasemaatschappij = DummyData.GetLeasemaatschappijGegevens();
+            InsertLeasemaatschappijGegevensVM leasemaatschappij = DummyData.GetLeasemaatschappijGegevens(false);
             InsertVoertuiggegevensVM voertuiggegevens = DummyData.GetVoertuiggegevens();
 
             // Act
@@ -121,7 +122,7 @@ namespace Minor.Case2.FEGMS.Client.Tests
             bool exceptionWasThrown = false;
             string exceptionMessage = string.Empty;
             InsertKlantgegevensVM klantgegevens = null;
-            InsertLeasemaatschappijGegevensVM leasemaatschappij = DummyData.GetLeasemaatschappijGegevens();
+            InsertLeasemaatschappijGegevensVM leasemaatschappij = DummyData.GetLeasemaatschappijGegevens(false);
             InsertVoertuiggegevensVM voertuiggegevens = DummyData.GetVoertuiggegevens();
             
             try {
@@ -170,7 +171,7 @@ namespace Minor.Case2.FEGMS.Client.Tests
             bool exceptionWasThrown = false;
             string exceptionMessage = string.Empty;
             InsertKlantgegevensVM klantgegevens = DummyData.GetKlantGegevens(false);
-            InsertLeasemaatschappijGegevensVM leasemaatschappij = DummyData.GetLeasemaatschappijGegevens();
+            InsertLeasemaatschappijGegevensVM leasemaatschappij = DummyData.GetLeasemaatschappijGegevens(false);
             InsertVoertuiggegevensVM voertuiggegevens = null;
 
             try

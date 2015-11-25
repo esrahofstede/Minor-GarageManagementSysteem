@@ -122,6 +122,27 @@ namespace Minor.Case2.FEGMS.Client.Controllers
         [HttpPost]
         public ActionResult InsertLeasemaatschappijGegevens(InsertLeasemaatschappijGegevensVM model)
         {
+            if(!model.Exist)
+            {
+                if (string.IsNullOrWhiteSpace(model.Naam))
+                {
+                    ModelState.AddModelError("Naam", "Naam is een verplicht veld");
+                }
+
+                if (string.IsNullOrWhiteSpace(model.Telefoonnummer))
+                {
+                    ModelState.AddModelError("Telefoonnummer", "Telefoonnummer is een verplicht veld");
+                }
+            }
+            else
+            {
+                if(model.SelectedLeasemaatschappijID == 0)
+                {
+                    ModelState.AddModelError("Leasemaatschappijen", "Indien het een bestaande leasemaatschappij is, moet er één geselecteerd zijn.");
+                }
+            }
+
+
             if(ModelState.IsValid)
             {
                 var serializedLeasmaatschappijGegevens = new JavaScriptSerializer().Serialize(model);

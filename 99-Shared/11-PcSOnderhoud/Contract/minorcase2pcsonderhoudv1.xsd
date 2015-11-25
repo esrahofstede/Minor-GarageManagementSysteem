@@ -70,7 +70,7 @@
   <xs:element name="GetHuidigeOnderhoudsopdrachtBy">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="searchCriteria" nillable="true" xmlns:q8="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q8:VoertuigenSearchCriteria" />
+        <xs:element minOccurs="0" name="searchCriteria" nillable="true" xmlns:q8="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q8:OnderhoudsopdrachtZoekCriteria" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

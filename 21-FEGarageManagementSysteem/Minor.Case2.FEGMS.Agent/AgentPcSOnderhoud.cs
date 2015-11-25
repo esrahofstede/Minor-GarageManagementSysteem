@@ -119,7 +119,7 @@ namespace Minor.Case2.FEGMS.Agent
         {
             try
             {
-                var proxy = _factory.CreateAgent();
+                //var proxy = _factory.CreateAgent();
                 //return proxy.GetAllLeasemaatschappijen();
             }
             catch (FaultException ex)

@@ -15,32 +15,7 @@ namespace Minor.Case2.FEGMS.Client.Helper
     {
         public static Onderhoudsopdracht MapToOnderhoudsopdracht(InsertOnderhoudsopdrachtVM onderhoudsopdracht, InsertLeasemaatschappijGegevensVM leasemaatschappijgegevens, InsertKlantgegevensVM klantgegevens, InsertVoertuiggegevensVM voertuiggegevens)
         {
-            var bestuurder = new Persoon
-            {
-                Voornaam = klantgegevens.Voornaam,
-                Tussenvoegsel = klantgegevens.Tussenvoegsel,
-                Achternaam = klantgegevens.Achternaam,
-                Adres = klantgegevens.Adres,
-                Postcode = klantgegevens.Postcode,
-                Woonplaats = klantgegevens.Woonplaats,
-                Emailadres = klantgegevens.Emailadres,
-                Telefoonnummer = klantgegevens.Telefoonnummer,
-            };
-
-            Klant eigenaar = null;
-
-            if (klantgegevens.Lease)
-            {
-                eigenaar = new Leasemaatschappij
-                {
-                    Naam = leasemaatschappijgegevens.Naam,
-                    Telefoonnummer = leasemaatschappijgegevens.Telefoonnummer,
-                };
-            }
-            else
-            {
-                eigenaar = bestuurder;
-            }
+            var voertuig = MapToVoertuig(leasemaatschappijgegevens, klantgegevens, voertuiggegevens);
 
             return new Onderhoudsopdracht
             {
@@ -48,14 +23,7 @@ namespace Minor.Case2.FEGMS.Client.Helper
                 APK = onderhoudsopdracht.APK,
                 Kilometerstand = onderhoudsopdracht.Kilometerstand,
                 Onderhoudsomschrijving = onderhoudsopdracht.Onderhoudsomschrijving,
-                Voertuig = new Voertuig
-                {
-                    Bestuurder = bestuurder,
-                    Eigenaar = eigenaar,
-                    Kenteken = voertuiggegevens.Kenteken,
-                    Merk = voertuiggegevens.Merk,
-                    Type = voertuiggegevens.Type,
-                },
+                Voertuig = voertuig,
             };
         }
 
@@ -96,6 +64,7 @@ namespace Minor.Case2.FEGMS.Client.Helper
                 {
                     Naam = leasemaatschappijgegevens.Naam,
                     Telefoonnummer = leasemaatschappijgegevens.Telefoonnummer,
+                    ID = leasemaatschappijgegevens.SelectedLeasemaatschappijID,
                 };
             }
             else

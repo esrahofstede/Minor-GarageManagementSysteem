@@ -121,6 +121,8 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
         {
             // Arrange
             var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
+            mock.Setup(agent => agent.GetAllLeasemaatschappijen()).Returns(DummyData.GetAllLeasemaatschappijen());
+
             OnderhoudController controller = new OnderhoudController(mock.Object);
 
             controller.ControllerContext = CreateContext(controller);
@@ -133,7 +135,13 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.IsNull(result.Model);
+            Assert.IsNotNull(result.Model);
+            Assert.IsInstanceOfType(result.Model, typeof(InsertLeasemaatschappijGegevensVM));
+            var lease = result.Model as InsertLeasemaatschappijGegevensVM;
+            Assert.IsTrue(lease.Exist);
+            Assert.AreEqual(lease.Leasemaatschappijen.Count(), DummyData.GetAllLeasemaatschappijen().Count());
+
+            mock.Verify(agent => agent.GetAllLeasemaatschappijen());
         }
 
         [TestMethod]
@@ -154,12 +162,12 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
         }
 
         [TestMethod]
-        public void InsertLeasemaatschappijGegevensPostTest()
+        public void InsertNewLeasemaatschappijGegevensPostTest()
         {
             // Arrange
             var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
             OnderhoudController controller = new OnderhoudController(mock.Object);
-            InsertLeasemaatschappijGegevensVM leasemaatschappij = DummyData.GetLeasemaatschappijGegevens();
+            InsertLeasemaatschappijGegevensVM leasemaatschappij = DummyData.GetLeasemaatschappijGegevens(false);
 
             var request = new HttpRequest("", "http://example.com/", "");
             var response = new HttpResponse(TextWriter.Null);
@@ -177,6 +185,8 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             Assert.AreEqual("InsertVoertuiggegevens", result.RouteValues.First().Value);
             Assert.AreEqual(leasemaatschappij.Naam, leasemaatschappijFromCookie.Naam);
             Assert.AreEqual(leasemaatschappij.Telefoonnummer, leasemaatschappijFromCookie.Telefoonnummer);
+            Assert.AreEqual(leasemaatschappij.Exist, leasemaatschappijFromCookie.Exist);
+            Assert.AreEqual(leasemaatschappij.SelectedLeasemaatschappijID, leasemaatschappijFromCookie.SelectedLeasemaatschappijID);
         }
 
         [TestMethod]
@@ -231,7 +241,7 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             var klantgegevensCookie = new HttpCookie("Klantgegevens", serializer.Serialize(DummyData.GetKlantGegevens(true)));
             controller.HttpContext.Request.Cookies.Add(klantgegevensCookie);
             //Set leasemaatschappijcookie
-            var leasemaatschappijCookie = new HttpCookie("LeasemaatschappijGegevens", serializer.Serialize(DummyData.GetLeasemaatschappijGegevens()));
+            var leasemaatschappijCookie = new HttpCookie("LeasemaatschappijGegevens", serializer.Serialize(DummyData.GetLeasemaatschappijGegevens(false)));
             controller.HttpContext.Request.Cookies.Add(leasemaatschappijCookie);
 
             // Act
@@ -338,7 +348,7 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             var klantgegevensCookie = new HttpCookie("Klantgegevens", serializer.Serialize(DummyData.GetKlantGegevens(false)));
             controller.HttpContext.Request.Cookies.Add(klantgegevensCookie);
             //Set leasemaatschappijcookie
-            var leasemaatschappijCookie = new HttpCookie("LeasemaatschappijGegevens", serializer.Serialize(DummyData.GetLeasemaatschappijGegevens()));
+            var leasemaatschappijCookie = new HttpCookie("LeasemaatschappijGegevens", serializer.Serialize(DummyData.GetLeasemaatschappijGegevens(false)));
             controller.HttpContext.Request.Cookies.Add(leasemaatschappijCookie);
             //Set voertuigcookie
             var voertuigCookie = new HttpCookie("Voertuiggegevens", serializer.Serialize(DummyData.GetVoertuiggegevens()));
@@ -433,7 +443,7 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
                     controller.HttpContext.Request.Cookies.Add(klantgegevensCookie);
                     break;
                 case "LeasemaatschappijGegevens":
-                    var leasemaatschappijCookie = new HttpCookie("LeasemaatschappijGegevens", serializer.Serialize(DummyData.GetLeasemaatschappijGegevens()));
+                    var leasemaatschappijCookie = new HttpCookie("LeasemaatschappijGegevens", serializer.Serialize(DummyData.GetLeasemaatschappijGegevens(false)));
                     controller.HttpContext.Request.Cookies.Add(leasemaatschappijCookie);
                     break;
                 case "Voertuiggegevens":

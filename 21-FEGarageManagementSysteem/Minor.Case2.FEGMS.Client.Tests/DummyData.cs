@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Minor.Case2.FEGMS.Client.ViewModel;
 using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
+using System.Web.Mvc;
 
 namespace Minor.Case2.FEGMS.Client.Tests
 {
@@ -30,13 +31,16 @@ namespace Minor.Case2.FEGMS.Client.Tests
             };
         }
 
-        internal static InsertLeasemaatschappijGegevensVM GetLeasemaatschappijGegevens()
+        internal static InsertLeasemaatschappijGegevensVM GetLeasemaatschappijGegevens(bool exists)
         {
             return new InsertLeasemaatschappijGegevensVM
             {
                 Naam = "Sixt",
                 Telefoonnummer = "0687654321",
-            };
+                Exist = exists,
+                Leasemaatschappijen = GetAllLeasemaatschappijen().Select(lease => new SelectListItem { Value = lease.ID.ToString(), Text = lease.Naam }),
+                SelectedLeasemaatschappijID = exists ? 1 : 0,
+        };
         }
 
         internal static InsertVoertuiggegevensVM GetVoertuiggegevens()
@@ -136,6 +140,41 @@ namespace Minor.Case2.FEGMS.Client.Tests
 
             return voertuigen;
 
+        }
+
+        internal static IEnumerable<Leasemaatschappij> GetAllLeasemaatschappijen()
+        {
+            return new List<Leasemaatschappij>()
+            {
+                new Leasemaatschappij
+                {
+                    ID = 1,
+                    Naam = "Sixt",
+                    Klantnummer = 123456,
+                    Telefoonnummer = "0621345678",
+                },
+                new Leasemaatschappij
+                {
+                    ID = 2,
+                    Naam = "DutchLease",
+                    Klantnummer = 561456,
+                    Telefoonnummer = "0612431536",
+                },
+                new Leasemaatschappij
+                {
+                    ID = 3,
+                    Naam = "LeasePlanDirect",
+                    Klantnummer = 2135126,
+                    Telefoonnummer = "0645786542",
+                },
+                new Leasemaatschappij
+                {
+                    ID = 4,
+                    Naam = "DirectLease",
+                    Klantnummer = 879435,
+                    Telefoonnummer = "0625495321",
+                },
+            };
         }
     }
 }
