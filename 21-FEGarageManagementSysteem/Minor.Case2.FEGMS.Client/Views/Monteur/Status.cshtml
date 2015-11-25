@@ -1,19 +1,23 @@
-﻿@model ?bool
+﻿@model bool?
 @{
     ViewBag.Title = "Status";
 }
 
 <h2>Status</h2>
 
-@if (Model)
+@if (Model.HasValue)
 {
-    <h1 style="color: red; text-align:center;">Er is een steekproef voor deze auto!</h1>
+    @if (Model.Value)
+    {
+        <h1 style="color: red; text-align:center;">Er is een steekproef voor deze auto!</h1>
+    }
+    else if (!Model.Value)
+    {
+        <h1 style="color: green; text-align:center;">De auto is afgemeld. <br /> Er is geen steekproef.</h1>
+    }
 }
-else if(!Model)
-{
-    <h1 style="color: green; text-align:center;">De auto is afgemeld. <br/> Er is geen steekproef.</h1>
-}
-else if (Model == null)
+else
 {
     <h1 style="color: green; text-align:center;">De auto is afgemeld (geen apk).</h1>
 }
+
