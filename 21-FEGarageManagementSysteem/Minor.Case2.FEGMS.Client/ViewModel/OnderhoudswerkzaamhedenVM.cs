@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Minor.Case2.FEGMS.Client.ViewModel
 {
-    public class OnderhoudsopdrachtVM
+    public class OnderhoudswerkzaamhedenVM
     {
         [Required(ErrorMessage = "{0} moet worden ingevoerd om de onderhoudsopdracht te kunnen inzien")]
         public string Kenteken { get; set; }

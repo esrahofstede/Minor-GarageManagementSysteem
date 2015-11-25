@@ -28,11 +28,6 @@ namespace Minor.Case2.FEGMS.Client.Controllers
             _agent = agent;
         }
 
-        public ActionResult OnderhoudswerkzaamhedenInvoeren()
-        {
-            return View();
-        }
-
         /// <summary>
         /// Show the form to Search Auto For Werkzaamheden
         /// </summary>
@@ -48,22 +43,44 @@ namespace Minor.Case2.FEGMS.Client.Controllers
         /// </summary>
         /// <returns>View</returns>
         [HttpPost]
-        public ActionResult SearchAutoForWerkzaamheden(string kenteken)
+        public ActionResult SearchAutoForWerkzaamheden(SearchVM search)
         {
-            if(string.IsNullOrWhiteSpace(kenteken))
-            {
-
-            }
-            
             if(ModelState.IsValid)
             {
-
+                //SET COOKIE AND GET ONDERHOUDSOPDRACHT
+                return RedirectToAction("OnderhoudswerkzaamhedenInvoeren");
             }
-            return View();
+            return View(search);
+        }
+        public ActionResult OnderhoudswerkzaamhedenInvoeren()
+        {
+            //COOKIE UITLEZEN VOOR KENTEKEN
+            var kenteken = "";
+
+            var searchCriteria = new OnderhoudsopdrachtZoekCriteria
+            {
+                VoertuigenSearchCriteria = new VoertuigenSearchCriteria
+                {
+                    Kenteken = kenteken,
+                },
+            };
+
+            var onderhoudsopdracht = new Onderhoudsopdracht
+            {
+                APK = true,
+                Kilometerstand = 12345,
+                Onderhoudsomschrijving = "Omschrijving test",
+            };//_agent.GetOnderhoudsopdrachtBy(searchCriteria);
+            OnderhoudswerkzaamhedenVM model = new OnderhoudswerkzaamhedenVM
+            {
+                Onderhoudsopdracht = onderhoudsopdracht,
+            };
+
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult OnderhoudswerkzaamhedenInvoeren(OnderhoudsopdrachtVM model)
+        public ActionResult OnderhoudswerkzaamhedenInvoeren(OnderhoudswerkzaamhedenVM model)
         {
             if(ModelState.IsValid)
             {
@@ -90,7 +107,7 @@ namespace Minor.Case2.FEGMS.Client.Controllers
         /// <param name="model">KlaarmeldenVM with kenteken</param>
         /// <returns>View</returns>
         [HttpPost]
-        public ActionResult Klaarmelden(OnderhoudsopdrachtVM model)
+        public ActionResult Klaarmelden(OnderhoudswerkzaamhedenVM model)
         {
             if (ModelState.IsValid)
             {
@@ -160,7 +177,7 @@ namespace Minor.Case2.FEGMS.Client.Controllers
         /// <param name="model">KlaarmeldenVM with kenteken</param>
         /// <returns>View</returns>
         [HttpPost]
-        public ActionResult Onderhoudsopdracht(OnderhoudsopdrachtVM model)
+        public ActionResult Onderhoudsopdracht(OnderhoudswerkzaamhedenVM model)
         {
             if (ModelState.IsValid)
             {

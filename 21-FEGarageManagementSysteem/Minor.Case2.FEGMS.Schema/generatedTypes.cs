@@ -923,6 +923,14 @@ public interface IPcSOnderhoudService
         "nse")]
     System.Threading.Tasks.Task VoegVoertuigMetKlantToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig);
     
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/HaalVoertuigenOpVoor", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/HaalVoertuigenOpVoorResponse" +
+        "")]
+    Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigenCollection HaalVoertuigenOpVoor(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Persoon persoon);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/HaalVoertuigenOpVoor", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/HaalVoertuigenOpVoorResponse" +
+        "")]
+    System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigenCollection> HaalVoertuigenOpVoorAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Persoon persoon);
+    
     [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudsopdrachtToe", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudsopdrachtToeRes" +
         "ponse")]
     void VoegOnderhoudsopdrachtToe(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht);
@@ -1030,6 +1038,16 @@ public partial class PcSOnderhoudServiceClient : System.ServiceModel.ClientBase<
     public System.Threading.Tasks.Task VoegVoertuigMetKlantToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig)
     {
         return base.Channel.VoegVoertuigMetKlantToeAsync(voertuig);
+    }
+    
+    public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigenCollection HaalVoertuigenOpVoor(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Persoon persoon)
+    {
+        return base.Channel.HaalVoertuigenOpVoor(persoon);
+    }
+    
+    public System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigenCollection> HaalVoertuigenOpVoorAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Persoon persoon)
+    {
+        return base.Channel.HaalVoertuigenOpVoorAsync(persoon);
     }
     
     public void VoegOnderhoudsopdrachtToe(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht)

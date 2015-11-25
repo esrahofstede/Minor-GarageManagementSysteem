@@ -12,20 +12,20 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
     [TestClass]
     public class MoneurControllerTest
     {
-        [TestMethod]
-        public void KlaarmeldenTest()
-        {
-            // Arrange
-            var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
-            MonteurController controller = new MonteurController(mock.Object);
+        //[TestMethod]
+        //public void KlaarmeldenTest()
+        //{
+        //    // Arrange
+        //    var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
+        //    MonteurController controller = new MonteurController(mock.Object);
 
-            // Act
-            ViewResult result = controller.Klaarmelden() as ViewResult;
+        //    // Act
+        //    ViewResult result = controller.Klaarmelden() as ViewResult;
 
-            // Assert
-            Assert.IsNotNull(result);
-            Assert.IsNull(result.Model);
-        }
+        //    // Assert
+        //    Assert.IsNotNull(result);
+        //    Assert.IsNull(result.Model);
+        //}
 
         //[TestMethod]
         //public void KlaarmeldenPostWithoutSteekproefTest()
