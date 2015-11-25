@@ -58,7 +58,7 @@
     <xs:complexContent>
       <xs:extension base="bsvk:Klant">
         <xs:sequence>
-          <xs:element name="Naam" nillable="true" type="xs:string" />
+          <xs:element name="Naam" nillable="true" minOccurs="0" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

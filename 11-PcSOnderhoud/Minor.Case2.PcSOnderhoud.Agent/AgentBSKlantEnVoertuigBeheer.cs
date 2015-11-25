@@ -63,6 +63,23 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             
         }
 
+        public void VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden)
+        {
+            var proxy = _factory.CreateAgent();
+            try
+            {
+                var mapper = new BSKlantEnVoertuigMapper();
+                mapper.SchemaToAgentOnderhoudswerkzaamhedenMapper(onderhoudswerkzaamheden);
+                //proxy.voegonderhoudswerkzaamhedentoe
+
+            }
+            catch (FaultException<FunctionalErrorDetail[]> ex)
+            {
+
+            }
+
+        }
+
         public void UpdateVoertuig(Schema.Voertuig voertuig)
         {
             try
@@ -165,23 +182,6 @@ namespace Minor.Case2.PcSOnderhoud.Agent
 
             }
             return new Schema.KlantenCollection();
-        }
-
-        public void VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden)
-        {
-            var proxy = _factory.CreateAgent();
-            try
-            {
-                var mapper = new BSKlantEnVoertuigMapper();
-                mapper.SchemaToAgentOnderhoudswerkzaamhedenMapper(onderhoudswerkzaamheden);
-                //proxy.voegonderhoudswerkzaamhedentoe
-
-            }
-            catch (FaultException<FunctionalErrorDetail[]> ex)
-            {
-
-            }
-            
         }
     }
 }
