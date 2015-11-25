@@ -1554,7 +1554,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
         public void AgentToSchemaOnderhoudswerkzaamhedenSearchCriteriaMapperReturnsSearchCrit()
         {
             //Arrange
-            Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden = new Schema.Onderhoudswerkzaamheden
+            AgentSchema.Onderhoudswerkzaamheden onderhoudswerkzaamheden = new AgentSchema.Onderhoudswerkzaamheden
             {
                 ID = 111111,
                 Kilometerstand = 100000,
@@ -1565,10 +1565,10 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
 
             //Act
-            var result = mapper.SchemaToAgentOnderhoudswerkzaamhedenMapper(onderhoudswerkzaamheden);
+            var result = mapper.AgentToSchemaOnderhoudswerkzaamhedenMapper(onderhoudswerkzaamheden);
 
             //Assert
-            Assert.AreEqual(typeof(AgentSchema.Onderhoudswerkzaamheden), result.GetType());
+            Assert.AreEqual(typeof(Schema.Onderhoudswerkzaamheden), result.GetType());
         }
 
         [TestMethod]
@@ -1578,7 +1578,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
 
             //Act
-            var result = mapper.SchemaToAgentOnderhoudswerkzaamhedenMapper(null);
+            var result = mapper.AgentToSchemaOnderhoudswerkzaamhedenMapper(null);
 
             //Assert
             Assert.AreEqual(null, result);
@@ -1588,7 +1588,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
         public void AgentToSchemaOnderhoudswerkzaamhedenSearchCriteriaMapperReturnsCorrectData()
         {
             //Arrange
-            Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden = new Schema.Onderhoudswerkzaamheden
+            AgentSchema.Onderhoudswerkzaamheden onderhoudswerkzaamheden = new AgentSchema.Onderhoudswerkzaamheden
             {
                 ID = 111111,
                 Kilometerstand = 100000,
@@ -1599,7 +1599,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
 
             //Act
-            var result = mapper.SchemaToAgentOnderhoudswerkzaamhedenMapper(onderhoudswerkzaamheden);
+            var result = mapper.AgentToSchemaOnderhoudswerkzaamhedenMapper(onderhoudswerkzaamheden);
 
             //Assert
             Assert.AreEqual(onderhoudswerkzaamheden.ID, result.ID);
@@ -1613,7 +1613,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
         public void AgentToSchemaOnderhoudswerkzaamhedenSearchCriteriaMapperReturnsCorrectDataWithOpdracht()
         {
             //Arrange
-            Schema.Onderhoudsopdracht onderhoudsopdracht = new Schema.Onderhoudsopdracht
+            AgentSchema.Onderhoudsopdracht onderhoudsopdracht = new AgentSchema.Onderhoudsopdracht
             {
                 ID = 111111,
                 APK = false,
@@ -1621,7 +1621,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
                 Kilometerstand = 100000,
             };
 
-            Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden = new Schema.Onderhoudswerkzaamheden
+            AgentSchema.Onderhoudswerkzaamheden onderhoudswerkzaamheden = new AgentSchema.Onderhoudswerkzaamheden
             {
                 ID = 111111,
                 Kilometerstand = 100000,
@@ -1633,7 +1633,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
 
             //Act
-            var result = mapper.SchemaToAgentOnderhoudswerkzaamhedenMapper(onderhoudswerkzaamheden);
+            var result = mapper.AgentToSchemaOnderhoudswerkzaamhedenMapper(onderhoudswerkzaamheden);
 
             //Assert
             Assert.AreEqual(onderhoudswerkzaamheden.ID, result.ID);
