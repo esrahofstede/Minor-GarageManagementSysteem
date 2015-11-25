@@ -8,6 +8,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
     [TestClass]
     public class AgentBSKlantEnVoertuigMapperTest
     {
+        #region Persoon
         [TestMethod]
         public void SchemaToAgentPersoonMapperReturnsPersoon()
         {
@@ -141,7 +142,8 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             //Assert
             Assert.AreEqual(null, result);
         }
-
+        #endregion
+        #region Leasemaatschappij
         [TestMethod]
         public void SchemaToAgentLeasemaatschappijMapperReturnsLeasemaatschappij()
         {
@@ -253,7 +255,8 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             Assert.AreEqual(leasemaatschappij.Klantnummer, result.Klantnummer);
             Assert.AreEqual(leasemaatschappij.ID, result.ID);
         }
-
+        #endregion
+        #region Klant
         [TestMethod]
         public void SchemaToAgentKlantMapperReturnsLeasemaatschappij()
         {
@@ -475,7 +478,8 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             Assert.AreEqual(expected.Tussenvoegsel, result.Tussenvoegsel);
             Assert.AreEqual(expected.Adres, result.Adres);
         }
-
+        #endregion
+        #region Voertuig
         [TestMethod]
         public void AgentToSchemaVoertuigMapperReturnsVoertuig()
         {
@@ -837,8 +841,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             Assert.AreEqual(voertuig.Eigenaar.Klantnummer, result.Eigenaar.Klantnummer);
             Assert.AreEqual(persoon.Voornaam, actual.Voornaam);
         }
-
-
+        
         [TestMethod]
         public void SchemaToAgentVoertuigMapperReturnsCorrectDataBestuurderPersoonEigenaarLease()
         {
@@ -921,7 +924,8 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             //Assert
             Assert.AreEqual(typeof(AgentSchema.Leasemaatschappij), actual.GetType());
         }
-
+        #endregion
+        #region Onderhoudsopdracht
         [TestMethod]
         public void SchemaToAgentOnderhoudsopdrachtMapperReturnsOnderhoudsopdracht()
         {
@@ -1133,7 +1137,8 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             Assert.AreEqual(onderhoudsopdracht.Voertuig.Status, result.Voertuig.Status);
             Assert.AreEqual(onderhoudsopdracht.Voertuig.Kenteken, result.Voertuig.Kenteken);
         }
-
+        #endregion
+        #region VoertuigenSearchCriteria
         [TestMethod]
         public void SchemaToAgentVoertuigenSearchCriteriaMapperReturnsSearchCrit()
         {
@@ -1250,5 +1255,395 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             Assert.AreEqual(searchCriteria.Kenteken, result.Kenteken);
             Assert.AreEqual(searchCriteria.Type, result.Type);
         }
+
+        #endregion
+        #region OnderhoudsopdrachtenSearchCriteria
+        [TestMethod]
+        public void SchemaToAgentOnderhoudsopdrachtenSearchCriteriaMapperReturnsSearchCrit()
+        {
+            //Arrange
+            Schema.OnderhoudsopdrachtZoekCriteria searchCriteria = new Schema.OnderhoudsopdrachtZoekCriteria
+            {
+                ID = 111111,
+                APK = true,
+                Aanmeldingsdatum = DateTime.Now,
+                Kilometerstand = 1000,
+                Onderhoudsomschrijving = "test",
+            };
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentOnderhoudsopdrachtSearchCriteriaMapper(searchCriteria);
+
+            //Assert
+            Assert.AreEqual(typeof(AgentSchema.OnderhoudsopdrachtZoekCriteria), result.GetType());
+        }
+
+        [TestMethod]
+        public void SchemaToAgentOnderhoudsopdrachtenSearchCriteriaMapperReturnsNullIfEmpty()
+        {
+            //Arrange
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentOnderhoudsopdrachtSearchCriteriaMapper(null);
+
+            //Assert
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void SchemaToAgentOnderhoudsopdrachtnSearchCriteriaMapperReturnsCorrectData()
+        {
+            //Arrange
+            Schema.OnderhoudsopdrachtZoekCriteria searchCriteria = new Schema.OnderhoudsopdrachtZoekCriteria
+            {
+                ID = 111111,
+                APK = true,
+                Aanmeldingsdatum = DateTime.Now,
+                Kilometerstand = 1000,
+                Onderhoudsomschrijving = "test",
+            };
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentOnderhoudsopdrachtSearchCriteriaMapper(searchCriteria);
+
+            //Assert
+            Assert.AreEqual(searchCriteria.ID, result.ID);
+            Assert.AreEqual(searchCriteria.APK, result.APK);
+            Assert.AreEqual(searchCriteria.Aanmeldingsdatum, result.Aanmeldingsdatum);
+            Assert.AreEqual(searchCriteria.Kilometerstand, result.Kilometerstand);
+            Assert.AreEqual(searchCriteria.Onderhoudsomschrijving, result.Onderhoudsomschrijving);
+        }
+
+        [TestMethod]
+        public void SchemaToAgentOnderhoudsopdrachtnSearchCriteriaMapperReturnsCorrectDataWithVoertuigSearchCriteria()
+        {
+            //Arrange
+
+            Schema.VoertuigenSearchCriteria voertuigenSearchCriteria = new Schema.VoertuigenSearchCriteria
+            {
+                ID = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus",
+            };
+
+            Schema.OnderhoudsopdrachtZoekCriteria searchCriteria = new Schema.OnderhoudsopdrachtZoekCriteria
+            {
+                ID = 111111,
+                APK = true,
+                Aanmeldingsdatum = DateTime.Now,
+                Kilometerstand = 1000,
+                Onderhoudsomschrijving = "test",
+                VoertuigenSearchCriteria = voertuigenSearchCriteria
+            };
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentOnderhoudsopdrachtSearchCriteriaMapper(searchCriteria);
+
+            //Assert
+            Assert.AreEqual(searchCriteria.ID, result.ID);
+            Assert.AreEqual(searchCriteria.APK, result.APK);
+            Assert.AreEqual(searchCriteria.Aanmeldingsdatum, result.Aanmeldingsdatum);
+            Assert.AreEqual(searchCriteria.Kilometerstand, result.Kilometerstand);
+            Assert.AreEqual(searchCriteria.Onderhoudsomschrijving, result.Onderhoudsomschrijving);
+            Assert.AreEqual(searchCriteria.VoertuigenSearchCriteria.Kenteken, result.VoertuigenSearchCriteria.Kenteken);
+        }
+
+        [TestMethod]
+        public void AgentToSchemaOnderhoudsopdrachtenSearchCriteriaMapperReturnsSearchCrit()
+        {
+            //Arrange
+            AgentSchema.OnderhoudsopdrachtZoekCriteria searchCriteria = new AgentSchema.OnderhoudsopdrachtZoekCriteria
+            {
+                ID = 111111,
+                APK = true,
+                Aanmeldingsdatum = DateTime.Now,
+                Kilometerstand = 1000,
+                Onderhoudsomschrijving = "test",
+            };
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.AgentToSchemaOnderhoudsopdrachtSearchCriteriaMapper(searchCriteria);
+
+            //Assert
+            Assert.AreEqual(typeof(Schema.OnderhoudsopdrachtZoekCriteria), result.GetType());
+        }
+
+        [TestMethod]
+        public void AgentToSchemaOnderhoudsopdrachtenSearchCriteriaMapperReturnsNullIfEmpty()
+        {
+            //Arrange
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.AgentToSchemaOnderhoudsopdrachtSearchCriteriaMapper(null);
+
+            //Assert
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void AgentToSchemaOnderhoudsopdrachtnSearchCriteriaMapperReturnsCorrectData()
+        {
+            //Arrange
+            AgentSchema.OnderhoudsopdrachtZoekCriteria searchCriteria = new AgentSchema.OnderhoudsopdrachtZoekCriteria
+            {
+                ID = 111111,
+                APK = true,
+                Aanmeldingsdatum = DateTime.Now,
+                Kilometerstand = 1000,
+                Onderhoudsomschrijving = "test",
+            };
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.AgentToSchemaOnderhoudsopdrachtSearchCriteriaMapper(searchCriteria);
+
+            //Assert
+            Assert.AreEqual(searchCriteria.ID, result.ID);
+            Assert.AreEqual(searchCriteria.APK, result.APK);
+            Assert.AreEqual(searchCriteria.Aanmeldingsdatum, result.Aanmeldingsdatum);
+            Assert.AreEqual(searchCriteria.Kilometerstand, result.Kilometerstand);
+            Assert.AreEqual(searchCriteria.Onderhoudsomschrijving, result.Onderhoudsomschrijving);
+        }
+
+        [TestMethod]
+        public void AgentToSchemaOnderhoudsopdrachtnSearchCriteriaMapperReturnsCorrectDataWithVoertuigSearchCriteria()
+        {
+            //Arrange
+
+            AgentSchema.VoertuigenSearchCriteria voertuigenSearchCriteria = new AgentSchema.VoertuigenSearchCriteria
+            {
+                ID = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus",
+            };
+
+            AgentSchema.OnderhoudsopdrachtZoekCriteria searchCriteria = new AgentSchema.OnderhoudsopdrachtZoekCriteria
+            {
+                ID = 111111,
+                APK = true,
+                Aanmeldingsdatum = DateTime.Now,
+                Kilometerstand = 1000,
+                Onderhoudsomschrijving = "test",
+                VoertuigenSearchCriteria = voertuigenSearchCriteria
+            };
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.AgentToSchemaOnderhoudsopdrachtSearchCriteriaMapper(searchCriteria);
+
+            //Assert
+            Assert.AreEqual(searchCriteria.ID, result.ID);
+            Assert.AreEqual(searchCriteria.APK, result.APK);
+            Assert.AreEqual(searchCriteria.Aanmeldingsdatum, result.Aanmeldingsdatum);
+            Assert.AreEqual(searchCriteria.Kilometerstand, result.Kilometerstand);
+            Assert.AreEqual(searchCriteria.Onderhoudsomschrijving, result.Onderhoudsomschrijving);
+            Assert.AreEqual(searchCriteria.VoertuigenSearchCriteria.Kenteken, result.VoertuigenSearchCriteria.Kenteken);
+        }
+
+        #endregion
+        #region Onderhoudswerkzaamheden
+        [TestMethod]
+        public void SchemaToAgentOnderhoudswerkzaamhedenSearchCriteriaMapperReturnsSearchCrit()
+        {
+            //Arrange
+            Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden = new Schema.Onderhoudswerkzaamheden
+            {
+                ID = 111111,
+                Kilometerstand = 100000,
+                Afmeldingsdatum = DateTime.Now,
+                Onderhoudswerkzaamhedenomschrijving = "uitlaat vervangen"
+            };
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentOnderhoudswerkzaamhedenMapper(onderhoudswerkzaamheden);
+
+            //Assert
+            Assert.AreEqual(typeof(AgentSchema.Onderhoudswerkzaamheden), result.GetType());
+        }
+
+        [TestMethod]
+        public void SchemaToAgentOnderhoudswerkzaamhedenSearchCriteriaMapperReturnsNullIfEmpty()
+        {
+            //Arrange
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentOnderhoudswerkzaamhedenMapper(null);
+
+            //Assert
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void SchemaToAgentOnderhoudswerkzaamhedenSearchCriteriaMapperReturnsCorrectData()
+        {
+            //Arrange
+            Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden = new Schema.Onderhoudswerkzaamheden
+            {
+                ID = 111111,
+                Kilometerstand = 100000,
+                Afmeldingsdatum = DateTime.Now,
+                Onderhoudswerkzaamhedenomschrijving = "uitlaat vervangen"
+            };
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentOnderhoudswerkzaamhedenMapper(onderhoudswerkzaamheden);
+
+            //Assert
+            Assert.AreEqual(onderhoudswerkzaamheden.ID, result.ID);
+            Assert.AreEqual(onderhoudswerkzaamheden.Kilometerstand, result.Kilometerstand);
+            Assert.AreEqual(onderhoudswerkzaamheden.Afmeldingsdatum, result.Afmeldingsdatum);
+            Assert.AreEqual(onderhoudswerkzaamheden.Onderhoudswerkzaamhedenomschrijving, result.Onderhoudswerkzaamhedenomschrijving);
+            
+        }
+
+        [TestMethod]
+        public void SchemaToAgentOnderhoudswerkzaamhedenSearchCriteriaMapperReturnsCorrectDataWithOpdracht()
+        {
+            //Arrange
+            Schema.Onderhoudsopdracht onderhoudsopdracht = new Schema.Onderhoudsopdracht
+            {
+                ID = 111111,
+                APK = false,
+                Aanmeldingsdatum = DateTime.Now,
+                Kilometerstand = 100000,
+            };
+
+            Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden = new Schema.Onderhoudswerkzaamheden
+            {
+                ID = 111111,
+                Kilometerstand = 100000,
+                Afmeldingsdatum = DateTime.Now,
+                Onderhoudswerkzaamhedenomschrijving = "uitlaat vervangen",
+                Onderhoudsopdracht = onderhoudsopdracht
+            };
+            
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentOnderhoudswerkzaamhedenMapper(onderhoudswerkzaamheden);
+
+            //Assert
+            Assert.AreEqual(onderhoudswerkzaamheden.ID, result.ID);
+            Assert.AreEqual(onderhoudswerkzaamheden.Kilometerstand, result.Kilometerstand);
+            Assert.AreEqual(onderhoudswerkzaamheden.Afmeldingsdatum, result.Afmeldingsdatum);
+            Assert.AreEqual(onderhoudswerkzaamheden.Onderhoudswerkzaamhedenomschrijving, result.Onderhoudswerkzaamhedenomschrijving);
+            Assert.AreEqual(onderhoudswerkzaamheden.Onderhoudsopdracht.Kilometerstand, result.Onderhoudsopdracht.Kilometerstand);
+
+        }
+
+        [TestMethod]
+        public void AgentToSchemaOnderhoudswerkzaamhedenSearchCriteriaMapperReturnsSearchCrit()
+        {
+            //Arrange
+            Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden = new Schema.Onderhoudswerkzaamheden
+            {
+                ID = 111111,
+                Kilometerstand = 100000,
+                Afmeldingsdatum = DateTime.Now,
+                Onderhoudswerkzaamhedenomschrijving = "uitlaat vervangen"
+            };
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentOnderhoudswerkzaamhedenMapper(onderhoudswerkzaamheden);
+
+            //Assert
+            Assert.AreEqual(typeof(AgentSchema.Onderhoudswerkzaamheden), result.GetType());
+        }
+
+        [TestMethod]
+        public void AgentToSchemaOnderhoudswerkzaamhedenSearchCriteriaMapperReturnsNullIfEmpty()
+        {
+            //Arrange
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentOnderhoudswerkzaamhedenMapper(null);
+
+            //Assert
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void AgentToSchemaOnderhoudswerkzaamhedenSearchCriteriaMapperReturnsCorrectData()
+        {
+            //Arrange
+            Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden = new Schema.Onderhoudswerkzaamheden
+            {
+                ID = 111111,
+                Kilometerstand = 100000,
+                Afmeldingsdatum = DateTime.Now,
+                Onderhoudswerkzaamhedenomschrijving = "uitlaat vervangen"
+            };
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentOnderhoudswerkzaamhedenMapper(onderhoudswerkzaamheden);
+
+            //Assert
+            Assert.AreEqual(onderhoudswerkzaamheden.ID, result.ID);
+            Assert.AreEqual(onderhoudswerkzaamheden.Kilometerstand, result.Kilometerstand);
+            Assert.AreEqual(onderhoudswerkzaamheden.Afmeldingsdatum, result.Afmeldingsdatum);
+            Assert.AreEqual(onderhoudswerkzaamheden.Onderhoudswerkzaamhedenomschrijving, result.Onderhoudswerkzaamhedenomschrijving);
+
+        }
+
+        [TestMethod]
+        public void AgentToSchemaOnderhoudswerkzaamhedenSearchCriteriaMapperReturnsCorrectDataWithOpdracht()
+        {
+            //Arrange
+            Schema.Onderhoudsopdracht onderhoudsopdracht = new Schema.Onderhoudsopdracht
+            {
+                ID = 111111,
+                APK = false,
+                Aanmeldingsdatum = DateTime.Now,
+                Kilometerstand = 100000,
+            };
+
+            Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden = new Schema.Onderhoudswerkzaamheden
+            {
+                ID = 111111,
+                Kilometerstand = 100000,
+                Afmeldingsdatum = DateTime.Now,
+                Onderhoudswerkzaamhedenomschrijving = "uitlaat vervangen",
+                Onderhoudsopdracht = onderhoudsopdracht
+            };
+
+            BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
+
+            //Act
+            var result = mapper.SchemaToAgentOnderhoudswerkzaamhedenMapper(onderhoudswerkzaamheden);
+
+            //Assert
+            Assert.AreEqual(onderhoudswerkzaamheden.ID, result.ID);
+            Assert.AreEqual(onderhoudswerkzaamheden.Kilometerstand, result.Kilometerstand);
+            Assert.AreEqual(onderhoudswerkzaamheden.Afmeldingsdatum, result.Afmeldingsdatum);
+            Assert.AreEqual(onderhoudswerkzaamheden.Onderhoudswerkzaamhedenomschrijving, result.Onderhoudswerkzaamhedenomschrijving);
+            Assert.AreEqual(onderhoudswerkzaamheden.Onderhoudsopdracht.Kilometerstand, result.Onderhoudsopdracht.Kilometerstand);
+
+        }
+        #endregion
+
     }
 }

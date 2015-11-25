@@ -115,7 +115,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
                 var proxy = _factory.CreateAgent();
 
                 var onderhoudsopdrachten = proxy
-                    .GetOnderhoudsopdrachtenBy(mapper.SchemaToAgentOnderhoudsOpdrachtSearchCriteriaMapper(criteria));
+                    .GetOnderhoudsopdrachtenBy(mapper.SchemaToAgentOnderhoudsopdrachtSearchCriteriaMapper(criteria));
                 var query = from onderhoudsopdracht in onderhoudsopdrachten
                             select mapper.AgentToSchemaOnderhoudsopdrachtMapper(onderhoudsopdracht);
                 var onderhoudsopdrachtenCollection = new Schema.OnderhoudsopdrachtenCollection();
@@ -157,6 +157,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
                 var query = from leasemaatschappij in leasemaatschappijen
                     select mapper.AgentToSchemaKlantMapper(leasemaatschappij);
                 var leasemaatschappijenCollection = new Schema.KlantenCollection();
+                leasemaatschappijenCollection.AddRange(query);
                 return leasemaatschappijenCollection;
             }
             catch (FaultException<FunctionalErrorDetail[]> ex)
