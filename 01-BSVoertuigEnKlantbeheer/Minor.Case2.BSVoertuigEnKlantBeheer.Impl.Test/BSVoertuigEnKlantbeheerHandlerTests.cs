@@ -299,6 +299,21 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
         }
 
         /// <summary>
+        /// Test if the method returns the good exception when null is passed
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(System.ServiceModel.FaultException<All.V1.Schema.FunctionalErrorDetail[]>))]
+        public void InsertOnderhoudswerkzaamhedenWithNullTest()
+        {
+            // Arrange
+            BSVoertuigEnKlantbeheerHandler handler = new BSVoertuigEnKlantbeheerHandler();
+            // Act
+            handler.VoegOnderhoudswerkzaamhedenToe(null);
+
+            // Assert
+        }
+
+        /// <summary>
         /// Test if the right onderhoudsopdrachten are returned by voertuig kenteken
         /// </summary>
         [TestMethod]
