@@ -690,17 +690,17 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private long IDField;
+        private System.Nullable<long> IDField;
         
-        private System.DateTime AanmeldingsdatumField;
+        private System.Nullable<System.DateTime> AanmeldingsdatumField;
         
-        private long KilometerstandField;
+        private System.Nullable<long> KilometerstandField;
         
         private string OnderhoudsomschrijvingField;
         
         private Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Voertuig VoertuigField;
         
-        private bool APKField;
+        private System.Nullable<bool> APKField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -715,7 +715,7 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long ID
+        public System.Nullable<long> ID
         {
             get
             {
@@ -728,7 +728,7 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
-        public System.DateTime Aanmeldingsdatum
+        public System.Nullable<System.DateTime> Aanmeldingsdatum
         {
             get
             {
@@ -741,7 +741,7 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
-        public long Kilometerstand
+        public System.Nullable<long> Kilometerstand
         {
             get
             {
@@ -753,7 +753,7 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=3)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
         public string Onderhoudsomschrijving
         {
             get
@@ -766,7 +766,7 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
         public Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Voertuig Voertuig
         {
             get
@@ -780,7 +780,7 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
-        public bool APK
+        public System.Nullable<bool> APK
         {
             get
             {

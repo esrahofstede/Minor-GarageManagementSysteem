@@ -296,5 +296,33 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
 
             // Assert
         }
+
+        /// <summary>
+        /// Test if the right onderhoudsopdrachten are returned by voertuig kenteken
+        /// </summary>
+        [TestMethod]
+        public void FilterOnderhoudsopdrachtByVoertuigKentekenTest()
+        {
+            // Arrange
+            var onderhoudsopdrachtMock = new Mock<IDataMapper<Entities.Onderhoudsopdracht, long>>();
+
+            BSVoertuigEnKlantbeheerHandler handler = new BSVoertuigEnKlantbeheerHandler(onderhoudsopdrachtMock.Object);
+
+            onderhoudsopdrachtMock.Setup(datamapper => datamapper.FindAll()).Returns(DummyData.GetDummyOnderhoudsopdrachtenCollection);
+
+            OnderhoudsopdrachtZoekCriteria zoekCriteria = new OnderhoudsopdrachtZoekCriteria
+            {
+                Voertuig = new Voertuig
+                {
+                    Kenteken = "GG-WP-13"
+                },
+            };
+
+            // Act
+            var result = handler.GetOnderhoudsopdrachtenBy(zoekCriteria);
+
+            // Assert
+            Assert.AreEqual(2, result.ToArray().Length);
+        }
     }
 }

@@ -54,6 +54,15 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
         }
 
         /// <summary>
+        /// Creates an instance of the dataMapper to inject with IDataMappers
+        /// </summary>
+        /// <param name="voertuigDataMapper"></param>
+        public BSVoertuigEnKlantbeheerHandler(IDataMapper<Entities.Onderhoudsopdracht, long> onderhoudsDataMapper)
+        {
+            _onderhoudsDataMapper = onderhoudsDataMapper;
+        }
+
+        /// <summary>
         /// Get all Leasemaatschappijen from the database
         /// </summary>
         /// <returns>KlantenCollection of Leasemaatschappijen</returns>

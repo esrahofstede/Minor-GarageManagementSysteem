@@ -9,6 +9,47 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
 {
     internal static class DummyData
     {
+        public static IEnumerable<Onderhoudsopdracht> GetDummyOnderhoudsopdrachtenCollection()
+        {
+            List<Onderhoudsopdracht> voertuigen = new List<Onderhoudsopdracht>();
+            var o1 = new Onderhoudsopdracht
+            {
+                ID = 1,
+                Aanmeldingsdatum = new DateTime(2015, 10, 09),
+                Kilometerstand = 1000,
+                Onderhoudsomschrijving = "Onderhoudsomschrijving 1",
+                Voertuig = new Voertuig
+                {
+                    Kenteken = "GG-WP-13"
+                }                  
+            };
+            var o2 = new Onderhoudsopdracht
+            {
+                ID = 2,
+                Aanmeldingsdatum = new DateTime(2015, 10, 09),
+                Kilometerstand = 2000,
+                Onderhoudsomschrijving = "Onderhoudsomschrijving 2",
+                Voertuig = new Voertuig
+                {
+                    Kenteken = "GG-WP-13"
+                }
+            };
+            var o3 = new Onderhoudsopdracht
+            {
+                ID = 3,
+                Aanmeldingsdatum = new DateTime(2015, 09, 09),
+                Kilometerstand = 3000,
+                Onderhoudsomschrijving = "Onderhoudsomschrijving 3",
+                Voertuig = new Voertuig
+                {
+                    Kenteken = "BG-NP-12"
+                }
+            };
+
+            voertuigen.AddRange(new Onderhoudsopdracht[] { o1, o2, o3 });
+            return voertuigen;
+        }
+
         internal static IEnumerable<Voertuig> GetDummyVoertuigCollection()
         {
             List<Voertuig> voertuigen = new List<Voertuig>();
