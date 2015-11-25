@@ -128,20 +128,8 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="Eigenaar" nillable="true" type="tns:Klant">
-        <xs:annotation>
-          <xs:appinfo>
-            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="Bestuurder" nillable="true" type="tns:Persoon">
-        <xs:annotation>
-          <xs:appinfo>
-            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
+      <xs:element name="Eigenaar" nillable="true" type="tns:Klant" />
+      <xs:element name="Bestuurder" nillable="true" type="tns:Persoon" />
       <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string">
         <xs:annotation>
           <xs:appinfo>

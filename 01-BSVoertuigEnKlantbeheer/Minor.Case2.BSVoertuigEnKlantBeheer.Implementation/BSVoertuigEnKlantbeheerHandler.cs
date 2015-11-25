@@ -65,6 +65,35 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
         }
 
         /// <summary>
+        /// Get all Personen and Leasemaatschappijen from the database
+        /// </summary>
+        /// <returns>KlantenCollection of Personen and Leasemaatschappijen</returns>
+        public KlantenCollection GetAllKlanten()
+        {
+            KlantenCollection klantenCollection = new KlantenCollection();
+
+            klantenCollection.AddRange(GetAllPersonen());
+            klantenCollection.AddRange(GetAllLeasemaatschappijen());
+
+            return klantenCollection;
+        }
+
+        /// <summary>
+        /// Get all klanten from the database
+        /// </summary>
+        /// <returns>KlantenCollection of Leasemaatschappijen</returns>
+        public KlantenCollection GetAllPersonen()
+        {
+            KlantenCollection klantenCollection = new KlantenCollection();
+
+            foreach (var leaseEntity in _persoonDataMapper.FindAll())
+            {
+                klantenCollection.Add(PersoonDTOMapper.MapEntityToDTO(leaseEntity));
+            }
+            return klantenCollection;
+        }
+
+        /// <summary>
         /// Get all Leasemaatschappijen from the database
         /// </summary>
         /// <returns>KlantenCollection of Leasemaatschappijen</returns>
@@ -79,26 +108,6 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
             return klantenCollection;
         }
 
-
-        /// <summary>
-        /// Get all Personen and Leasemaatschappijen from the database
-        /// </summary>
-        /// <returns>KlantenCollection of Personen and Leasemaatschappijen</returns>
-        public KlantenCollection GetAllKlanten()
-        {
-            KlantenCollection klantenCollection = new KlantenCollection();
-
-            foreach (var persoonEntity in _persoonDataMapper.FindAll())
-            {
-                klantenCollection.Add(PersoonDTOMapper.MapEntityToDTO(persoonEntity));
-            }
-
-            foreach (var leaseEntity in _leaseDataMapper.FindAll())
-            {
-                klantenCollection.Add(LeasemaatschappijDTOMapper.MapEntityToDTO(leaseEntity));
-            }
-            return klantenCollection;
-        }
 
         /// <summary>
         /// Find voertuigen by search criteria defind in the VoertuigenSearchCriteria

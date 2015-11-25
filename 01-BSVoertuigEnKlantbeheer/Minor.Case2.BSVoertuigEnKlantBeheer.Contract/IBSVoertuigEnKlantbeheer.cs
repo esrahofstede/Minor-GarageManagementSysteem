@@ -15,6 +15,9 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Contract
         KlantenCollection GetAllKlanten();
 
         [OperationContract]
+        KlantenCollection GetAllPersonen();
+
+        [OperationContract]
         KlantenCollection GetAllLeasemaatschappijen();
 
         [OperationContract]

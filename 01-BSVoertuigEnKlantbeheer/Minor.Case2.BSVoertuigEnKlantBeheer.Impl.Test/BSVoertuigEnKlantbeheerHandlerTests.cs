@@ -358,6 +358,26 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
         }
 
         /// <summary>
+        /// Test if the method returns klanten
+        /// </summary>
+        [TestMethod]
+        public void GetAllPersonenTest()
+        {
+            // Arrange
+            var persoonMock = new Mock<IDataMapper<Entities.Persoon, long>>(MockBehavior.Strict);
+
+            BSVoertuigEnKlantbeheerHandler handler = new BSVoertuigEnKlantbeheerHandler(persoonMock.Object, null, null);
+
+            persoonMock.Setup(datamapper => datamapper.FindAll()).Returns(DummyData.GetDummyPersoonCollection());
+
+            // Act
+            var result = handler.GetAllPersonen();
+
+            // Assert
+            Assert.AreEqual(2, result.ToArray().Length);
+        }
+
+        /// <summary>
         /// Test if the returns leasemaatschappijen
         /// </summary>
         [TestMethod]
