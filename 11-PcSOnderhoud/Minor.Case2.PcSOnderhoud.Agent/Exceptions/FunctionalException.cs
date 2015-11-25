@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Minor.Case2.PcSOnderhoud.Agent.Exceptions
 {
+    [Serializable]
     public class FunctionalException : Exception
     {
         public FunctionalException(){}

@@ -30,17 +30,14 @@ namespace Minor.Case2.PcSOnderhoud.Agent
         public AgentISMessages.SendRdwKeuringsverzoekResponseMessage SendAPKKeuringsverzoek(Schema.Voertuig voertuig, AgentISSchema.Garage garage, AgentISSchema.Keuringsverzoek keuringsverzoek)
         {
             var proxy =_factory.CreateAgent();
+            keuringsverzoek.Date = DateTime.Now;
+            keuringsverzoek.CorrolatieId = Guid.NewGuid().ToString();
             BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
             var apkKeuringsverzoek = new AgentISMessages.SendRdwKeuringsverzoekRequestMessage
             {
                 Voertuig = mapper.SchemaToAgentVoertuigMapper(voertuig),
                 Garage =  garage,
-                Keuringsverzoek = new AgentISSchema.Keuringsverzoek
-                {
-                    Kilometerstand = 1000,
-                    Date = DateTime.Now,
-                    CorrolatieId = Guid.NewGuid().ToString()
-                }
+                Keuringsverzoek = keuringsverzoek
             };
             AgentISMessages.SendRdwKeuringsverzoekResponseMessage result = proxy.RequestKeuringsverzoek(apkKeuringsverzoek);
             return result;
