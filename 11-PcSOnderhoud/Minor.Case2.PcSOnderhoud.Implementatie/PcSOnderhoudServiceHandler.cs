@@ -59,7 +59,27 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
 
         public Schema.VoertuigenCollection HaalVoertuigenOpVoor(Schema.Persoon persoon)
         {
-            throw new NotImplementedException();
+            Schema.VoertuigenCollection voertuigen = new Schema.VoertuigenCollection();
+            var personen = from persoonAs in _agentBS.GetAllPersonen()
+                            select persoonAs as Schema.Persoon;
+            var filteredPersonen = personen.Where(
+                p => p.Achternaam == persoon.Achternaam && 
+                p.Tussenvoegsel == persoon.Tussenvoegsel &&
+                p.Voornaam == persoon.Voornaam &&
+                p.Telefoonnummer == persoon.Telefoonnummer).ToList();
+            if (filteredPersonen.Count() == 1 )
+            {
+                var searchCriteria = new Schema.VoertuigenSearchCriteria
+                {
+                    Bestuurder = new Schema.Persoon
+                    {
+                        ID = filteredPersonen.First().ID
+                    }
+                };
+                voertuigen = _agentBS.GetVoertuigBy(searchCriteria);
+
+            }
+            return voertuigen;
         }
 
         public void VoegOnderhoudsopdrachtToe(Schema.Onderhoudsopdracht onderhoudsopdracht)
