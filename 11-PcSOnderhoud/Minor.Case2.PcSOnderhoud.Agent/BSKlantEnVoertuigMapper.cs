@@ -52,7 +52,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             };
         }
 
-        public AgentSchema.Leasemaatschappij SchemaToAgentLeaseMaatschappijMapper(Schema.Leasemaatschappij leasemaatschappij)
+        public AgentSchema.Leasemaatschappij SchemaToAgentLeasemaatschappijMapper(Schema.Leasemaatschappij leasemaatschappij)
         {
             if (leasemaatschappij == null)
             {
@@ -67,7 +67,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             };
         }
 
-        public Schema.Leasemaatschappij AgentToSchemaLeaseMaatschappijMapper(AgentSchema.Leasemaatschappij leasemaatschappij)
+        public Schema.Leasemaatschappij AgentToSchemaLeasemaatschappijMapper(AgentSchema.Leasemaatschappij leasemaatschappij)
         {
             if (leasemaatschappij == null)
             {
@@ -93,7 +93,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             {
                 return SchemaToAgentPersoonMapper((Schema.Persoon)klant);
             }
-            return SchemaToAgentLeaseMaatschappijMapper((Schema.Leasemaatschappij)klant);
+            return SchemaToAgentLeasemaatschappijMapper((Schema.Leasemaatschappij)klant);
         }
 
         public Schema.Klant AgentToSchemaKlantMapper(AgentSchema.Klant klant)
@@ -106,7 +106,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             {
                 return AgentToSchemaPersoonMapper((AgentSchema.Persoon)klant);
             }
-            return AgentToSchemaLeaseMaatschappijMapper((AgentSchema.Leasemaatschappij)klant);
+            return AgentToSchemaLeasemaatschappijMapper((AgentSchema.Leasemaatschappij)klant);
         }
 
         public AgentSchema.Voertuig SchemaToAgentVoertuigMapper(Schema.Voertuig voertuig)

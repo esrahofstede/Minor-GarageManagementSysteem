@@ -1255,16 +1255,6 @@ public partial class ISRDWServiceClient : System.ServiceModel.ClientBase<IISRDWS
 public interface IBSVoertuigEnKlantbeheer
 {
     
-    [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllKlanten" +
-        "", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllKlanten" +
-        "Response")]
-    Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection GetAllKlanten();
-    
-    [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllKlanten" +
-        "", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllKlanten" +
-        "Response")]
-    System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection> GetAllKlantenAsync();
-    
     [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllPersone" +
         "n", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllPersone" +
         "nResponse")]
@@ -1378,16 +1368,6 @@ public partial class BSVoertuigEnKlantbeheerClient : System.ServiceModel.ClientB
     public BSVoertuigEnKlantbeheerClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
             base(binding, remoteAddress)
     {
-    }
-    
-    public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection GetAllKlanten()
-    {
-        return base.Channel.GetAllKlanten();
-    }
-    
-    public System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection> GetAllKlantenAsync()
-    {
-        return base.Channel.GetAllKlantenAsync();
     }
     
     public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection GetAllPersonen()
