@@ -26,9 +26,8 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             agent.SendAPKKeuringsverzoek(new Schema.Voertuig(), new Garage(), new Keuringsverzoek());
 
             //Assert
-            Assert.IsTrue(true);
             factoryMock.Verify(factory => factory.CreateAgent(), Times.Once());
-            //Test kan niet worden uitgevoerd omdat de CreateAgent method niet virtual is.
+            
         }
 
         [TestMethod]
