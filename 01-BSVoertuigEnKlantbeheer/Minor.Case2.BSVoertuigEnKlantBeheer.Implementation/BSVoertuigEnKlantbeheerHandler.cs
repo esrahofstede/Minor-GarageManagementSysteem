@@ -16,10 +16,11 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
     [CLSCompliant(false)]
     public class BSVoertuigEnKlantbeheerHandler : IBSVoertuigEnKlantbeheer
     {
-        IDataMapper<Entities.Persoon, long> _persoonDataMapper;
-        IDataMapper<Entities.Leasemaatschappij, long> _leaseDataMapper;
-        IDataMapper<Entities.Voertuig, long> _voertuigDataMapper;
-        IDataMapper<Entities.Onderhoudsopdracht, long> _onderhoudsDataMapper;
+        private IDataMapper<Entities.Persoon, long> _persoonDataMapper;
+        private IDataMapper<Entities.Leasemaatschappij, long> _leaseDataMapper;
+        private IDataMapper<Entities.Voertuig, long> _voertuigDataMapper;
+        private IDataMapper<Entities.Onderhoudsopdracht, long> _onderhoudsDataMapper;
+        private IDataMapper<Entities.Onderhoudswerkzaamheden, long> _onderhoudswerkzaamhedenDataMapper;
 
         public BSVoertuigEnKlantbeheerHandler()
         {
@@ -27,6 +28,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
             _leaseDataMapper = new LeasemaatschappijDataMapper();
             _voertuigDataMapper = new VoertuigDataMapper();
             _onderhoudsDataMapper = new OnderhoudsOpdrachtDataMapper();
+            _onderhoudswerkzaamhedenDataMapper = new OnderhoudsWerkzaamhedenDataMapper();
         }
 
         /// <summary>
@@ -247,6 +249,29 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
         }
 
         /// <summary>
+        /// Add new onderhoudswerkzaamheden to the database
+        /// </summary>
+        /// <param name="onderhoudswerkzaamheden"></param>
+        public void VoegOnderhoudswerkzaamhedenToe(BSVoertuigEnKlantbeheer.V1.Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden)
+        {
+            try
+            {
+                Entities.Onderhoudswerkzaamheden o = OnderhoudswerkzaamhedenDTOMapper.MapDTOToEntity(onderhoudswerkzaamheden);
+                _onderhoudswerkzaamhedenDataMapper.Insert(o);
+            }
+            catch (ArgumentNullException)
+            {
+                var ex = new FunctionalErrorDetail
+                {
+                    ErrorCode = 404,
+                    Message = "werkzaamheden zijn null"
+                };
+                throw new FaultException<FunctionalErrorDetail[]>(new FunctionalErrorDetail[] { ex });
+            }
+
+        }
+
+        /// <summary>
         /// Get all onderhoudsopdrachten filtered by zoekCriteria, for now we only filter on kenteken from a voertuig
         /// </summary>
         /// <param name="zoekCriteria"></param>
@@ -290,6 +315,5 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
                 throw new FaultException<FunctionalErrorDetail[]>(new FunctionalErrorDetail[] { ex });
             }           
         }
-
     }
 }

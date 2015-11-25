@@ -15,6 +15,13 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
             {
                 throw new ArgumentNullException("dto", "dto is null");
             }
+
+            Entities.Voertuig voertuig = null;
+            if (dto.Voertuig != null) {
+                voertuig = VoertuigDTOMapper.MapDTOToEntity(dto.Voertuig);
+            }
+
+
             Entities.Onderhoudsopdracht entity = new Entities.Onderhoudsopdracht
             {
                 ID = dto.ID,
@@ -23,7 +30,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
                 Kilometerstand = dto.Kilometerstand,
                 Onderhoudsomschrijving = dto.Onderhoudsomschrijving,
                 //TODO onderhoudswerkzaamgheden
-                Voertuig = VoertuigDTOMapper.MapDTOToEntity(dto.Voertuig),
+                Voertuig = voertuig
             };
 
             return entity;
@@ -35,6 +42,13 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
             {
                 throw new ArgumentNullException("entity", "entity is null");
             }
+            BSVoertuigEnKlantbeheer.V1.Schema.Voertuig voertuig = null;
+            if (entity.Voertuig != null)
+            {
+                voertuig = VoertuigDTOMapper.MapEntityToDTO(entity.Voertuig);
+            }
+
+
             BSVoertuigEnKlantbeheer.V1.Schema.Onderhoudsopdracht dto = new BSVoertuigEnKlantbeheer.V1.Schema.Onderhoudsopdracht
             {
                 ID = entity.ID,
@@ -43,7 +57,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation.Mappers
                 Kilometerstand = entity.Kilometerstand,
                 Onderhoudsomschrijving = entity.Onderhoudsomschrijving,
                 //TODO onderhoudswerkzaamgheden
-                Voertuig = VoertuigDTOMapper.MapEntityToDTO(entity.Voertuig),
+                Voertuig = voertuig,
             };
             return dto;
         }

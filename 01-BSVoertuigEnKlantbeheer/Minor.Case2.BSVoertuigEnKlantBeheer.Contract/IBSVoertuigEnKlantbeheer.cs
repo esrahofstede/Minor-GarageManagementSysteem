@@ -30,6 +30,9 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Contract
         void VoegOnderhoudsopdrachtToe(Onderhoudsopdracht onderhoudsopdracht);
 
         [OperationContract]
+        void VoegOnderhoudswerkzaamhedenToe(Onderhoudswerkzaamheden onderhoudswerkzaamheden);
+
+        [OperationContract]
         void UpdateVoertuig(Voertuig voertuig);
 
     }

@@ -25,6 +25,14 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.DAL.Mappers
         {
             using (var context = new VoertuigContext())
             {
+                if (onderhoudsWerkzaamheden.Onderhoudsopdracht != null)
+                {
+                    Onderhoudsopdracht onderhoudsopdracht = context.OnderhoudsOpdrachten.Where(o => o.ID == onderhoudsWerkzaamheden.Onderhoudsopdracht.ID).SingleOrDefault();
+                    if (onderhoudsopdracht != null)
+                    {
+                        onderhoudsWerkzaamheden.Onderhoudsopdracht = onderhoudsopdracht;
+                    }
+                }
                 context.OnderhoudsWerkzaamheden.Add(onderhoudsWerkzaamheden);
                 context.SaveChanges();
                 return onderhoudsWerkzaamheden.ID;

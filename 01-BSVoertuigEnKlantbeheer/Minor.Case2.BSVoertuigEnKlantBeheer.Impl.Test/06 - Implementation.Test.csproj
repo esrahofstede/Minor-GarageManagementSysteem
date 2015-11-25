@@ -69,11 +69,12 @@
   <ItemGroup>
     <Compile Include="BSVoertuigEnKlantbeheerHandlerTests.cs" />
     <Compile Include="DummyData.cs" />
-    <Compile Include="LeasemaatschappijDTOMapperTests.cs" />
-    <Compile Include="OnderhoudsOpdrachtDTOMapperTests.cs" />
-    <Compile Include="PersoonDTOMapperTests.cs" />
+    <Compile Include="Mappers\LeasemaatschappijDTOMapperTests.cs" />
+    <Compile Include="Mappers\OnderhoudsOpdrachtDTOMapperTests.cs" />
+    <Compile Include="Mappers\OnderhoudswerkzaamhedenDTOMapperTests.cs" />
+    <Compile Include="Mappers\PersoonDTOMapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VoertuigDTOMapperTests.cs" />
+    <Compile Include="Mappers\VoertuigDTOMapperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Minor.Case2.BSVoertuigEnKlantBeheer.DAL\07 - DAL.csproj">
@@ -97,6 +98,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
