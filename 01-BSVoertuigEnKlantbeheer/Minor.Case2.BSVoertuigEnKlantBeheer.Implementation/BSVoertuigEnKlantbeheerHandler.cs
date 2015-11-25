@@ -54,6 +54,15 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
         }
 
         /// <summary>
+        /// Creates an instance of the dataMapper to inject with IDataMappers
+        /// </summary>
+        /// <param name="voertuigDataMapper"></param>
+        public BSVoertuigEnKlantbeheerHandler(IDataMapper<Entities.Onderhoudsopdracht, long> onderhoudsDataMapper)
+        {
+            _onderhoudsDataMapper = onderhoudsDataMapper;
+        }
+
+        /// <summary>
         /// Get all Leasemaatschappijen from the database
         /// </summary>
         /// <returns>KlantenCollection of Leasemaatschappijen</returns>
@@ -239,9 +248,9 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
 
             IEnumerable<Entities.Onderhoudsopdracht> onderhoudsopdrachten = _onderhoudsDataMapper.FindAll();
   
-            if (zoekCriteria.Voertuig != null && !string.IsNullOrEmpty(zoekCriteria.Voertuig.Kenteken))
+            if (zoekCriteria.VoertuigenSearchCriteria != null && !string.IsNullOrEmpty(zoekCriteria.VoertuigenSearchCriteria.Kenteken))
             {
-                onderhoudsopdrachten = onderhoudsopdrachten.Where(v => v.Voertuig.Kenteken == zoekCriteria.Voertuig.Kenteken);
+                onderhoudsopdrachten = onderhoudsopdrachten.Where(v => v.Voertuig.Kenteken == zoekCriteria.VoertuigenSearchCriteria.Kenteken);
             }
 
             foreach (var onderhoudsEntity in onderhoudsopdrachten.ToList())
