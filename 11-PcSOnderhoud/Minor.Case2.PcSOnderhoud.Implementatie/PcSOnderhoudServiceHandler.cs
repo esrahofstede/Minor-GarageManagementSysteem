@@ -6,29 +6,49 @@ using System.Threading.Tasks;
 using Schema = Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
 using System.ServiceModel;
 using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent;
+using Minor.Case2.Exceptions.V1.Schema;
 using Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent;
 using Minor.Case2.PcSOnderhoud.Contract;
 using Minor.Case2.PcSOnderhoud.Agent;
 
 namespace Minor.Case2.PcSOnderhoud.Implementation
 {
+    /// <summary>
+    /// De implementatie van het Contract
+    /// In deze classes staan alle methodes die aangeroepen kunnen worden.
+    /// </summary>
     public class PcSOnderhoudServiceHandler : IPcSOnderhoudService
     {
+        private readonly IAgentBSVoertuigEnKlantBeheer _agentBS;
+
+        /// <summary>
+        /// Standaard constructor die log4net configureert en een instantie van de BSAgent aanmaakt
+        /// </summary>
         public PcSOnderhoudServiceHandler()
         {
             log4net.Config.XmlConfigurator.Configure();
+            _agentBS = new AgentBSVoertuigEnKlantBeheer();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="agentBS"></param>
+        public PcSOnderhoudServiceHandler(IAgentBSVoertuigEnKlantBeheer agentBS)
+        {
+            _agentBS = agentBS;
+        }
+
         
         public Schema.KlantenCollection GetAllLeasemaatschappijen()
         {
-            AgentBSVoertuigEnKlantBeheer agent = new AgentBSVoertuigEnKlantBeheer();
-            return agent.GetAllLeasemaatschappijen(); ;
+            return _agentBS.GetAllLeasemaatschappijen(); ;
         }
 
-        public Schema.VoertuigenCollection GetVoertuigBy(Schema.VoertuigenSearchCriteria zoekCriteria)
+        public Schema.VoertuigenCollection GetVoertuigBy(Schema.VoertuigenSearchCriteria searchCriteria)
         {
             AgentBSVoertuigEnKlantBeheer agent = new AgentBSVoertuigEnKlantBeheer();
-            return agent.GetVoertuigBy(zoekCriteria);
+            return agent.GetVoertuigBy(searchCriteria);
         }
 
         public Schema.VoertuigenCollection HaalVoertuigenOpVoor(Schema.Persoon persoon)
@@ -38,6 +58,10 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
 
         public void VoegOnderhoudsopdrachtToe(Schema.Onderhoudsopdracht onderhoudsopdracht)
         {
+            if (onderhoudsopdracht == null)
+            {
+                return;
+            }
             AgentBSVoertuigEnKlantBeheer agent = new AgentBSVoertuigEnKlantBeheer();
             onderhoudsopdracht.Voertuig.Status = "Aangemeld";
             agent.VoegOnderhoudsopdrachtToe(onderhoudsopdracht);
@@ -45,6 +69,10 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
 
         public bool MeldVoertuigKlaar(Schema.Voertuig voertuig, Garage garage)
         {
+            if (voertuig == null || garage == null)
+            {
+                return false;
+            }
             AgentBSVoertuigEnKlantBeheer agentBS = new AgentBSVoertuigEnKlantBeheer();
             AgentISRDW agentIS = new AgentISRDW();
             
@@ -79,6 +107,11 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
 
         public bool VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden, Garage garage)
         {
+            if (onderhoudswerkzaamheden == null)
+            {
+                FunctionalErrorDetail error = new FunctionalErrorDetail {Message = "Onderhoudswerkzaamheden mogen niet null zijn"};
+                throw new FaultException<FunctionalErrorDetail[]>(new FunctionalErrorDetail[] {error});
+            }
             AgentBSVoertuigEnKlantBeheer agentBS = new AgentBSVoertuigEnKlantBeheer();
             AgentISRDW agentIS = new AgentISRDW();
 
@@ -107,6 +140,10 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
 
         public void VoegVoertuigMetKlantToe(Schema.Voertuig voertuig)
         {
+            if (voertuig == null)
+            {
+                return;
+            }
             AgentBSVoertuigEnKlantBeheer agent = new AgentBSVoertuigEnKlantBeheer();
             voertuig.Status = "Aangemeld";
             agent.VoegVoertuigMetKlantToe(voertuig);

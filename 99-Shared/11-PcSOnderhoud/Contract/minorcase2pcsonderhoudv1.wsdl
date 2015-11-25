@@ -8,12 +8,6 @@
       <xsd:import namespace="urn:minor-case2-isrijksdienstwegverkeer:v1:schema" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IPcSOnderhoudService_GetAllKlanten_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllKlanten" />
-  </wsdl:message>
-  <wsdl:message name="IPcSOnderhoudService_GetAllKlanten_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllKlantenResponse" />
-  </wsdl:message>
   <wsdl:message name="IPcSOnderhoudService_GetAllLeasemaatschappijen_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllLeasemaatschappijen" />
   </wsdl:message>
@@ -63,10 +57,6 @@
     <wsdl:part name="parameters" element="tns:VoegOnderhoudswerkzaamhedenToeResponse" />
   </wsdl:message>
   <wsdl:portType name="IPcSOnderhoudService">
-    <wsdl:operation name="GetAllKlanten">
-      <wsdl:input wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetAllKlanten" message="tns:IPcSOnderhoudService_GetAllKlanten_InputMessage" />
-      <wsdl:output wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetAllKlantenResponse" message="tns:IPcSOnderhoudService_GetAllKlanten_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetAllLeasemaatschappijen">
       <wsdl:input wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetAllLeasemaatschappijen" message="tns:IPcSOnderhoudService_GetAllLeasemaatschappijen_InputMessage" />
       <wsdl:output wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetAllLeasemaatschappijenResponse" message="tns:IPcSOnderhoudService_GetAllLeasemaatschappijen_OutputMessage" />
@@ -102,15 +92,6 @@
   </wsdl:portType>
   <wsdl:binding name="DefaultBinding_IPcSOnderhoudService" type="tns:IPcSOnderhoudService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetAllKlanten">
-      <soap:operation soapAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetAllKlanten" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetAllLeasemaatschappijen">
       <soap:operation soapAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetAllLeasemaatschappijen" style="document" />
       <wsdl:input>

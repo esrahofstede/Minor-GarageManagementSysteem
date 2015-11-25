@@ -158,7 +158,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
 
             //Act
-            var result = mapper.SchemaToAgentLeaseMaatschappijMapper(leasemaatschappij);
+            var result = mapper.SchemaToAgentLeasemaatschappijMapper(leasemaatschappij);
 
             //Assert
             Assert.AreEqual(typeof(AgentSchema.Leasemaatschappij), result.GetType());
@@ -171,7 +171,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
 
             //Act
-            var result = mapper.SchemaToAgentLeaseMaatschappijMapper(null);
+            var result = mapper.SchemaToAgentLeasemaatschappijMapper(null);
 
             //Assert
             Assert.AreEqual(null, result);
@@ -191,7 +191,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
 
             //Act
-            var result = mapper.SchemaToAgentLeaseMaatschappijMapper(leasemaatschappij);
+            var result = mapper.SchemaToAgentLeasemaatschappijMapper(leasemaatschappij);
 
             //Assert
             Assert.AreEqual(leasemaatschappij.Naam, result.Naam);
@@ -214,7 +214,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
 
             //Act
-            var result = mapper.AgentToSchemaLeaseMaatschappijMapper(leasemaatschappij);
+            var result = mapper.AgentToSchemaLeasemaatschappijMapper(leasemaatschappij);
 
             //Assert
             Assert.AreEqual(typeof(Schema.Leasemaatschappij), result.GetType());
@@ -227,7 +227,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
 
             //Act
-            var result = mapper.AgentToSchemaLeaseMaatschappijMapper(null);
+            var result = mapper.AgentToSchemaLeasemaatschappijMapper(null);
 
             //Assert
             Assert.AreEqual(null, result);
@@ -247,7 +247,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             BSKlantEnVoertuigMapper mapper = new BSKlantEnVoertuigMapper();
 
             //Act
-            var result = mapper.AgentToSchemaLeaseMaatschappijMapper(leasemaatschappij);
+            var result = mapper.AgentToSchemaLeasemaatschappijMapper(leasemaatschappij);
 
             //Assert
             Assert.AreEqual(leasemaatschappij.Naam, result.Naam);

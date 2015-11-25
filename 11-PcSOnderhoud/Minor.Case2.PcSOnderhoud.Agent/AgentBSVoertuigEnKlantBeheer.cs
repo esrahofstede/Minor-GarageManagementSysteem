@@ -14,7 +14,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
     /// <summary>
     /// Deze agent is verantwoordelijk voor de communicatie met de BSVoertuigEnKlantBeheer
     /// </summary>
-    public class AgentBSVoertuigEnKlantBeheer
+    public class AgentBSVoertuigEnKlantBeheer : IAgentBSVoertuigEnKlantBeheer
     {
         private static ILog _logger = LogManager.GetLogger(typeof(AgentBSVoertuigEnKlantBeheer));
         private readonly ServiceFactory<IBSVoertuigEnKlantbeheer> _factory;
@@ -77,7 +77,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             catch (Exception ex)
             {
                 _logger.Fatal(ex.Message);
-                throw new TechnicalException(ex.Data, ex.Message, ex.InnerException);
+                throw new TechnicalException(ex.Message, ex.InnerException);
             }
             
 
@@ -105,7 +105,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             catch (Exception ex)
             {
                 _logger.Fatal(ex.Message);
-                throw new TechnicalException(ex.Data, ex.Message, ex.InnerException);
+                throw new TechnicalException(ex.Message, ex.InnerException);
             }
 
         }
@@ -134,7 +134,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             catch (Exception ex)
             {
                 _logger.Fatal(ex.Message);
-                throw new TechnicalException(ex.Data, ex.Message, ex.InnerException);
+                throw new TechnicalException(ex.Message, ex.InnerException);
             }
 
         }
@@ -160,7 +160,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             catch (Exception ex)
             {
                 _logger.Fatal(ex.Message);
-                throw new TechnicalException(ex.Data, ex.Message, ex.InnerException);
+                throw new TechnicalException(ex.Message, ex.InnerException);
             }
 
         }
@@ -198,7 +198,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             catch (Exception ex)
             {
                 _logger.Fatal(ex.Message);
-                throw new TechnicalException(ex.Data, ex.Message, ex.InnerException);
+                throw new TechnicalException(ex.Message, ex.InnerException);
             }
         }
 
@@ -235,7 +235,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             catch (Exception ex)
             {
                 _logger.Fatal(ex.Message);
-                throw new TechnicalException(ex.Data, ex.Message, ex.InnerException);
+                throw new TechnicalException(ex.Message, ex.InnerException);
             }
         }
         
@@ -270,7 +270,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             catch (Exception ex)
             {
                 _logger.Fatal(ex.Message);
-                throw new TechnicalException(ex.Data, ex.Message, ex.InnerException);
+                throw new TechnicalException(ex.Message, ex.InnerException);
             }
         }
 
@@ -305,7 +305,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             catch (Exception ex)
             {
                 _logger.Fatal(ex.Message);
-                throw new TechnicalException(ex.Data, ex.Message, ex.InnerException);
+                throw new TechnicalException(ex.Message, ex.InnerException);
             }
         }
     }

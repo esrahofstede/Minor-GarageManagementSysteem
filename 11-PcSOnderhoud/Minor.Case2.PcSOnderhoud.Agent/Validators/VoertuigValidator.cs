@@ -14,6 +14,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Validators
     {
         public static void Validate(Schema.Voertuig voertuig)
         {
+            if (voertuig == null) return;
             var list = new FunctionalErrorList();
 
             if (voertuig.Bestuurder == null)
@@ -44,11 +45,11 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Validators
             {
                 throw new FunctionalException(list);
             }
-            
         }
 
         public static void Validate(AgentSchema.Voertuig voertuig)
         {
+            if (voertuig == null) return;
             var list = new FunctionalErrorList();
 
             if (voertuig.Bestuurder == null)

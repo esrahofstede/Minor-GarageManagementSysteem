@@ -9,15 +9,33 @@
       <Word>Keuringsverzoek</Word>
       <Word>Klant</Word>
       <Word>Klanten</Word>
+      <Word>Bestuurder</Word>
+      <Word>Eigenaar</Word>
+      <Word>Voertuigen</Word>
+      <Word>Kenteken</Word>
       <Word>Voeg</Word>
       <Word>Onderhoudsopdracht</Word>
+      <Word>Onderhoudsopdrachten</Word>
+      <Word>Onderhoudswerkzaamheden</Word>
+      <Word>Leasemaatschappij</Word>
+      <Word>Leasemaatschappijen</Word>
       <Word>Toe</Word>
       <Word>Met</Word>
       <Word>Voertuig</Word>
       <Word>En</Word>
+      <Word>Persoon</Word>
+      <Word>Haal</Word>
+      <Word>Personen</Word>
       <Word>Klant</Word>
-      <Word>Toe</Word>
+      <Word>KlantEn</Word>
+      <Word>Klaar</Word>
+      <Word>Huidige</Word>
+      <Word>Voor</Word>
       <Word>Beheer</Word>
+      <Word>niet</Word>
+      <Word>mag</Word>
+      <Word>zijn</Word>
+      <Word>leeg</Word> 
     </Recognized>
     <Deprecated>
     </Deprecated>

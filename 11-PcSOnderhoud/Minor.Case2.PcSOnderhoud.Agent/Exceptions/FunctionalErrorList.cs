@@ -27,10 +27,6 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Exceptions
 
         public bool HasErrors => _details.Count > 0;
 
-        public FunctionalErrorDetail[] Details
-        {
-            get { return _details.ToArray(); }
-            set { }
-        }
+        public FunctionalErrorDetail[] Details => _details.ToArray();
     }
 }

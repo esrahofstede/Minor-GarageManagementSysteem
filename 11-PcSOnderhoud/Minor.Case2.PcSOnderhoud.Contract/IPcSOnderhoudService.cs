@@ -16,7 +16,7 @@ namespace Minor.Case2.PcSOnderhoud.Contract
         Schema.KlantenCollection GetAllLeasemaatschappijen();
 
         [OperationContract]
-        Schema.VoertuigenCollection GetVoertuigBy(Schema.VoertuigenSearchCriteria zoekCriteria);
+        Schema.VoertuigenCollection GetVoertuigBy(Schema.VoertuigenSearchCriteria searchCriteria);
 
         [OperationContract]
         void VoegVoertuigMetKlantToe(Schema.Voertuig voertuig);
