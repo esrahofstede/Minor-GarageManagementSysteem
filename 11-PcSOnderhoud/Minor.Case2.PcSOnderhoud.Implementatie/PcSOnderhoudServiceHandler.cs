@@ -39,7 +39,13 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             _agentBS = agentBS;
         }
 
-        
+        /// <summary>
+        /// Deze methode haalt alle leasemaatschappijen op die in de BS te vinden zijn
+        /// Als geen leasemaatschappijen gevonden worden dan wordt een lege collection teruggeven.
+        /// TechnicalExceptions worden doorgegooid
+        /// FunctionalExceptions worden doorgegooid
+        /// </summary>
+        /// <returns>Alle leasemaatschappijen die in de BS te vinden zijn, lege lijst als geen leasemaatschappijen gevonden zijn</returns>
         public Schema.KlantenCollection GetAllLeasemaatschappijen()
         {
             return _agentBS.GetAllLeasemaatschappijen(); ;
