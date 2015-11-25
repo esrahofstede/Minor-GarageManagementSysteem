@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using log4net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Minor.Case2.Exceptions.V1.Schema;
@@ -16,67 +12,35 @@ using Moq;
 namespace Minor.Case2.PcSOnderhoud.Agent.Tests
 {
     [TestClass]
-    public class AgentBSKlantEnVoertuigBeheerTest
+    public class BSGetAllLeasemaatschappijenTest
     {
         [TestMethod]
-        public void VoegVoertuigMetKlantToeHappyFlowTest()
+        public void GetAllLeasemaatschappijenHappyFlowTest()
         {
             //Arrange
+            var leasemaatschappijen = new AgentSchema.KlantenCollection();
+            leasemaatschappijen.Add(new AgentSchema.Leasemaatschappij());
+            leasemaatschappijen.Add(new AgentSchema.Leasemaatschappij());
+            leasemaatschappijen.Add(new AgentSchema.Leasemaatschappij());
             var serviceMock = new Mock<IBSVoertuigEnKlantbeheer>(MockBehavior.Strict);
             var factoryMock = new Mock<ServiceFactory<IBSVoertuigEnKlantbeheer>>(MockBehavior.Strict);
             factoryMock.Setup(factory => factory.CreateAgent()).Returns(serviceMock.Object);
-            serviceMock.Setup(service => service.VoegVoertuigMetKlantToe(It.IsAny<AgentSchema.Voertuig>()));
+            serviceMock.Setup(service => service.GetAllLeasemaatschappijen()).Returns(leasemaatschappijen);
 
-            var agent = new AgentBSKlantEnVoertuigBeheer(factoryMock.Object);
-            Schema.Voertuig voertuig = new Schema.Voertuig
-            {
-                ID = 111111,
-                Kenteken = "14-TT-KJ",
-                Merk = "Ford",
-                Type = "Focus"
-            };
+            var agent = new AgentBSVoertuigEnKlantBeheer(factoryMock.Object);
 
             //Act
-            agent.VoegVoertuigMetKlantToe(voertuig);
+            var result = agent.GetAllLeasemaatschappijen();
 
             //Assert
             factoryMock.Verify(factory => factory.CreateAgent(), Times.Once());
-            serviceMock.Verify(service => service.VoegVoertuigMetKlantToe(It.IsAny<AgentSchema.Voertuig>()), Times.Once());
+            serviceMock.Verify(service => service.GetAllLeasemaatschappijen(), Times.Once());
+            Assert.AreEqual(3, result.Count);
         }
 
         [TestMethod]
         [ExpectedException(typeof(FunctionalException))]
-        public void VoegVoertuigMetKlantToeThrowsFuncExcTest()
-        {
-            //Arrange
-            var serviceMock = new Mock<IBSVoertuigEnKlantbeheer>();
-            var factoryMock = new Mock<ServiceFactory<IBSVoertuigEnKlantbeheer>>(MockBehavior.Strict);
-            factoryMock.Setup(factory => factory.CreateAgent()).Returns(serviceMock.Object);
-            FunctionalErrorDetail error = new FunctionalErrorDetail
-            {
-                Message = "Deze error wordt gegooid door de BS"
-            };
-            FunctionalErrorDetail[] details = new[] {error,};
-            serviceMock.Setup(service => service.VoegVoertuigMetKlantToe(It.IsAny<AgentSchema.Voertuig>())).Throws(new FaultException<FunctionalErrorDetail[]>(details));
-
-            var agent = new AgentBSKlantEnVoertuigBeheer(factoryMock.Object);
-            Schema.Voertuig voertuig = new Schema.Voertuig
-            {
-                ID = 111111,
-                Kenteken = "14-TT-KJ",
-                Merk = "Ford",
-                Type = "Focus"
-            };
-
-            //Act
-            agent.VoegVoertuigMetKlantToe(voertuig);
-
-            //Assert
-            //Exception thrown
-        }
-
-        [TestMethod]
-        public void VoegVoertuigMetKlantToeThrowsFuncExcMessageTest()
+        public void GetAllLeasemaatschappijenThrowsFuncExcTest()
         {
             //Arrange
             var serviceMock = new Mock<IBSVoertuigEnKlantbeheer>();
@@ -87,21 +51,37 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
                 Message = "Deze error wordt gegooid door de BS"
             };
             FunctionalErrorDetail[] details = new[] { error, };
-            serviceMock.Setup(service => service.VoegVoertuigMetKlantToe(It.IsAny<AgentSchema.Voertuig>())).Throws(new FaultException<FunctionalErrorDetail[]>(details));
+            serviceMock.Setup(service => service.GetAllLeasemaatschappijen()).Throws(new FaultException<FunctionalErrorDetail[]>(details));
 
-            var agent = new AgentBSKlantEnVoertuigBeheer(factoryMock.Object);
-            Schema.Voertuig voertuig = new Schema.Voertuig
+            var agent = new AgentBSVoertuigEnKlantBeheer(factoryMock.Object);
+
+            //Act
+            agent.GetAllLeasemaatschappijen();
+
+            //Assert
+            //Exception thrown
+        }
+
+        [TestMethod]
+        public void GetAllLeasemaatschappijenThrowsFuncExcMessageTest()
+        {
+            //Arrange
+            var serviceMock = new Mock<IBSVoertuigEnKlantbeheer>();
+            var factoryMock = new Mock<ServiceFactory<IBSVoertuigEnKlantbeheer>>(MockBehavior.Strict);
+            factoryMock.Setup(factory => factory.CreateAgent()).Returns(serviceMock.Object);
+            FunctionalErrorDetail error = new FunctionalErrorDetail
             {
-                ID = 111111,
-                Kenteken = "14-TT-KJ",
-                Merk = "Ford",
-                Type = "Focus"
+                Message = "Deze error wordt gegooid door de BS"
             };
+            FunctionalErrorDetail[] details = new[] { error, };
+            serviceMock.Setup(service => service.GetAllLeasemaatschappijen()).Throws(new FaultException<FunctionalErrorDetail[]>(details));
 
+            var agent = new AgentBSVoertuigEnKlantBeheer(factoryMock.Object);
+            
             try
             {
                 //Act
-                agent.VoegVoertuigMetKlantToe(voertuig);
+                agent.GetAllLeasemaatschappijen();
             }
             catch (FunctionalException ex)
             {
@@ -110,35 +90,54 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
                 Assert.AreEqual(error.Message, ex.Errors.Details[0].Message);
             }
 
-            
+
         }
 
         [TestMethod]
-        public void VoegVoertuigMetKlantToeThrowsTechnicalExcTest()
+        [ExpectedException(typeof(TechnicalException))]
+        public void GetAllLeasemaatschappijenThrowsTechnicalExcTest()
         {
             //Arrange
             var serviceMock = new Mock<IBSVoertuigEnKlantbeheer>();
             var factoryMock = new Mock<ServiceFactory<IBSVoertuigEnKlantbeheer>>(MockBehavior.Strict);
             var logMock = new Mock<ILog>(MockBehavior.Strict);
             factoryMock.Setup(factory => factory.CreateAgent()).Returns(serviceMock.Object);
-            serviceMock.Setup(service => service.VoegVoertuigMetKlantToe(It.IsAny<AgentSchema.Voertuig>())).Throws(new InvalidOperationException());
+            serviceMock.Setup(service => service.GetAllLeasemaatschappijen()).Throws(new InvalidOperationException());
             logMock.Setup(log => log.Fatal(It.IsAny<string>()));
 
-            var agent = new AgentBSKlantEnVoertuigBeheer(factoryMock.Object, logMock.Object);
-            Schema.Voertuig voertuig = new Schema.Voertuig
-            {
-                ID = 111111,
-                Kenteken = "14-TT-KJ",
-                Merk = "Ford",
-                Type = "Focus"
-            };
-
+            var agent = new AgentBSVoertuigEnKlantBeheer(factoryMock.Object, logMock.Object);
+            
             //Act
-            agent.VoegVoertuigMetKlantToe(voertuig);
+            agent.GetAllLeasemaatschappijen();
 
             //Assert
             logMock.Verify(service => service.Fatal(It.IsAny<string>()), Times.Once());
         }
-        
+
+        [TestMethod]
+        public void GetAllLeasemaatschappijenThrowsTechnicalExceptionAndLogsExceptionTest()
+        {
+            //Arrange
+            var serviceMock = new Mock<IBSVoertuigEnKlantbeheer>();
+            var factoryMock = new Mock<ServiceFactory<IBSVoertuigEnKlantbeheer>>(MockBehavior.Strict);
+            var logMock = new Mock<ILog>(MockBehavior.Strict);
+            factoryMock.Setup(factory => factory.CreateAgent()).Returns(serviceMock.Object);
+            serviceMock.Setup(service => service.GetAllLeasemaatschappijen()).Throws(new InvalidOperationException());
+            logMock.Setup(log => log.Fatal(It.IsAny<string>()));
+
+            var agent = new AgentBSVoertuigEnKlantBeheer(factoryMock.Object, logMock.Object);
+
+            //Act
+            try
+            {
+                agent.GetAllLeasemaatschappijen();
+            }
+            catch (TechnicalException) { }
+
+
+            //Assert
+            logMock.Verify(service => service.Fatal(It.IsAny<string>()), Times.Once());
+        }
+
     }
 }

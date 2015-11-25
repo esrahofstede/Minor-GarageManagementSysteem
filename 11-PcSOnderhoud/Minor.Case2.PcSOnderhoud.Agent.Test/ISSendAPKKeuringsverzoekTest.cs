@@ -11,7 +11,7 @@ using Minor.Case2.ISRijksdienstWegverkeerService.V1.Messages.Agent;
 namespace Minor.Case2.PcSOnderhoud.Agent.Tests
 {
     [TestClass]
-    public class AgentISRDWTest
+    public class ISSendAPKKeuringsverzoekTest
     {
         [TestMethod]
         public void RDWAgentSendReq_CallsFactory_Test()
