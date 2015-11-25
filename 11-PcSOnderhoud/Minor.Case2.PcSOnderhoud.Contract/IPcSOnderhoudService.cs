@@ -13,9 +13,6 @@ namespace Minor.Case2.PcSOnderhoud.Contract
     public interface IPcSOnderhoudService
     {
         [OperationContract]
-        Schema.KlantenCollection GetAllKlanten();
-
-        [OperationContract]
         Schema.KlantenCollection GetAllLeasemaatschappijen();
 
         [OperationContract]

@@ -241,7 +241,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
         public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Klant Eigenaar
         {
             get
@@ -254,7 +254,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=5)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
         public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Persoon Bestuurder
         {
             get
@@ -1265,6 +1265,16 @@ public interface IBSVoertuigEnKlantbeheer
         "Response")]
     System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection> GetAllKlantenAsync();
     
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllPersone" +
+        "n", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllPersone" +
+        "nResponse")]
+    Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection GetAllPersonen();
+    
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllPersone" +
+        "n", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllPersone" +
+        "nResponse")]
+    System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection> GetAllPersonenAsync();
+    
     [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllLeasema" +
         "atschappijen", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllLeasema" +
         "atschappijenResponse")]
@@ -1378,6 +1388,16 @@ public partial class BSVoertuigEnKlantbeheerClient : System.ServiceModel.ClientB
     public System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection> GetAllKlantenAsync()
     {
         return base.Channel.GetAllKlantenAsync();
+    }
+    
+    public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection GetAllPersonen()
+    {
+        return base.Channel.GetAllPersonen();
+    }
+    
+    public System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection> GetAllPersonenAsync()
+    {
+        return base.Channel.GetAllPersonenAsync();
     }
     
     public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.KlantenCollection GetAllLeasemaatschappijen()

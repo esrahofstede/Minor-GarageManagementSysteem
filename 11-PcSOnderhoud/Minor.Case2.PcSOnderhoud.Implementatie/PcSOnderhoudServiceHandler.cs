@@ -18,22 +18,16 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
         {
             log4net.Config.XmlConfigurator.Configure();
         }
-
-        public Schema.KlantenCollection GetAllKlanten()
-        {
-            AgentBSKlantEnVoertuigBeheer agent = new AgentBSKlantEnVoertuigBeheer();
-            return null;
-        }
-
+        
         public Schema.KlantenCollection GetAllLeasemaatschappijen()
         {
-            AgentBSKlantEnVoertuigBeheer agent = new AgentBSKlantEnVoertuigBeheer();
+            AgentBSVoertuigEnKlantBeheer agent = new AgentBSVoertuigEnKlantBeheer();
             return agent.GetAllLeasemaatschappijen(); ;
         }
 
         public Schema.VoertuigenCollection GetVoertuigBy(Schema.VoertuigenSearchCriteria zoekCriteria)
         {
-            AgentBSKlantEnVoertuigBeheer agent = new AgentBSKlantEnVoertuigBeheer();
+            AgentBSVoertuigEnKlantBeheer agent = new AgentBSVoertuigEnKlantBeheer();
             return agent.GetVoertuigBy(zoekCriteria);
         }
 
@@ -44,14 +38,14 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
 
         public void VoegOnderhoudsopdrachtToe(Schema.Onderhoudsopdracht onderhoudsopdracht)
         {
-            AgentBSKlantEnVoertuigBeheer agent = new AgentBSKlantEnVoertuigBeheer();
+            AgentBSVoertuigEnKlantBeheer agent = new AgentBSVoertuigEnKlantBeheer();
             onderhoudsopdracht.Voertuig.Status = "Aangemeld";
             agent.VoegOnderhoudsopdrachtToe(onderhoudsopdracht);
         }
 
         public bool MeldVoertuigKlaar(Schema.Voertuig voertuig, Garage garage)
         {
-            AgentBSKlantEnVoertuigBeheer agentBS = new AgentBSKlantEnVoertuigBeheer();
+            AgentBSVoertuigEnKlantBeheer agentBS = new AgentBSVoertuigEnKlantBeheer();
             AgentISRDW agentIS = new AgentISRDW();
             
             Keuringsverzoek keuringsverzoek = new Keuringsverzoek
@@ -73,8 +67,8 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
 
         public Schema.Onderhoudsopdracht GetHuidigeOnderhoudsopdrachtBy(Schema.OnderhoudsopdrachtZoekCriteria searchCriteria)
         {
-            AgentBSKlantEnVoertuigBeheer agent = new AgentBSKlantEnVoertuigBeheer();
-            var onderhoudsopdrachten = agent.GetOnderhoudsOpdrachtenBy(searchCriteria);
+            AgentBSVoertuigEnKlantBeheer agent = new AgentBSVoertuigEnKlantBeheer();
+            var onderhoudsopdrachten = agent.GetOnderhoudsopdrachtenBy(searchCriteria);
             if (onderhoudsopdrachten.Count == 0)
             {
                 return null;
@@ -85,12 +79,12 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
 
         public bool VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden, Garage garage)
         {
-            AgentBSKlantEnVoertuigBeheer agentBS = new AgentBSKlantEnVoertuigBeheer();
+            AgentBSVoertuigEnKlantBeheer agentBS = new AgentBSVoertuigEnKlantBeheer();
             AgentISRDW agentIS = new AgentISRDW();
 
             Schema.OnderhoudsopdrachtZoekCriteria zoekCriteria = new Schema.OnderhoudsopdrachtZoekCriteria();
             zoekCriteria.ID = onderhoudswerkzaamheden.Onderhoudsopdracht.ID;
-            var onderhoudsopdrachten = agentBS.GetOnderhoudsOpdrachtenBy(zoekCriteria);
+            var onderhoudsopdrachten = agentBS.GetOnderhoudsopdrachtenBy(zoekCriteria);
             var onderhoudsopdracht = onderhoudsopdrachten.First();
 
             Keuringsverzoek keuringsverzoek = new Keuringsverzoek
@@ -113,7 +107,7 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
 
         public void VoegVoertuigMetKlantToe(Schema.Voertuig voertuig)
         {
-            AgentBSKlantEnVoertuigBeheer agent = new AgentBSKlantEnVoertuigBeheer();
+            AgentBSVoertuigEnKlantBeheer agent = new AgentBSVoertuigEnKlantBeheer();
             voertuig.Status = "Aangemeld";
             agent.VoegVoertuigMetKlantToe(voertuig);
             

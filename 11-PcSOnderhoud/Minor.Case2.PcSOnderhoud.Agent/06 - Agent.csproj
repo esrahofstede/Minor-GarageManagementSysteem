@@ -58,7 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgentBSKlantEnVoertuigBeheer.cs" />
+    <Compile Include="AgentBSVoertuigEnKlantBeheer.cs" />
     <Compile Include="AgentISRDW.cs" />
     <Compile Include="BSKlantEnVoertuigMapper.cs" />
     <Compile Include="Exceptions\FunctionalErrorList.cs" />
@@ -67,6 +67,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ISRijksdienstWegVerkeerV1Contract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validators\VoertuigValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\99-Shared\Case2Key.snk">

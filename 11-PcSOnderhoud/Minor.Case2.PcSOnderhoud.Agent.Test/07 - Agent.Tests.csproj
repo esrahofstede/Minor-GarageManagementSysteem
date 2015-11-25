@@ -66,10 +66,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="AgentBSKlantEnVoertuigBeheerTest.cs" />
+    <Compile Include="BSGetAllPersonenTest.cs" />
+    <Compile Include="BSGetOnderhoudsopdrachtenByTest.cs" />
+    <Compile Include="BSGetAllLeasemaatschappijenTest.cs" />
+    <Compile Include="BSGetVoertuigByTest.cs" />
+    <Compile Include="BSVoegOnderhoudswerkzaamhedenToeTest.cs" />
+    <Compile Include="BSVoegOnderhoudsopdrachtToeTest.cs" />
+    <Compile Include="BSVoegVoertuigEnKlantToeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AgentISRDWTest.cs" />
+    <Compile Include="ISSendAPKKeuringsverzoekTest.cs" />
     <Compile Include="AgentBSKlantEnVoertuigMapperTest.cs" />
+    <Compile Include="BSUpdateVoertuigTest.cs" />
+    <Compile Include="Validators\VoertuigValidatorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Minor.Case2.PcSOnderhoud.Agent\06 - Agent.csproj">
