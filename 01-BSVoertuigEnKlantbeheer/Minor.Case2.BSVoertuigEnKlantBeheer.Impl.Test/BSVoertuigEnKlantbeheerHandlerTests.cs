@@ -63,6 +63,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
 
             persoonMock.Setup(datamapper => datamapper.Insert(It.IsAny<Entities.Persoon>())).Returns(1);
             leaseMock.Setup(datamapper => datamapper.Insert(It.IsAny<Entities.Leasemaatschappij>())).Returns(2);
+            leaseMock.Setup(datamapper => datamapper.FindAllBy(It.IsAny<Expression<Func<Entities.Leasemaatschappij, bool>>>())).Returns(new List<Entities.Leasemaatschappij>());
             voertuigMock.Setup(datamapper => datamapper.Insert(It.IsAny<Entities.Voertuig>())).Returns(0);
             voertuigMock.Setup(datamapper => datamapper.FindAllBy(It.IsAny<Expression<Func<Entities.Voertuig, bool>>>())).Returns(new List<Entities.Voertuig>());
 
