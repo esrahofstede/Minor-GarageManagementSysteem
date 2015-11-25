@@ -111,5 +111,70 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
 
             
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void VoegVoertuigMetKlantToeThrowsInvalidOperExcTest()
+        {
+            //Arrange
+            var serviceMock = new Mock<IBSVoertuigEnKlantbeheer>();
+            var factoryMock = new Mock<ServiceFactory<IBSVoertuigEnKlantbeheer>>(MockBehavior.Strict);
+            factoryMock.Setup(factory => factory.CreateAgent()).Returns(serviceMock.Object);
+            
+            serviceMock.Setup(service => service.VoegVoertuigMetKlantToe(It.IsAny<AgentSchema.Voertuig>())).Throws(new InvalidOperationException());
+
+            var agent = new AgentBSKlantEnVoertuigBeheer(factoryMock.Object);
+            Schema.Voertuig voertuig = new Schema.Voertuig
+            {
+                ID = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus"
+            };
+
+            //Act
+            agent.VoegVoertuigMetKlantToe(voertuig);
+
+            //Assert
+            //Exception thrown
+        }
+
+        [TestMethod]
+        public void VoegVoertuigMetKlantToeThrowsInvalidOperExcMessageTest()
+        {
+            //Arrange
+            var serviceMock = new Mock<IBSVoertuigEnKlantbeheer>();
+            var factoryMock = new Mock<ServiceFactory<IBSVoertuigEnKlantbeheer>>(MockBehavior.Strict);
+            factoryMock.Setup(factory => factory.CreateAgent()).Returns(serviceMock.Object);
+            FunctionalErrorDetail error = new FunctionalErrorDetail
+            {
+                Message = "Deze error wordt gegooid door de BS"
+            };
+            FunctionalErrorDetail[] details = new[] { error, };
+            serviceMock.Setup(service => service.VoegVoertuigMetKlantToe(It.IsAny<AgentSchema.Voertuig>())).Throws(new FaultException<FunctionalErrorDetail[]>(details));
+
+            var agent = new AgentBSKlantEnVoertuigBeheer(factoryMock.Object);
+            Schema.Voertuig voertuig = new Schema.Voertuig
+            {
+                ID = 111111,
+                Kenteken = "14-TT-KJ",
+                Merk = "Ford",
+                Type = "Focus"
+            };
+
+            try
+            {
+                //Act
+                agent.VoegVoertuigMetKlantToe(voertuig);
+            }
+            catch (FunctionalException ex)
+            {
+                //Assert
+                Assert.AreEqual(true, ex.Errors.HasErrors);
+                Assert.AreEqual(error.Message, ex.Errors.Details[0].Message);
+            }
+
+
+        }
     }
 }
