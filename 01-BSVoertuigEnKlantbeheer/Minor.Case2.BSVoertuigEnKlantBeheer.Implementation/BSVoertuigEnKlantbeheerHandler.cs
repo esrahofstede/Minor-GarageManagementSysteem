@@ -209,7 +209,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
                 if (nieuwVoertuig.Eigenaar.GetType() == typeof(Entities.Leasemaatschappij))
                 {
                     //check if leasemaatschappij not already exist
-                    if (_leaseDataMapper.FindAllBy(l => l.ID == nieuwVoertuig.Eigenaar.ID).FirstOrDefault() != null)
+                    if (_leaseDataMapper.FindAllBy(l => l.ID == nieuwVoertuig.Eigenaar.ID).FirstOrDefault() == null)
                     {
                         nieuwVoertuig.Eigenaar.Klantnummer = rnd.Next(100000, 999999); //sorry
                         nieuwVoertuig.Eigenaar.ID = _leaseDataMapper.Insert((Entities.Leasemaatschappij)nieuwVoertuig.Eigenaar);
