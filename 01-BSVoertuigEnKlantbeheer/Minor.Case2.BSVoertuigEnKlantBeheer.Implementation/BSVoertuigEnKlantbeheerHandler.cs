@@ -178,33 +178,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
             else
             {
                 //Voertuig doesnt exist with kenteken
-                long bestuurderID = -1;
-
-                Random rnd = new Random();
-
-                //bestuurder is always a persoon
-                if (nieuwVoertuig.Bestuurder != null)
-                {
-                    nieuwVoertuig.Bestuurder.Klantnummer = rnd.Next(100000, 999999); //sorry
-                    bestuurderID = _persoonDataMapper.Insert(nieuwVoertuig.Bestuurder);
-                    nieuwVoertuig.Bestuurder.ID = bestuurderID;
-
-                }
-                //eigenaar is a persoon or a leasemaatschappij
-                if (nieuwVoertuig.Eigenaar != null)
-                {
-                    //persoon is already inserted into the database, we only have to check for a leasemaatschappij
-                    if (nieuwVoertuig.Eigenaar.GetType() == typeof(Entities.Leasemaatschappij))
-                    {
-                        nieuwVoertuig.Eigenaar.Klantnummer = rnd.Next(100000, 999999); //sorry
-                        nieuwVoertuig.Eigenaar.ID = _leaseDataMapper.Insert((Entities.Leasemaatschappij)nieuwVoertuig.Eigenaar);
-                    }
-                    else
-                    {
-                        nieuwVoertuig.Eigenaar.ID = bestuurderID;
-                    }
-                }
-                _voertuigDataMapper.Insert(nieuwVoertuig);
+                InsertNewVoertuig(nieuwVoertuig);
             }
 
             if (list.Any())
@@ -212,6 +186,41 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
                 throw new FaultException<FunctionalErrorDetail[]>(list.ToArray());
             }
 
+        }
+
+        private void InsertNewVoertuig(Entities.Voertuig nieuwVoertuig)
+        {
+            long bestuurderID = -1;
+
+            Random rnd = new Random();
+
+            //bestuurder is always a persoon
+            if (nieuwVoertuig.Bestuurder != null)
+            {
+                nieuwVoertuig.Bestuurder.Klantnummer = rnd.Next(100000, 999999); //sorry
+                bestuurderID = _persoonDataMapper.Insert(nieuwVoertuig.Bestuurder);
+                nieuwVoertuig.Bestuurder.ID = bestuurderID;
+
+            }
+            //eigenaar is a persoon or a leasemaatschappij
+            if (nieuwVoertuig.Eigenaar != null)
+            {
+                //persoon is already inserted into the database, we only have to check for a leasemaatschappij
+                if (nieuwVoertuig.Eigenaar.GetType() == typeof(Entities.Leasemaatschappij))
+                {
+                    //check if leasemaatschappij not already exist
+                    if (_leaseDataMapper.FindAllBy(l => l.ID == nieuwVoertuig.Eigenaar.ID).FirstOrDefault() != null)
+                    {
+                        nieuwVoertuig.Eigenaar.Klantnummer = rnd.Next(100000, 999999); //sorry
+                        nieuwVoertuig.Eigenaar.ID = _leaseDataMapper.Insert((Entities.Leasemaatschappij)nieuwVoertuig.Eigenaar);
+                    }                   
+                }
+                else
+                {
+                    nieuwVoertuig.Eigenaar.ID = bestuurderID;
+                }
+            }
+            _voertuigDataMapper.Insert(nieuwVoertuig);
         }
 
         /// <summary>
