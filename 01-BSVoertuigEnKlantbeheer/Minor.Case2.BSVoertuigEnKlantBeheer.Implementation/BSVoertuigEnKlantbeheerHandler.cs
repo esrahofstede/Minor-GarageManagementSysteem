@@ -65,20 +65,6 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
         }
 
         /// <summary>
-        /// Get all Personen and Leasemaatschappijen from the database
-        /// </summary>
-        /// <returns>KlantenCollection of Personen and Leasemaatschappijen</returns>
-        public KlantenCollection GetAllKlanten()
-        {
-            KlantenCollection klantenCollection = new KlantenCollection();
-
-            klantenCollection.AddRange(GetAllPersonen());
-            klantenCollection.AddRange(GetAllLeasemaatschappijen());
-
-            return klantenCollection;
-        }
-
-        /// <summary>
         /// Get all klanten from the database
         /// </summary>
         /// <returns>KlantenCollection of Leasemaatschappijen</returns>

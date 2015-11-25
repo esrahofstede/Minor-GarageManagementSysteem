@@ -12,9 +12,6 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Contract
     public interface IBSVoertuigEnKlantbeheer
     {
         [OperationContract]
-        KlantenCollection GetAllKlanten();
-
-        [OperationContract]
         KlantenCollection GetAllPersonen();
 
         [OperationContract]

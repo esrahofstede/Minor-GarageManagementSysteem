@@ -1,18 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="urn:minor-case2-bsvoertuigenklantbeheer:v1" elementFormDefault="qualified" targetNamespace="urn:minor-case2-bsvoertuigenklantbeheer:v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" />
-  <xs:element name="GetAllKlanten">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetAllKlantenResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="GetAllKlantenResult" nillable="true" xmlns:q1="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q1:KlantenCollection" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="GetAllPersonen">
     <xs:complexType>
       <xs:sequence />
@@ -21,7 +9,7 @@
   <xs:element name="GetAllPersonenResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="GetAllPersonenResult" nillable="true" xmlns:q2="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q2:KlantenCollection" />
+        <xs:element minOccurs="0" name="GetAllPersonenResult" nillable="true" xmlns:q1="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q1:KlantenCollection" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -33,42 +21,42 @@
   <xs:element name="GetAllLeasemaatschappijenResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="GetAllLeasemaatschappijenResult" nillable="true" xmlns:q3="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q3:KlantenCollection" />
+        <xs:element minOccurs="0" name="GetAllLeasemaatschappijenResult" nillable="true" xmlns:q2="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q2:KlantenCollection" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetOnderhoudsopdrachtenBy">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="zoekCriteria" nillable="true" xmlns:q4="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q4:OnderhoudsopdrachtZoekCriteria" />
+        <xs:element minOccurs="0" name="zoekCriteria" nillable="true" xmlns:q3="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q3:OnderhoudsopdrachtZoekCriteria" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetOnderhoudsopdrachtenByResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="GetOnderhoudsopdrachtenByResult" nillable="true" xmlns:q5="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q5:OnderhoudsopdrachtenCollection" />
+        <xs:element minOccurs="0" name="GetOnderhoudsopdrachtenByResult" nillable="true" xmlns:q4="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q4:OnderhoudsopdrachtenCollection" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetVoertuigBy">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="zoekCriteria" nillable="true" xmlns:q6="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q6:VoertuigenSearchCriteria" />
+        <xs:element minOccurs="0" name="zoekCriteria" nillable="true" xmlns:q5="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q5:VoertuigenSearchCriteria" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetVoertuigByResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="GetVoertuigByResult" nillable="true" xmlns:q7="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q7:VoertuigenCollection" />
+        <xs:element minOccurs="0" name="GetVoertuigByResult" nillable="true" xmlns:q6="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q6:VoertuigenCollection" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="VoegVoertuigMetKlantToe">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="voertuig" nillable="true" xmlns:q8="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q8:Voertuig" />
+        <xs:element minOccurs="0" name="voertuig" nillable="true" xmlns:q7="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q7:Voertuig" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -80,7 +68,7 @@
   <xs:element name="VoegOnderhoudsopdrachtToe">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="onderhoudsopdracht" nillable="true" xmlns:q9="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q9:Onderhoudsopdracht" />
+        <xs:element minOccurs="0" name="onderhoudsopdracht" nillable="true" xmlns:q8="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q8:Onderhoudsopdracht" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -92,7 +80,7 @@
   <xs:element name="VoegOnderhoudswerkzaamhedenToe">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="onderhoudswerkzaamheden" nillable="true" xmlns:q10="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q10:Onderhoudswerkzaamheden" />
+        <xs:element minOccurs="0" name="onderhoudswerkzaamheden" nillable="true" xmlns:q9="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q9:Onderhoudswerkzaamheden" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -104,7 +92,7 @@
   <xs:element name="UpdateVoertuig">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="voertuig" nillable="true" xmlns:q11="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q11:Voertuig" />
+        <xs:element minOccurs="0" name="voertuig" nillable="true" xmlns:q10="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q10:Voertuig" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

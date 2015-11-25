@@ -7,12 +7,6 @@
       <xsd:import namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IBSVoertuigEnKlantbeheer_GetAllKlanten_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllKlanten" />
-  </wsdl:message>
-  <wsdl:message name="IBSVoertuigEnKlantbeheer_GetAllKlanten_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllKlantenResponse" />
-  </wsdl:message>
   <wsdl:message name="IBSVoertuigEnKlantbeheer_GetAllPersonen_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllPersonen" />
   </wsdl:message>
@@ -62,10 +56,6 @@
     <wsdl:part name="parameters" element="tns:UpdateVoertuigResponse" />
   </wsdl:message>
   <wsdl:portType name="IBSVoertuigEnKlantbeheer">
-    <wsdl:operation name="GetAllKlanten">
-      <wsdl:input wsaw:Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllKlanten" message="tns:IBSVoertuigEnKlantbeheer_GetAllKlanten_InputMessage" />
-      <wsdl:output wsaw:Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllKlantenResponse" message="tns:IBSVoertuigEnKlantbeheer_GetAllKlanten_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetAllPersonen">
       <wsdl:input wsaw:Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllPersonen" message="tns:IBSVoertuigEnKlantbeheer_GetAllPersonen_InputMessage" />
       <wsdl:output wsaw:Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllPersonenResponse" message="tns:IBSVoertuigEnKlantbeheer_GetAllPersonen_OutputMessage" />
@@ -101,15 +91,6 @@
   </wsdl:portType>
   <wsdl:binding name="DefaultBinding_IBSVoertuigEnKlantbeheer" type="tns:IBSVoertuigEnKlantbeheer">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetAllKlanten">
-      <soap:operation soapAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllKlanten" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetAllPersonen">
       <soap:operation soapAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/GetAllPersonen" style="document" />
       <wsdl:input>
