@@ -469,7 +469,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent
         
         private string NaamField;
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Naam
         {
             get

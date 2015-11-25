@@ -63,6 +63,7 @@
     <Compile Include="BSKlantEnVoertuigMapper.cs" />
     <Compile Include="Exceptions\FunctionalErrorList.cs" />
     <Compile Include="Exceptions\FunctionalException.cs" />
+    <Compile Include="Exceptions\TechnicalException.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ISRijksdienstWegVerkeerV1Contract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -77,10 +77,10 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             return onderhoudsopdracht;
         }
 
-        public void VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden)
+        public bool VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden, Schema.Voertuig voertuig, Garage garage)
         {
             AgentBSKlantEnVoertuigBeheer agent = new AgentBSKlantEnVoertuigBeheer();
-            
+            return false;
         }
 
         public void VoegVoertuigMetKlantToe(Schema.Voertuig voertuig)

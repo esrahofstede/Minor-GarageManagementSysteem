@@ -12,12 +12,19 @@ namespace Minor.Case2.PcSOnderhoud.Agent
 {
     public class AgentBSKlantEnVoertuigBeheer
     {
-        private static readonly ILog Logger = LogManager.GetLogger(typeof(AgentBSKlantEnVoertuigBeheer));
+        private static ILog _logger = LogManager.GetLogger(typeof(AgentBSKlantEnVoertuigBeheer));
         private readonly ServiceFactory<IBSVoertuigEnKlantbeheer> _factory;
 
         public AgentBSKlantEnVoertuigBeheer()
         {
             _factory = new ServiceFactory<IBSVoertuigEnKlantbeheer>("BSVoertuigEnKlantBeheer");
+        }
+
+        [CLSCompliant(false)]
+        public AgentBSKlantEnVoertuigBeheer(ServiceFactory<IBSVoertuigEnKlantbeheer> factory, ILog logger)
+        {
+            _factory = factory;
+            _logger = logger;
         }
 
         [CLSCompliant(false)]
@@ -41,11 +48,13 @@ namespace Minor.Case2.PcSOnderhoud.Agent
                     Errors = new FunctionalErrorList(ex.Detail)
                 };
             }
-            catch (InvalidOperationException ex)
+            catch (Exception ex)
             {
-                Logger.Fatal(ex.InnerException.Message);
+                _logger.Fatal(ex.Message);
+                throw new TechnicalException(ex.Data, ex.Message, ex.InnerException);
             }
             
+
         }
 
         public void VoegOnderhoudsopdrachtToe(Schema.Onderhoudsopdracht onderhoudsopdracht)
@@ -62,7 +71,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             }
             catch (InvalidOperationException ex)
             {
-                Logger.Fatal(ex.InnerException.Message);
+                _logger.Fatal(ex.InnerException.Message);
             }
             
         }
@@ -98,7 +107,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             }
             catch (InvalidOperationException ex)
             {
-                Logger.Fatal(ex.InnerException.Message);
+                _logger.Fatal(ex.InnerException.Message);
             }
 
         }
@@ -123,7 +132,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             }
             catch (InvalidOperationException ex)
             {
-                Logger.Fatal(ex.InnerException.Message);
+                _logger.Fatal(ex.InnerException.Message);
             }
             return new Schema.VoertuigenCollection();
         }
@@ -149,7 +158,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             }
             catch (InvalidOperationException ex)
             {
-                Logger.Fatal(ex.InnerException.Message);
+                _logger.Fatal(ex.InnerException.Message);
             }
             return null;
         }
