@@ -9,6 +9,8 @@ namespace Minor.Case2.FEGMS.Agent
         void VoegVoertuigMetKlantToe(Voertuig voertuig);
         VoertuigenCollection GetVoertuigBy(VoertuigenSearchCriteria critera);
         bool MeldVoertuigKlaar(Voertuig voertuig);
-        IEnumerable<Leasemaatschappij> GetAllLeasemaatschappijen();
+        KlantenCollection GetAllLeasemaatschappijen();
+        Onderhoudsopdracht GetOnderhoudsopdrachtBy(OnderhoudsopdrachtZoekCriteria criteria);
+        bool VoegOnderhoudswerkzaamhedenToe(Onderhoudswerkzaamheden werkzaamheden);
     }
 }

@@ -211,7 +211,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         
         private string NaamField;
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Naam
         {
             get
@@ -429,7 +429,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
         public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Klant Eigenaar
         {
             get
@@ -442,7 +442,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=5)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
         public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Persoon Bestuurder
         {
             get
@@ -611,6 +611,8 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         
         private string OnderhoudswerkzaamhedenomschrijvingField;
         
+        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht OnderhoudsopdrachtField;
+        
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -674,6 +676,19 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
                 this.OnderhoudswerkzaamhedenomschrijvingField = value;
             }
         }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
+        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht Onderhoudsopdracht
+        {
+            get
+            {
+                return this.OnderhoudsopdrachtField;
+            }
+            set
+            {
+                this.OnderhoudsopdrachtField = value;
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -684,17 +699,17 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private long IDField;
+        private System.Nullable<long> IDField;
         
-        private System.DateTime AanmeldingsdatumField;
+        private System.Nullable<System.DateTime> AanmeldingsdatumField;
         
-        private long KilometerstandField;
+        private System.Nullable<long> KilometerstandField;
         
         private string OnderhoudsomschrijvingField;
         
-        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig VoertuigField;
+        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigenSearchCriteria VoertuigenSearchCriteriaField;
         
-        private bool APKField;
+        private System.Nullable<bool> APKField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -709,7 +724,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long ID
+        public System.Nullable<long> ID
         {
             get
             {
@@ -722,7 +737,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
-        public System.DateTime Aanmeldingsdatum
+        public System.Nullable<System.DateTime> Aanmeldingsdatum
         {
             get
             {
@@ -735,7 +750,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
-        public long Kilometerstand
+        public System.Nullable<long> Kilometerstand
         {
             get
             {
@@ -747,7 +762,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=3)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
         public string Onderhoudsomschrijving
         {
             get
@@ -760,21 +775,21 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
-        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig Voertuig
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
+        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigenSearchCriteria VoertuigenSearchCriteria
         {
             get
             {
-                return this.VoertuigField;
+                return this.VoertuigenSearchCriteriaField;
             }
             set
             {
-                this.VoertuigField = value;
+                this.VoertuigenSearchCriteriaField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
-        public bool APK
+        public System.Nullable<bool> APK
         {
             get
             {
@@ -886,6 +901,14 @@ public interface IPcSOnderhoudService
     [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetAllKlanten", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetAllKlantenResponse")]
     System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.KlantenCollection> GetAllKlantenAsync();
     
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetAllLeasemaatschappijen", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetAllLeasemaatschappijenRes" +
+        "ponse")]
+    Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.KlantenCollection GetAllLeasemaatschappijen();
+    
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetAllLeasemaatschappijen", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetAllLeasemaatschappijenRes" +
+        "ponse")]
+    System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.KlantenCollection> GetAllLeasemaatschappijenAsync();
+    
     [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetVoertuigBy", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetVoertuigByResponse")]
     Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigenCollection GetVoertuigBy(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigenSearchCriteria zoekCriteria);
     
@@ -927,12 +950,12 @@ public interface IPcSOnderhoudService
     [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudswerkzaamhedenT" +
         "oe", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudswerkzaamhedenT" +
         "oeResponse")]
-    void VoegOnderhoudswerkzaamhedenToe(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden);
+    bool VoegOnderhoudswerkzaamhedenToe(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden, Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Garage garage);
     
     [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudswerkzaamhedenT" +
         "oe", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudswerkzaamhedenT" +
         "oeResponse")]
-    System.Threading.Tasks.Task VoegOnderhoudswerkzaamhedenToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden);
+    System.Threading.Tasks.Task<bool> VoegOnderhoudswerkzaamhedenToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden, Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Garage garage);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -977,6 +1000,16 @@ public partial class PcSOnderhoudServiceClient : System.ServiceModel.ClientBase<
     public System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.KlantenCollection> GetAllKlantenAsync()
     {
         return base.Channel.GetAllKlantenAsync();
+    }
+    
+    public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.KlantenCollection GetAllLeasemaatschappijen()
+    {
+        return base.Channel.GetAllLeasemaatschappijen();
+    }
+    
+    public System.Threading.Tasks.Task<Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.KlantenCollection> GetAllLeasemaatschappijenAsync()
+    {
+        return base.Channel.GetAllLeasemaatschappijenAsync();
     }
     
     public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigenCollection GetVoertuigBy(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.VoertuigenSearchCriteria zoekCriteria)
@@ -1029,13 +1062,13 @@ public partial class PcSOnderhoudServiceClient : System.ServiceModel.ClientBase<
         return base.Channel.GetHuidigeOnderhoudsopdrachtByAsync(searchCriteria);
     }
     
-    public void VoegOnderhoudswerkzaamhedenToe(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden)
+    public bool VoegOnderhoudswerkzaamhedenToe(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden, Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Garage garage)
     {
-        base.Channel.VoegOnderhoudswerkzaamhedenToe(onderhoudswerkzaamheden);
+        return base.Channel.VoegOnderhoudswerkzaamhedenToe(onderhoudswerkzaamheden, garage);
     }
     
-    public System.Threading.Tasks.Task VoegOnderhoudswerkzaamhedenToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden)
+    public System.Threading.Tasks.Task<bool> VoegOnderhoudswerkzaamhedenToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden, Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Garage garage)
     {
-        return base.Channel.VoegOnderhoudswerkzaamhedenToeAsync(onderhoudswerkzaamheden);
+        return base.Channel.VoegOnderhoudswerkzaamhedenToeAsync(onderhoudswerkzaamheden, garage);
     }
 }

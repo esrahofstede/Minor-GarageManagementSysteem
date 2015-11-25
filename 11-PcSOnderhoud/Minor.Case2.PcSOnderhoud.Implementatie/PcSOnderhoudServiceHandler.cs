@@ -37,6 +37,11 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             return agent.GetVoertuigBy(zoekCriteria);
         }
 
+        public Schema.VoertuigenCollection HaalVoertuigenOpVoor(Schema.Persoon persoon)
+        {
+            throw new NotImplementedException();
+        }
+
         public void VoegOnderhoudsopdrachtToe(Schema.Onderhoudsopdracht onderhoudsopdracht)
         {
             AgentBSKlantEnVoertuigBeheer agent = new AgentBSKlantEnVoertuigBeheer();

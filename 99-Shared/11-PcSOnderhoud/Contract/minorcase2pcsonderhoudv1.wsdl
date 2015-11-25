@@ -32,6 +32,12 @@
   <wsdl:message name="IPcSOnderhoudService_VoegVoertuigMetKlantToe_OutputMessage">
     <wsdl:part name="parameters" element="tns:VoegVoertuigMetKlantToeResponse" />
   </wsdl:message>
+  <wsdl:message name="IPcSOnderhoudService_HaalVoertuigenOpVoor_InputMessage">
+    <wsdl:part name="parameters" element="tns:HaalVoertuigenOpVoor" />
+  </wsdl:message>
+  <wsdl:message name="IPcSOnderhoudService_HaalVoertuigenOpVoor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HaalVoertuigenOpVoorResponse" />
+  </wsdl:message>
   <wsdl:message name="IPcSOnderhoudService_VoegOnderhoudsopdrachtToe_InputMessage">
     <wsdl:part name="parameters" element="tns:VoegOnderhoudsopdrachtToe" />
   </wsdl:message>
@@ -72,6 +78,10 @@
     <wsdl:operation name="VoegVoertuigMetKlantToe">
       <wsdl:input wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegVoertuigMetKlantToe" message="tns:IPcSOnderhoudService_VoegVoertuigMetKlantToe_InputMessage" />
       <wsdl:output wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegVoertuigMetKlantToeResponse" message="tns:IPcSOnderhoudService_VoegVoertuigMetKlantToe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HaalVoertuigenOpVoor">
+      <wsdl:input wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/HaalVoertuigenOpVoor" message="tns:IPcSOnderhoudService_HaalVoertuigenOpVoor_InputMessage" />
+      <wsdl:output wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/HaalVoertuigenOpVoorResponse" message="tns:IPcSOnderhoudService_HaalVoertuigenOpVoor_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="VoegOnderhoudsopdrachtToe">
       <wsdl:input wsaw:Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegOnderhoudsopdrachtToe" message="tns:IPcSOnderhoudService_VoegOnderhoudsopdrachtToe_InputMessage" />
@@ -121,6 +131,15 @@
     </wsdl:operation>
     <wsdl:operation name="VoegVoertuigMetKlantToe">
       <soap:operation soapAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/VoegVoertuigMetKlantToe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HaalVoertuigenOpVoor">
+      <soap:operation soapAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/HaalVoertuigenOpVoor" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

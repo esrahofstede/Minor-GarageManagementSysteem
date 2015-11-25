@@ -161,6 +161,64 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             Assert.AreEqual("InsertKlantgegevens", result.RouteValues.First().Value);
         }
 
+
+        [TestMethod]
+        public void InsertLeasemaatschappijGegevensNotExistingWithoutNaamAndTelefoonnummerTest()
+        {
+            // Arrange
+            var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
+            mock.Setup(agent => agent.GetAllLeasemaatschappijen()).Returns(DummyData.GetAllLeasemaatschappijen());
+            OnderhoudController controller = new OnderhoudController(mock.Object);
+            InsertLeasemaatschappijGegevensVM leasemaatschappij = DummyData.GetLeasemaatschappijGegevens(false);
+            leasemaatschappij.Naam = null;
+            leasemaatschappij.Telefoonnummer = null;
+
+            // Act
+            ViewResult result = controller.InsertLeasemaatschappijGegevens(leasemaatschappij) as ViewResult;
+
+            // Assert
+            Assert.IsFalse(controller.ModelState.IsValid);
+            Assert.AreEqual(1, controller.ModelState["Naam"].Errors.Count);
+            Assert.AreEqual("Naam is een verplicht veld", controller.ModelState["Naam"].Errors.First().ErrorMessage);
+            Assert.AreEqual(1, controller.ModelState["Telefoonnummer"].Errors.Count);
+            Assert.AreEqual("Telefoonnummer is een verplicht veld", controller.ModelState["Telefoonnummer"].Errors.First().ErrorMessage);
+            mock.Verify(agent => agent.GetAllLeasemaatschappijen());
+
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.Model);
+            Assert.IsInstanceOfType(result.Model, typeof(InsertLeasemaatschappijGegevensVM));
+            var lease = result.Model as InsertLeasemaatschappijGegevensVM;
+            Assert.AreEqual(lease.Leasemaatschappijen.Count(), DummyData.GetAllLeasemaatschappijen().Count());
+        }
+
+
+        [TestMethod]
+        public void InsertLeasemaatschappijGegevensExistingSelectedLeasemaatschappijIDTest()
+        {
+            // Arrange
+            var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
+            mock.Setup(agent => agent.GetAllLeasemaatschappijen()).Returns(DummyData.GetAllLeasemaatschappijen());
+            OnderhoudController controller = new OnderhoudController(mock.Object);
+            InsertLeasemaatschappijGegevensVM leasemaatschappij = DummyData.GetLeasemaatschappijGegevens(true);
+            leasemaatschappij.SelectedLeasemaatschappijID = 0;
+
+            // Act
+            ViewResult result = controller.InsertLeasemaatschappijGegevens(leasemaatschappij) as ViewResult;
+
+            // Assert
+            Assert.IsFalse(controller.ModelState.IsValid);
+            Assert.AreEqual(1, controller.ModelState["Leasemaatschappijen"].Errors.Count);
+            Assert.AreEqual("Indien het een bestaande leasemaatschappij is, moet er één geselecteerd zijn.", controller.ModelState["Leasemaatschappijen"].Errors.First().ErrorMessage);
+            mock.Verify(agent => agent.GetAllLeasemaatschappijen());
+
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.Model);
+            Assert.IsInstanceOfType(result.Model, typeof(InsertLeasemaatschappijGegevensVM));
+            var lease = result.Model as InsertLeasemaatschappijGegevensVM;
+            Assert.AreEqual(lease.Leasemaatschappijen.Count(), DummyData.GetAllLeasemaatschappijen().Count());
+        }
+
+
         [TestMethod]
         public void InsertNewLeasemaatschappijGegevensPostTest()
         {

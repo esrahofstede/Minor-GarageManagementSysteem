@@ -38,9 +38,9 @@ namespace Minor.Case2.FEGMS.Client.Tests
                 Naam = "Sixt",
                 Telefoonnummer = "0687654321",
                 Exist = exists,
-                Leasemaatschappijen = GetAllLeasemaatschappijen().Select(lease => new SelectListItem { Value = lease.ID.ToString(), Text = lease.Naam }),
+                Leasemaatschappijen = GetAllLeasemaatschappijen().Cast<Leasemaatschappij>().Select(lease => new SelectListItem { Value = lease.ID.ToString(), Text = lease.Naam }),
                 SelectedLeasemaatschappijID = exists ? 1 : 0,
-        };
+            };
         }
 
         internal static InsertVoertuiggegevensVM GetVoertuiggegevens()
@@ -142,9 +142,10 @@ namespace Minor.Case2.FEGMS.Client.Tests
 
         }
 
-        internal static IEnumerable<Leasemaatschappij> GetAllLeasemaatschappijen()
+        internal static KlantenCollection GetAllLeasemaatschappijen()
         {
-            return new List<Leasemaatschappij>()
+            var leasemaatschappijen = new KlantenCollection();
+            leasemaatschappijen.AddRange(new List<Leasemaatschappij>()
             {
                 new Leasemaatschappij
                 {
@@ -174,7 +175,9 @@ namespace Minor.Case2.FEGMS.Client.Tests
                     Klantnummer = 879435,
                     Telefoonnummer = "0625495321",
                 },
-            };
+            });
+
+            return leasemaatschappijen;
         }
     }
 }

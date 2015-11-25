@@ -240,7 +240,7 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
         public minorcase2bsvoertuigenklantbeheer.v1.schema.Klant Eigenaar
         {
             get
@@ -253,7 +253,7 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=5)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
         public minorcase2bsvoertuigenklantbeheer.v1.schema.Persoon Bestuurder
         {
             get
@@ -468,7 +468,7 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
         
         private string NaamField;
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Naam
         {
             get
@@ -749,6 +749,8 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
         
         private string OnderhoudswerkzaamhedenomschrijvingField;
         
+        private minorcase2bsvoertuigenklantbeheer.v1.schema.Onderhoudsopdracht OnderhoudsopdrachtField;
+        
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -810,6 +812,137 @@ namespace minorcase2bsvoertuigenklantbeheer.v1.schema
             set
             {
                 this.OnderhoudswerkzaamhedenomschrijvingField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
+        public minorcase2bsvoertuigenklantbeheer.v1.schema.Onderhoudsopdracht Onderhoudsopdracht
+        {
+            get
+            {
+                return this.OnderhoudsopdrachtField;
+            }
+            set
+            {
+                this.OnderhoudsopdrachtField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="OnderhoudsopdrachtenCollection", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema", ItemName="Onderhoudsopdracht")]
+    public class OnderhoudsopdrachtenCollection : System.Collections.Generic.List<minorcase2bsvoertuigenklantbeheer.v1.schema.Onderhoudsopdracht>
+    {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OnderhoudsopdrachtZoekCriteria", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
+    public partial class OnderhoudsopdrachtZoekCriteria : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private System.Nullable<long> IDField;
+        
+        private System.Nullable<System.DateTime> AanmeldingsdatumField;
+        
+        private System.Nullable<long> KilometerstandField;
+        
+        private string OnderhoudsomschrijvingField;
+        
+        private minorcase2bsvoertuigenklantbeheer.v1.schema.VoertuigenSearchCriteria VoertuigenSearchCriteriaField;
+        
+        private System.Nullable<bool> APKField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<long> ID
+        {
+            get
+            {
+                return this.IDField;
+            }
+            set
+            {
+                this.IDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
+        public System.Nullable<System.DateTime> Aanmeldingsdatum
+        {
+            get
+            {
+                return this.AanmeldingsdatumField;
+            }
+            set
+            {
+                this.AanmeldingsdatumField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
+        public System.Nullable<long> Kilometerstand
+        {
+            get
+            {
+                return this.KilometerstandField;
+            }
+            set
+            {
+                this.KilometerstandField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
+        public string Onderhoudsomschrijving
+        {
+            get
+            {
+                return this.OnderhoudsomschrijvingField;
+            }
+            set
+            {
+                this.OnderhoudsomschrijvingField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
+        public minorcase2bsvoertuigenklantbeheer.v1.schema.VoertuigenSearchCriteria VoertuigenSearchCriteria
+        {
+            get
+            {
+                return this.VoertuigenSearchCriteriaField;
+            }
+            set
+            {
+                this.VoertuigenSearchCriteriaField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
+        public System.Nullable<bool> APK
+        {
+            get
+            {
+                return this.APKField;
+            }
+            set
+            {
+                this.APKField = value;
             }
         }
     }

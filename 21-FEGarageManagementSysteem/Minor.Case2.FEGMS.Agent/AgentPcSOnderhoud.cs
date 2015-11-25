@@ -115,52 +115,56 @@ namespace Minor.Case2.FEGMS.Agent
             return false;
         }
 
-        public IEnumerable<Leasemaatschappij> GetAllLeasemaatschappijen()
+        public KlantenCollection GetAllLeasemaatschappijen()
         {
             try
             {
-                //var proxy = _factory.CreateAgent();
-                //return proxy.GetAllLeasemaatschappijen();
+                var proxy = _factory.CreateAgent();
+                return proxy.GetAllLeasemaatschappijen();
             }
             catch (FaultException ex)
             {
 
             }
-
-            return new List<Leasemaatschappij>()
-            {
-                new Leasemaatschappij
-                {
-                    ID = 1,
-                    Naam = "Sixt",
-                    Klantnummer = 123456,
-                    Telefoonnummer = "0621345678",
-                },
-                new Leasemaatschappij
-                {
-                    ID = 2,
-                    Naam = "DutchLease",
-                    Klantnummer = 561456,
-                    Telefoonnummer = "0612431536",
-                },
-                new Leasemaatschappij
-                {
-                    ID = 3,
-                    Naam = "LeasePlanDirect",
-                    Klantnummer = 2135126,
-                    Telefoonnummer = "0645786542",
-                },
-                new Leasemaatschappij
-                {
-                    ID = 4,
-                    Naam = "DirectLease",
-                    Klantnummer = 879435,
-                    Telefoonnummer = "0625495321",
-                },
-            };
-
-
-
+            return null;
         }
+
+        public Onderhoudsopdracht GetOnderhoudsopdrachtBy(OnderhoudsopdrachtZoekCriteria criteria)
+        {
+            try
+            {
+                var proxy = _factory.CreateAgent();
+                return proxy.GetHuidigeOnderhoudsopdrachtBy(criteria);
+            }
+            catch (FaultException ex)
+            {
+
+            }
+            return null;
+        }
+
+        public bool VoegOnderhoudswerkzaamhedenToe(Onderhoudswerkzaamheden werkzaamheden)
+        {
+            try
+            {
+                var section = ConfigurationManager.GetSection("Keuringsinstantie/Instantie") as KeuringsinstantieConfigSection;
+                var garage = new Garage
+                {
+                    Naam = section.Naam,
+                    Plaats = section.Plaats,
+                    Kvk = section.KVK,
+                    Type = section.TypeInstantie,
+                };
+
+                var proxy = _factory.CreateAgent();
+                return  proxy.VoegOnderhoudswerkzaamhedenToe(werkzaamheden, garage);
+            }
+            catch (FaultException ex)
+            {
+
+            }
+            return false;
+        }
+
     }
 }
