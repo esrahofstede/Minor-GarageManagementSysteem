@@ -154,67 +154,6 @@ namespace Minor.Case2.FEGMS.Client.Controllers
 
         }
 
-        ///// <summary>
-        ///// Post the inserted data from a KlaarmeldenVM
-        ///// </summary>
-        ///// <param name="model">KlaarmeldenVM with kenteken</param>
-        ///// <returns>View</returns>
-        //[HttpPost]
-        //public ActionResult Klaarmelden(OnderhoudswerkzaamhedenVM model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        //var searchCriteria = new VoertuigenSearchCriteria
-        //        //{
-        //        //    Kenteken = model.Kenteken,
-        //        //};
-
-        //        var werkzaamheden = new Onderhoudswerkzaamheden
-        //        {
-        //            Afmeldingsdatum = model.Afmeldingsdatum,
-        //            Kilometerstand = model.Kilometerstand,
-        //            Onderhoudswerkzaamhedenomschrijving = "Bla 123",// model.Onderhoudsomschrijving,
-        //            Onderhoudsopdracht = new Onderhoudsopdracht
-        //            {
-        //                ID = model.OnderhoudsopdrachtID,
-        //                Aanmeldingsdatum = DateTime.Now,
-        //                APK = true,
-        //                Kilometerstand = 123,
-        //                Onderhoudsomschrijving = "Bla",
-        //                Voertuig = new Voertuig
-        //                {
-        //                    Kenteken = "00-00-00",
-        //                    Merk = "VW",
-        //                    Type = "Polo",
-        //                    Eigenaar = new Persoon
-        //                    {
-        //                        Voornaam = "Kees",
-        //                        Achternaam = "Caespi",
-        //                        Telefoonnummer = "0612345678",
-        //                    }
-        //                },
-
-
-        //            },
-        //        };
-
-        //        //var voertuigen = _agent.GetVoertuigBy(searchCriteria);
-
-        //        model.Steekproef = _agent.VoegOnderhoudswerkzaamhedenToe(werkzaamheden);
-
-        //        //if (model.Steekproef)
-        //        //{
-        //        //    model.Message = $"De auto met het kenteken {model.Kenteken} is klaargemeld.";
-        //        //}
-        //        //else
-        //        //{
-        //        //    model.Message = $"De auto met het kenteken {model.Kenteken} is afgemeld.";
-        //        //}
-
-        //    }
-        //    return View("Klaargemeld", model);
-        //}
-
         /// <summary>
         /// Show the form to show Onderhoudsopdracht
         /// </summary>

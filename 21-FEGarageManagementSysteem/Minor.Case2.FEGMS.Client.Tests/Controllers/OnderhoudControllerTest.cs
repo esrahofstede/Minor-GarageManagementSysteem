@@ -57,11 +57,7 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
             OnderhoudController controller = new OnderhoudController(mock.Object);
             InsertKlantgegevensVM klantgegevens = DummyData.GetKlantGegevens(true);
-
-            var request = new HttpRequest("", "http://example.com/", "");
-            var response = new HttpResponse(TextWriter.Null);
-            var httpContext = new HttpContextWrapper(new HttpContext(request, response));
-            controller.ControllerContext = new ControllerContext(httpContext, new RouteData(), controller);
+            controller.ControllerContext = Helper.CreateContext(controller);
 
             // Act
             RedirectToRouteResult result = controller.InsertKlantgegevens(klantgegevens) as RedirectToRouteResult;
@@ -90,11 +86,7 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
             OnderhoudController controller = new OnderhoudController(mock.Object);
             InsertKlantgegevensVM klantgegevens = DummyData.GetKlantGegevens(false);
-
-            var request = new HttpRequest("", "http://example.com/", "");
-            var response = new HttpResponse(TextWriter.Null);
-            var httpContext = new HttpContextWrapper(new HttpContext(request, response));
-            controller.ControllerContext = new ControllerContext(httpContext, new RouteData(), controller);
+            controller.ControllerContext = Helper.CreateContext(controller);
 
             // Act
             RedirectToRouteResult result = controller.InsertKlantgegevens(klantgegevens) as RedirectToRouteResult;
@@ -124,11 +116,9 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             mock.Setup(agent => agent.GetAllLeasemaatschappijen()).Returns(DummyData.GetAllLeasemaatschappijen());
 
             OnderhoudController controller = new OnderhoudController(mock.Object);
-
             controller.ControllerContext = Helper.CreateContext(controller);
-            //Set klantcookie
-            var klantgegevensCookie = new HttpCookie("Klantgegevens", new JavaScriptSerializer().Serialize(DummyData.GetKlantGegevens(true)));
-            controller.HttpContext.Request.Cookies.Add(klantgegevensCookie);
+            Helper.SetCookie("Klantgegevens", controller);
+
 
             // Act
             ViewResult result = controller.InsertLeasemaatschappijGegevens() as ViewResult;
@@ -226,11 +216,7 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
             OnderhoudController controller = new OnderhoudController(mock.Object);
             InsertLeasemaatschappijGegevensVM leasemaatschappij = DummyData.GetLeasemaatschappijGegevens(false);
-
-            var request = new HttpRequest("", "http://example.com/", "");
-            var response = new HttpResponse(TextWriter.Null);
-            var httpContext = new HttpContextWrapper(new HttpContext(request, response));
-            controller.ControllerContext = new ControllerContext(httpContext, new RouteData(), controller);
+            controller.ControllerContext = Helper.CreateContext(controller);
 
             // Act
             RedirectToRouteResult result = controller.InsertLeasemaatschappijGegevens(leasemaatschappij) as RedirectToRouteResult;
@@ -289,18 +275,10 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             mock.Setup(agent => agent.VoegVoertuigMetKlantToe(It.IsAny<Voertuig>()));
             OnderhoudController controller = new OnderhoudController(mock.Object);
             InsertVoertuiggegevensVM voertuiggegevens = DummyData.GetVoertuiggegevens();
+            controller.ControllerContext = Helper.CreateContext(controller);
 
-            var request = new HttpRequest("", "http://example.com/", "");
-            var response = new HttpResponse(TextWriter.Null);
-            var httpContext = new HttpContextWrapper(new HttpContext(request, response));
-            controller.ControllerContext = new ControllerContext(httpContext, new RouteData(), controller);
-           
-            //Set klantcookie
-            var klantgegevensCookie = new HttpCookie("Klantgegevens", serializer.Serialize(DummyData.GetKlantGegevens(true)));
-            controller.HttpContext.Request.Cookies.Add(klantgegevensCookie);
-            //Set leasemaatschappijcookie
-            var leasemaatschappijCookie = new HttpCookie("LeasemaatschappijGegevens", serializer.Serialize(DummyData.GetLeasemaatschappijGegevens(false)));
-            controller.HttpContext.Request.Cookies.Add(leasemaatschappijCookie);
+            Helper.SetCookie("Klantgegevens", controller);
+            Helper.SetCookie("LeasemaatschappijGegevens", controller);
 
             // Act
             RedirectToRouteResult result = controller.InsertVoertuiggegevens(voertuiggegevens) as RedirectToRouteResult;
@@ -326,15 +304,8 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             mock.Setup(agent => agent.VoegVoertuigMetKlantToe(It.IsAny<Voertuig>()));
             OnderhoudController controller = new OnderhoudController(mock.Object);
             InsertVoertuiggegevensVM voertuiggegevens = DummyData.GetVoertuiggegevens();
-
-            var request = new HttpRequest("", "http://example.com/", "");
-            var response = new HttpResponse(TextWriter.Null);
-            var httpContext = new HttpContextWrapper(new HttpContext(request, response));
-            controller.ControllerContext = new ControllerContext(httpContext, new RouteData(), controller);
-
-            //Set klantcookie
-            var klantgegevensCookie = new HttpCookie("Klantgegevens", serializer.Serialize(DummyData.GetKlantGegevens(false)));
-            controller.HttpContext.Request.Cookies.Add(klantgegevensCookie);
+            controller.ControllerContext = Helper.CreateContext(controller);
+            Helper.SetCookie("Klantgegevens", controller);
 
             // Act
             RedirectToRouteResult result = controller.InsertVoertuiggegevens(voertuiggegevens) as RedirectToRouteResult;
@@ -396,21 +367,11 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             mock.Setup(agent => agent.AddOnderhoudsopdrachtWithKlantAndVoertuig(It.IsAny<Onderhoudsopdracht>()));
             OnderhoudController controller = new OnderhoudController(mock.Object);
             InsertOnderhoudsopdrachtVM onderhoudsopdracht = DummyData.GetOnderhoudsopdracht();
+            controller.ControllerContext = Helper.CreateContext(controller);
 
-            var request = new HttpRequest("", "http://example.com/", "");
-            var response = new HttpResponse(TextWriter.Null);
-            var httpContext = new HttpContextWrapper(new HttpContext(request, response));
-            controller.ControllerContext = new ControllerContext(httpContext, new RouteData(), controller);
-
-            //Set klantcookie
-            var klantgegevensCookie = new HttpCookie("Klantgegevens", serializer.Serialize(DummyData.GetKlantGegevens(false)));
-            controller.HttpContext.Request.Cookies.Add(klantgegevensCookie);
-            //Set leasemaatschappijcookie
-            var leasemaatschappijCookie = new HttpCookie("LeasemaatschappijGegevens", serializer.Serialize(DummyData.GetLeasemaatschappijGegevens(false)));
-            controller.HttpContext.Request.Cookies.Add(leasemaatschappijCookie);
-            //Set voertuigcookie
-            var voertuigCookie = new HttpCookie("Voertuiggegevens", serializer.Serialize(DummyData.GetVoertuiggegevens()));
-            controller.HttpContext.Request.Cookies.Add(voertuigCookie);
+            Helper.SetCookie("Klantgegevens", controller);
+            Helper.SetCookie("LeasemaatschappijGegevens", controller);
+            Helper.SetCookie("Voertuiggegevens", controller);
 
             // Act
             RedirectToRouteResult result = controller.InsertOnderhoudsopdracht(onderhoudsopdracht) as RedirectToRouteResult;
@@ -429,16 +390,8 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             var serializer = new JavaScriptSerializer();
             var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
             OnderhoudController controller = new OnderhoudController(mock.Object);
-            Onderhoudsopdracht onderhoudsopdracht = DummyData.GetDummyOnderhoudsopdracht();
-
-            var request = new HttpRequest("", "http://example.com/", "");
-            var response = new HttpResponse(TextWriter.Null);
-            var httpContext = new HttpContextWrapper(new HttpContext(request, response));
-            controller.ControllerContext = new ControllerContext(httpContext, new RouteData(), controller);
-
-            //Set Onderhoudsopdracht
-            var onderhoudsopdrachtCookie = new HttpCookie("Onderhoudsopdracht", serializer.Serialize(onderhoudsopdracht));
-            controller.HttpContext.Request.Cookies.Add(onderhoudsopdrachtCookie);     
+            controller.ControllerContext = Helper.CreateContext(controller);
+            Helper.SetCookie("Onderhoudsopdracht", controller);
 
             // Act
             ViewResult result = controller.InsertedOnderhoudsopdracht() as ViewResult;
@@ -458,11 +411,7 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             var serializer = new JavaScriptSerializer();
             var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
             OnderhoudController controller = new OnderhoudController(mock.Object);
-
-            var request = new HttpRequest("", "http://example.com/", "");
-            var response = new HttpResponse(TextWriter.Null);
-            var httpContext = new HttpContextWrapper(new HttpContext(request, response));
-            controller.ControllerContext = new ControllerContext(httpContext, new RouteData(), controller);
+            controller.ControllerContext = Helper.CreateContext(controller);
 
             // Act
             RedirectToRouteResult result = controller.InsertedOnderhoudsopdracht() as RedirectToRouteResult;

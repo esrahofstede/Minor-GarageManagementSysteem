@@ -37,6 +37,10 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
 
             switch (name)
             {
+                case "Onderhoudsopdracht":
+                    var onderhoudsopdrachtCookie = new HttpCookie("Onderhoudsopdracht", serializer.Serialize(DummyData.GetDummyOnderhoudsopdracht()));
+                    controller.HttpContext.Request.Cookies.Add(onderhoudsopdrachtCookie);
+                    break;
                 case "Klantgegevens":
                     var klantgegevensCookie = new HttpCookie("Klantgegevens", serializer.Serialize(DummyData.GetKlantGegevens(false)));
                     controller.HttpContext.Request.Cookies.Add(klantgegevensCookie);
