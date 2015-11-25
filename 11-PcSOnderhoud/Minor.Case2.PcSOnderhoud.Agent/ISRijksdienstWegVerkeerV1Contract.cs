@@ -498,17 +498,128 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private long IDField;
+        private System.Nullable<long> IDField;
         
-        private System.DateTime AanmeldingsdatumField;
+        private System.Nullable<System.DateTime> AanmeldingsdatumField;
         
-        private long KilometerstandField;
+        private System.Nullable<long> KilometerstandField;
         
         private string OnderhoudsomschrijvingField;
         
-        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig VoertuigField;
+        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.VoertuigenSearchCriteria VoertuigenSearchCriteriaField;
         
-        private bool APKField;
+        private System.Nullable<bool> APKField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<long> ID
+        {
+            get
+            {
+                return this.IDField;
+            }
+            set
+            {
+                this.IDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
+        public System.Nullable<System.DateTime> Aanmeldingsdatum
+        {
+            get
+            {
+                return this.AanmeldingsdatumField;
+            }
+            set
+            {
+                this.AanmeldingsdatumField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
+        public System.Nullable<long> Kilometerstand
+        {
+            get
+            {
+                return this.KilometerstandField;
+            }
+            set
+            {
+                this.KilometerstandField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
+        public string Onderhoudsomschrijving
+        {
+            get
+            {
+                return this.OnderhoudsomschrijvingField;
+            }
+            set
+            {
+                this.OnderhoudsomschrijvingField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
+        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.VoertuigenSearchCriteria VoertuigenSearchCriteria
+        {
+            get
+            {
+                return this.VoertuigenSearchCriteriaField;
+            }
+            set
+            {
+                this.VoertuigenSearchCriteriaField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
+        public System.Nullable<bool> APK
+        {
+            get
+            {
+                return this.APKField;
+            }
+            set
+            {
+                this.APKField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="VoertuigenSearchCriteria", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
+    public partial class VoertuigenSearchCriteria : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private long IDField;
+        
+        private string KentekenField;
+        
+        private string MerkField;
+        
+        private string TypeField;
+        
+        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Klant EigenaarField;
+        
+        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Persoon BestuurderField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
@@ -535,68 +646,68 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
-        public System.DateTime Aanmeldingsdatum
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public string Kenteken
         {
             get
             {
-                return this.AanmeldingsdatumField;
+                return this.KentekenField;
             }
             set
             {
-                this.AanmeldingsdatumField = value;
+                this.KentekenField = value;
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
-        public long Kilometerstand
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public string Merk
         {
             get
             {
-                return this.KilometerstandField;
+                return this.MerkField;
             }
             set
             {
-                this.KilometerstandField = value;
+                this.MerkField = value;
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=3)]
-        public string Onderhoudsomschrijving
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public string Type
         {
             get
             {
-                return this.OnderhoudsomschrijvingField;
+                return this.TypeField;
             }
             set
             {
-                this.OnderhoudsomschrijvingField = value;
+                this.TypeField = value;
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
-        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig Voertuig
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
+        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Klant Eigenaar
         {
             get
             {
-                return this.VoertuigField;
+                return this.EigenaarField;
             }
             set
             {
-                this.VoertuigField = value;
+                this.EigenaarField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
-        public bool APK
+        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Persoon Bestuurder
         {
             get
             {
-                return this.APKField;
+                return this.BestuurderField;
             }
             set
             {
-                this.APKField = value;
+                this.BestuurderField = value;
             }
         }
     }
@@ -750,6 +861,8 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent
         
         private string OnderhoudswerkzaamhedenomschrijvingField;
         
+        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht OnderhoudsopdrachtField;
+        
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -813,115 +926,17 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent
                 this.OnderhoudswerkzaamhedenomschrijvingField = value;
             }
         }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="VoertuigenSearchCriteria", Namespace="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema")]
-    public partial class VoertuigenSearchCriteria : object, System.Runtime.Serialization.IExtensibleDataObject
-    {
         
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private long IDField;
-        
-        private string KentekenField;
-        
-        private string MerkField;
-        
-        private string TypeField;
-        
-        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Klant EigenaarField;
-        
-        private Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Persoon BestuurderField;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
+        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht Onderhoudsopdracht
         {
             get
             {
-                return this.extensionDataField;
+                return this.OnderhoudsopdrachtField;
             }
             set
             {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public long ID
-        {
-            get
-            {
-                return this.IDField;
-            }
-            set
-            {
-                this.IDField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public string Kenteken
-        {
-            get
-            {
-                return this.KentekenField;
-            }
-            set
-            {
-                this.KentekenField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public string Merk
-        {
-            get
-            {
-                return this.MerkField;
-            }
-            set
-            {
-                this.MerkField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public string Type
-        {
-            get
-            {
-                return this.TypeField;
-            }
-            set
-            {
-                this.TypeField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
-        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Klant Eigenaar
-        {
-            get
-            {
-                return this.EigenaarField;
-            }
-            set
-            {
-                this.EigenaarField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
-        public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Persoon Bestuurder
-        {
-            get
-            {
-                return this.BestuurderField;
-            }
-            set
-            {
-                this.BestuurderField = value;
+                this.OnderhoudsopdrachtField = value;
             }
         }
     }
@@ -1103,11 +1118,11 @@ namespace Minor.Case2.Exceptions.V1.Schema
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Persoon))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Leasemaatschappij))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.OnderhoudsopdrachtZoekCriteria))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.VoertuigenSearchCriteria))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.OnderhoudsopdrachtenCollection))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudswerkzaamheden))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.VoertuigenSearchCriteria))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.VoertuigenCollection))]
     public partial class FunctionalErrorDetail : object, System.Runtime.Serialization.IExtensibleDataObject
     {

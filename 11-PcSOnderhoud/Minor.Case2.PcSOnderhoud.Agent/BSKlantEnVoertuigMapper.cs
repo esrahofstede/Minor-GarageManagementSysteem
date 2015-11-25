@@ -223,7 +223,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
                 APK = searchCriteria.APK,
                 Kilometerstand = searchCriteria.Kilometerstand,
                 Onderhoudsomschrijving = searchCriteria.Onderhoudsomschrijving,
-                Voertuig = SchemaToAgentVoertuigMapper(searchCriteria.Voertuig),
+                VoertuigenSearchCriteria = SchemaToAgentVoertuigSearchCriteriaMapper(searchCriteria.VoertuigenSearchCriteria),
             };
         }
 
@@ -240,7 +240,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
                 APK = searchCriteria.APK,
                 Kilometerstand = searchCriteria.Kilometerstand,
                 Onderhoudsomschrijving = searchCriteria.Onderhoudsomschrijving,
-                Voertuig = AgentToSchemaVoertuigMapper(searchCriteria.Voertuig),
+                VoertuigenSearchCriteria = AgentToSchemaVoertuigSearchCriteriaMapper(searchCriteria.VoertuigenSearchCriteria),
             };
         }
 

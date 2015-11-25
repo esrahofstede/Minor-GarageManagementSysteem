@@ -610,6 +610,8 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
         
         private string OnderhoudswerkzaamhedenomschrijvingField;
         
+        private Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Onderhoudsopdracht OnderhoudsopdrachtField;
+        
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -673,6 +675,19 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
                 this.OnderhoudswerkzaamhedenomschrijvingField = value;
             }
         }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
+        public Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Onderhoudsopdracht Onderhoudsopdracht
+        {
+            get
+            {
+                return this.OnderhoudsopdrachtField;
+            }
+            set
+            {
+                this.OnderhoudsopdrachtField = value;
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -698,7 +713,7 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
         
         private string OnderhoudsomschrijvingField;
         
-        private Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Voertuig VoertuigField;
+        private Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.VoertuigenSearchCriteria VoertuigenSearchCriteriaField;
         
         private System.Nullable<bool> APKField;
         
@@ -767,15 +782,15 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
-        public Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Voertuig Voertuig
+        public Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.VoertuigenSearchCriteria VoertuigenSearchCriteria
         {
             get
             {
-                return this.VoertuigField;
+                return this.VoertuigenSearchCriteriaField;
             }
             set
             {
-                this.VoertuigField = value;
+                this.VoertuigenSearchCriteriaField = value;
             }
         }
         

@@ -100,7 +100,7 @@
       <xs:element name="Aanmeldingsdatum" nillable="true" type="xs:dateTime" />
       <xs:element name="Kilometerstand" nillable="true" type="xs:long" />
       <xs:element name="Onderhoudsomschrijving" nillable="true" type="xs:string" />
-      <xs:element name="Voertuig" nillable="true" type="bsvk:Voertuig" />
+      <xs:element name="VoertuigenSearchCriteria" nillable="true" type="bsvk:VoertuigenSearchCriteria" />
       <xs:element name="APK" nillable="true" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
@@ -111,6 +111,7 @@
       <xs:element name="Afmeldingsdatum" type="xs:dateTime" />
       <xs:element name="Kilometerstand" type="xs:long" />
       <xs:element name="Onderhoudswerkzaamhedenomschrijving" type="xs:string" />
+      <xs:element name="Onderhoudsopdracht" type="bsvk:Onderhoudsopdracht" />
     </xs:sequence>
   </xs:complexType>
 
