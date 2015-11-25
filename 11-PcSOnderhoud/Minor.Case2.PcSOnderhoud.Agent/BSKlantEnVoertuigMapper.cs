@@ -210,7 +210,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             };
         }
 
-        public AgentSchema.OnderhoudsopdrachtZoekCriteria SchemaToAgentOnderhoudsOpdrachtSearchCriteriaMapper(Schema.OnderhoudsopdrachtZoekCriteria searchCriteria)
+        public AgentSchema.OnderhoudsopdrachtZoekCriteria SchemaToAgentOnderhoudsopdrachtSearchCriteriaMapper(Schema.OnderhoudsopdrachtZoekCriteria searchCriteria)
         {
             if (searchCriteria == null)
             {
@@ -227,7 +227,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             };
         }
 
-        public Schema.OnderhoudsopdrachtZoekCriteria AgentToSchemaOnderhoudsOpdrachtSearchCriteriaMapper(AgentSchema.OnderhoudsopdrachtZoekCriteria searchCriteria)
+        public Schema.OnderhoudsopdrachtZoekCriteria AgentToSchemaOnderhoudsopdrachtSearchCriteriaMapper(AgentSchema.OnderhoudsopdrachtZoekCriteria searchCriteria)
         {
             if (searchCriteria == null)
             {
@@ -246,12 +246,34 @@ namespace Minor.Case2.PcSOnderhoud.Agent
 
         public AgentSchema.Onderhoudswerkzaamheden SchemaToAgentOnderhoudswerkzaamhedenMapper(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden)
         {
-            throw new NotImplementedException();
+            if (onderhoudswerkzaamheden == null)
+            {
+                return null;
+            }
+            return new AgentSchema.Onderhoudswerkzaamheden
+            {
+                ID = onderhoudswerkzaamheden.ID,
+                Kilometerstand = onderhoudswerkzaamheden.Kilometerstand,
+                Afmeldingsdatum= onderhoudswerkzaamheden.Afmeldingsdatum,
+                Onderhoudswerkzaamhedenomschrijving= onderhoudswerkzaamheden.Onderhoudswerkzaamhedenomschrijving,
+                Onderhoudsopdracht= SchemaToAgentOnderhoudsopdrachtMapper(onderhoudswerkzaamheden.Onderhoudsopdracht),
+            };
         }
 
         public Schema.Onderhoudswerkzaamheden AgentToSchemaOnderhoudswerkzaamhedenMapper(AgentSchema.Onderhoudswerkzaamheden onderhoudswerkzaamheden)
         {
-            throw new NotImplementedException();
+            if (onderhoudswerkzaamheden == null)
+            {
+                return null;
+            }
+            return new Schema.Onderhoudswerkzaamheden
+            {
+                ID = onderhoudswerkzaamheden.ID,
+                Kilometerstand = onderhoudswerkzaamheden.Kilometerstand,
+                Afmeldingsdatum = onderhoudswerkzaamheden.Afmeldingsdatum,
+                Onderhoudswerkzaamhedenomschrijving = onderhoudswerkzaamheden.Onderhoudswerkzaamhedenomschrijving,
+                Onderhoudsopdracht = AgentToSchemaOnderhoudsopdrachtMapper(onderhoudswerkzaamheden.Onderhoudsopdracht),
+            };
         }
     }
 }

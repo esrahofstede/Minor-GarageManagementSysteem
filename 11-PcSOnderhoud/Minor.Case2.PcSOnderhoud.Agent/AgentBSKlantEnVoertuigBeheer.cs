@@ -63,6 +63,23 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             
         }
 
+        public void VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden)
+        {
+            var proxy = _factory.CreateAgent();
+            try
+            {
+                var mapper = new BSKlantEnVoertuigMapper();
+                mapper.SchemaToAgentOnderhoudswerkzaamhedenMapper(onderhoudswerkzaamheden);
+                //proxy.voegonderhoudswerkzaamhedentoe
+
+            }
+            catch (FaultException<FunctionalErrorDetail[]> ex)
+            {
+
+            }
+
+        }
+
         public void UpdateVoertuig(Schema.Voertuig voertuig)
         {
             try
@@ -115,7 +132,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
                 var proxy = _factory.CreateAgent();
 
                 var onderhoudsopdrachten = proxy
-                    .GetOnderhoudsopdrachtenBy(mapper.SchemaToAgentOnderhoudsOpdrachtSearchCriteriaMapper(criteria));
+                    .GetOnderhoudsopdrachtenBy(mapper.SchemaToAgentOnderhoudsopdrachtSearchCriteriaMapper(criteria));
                 var query = from onderhoudsopdracht in onderhoudsopdrachten
                             select mapper.AgentToSchemaOnderhoudsopdrachtMapper(onderhoudsopdracht);
                 var onderhoudsopdrachtenCollection = new Schema.OnderhoudsopdrachtenCollection();
@@ -157,6 +174,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
                 var query = from leasemaatschappij in leasemaatschappijen
                     select mapper.AgentToSchemaKlantMapper(leasemaatschappij);
                 var leasemaatschappijenCollection = new Schema.KlantenCollection();
+                leasemaatschappijenCollection.AddRange(query);
                 return leasemaatschappijenCollection;
             }
             catch (FaultException<FunctionalErrorDetail[]> ex)
@@ -164,23 +182,6 @@ namespace Minor.Case2.PcSOnderhoud.Agent
 
             }
             return new Schema.KlantenCollection();
-        }
-
-        public void VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden)
-        {
-            var proxy = _factory.CreateAgent();
-            try
-            {
-                var mapper = new BSKlantEnVoertuigMapper();
-                mapper.SchemaToAgentOnderhoudswerkzaamhedenMapper(onderhoudswerkzaamheden);
-                //proxy.voegonderhoudswerkzaamhedentoe
-
-            }
-            catch (FaultException<FunctionalErrorDetail[]> ex)
-            {
-
-            }
-            
         }
     }
 }
