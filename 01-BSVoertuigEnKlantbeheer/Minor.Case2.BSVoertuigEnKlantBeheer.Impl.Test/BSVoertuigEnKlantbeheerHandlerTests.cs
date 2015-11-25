@@ -50,6 +50,129 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
         }
 
         /// <summary>
+        /// Test if the right ID is set for the existing Klant
+        /// </summary>
+        [TestMethod]
+        public void InsertVoertuigMetExistingPersoonTest()
+        {
+            // Arrange
+            var persoonMock = new Mock<IDataMapper<Entities.Persoon, long>>(MockBehavior.Strict);
+            var leaseMock = new Mock<IDataMapper<Entities.Leasemaatschappij, long>>(MockBehavior.Strict);
+            var voertuigMock = new Mock<IDataMapper<Entities.Voertuig, long>>(MockBehavior.Strict);
+
+            BSVoertuigEnKlantbeheerHandler handler = new BSVoertuigEnKlantbeheerHandler(persoonMock.Object, leaseMock.Object, voertuigMock.Object);
+
+            persoonMock.Setup(datamapper => datamapper.Insert(It.IsAny<Entities.Persoon>())).Returns(1);
+            persoonMock.Setup(datamapper => datamapper.FindAllBy(It.IsAny<Expression<Func<Entities.Persoon, bool>>>())).Returns(new List<Entities.Persoon>() { new Entities.Persoon { ID = 10 } });
+            voertuigMock.Setup(datamapper => datamapper.Insert(It.IsAny<Entities.Voertuig>())).Returns(0);
+            voertuigMock.Setup(datamapper => datamapper.FindAllBy(It.IsAny<Expression<Func<Entities.Voertuig, bool>>>())).Returns(new List<Entities.Voertuig>());
+
+
+            Voertuig voertuig = new Voertuig
+            {
+                Kenteken = "12-AA-AB",
+                Bestuurder = new Persoon()
+                {
+                    ID = 10,
+                },
+                Eigenaar = new Persoon()
+                {
+                    ID = 10,
+                },
+                Merk = "Ford",
+                Type = "Focus",
+            };
+
+
+            // Act
+            handler.VoegVoertuigMetKlantToe(voertuig);
+
+            // Assert
+            voertuigMock.Verify(mock => mock.Insert((It.Is<Entities.Voertuig>(v => v.Bestuurder.ID == 10 && v.Eigenaar.ID == 10))));
+        }
+
+        /// <summary>
+        /// Test if the right ID is set for the existing Leasemaatschappij
+        /// </summary>
+        [TestMethod]
+        public void InsertVoertuigMetExistingLeasemaatschappijTest()
+        {
+            // Arrange
+            var persoonMock = new Mock<IDataMapper<Entities.Persoon, long>>(MockBehavior.Strict);
+            var leaseMock = new Mock<IDataMapper<Entities.Leasemaatschappij, long>>(MockBehavior.Strict);
+            var voertuigMock = new Mock<IDataMapper<Entities.Voertuig, long>>(MockBehavior.Strict);
+
+            BSVoertuigEnKlantbeheerHandler handler = new BSVoertuigEnKlantbeheerHandler(persoonMock.Object, leaseMock.Object, voertuigMock.Object);
+
+            persoonMock.Setup(datamapper => datamapper.Insert(It.IsAny<Entities.Persoon>())).Returns(1);
+            persoonMock.Setup(datamapper => datamapper.FindAllBy(It.IsAny<Expression<Func<Entities.Persoon, bool>>>())).Returns(new List<Entities.Persoon>());
+            leaseMock.Setup(datamapper => datamapper.FindAllBy(It.IsAny<Expression<Func<Entities.Leasemaatschappij, bool>>>())).Returns(new List<Entities.Leasemaatschappij>() { new Entities.Leasemaatschappij { ID = 20 } });
+            voertuigMock.Setup(datamapper => datamapper.Insert(It.IsAny<Entities.Voertuig>())).Returns(0);
+            voertuigMock.Setup(datamapper => datamapper.FindAllBy(It.IsAny<Expression<Func<Entities.Voertuig, bool>>>())).Returns(new List<Entities.Voertuig>());
+
+
+            Voertuig voertuig = new Voertuig
+            {
+                Kenteken = "12-AA-AA",
+                Bestuurder = new Persoon(),
+                Eigenaar = new Leasemaatschappij
+                {
+                    ID = 20
+                },
+                Merk = "Ford",
+                Type = "Focus",
+            };
+
+            // Act
+            handler.VoegVoertuigMetKlantToe(voertuig);
+
+            // Assert
+            voertuigMock.Verify(mock => mock.Insert((It.Is<Entities.Voertuig>(v => v.Bestuurder.ID == 1 && v.Eigenaar.ID == 20))));
+        }
+
+        /// <summary>
+        /// Test if the right ID is set for the existing bestuurder and Leasemaatschappij
+        /// </summary>
+        [TestMethod]
+        public void InsertVoertuigMetExistingPersoonAndExistingLeasemaatschappijTest()
+        {
+            // Arrange
+            var persoonMock = new Mock<IDataMapper<Entities.Persoon, long>>(MockBehavior.Strict);
+            var leaseMock = new Mock<IDataMapper<Entities.Leasemaatschappij, long>>(MockBehavior.Strict);
+            var voertuigMock = new Mock<IDataMapper<Entities.Voertuig, long>>(MockBehavior.Strict);
+
+            BSVoertuigEnKlantbeheerHandler handler = new BSVoertuigEnKlantbeheerHandler(persoonMock.Object, leaseMock.Object, voertuigMock.Object);
+
+            persoonMock.Setup(datamapper => datamapper.FindAllBy(It.IsAny<Expression<Func<Entities.Persoon, bool>>>())).Returns(new List<Entities.Persoon>() { new Entities.Persoon { ID = 10 } });
+            leaseMock.Setup(datamapper => datamapper.FindAllBy(It.IsAny<Expression<Func<Entities.Leasemaatschappij, bool>>>())).Returns(new List<Entities.Leasemaatschappij>() { new Entities.Leasemaatschappij { ID = 20 } });
+            voertuigMock.Setup(datamapper => datamapper.Insert(It.IsAny<Entities.Voertuig>())).Returns(0);
+            voertuigMock.Setup(datamapper => datamapper.FindAllBy(It.IsAny<Expression<Func<Entities.Voertuig, bool>>>())).Returns(new List<Entities.Voertuig>());
+
+
+            Voertuig voertuig = new Voertuig
+            {
+                Kenteken = "12-AA-AA",
+                Bestuurder = new Persoon
+                {
+                    ID = 10,
+                }
+                    ,
+                Eigenaar = new Leasemaatschappij
+                {
+                    ID = 20
+                },
+                Merk = "Ford",
+                Type = "Focus",
+            };
+
+            // Act
+            handler.VoegVoertuigMetKlantToe(voertuig);
+
+            // Assert
+            voertuigMock.Verify(mock => mock.Insert((It.Is<Entities.Voertuig>(v => v.Bestuurder.ID == 10 && v.Eigenaar.ID == 20))));
+        }
+
+        /// <summary>
         /// Test if the right persoonID and leasemaatschappijID are set
         /// </summary>
         [TestMethod]
