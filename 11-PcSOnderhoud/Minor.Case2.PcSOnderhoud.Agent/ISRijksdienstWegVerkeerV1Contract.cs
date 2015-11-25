@@ -1315,6 +1315,16 @@ public interface IBSVoertuigEnKlantbeheer
         "sopdrachtToeResponse")]
     System.Threading.Tasks.Task VoegOnderhoudsopdrachtToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht onderhoudsopdracht);
     
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/VoegOnderhoud" +
+        "swerkzaamhedenToe", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/VoegOnderhoud" +
+        "swerkzaamhedenToeResponse")]
+    void VoegOnderhoudswerkzaamhedenToe(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudswerkzaamheden onderhoudswerkzaamheden);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/VoegOnderhoud" +
+        "swerkzaamhedenToe", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/VoegOnderhoud" +
+        "swerkzaamhedenToeResponse")]
+    System.Threading.Tasks.Task VoegOnderhoudswerkzaamhedenToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudswerkzaamheden onderhoudswerkzaamheden);
+    
     [System.ServiceModel.OperationContractAttribute(Action="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/UpdateVoertui" +
         "g", ReplyAction="urn:minor-case2-bsvoertuigenklantbeheer:v1/IBSVoertuigEnKlantbeheer/UpdateVoertui" +
         "gResponse")]
@@ -1418,6 +1428,16 @@ public partial class BSVoertuigEnKlantbeheerClient : System.ServiceModel.ClientB
     public System.Threading.Tasks.Task VoegOnderhoudsopdrachtToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudsopdracht onderhoudsopdracht)
     {
         return base.Channel.VoegOnderhoudsopdrachtToeAsync(onderhoudsopdracht);
+    }
+    
+    public void VoegOnderhoudswerkzaamhedenToe(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudswerkzaamheden onderhoudswerkzaamheden)
+    {
+        base.Channel.VoegOnderhoudswerkzaamhedenToe(onderhoudswerkzaamheden);
+    }
+    
+    public System.Threading.Tasks.Task VoegOnderhoudswerkzaamhedenToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Onderhoudswerkzaamheden onderhoudswerkzaamheden)
+    {
+        return base.Channel.VoegOnderhoudswerkzaamhedenToeAsync(onderhoudswerkzaamheden);
     }
     
     public void UpdateVoertuig(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent.Voertuig voertuig)

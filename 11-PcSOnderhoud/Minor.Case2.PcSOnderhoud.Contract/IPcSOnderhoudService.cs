@@ -25,6 +25,9 @@ namespace Minor.Case2.PcSOnderhoud.Contract
         void VoegVoertuigMetKlantToe(Schema.Voertuig voertuig);
 
         [OperationContract]
+        Schema.VoertuigenCollection HaalVoertuigenOpVoor(Schema.Persoon persoon);
+
+        [OperationContract]
         void VoegOnderhoudsopdrachtToe(Schema.Onderhoudsopdracht onderhoudsopdracht);
 
         [OperationContract]
