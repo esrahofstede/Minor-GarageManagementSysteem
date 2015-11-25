@@ -143,7 +143,6 @@
     <Compile Include="ViewModel\InsertOnderhoudsopdrachtVM.cs" />
     <Compile Include="ViewModel\InsertVoertuiggegevensVM.cs" />
     <Compile Include="ViewModel\InsertKlantgegevensVM.cs" />
-    <Compile Include="ViewModel\KlaarmeldenVM.cs" />
     <Compile Include="ViewModel\OnderhoudsopdrachtVM.cs" />
     <Compile Include="ViewModel\OnderhoudswerkzaamhedenVM.cs" />
     <Compile Include="ViewModel\SearchVM.cs" />

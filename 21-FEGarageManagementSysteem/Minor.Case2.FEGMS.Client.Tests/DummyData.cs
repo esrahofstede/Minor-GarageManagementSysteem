@@ -53,14 +53,6 @@ namespace Minor.Case2.FEGMS.Client.Tests
             };
         }
 
-        internal static KlaarmeldenVM GetKlaarmelden()
-        {
-            return new KlaarmeldenVM
-            {
-                Kenteken = "DS-344-S",
-            };
-        }
-
         internal static InsertOnderhoudsopdrachtVM GetOnderhoudsopdracht()
         {
             return new InsertOnderhoudsopdrachtVM

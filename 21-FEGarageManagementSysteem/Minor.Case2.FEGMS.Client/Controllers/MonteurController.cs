@@ -39,15 +39,16 @@ namespace Minor.Case2.FEGMS.Client.Controllers
             return View();
         }
 
-
         /// <summary>
-        /// Show the form to Search Auto For Werkzaamheden
+        /// Post Search Auto For Werkzaamheden
+        /// Calls the agent to get onderhoudsopdracht
         /// </summary>
+        /// <param name="search">Viewmodel to search on kenteken</param>
         /// <returns>View</returns>
         [HttpPost]
         public ActionResult SearchAutoForWerkzaamheden(SearchVM search)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var searchCriteria = new OnderhoudsopdrachtZoekCriteria
                 {
@@ -80,6 +81,11 @@ namespace Minor.Case2.FEGMS.Client.Controllers
             return View(search);
         }
 
+        /// <summary>
+        /// Shows a form to insert the Ondehoudswerkzaamheden
+        /// Field already filled with data and read that data from the cookie SearchAutoForWerkzaamheden
+        /// </summary>
+        /// <returns>View or redirect to SearchAutoForWerkzaamheden when cookie is not set</returns>
         public ActionResult OnderhoudswerkzaamhedenInvoeren()
         {
             HttpCookie onderhoudswerkzaamhedenCookie = Request.Cookies.Get("Onderhoudswerkzaamheden");
@@ -96,6 +102,14 @@ namespace Minor.Case2.FEGMS.Client.Controllers
             return View(onderhoudswerkzaamheden);
         }
 
+        /// <summary>
+        /// Post the form for Ondehoudswerkzaamheden
+        /// Calls the agent to insert the Ondehoudswerkzaamheden
+        /// Set a cookie with the status of the RDW
+        /// "steekproef" : "!steekproef" : "geen" are the different options 
+        /// </summary>
+        /// <param name="model">OnderhoudswerkzaamhedenVM</param>
+        /// <returns>Redirect to Status</returns>
         [HttpPost]
         public ActionResult OnderhoudswerkzaamhedenInvoeren(OnderhoudswerkzaamhedenVM model)
         {
@@ -123,7 +137,10 @@ namespace Minor.Case2.FEGMS.Client.Controllers
             return View(model);
         }
 
-
+        /// <summary>
+        /// Shows the status of the RDW
+        /// </summary>
+        /// <returns>View</returns>
         public ActionResult Status()
         {
             HttpCookie apkCookie = Request.Cookies.Get("APK");
@@ -164,9 +181,9 @@ namespace Minor.Case2.FEGMS.Client.Controllers
         }
 
         /// <summary>
-        /// Post the inserted data from a KlaarmeldenVM
+        /// Post the inserted data from a Onderhoudsopdracht
         /// </summary>
-        /// <param name="model">KlaarmeldenVM with kenteken</param>
+        /// <param name="model">OnderhoudsopdrachtVM with kenteken</param>
         /// <returns>View</returns>
         [HttpPost]
         public ActionResult Onderhoudsopdracht(OnderhoudsopdrachtVM model)
