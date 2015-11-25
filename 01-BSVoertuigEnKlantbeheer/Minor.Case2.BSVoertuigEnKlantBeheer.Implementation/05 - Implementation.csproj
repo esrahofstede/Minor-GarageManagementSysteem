@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="BSVoertuigEnKlantbeheerHandler.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Mappers\LeasemaatschapijDTOMapper.cs" />
+    <Compile Include="Mappers\LeasemaatschappijDTOMapper.cs" />
     <Compile Include="Mappers\OnderhoudsOpdrachtDTOMapper.cs" />
     <Compile Include="Mappers\PersoonDTOMapper.cs" />
     <Compile Include="Mappers\VoertuigDTOMapper.cs" />

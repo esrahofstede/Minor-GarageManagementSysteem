@@ -46,13 +46,7 @@
     <xs:complexContent mixed="false">
       <xs:extension base="tns:Klant">
         <xs:sequence>
-          <xs:element name="Naam" nillable="true" type="xs:string">
-            <xs:annotation>
-              <xs:appinfo>
-                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:element>
+          <xs:element minOccurs="0" name="Naam" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
