@@ -53,46 +53,46 @@ namespace Minor.Case2.PcSOnderhoud.Agent.Tests
             serviceMock.Verify(service => service.RequestKeuringsverzoek(It.IsAny<SendRdwKeuringsverzoekRequestMessage>()), Times.Once());
         }
 
-        [Ignore]
-        [TestMethod]
-        public void IntegratieTest()
-        {
-            //Arrange
-            var keuringsreq = new SendRdwKeuringsverzoekRequestMessage();
-            var voertuig = new Schema.Voertuig
-            {
-                Kenteken = "12-AA-AA",
-                Merk = "ford",
-                Type = "focus",
-                Eigenaar = new Schema.Persoon
-                {
-                    Voornaam = "Jan",
-                    Achternaam = "Jansen"
-                },
-                Bestuurder = new Schema.Persoon
-                {
-                    Voornaam = "Jan",
-                    Achternaam = "Jansen"
-                }
-            };
-            var garage = new Garage
-            {
-                Kvk = "1234 1234"
-            };
-            var keuringsverzoek = new Keuringsverzoek
-            {
-                Date = DateTime.Now,
-                CorrolatieId = Guid.NewGuid().ToString()
-            };
+        //[Ignore]
+        //[TestMethod]
+        //public void IntegratieTest()
+        //{
+        //    //Arrange
+        //    var keuringsreq = new SendRdwKeuringsverzoekRequestMessage();
+        //    var voertuig = new Schema.Voertuig
+        //    {
+        //        Kenteken = "12-AA-AA",
+        //        Merk = "ford",
+        //        Type = "focus",
+        //        Eigenaar = new Schema.Persoon
+        //        {
+        //            Voornaam = "Jan",
+        //            Achternaam = "Jansen"
+        //        },
+        //        Bestuurder = new Schema.Persoon
+        //        {
+        //            Voornaam = "Jan",
+        //            Achternaam = "Jansen"
+        //        }
+        //    };
+        //    var garage = new Garage
+        //    {
+        //        Kvk = "1234 1234"
+        //    };
+        //    var keuringsverzoek = new Keuringsverzoek
+        //    {
+        //        Date = DateTime.Now,
+        //        CorrolatieId = Guid.NewGuid().ToString()
+        //    };
 
-            AgentISRDW agent = new AgentISRDW();
+        //    AgentISRDW agent = new AgentISRDW();
 
-            //Act
-            var result = agent.SendAPKKeuringsverzoek(voertuig, garage, keuringsverzoek);
+        //    //Act
+        //    var result = agent.SendAPKKeuringsverzoek(voertuig, garage, keuringsverzoek);
 
-            //Assert
-            Assert.IsTrue(true);
-        }
+        //    //Assert
+        //    Assert.IsTrue(true);
+        //}
 
     }
 }
