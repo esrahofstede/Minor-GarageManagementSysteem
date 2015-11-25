@@ -3,6 +3,7 @@ using Minor.Case2.FEGMS.Agent;
 using Minor.Case2.FEGMS.Client.Helper;
 using Minor.Case2.FEGMS.Client.ViewModel;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -109,7 +110,9 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                 return RedirectToAction("InsertKlantgegevens");
             }
             InsertLeasemaatschappijGegevensVM model = new InsertLeasemaatschappijGegevensVM();
-            model.Leasemaatschappijen = _agent.GetAllLeasemaatschappijen().Select(lease => new SelectListItem { Value = lease.ID.ToString(), Text = lease.Naam });
+
+            var leasemaatschappijen = _agent.GetAllLeasemaatschappijen().Cast<Leasemaatschappij>();
+            model.Leasemaatschappijen = leasemaatschappijen.Select((lease => new SelectListItem { Value = lease.ID.ToString(), Text = lease.Naam }));
             model.Exist = true;
             return View(model);
         }
@@ -153,7 +156,8 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                 return RedirectToAction("InsertVoertuiggegevens");
             }
 
-            model.Leasemaatschappijen = _agent.GetAllLeasemaatschappijen().Select(lease => new SelectListItem { Value = lease.ID.ToString(), Text = lease.Naam });
+            var leasemaatschappijen = _agent.GetAllLeasemaatschappijen().Cast<Leasemaatschappij>();
+            model.Leasemaatschappijen = leasemaatschappijen.Select((lease => new SelectListItem { Value = lease.ID.ToString(), Text = lease.Naam }));
             return View(model);
         }
 

@@ -317,7 +317,7 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=4)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
         public Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Klant Eigenaar
         {
             get
@@ -330,7 +330,7 @@ namespace Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=5)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
         public Minor.Case2.BSVoertuigEnKlantbeheer.V1.Schema.Persoon Bestuurder
         {
             get

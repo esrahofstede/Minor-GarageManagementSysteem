@@ -1,0 +1,85 @@
+﻿@model Minor.Case2.FEGMS.Client.ViewModel.OnderhoudsopdrachtVM
+
+@{
+    ViewBag.Title = "Onderhoudsopdracht";
+}
+
+<h2>Onderhoudsopdracht</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Kenteken, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Kenteken, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Kenteken, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Onderhoudsopdracht zoeken" class="btn btn-default" />
+            </div>
+        </div>
+
+        @if (Model != null)
+        {
+            if (Model.Onderhoudsopdracht != null)
+            {
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Onderhoudsopdracht.Aanmeldingsdatum)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Onderhoudsopdracht.Aanmeldingsdatum)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Onderhoudsopdracht.Kilometerstand)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Onderhoudsopdracht.Kilometerstand)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Onderhoudsopdracht.Onderhoudsomschrijving)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Onderhoudsopdracht.Onderhoudsomschrijving)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Onderhoudsopdracht.APK)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Onderhoudsopdracht.APK)
+                    </dd>
+
+                </dl>
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(Model?.Message))
+                {
+                    <h2 style="text-align:center;">@Model.Message</h2>
+                }
+            }
+        }
+
+
+
+
+
+
+    </div>
+}
