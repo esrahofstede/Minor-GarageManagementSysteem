@@ -86,6 +86,16 @@ namespace Minor.Case2.FEGMS.Client.Tests
             };
         }
 
+        public static OnderhoudswerkzaamhedenVM GetOnderhoudswerkzaamheden()
+        {
+            return new OnderhoudswerkzaamhedenVM
+            {
+                Kilometerstand = 123456,
+                Onderhoudsomschrijving = "Uitlaat vervangen",
+                OnderhoudsopdrachtID = 1,
+            };
+        }
+
         public static Voertuig GetDummyVoertuig()
         {
             return new Voertuig
@@ -111,6 +121,7 @@ namespace Minor.Case2.FEGMS.Client.Tests
         {
             return new Onderhoudsopdracht
             {
+                ID = 1,
                 APK = true,
                 Kilometerstand = 12000,
                 Aanmeldingsdatum = new DateTime(2015, 11, 11),

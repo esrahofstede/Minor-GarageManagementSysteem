@@ -3,7 +3,9 @@ using Minor.Case2.FEGMS.Agent;
 using Minor.Case2.FEGMS.Client.ViewModel;
 using System;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace Minor.Case2.FEGMS.Client.Controllers
 {
@@ -47,36 +49,51 @@ namespace Minor.Case2.FEGMS.Client.Controllers
         {
             if(ModelState.IsValid)
             {
-                //SET COOKIE AND GET ONDERHOUDSOPDRACHT
+                var searchCriteria = new OnderhoudsopdrachtZoekCriteria
+                {
+                    VoertuigenSearchCriteria = new VoertuigenSearchCriteria
+                    {
+                        Kenteken = search.Kenteken,
+                    },
+                };
+
+                var onderhoudsopdracht = _agent.GetOnderhoudsopdrachtBy(searchCriteria);
+                if (onderhoudsopdracht == null)
+                {
+                    ModelState.AddModelError("Kenteken", $"Er is geen onderhoudsopdracht gevonden voor de auto met het kenteken {search.Kenteken}");
+                    return View(search);
+                }
+
+                OnderhoudswerkzaamhedenVM onderhoudswerkzaamheden = new OnderhoudswerkzaamhedenVM
+                {
+                    Kilometerstand = onderhoudsopdracht.Kilometerstand,
+                    Onderhoudsomschrijving = onderhoudsopdracht.Onderhoudsomschrijving,
+                    OnderhoudsopdrachtID = onderhoudsopdracht.ID,
+                };
+
+                var serializedOnderhoudswerkzaamheden = new JavaScriptSerializer().Serialize(onderhoudswerkzaamheden);
+                HttpCookie onderhoudswerkzaamhedenCookie = new HttpCookie("Onderhoudswerkzaamheden", serializedOnderhoudswerkzaamheden);
+                Response.Cookies.Add(onderhoudswerkzaamhedenCookie);
+
                 return RedirectToAction("OnderhoudswerkzaamhedenInvoeren");
             }
             return View(search);
         }
+
         public ActionResult OnderhoudswerkzaamhedenInvoeren()
         {
-            //COOKIE UITLEZEN VOOR KENTEKEN
-            var kenteken = "";
+            HttpCookie onderhoudswerkzaamhedenCookie = Request.Cookies.Get("Onderhoudswerkzaamheden");
 
-            var searchCriteria = new OnderhoudsopdrachtZoekCriteria
+            if(onderhoudswerkzaamhedenCookie == null)
             {
-                VoertuigenSearchCriteria = new VoertuigenSearchCriteria
-                {
-                    Kenteken = kenteken,
-                },
-            };
+                return RedirectToAction("SearchAutoForWerkzaamheden");
+            }
 
-            var onderhoudsopdracht = new Onderhoudsopdracht
-            {
-                APK = true,
-                Kilometerstand = 12345,
-                Onderhoudsomschrijving = "Omschrijving test",
-            };//_agent.GetOnderhoudsopdrachtBy(searchCriteria);
-            OnderhoudswerkzaamhedenVM model = new OnderhoudswerkzaamhedenVM
-            {
-                Onderhoudsopdracht = onderhoudsopdracht,
-            };
+            var onderhoudswerkzaamheden = new JavaScriptSerializer().Deserialize<OnderhoudswerkzaamhedenVM>(onderhoudswerkzaamhedenCookie.Value);
+            onderhoudswerkzaamhedenCookie.Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies.Add(onderhoudswerkzaamhedenCookie);
 
-            return View(model);
+            return View(onderhoudswerkzaamheden);
         }
 
         [HttpPost]
@@ -84,83 +101,119 @@ namespace Minor.Case2.FEGMS.Client.Controllers
         {
             if(ModelState.IsValid)
             {
-                var searchCriteria = new OnderhoudsopdrachtZoekCriteria
+
+                var werkzaamheden = new Onderhoudswerkzaamheden
                 {
-                    VoertuigenSearchCriteria = new VoertuigenSearchCriteria
+                    Afmeldingsdatum = DateTime.Now,
+                    Kilometerstand = model.Kilometerstand,
+                    Onderhoudswerkzaamhedenomschrijving = model.Onderhoudsomschrijving,
+                    Onderhoudsopdracht = new Onderhoudsopdracht
                     {
-                        Kenteken = model.Kenteken,
+                        ID = model.OnderhoudsopdrachtID,
                     },
                 };
 
-                model.Onderhoudsopdracht = _agent.GetOnderhoudsopdrachtBy(searchCriteria);
-                if (model.Onderhoudsopdracht != null)
-                {
-                    model.OnderhoudsopdrachtID = model.Onderhoudsopdracht.ID;
-                }
+                bool? steekproef = _agent.VoegOnderhoudswerkzaamhedenToe(werkzaamheden);
+
+                HttpCookie apkCookie = new HttpCookie("APK", steekproef.HasValue ? steekproef.Value ? "steekproef" : "!steekproef" : "geen");
+                Response.Cookies.Add(apkCookie);
+
+                return RedirectToAction("Status");
             }
             return View(model);
         }
 
-        /// <summary>
-        /// Post the inserted data from a KlaarmeldenVM
-        /// </summary>
-        /// <param name="model">KlaarmeldenVM with kenteken</param>
-        /// <returns>View</returns>
-        [HttpPost]
-        public ActionResult Klaarmelden(OnderhoudswerkzaamhedenVM model)
+
+        public ActionResult Status()
         {
-            if (ModelState.IsValid)
+            HttpCookie apkCookie = Request.Cookies.Get("APK");
+
+            if (apkCookie != null)
             {
-                //var searchCriteria = new VoertuigenSearchCriteria
-                //{
-                //    Kenteken = model.Kenteken,
-                //};
+                apkCookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(apkCookie);
+                bool? steekproef = false;
 
-                var werkzaamheden = new Onderhoudswerkzaamheden
+                if (apkCookie.Value == "steekproef")
                 {
-                    Afmeldingsdatum = model.Afmeldingsdatum,
-                    Kilometerstand = model.Kilometerstand,
-                    Onderhoudswerkzaamhedenomschrijving = "Bla 123",// model.Onderhoudsomschrijving,
-                    Onderhoudsopdracht = new Onderhoudsopdracht
-                    {
-                        ID = model.OnderhoudsopdrachtID,
-                        Aanmeldingsdatum = DateTime.Now,
-                        APK = true,
-                        Kilometerstand = 123,
-                        Onderhoudsomschrijving = "Bla",
-                        Voertuig = new Voertuig
-                        {
-                            Kenteken = "00-00-00",
-                            Merk = "VW",
-                            Type = "Polo",
-                            Eigenaar = new Persoon
-                            {
-                                Voornaam = "Kees",
-                                Achternaam = "Caespi",
-                                Telefoonnummer = "0612345678",
-                            }
-                        },
-                        
-                        
-                    },
-                };
-
-                //var voertuigen = _agent.GetVoertuigBy(searchCriteria);
-
-                model.Steekproef = _agent.VoegOnderhoudswerkzaamhedenToe(werkzaamheden);
-
-                if (model.Steekproef)
-                {
-                    model.Message = $"De auto met het kenteken {model.Kenteken} is klaargemeld.";
+                    steekproef = true;
                 }
-                else
+                else if (apkCookie.Value == "!steekproef")
                 {
-                    model.Message = $"De auto met het kenteken {model.Kenteken} is afgemeld.";
+                    steekproef = false;
+                }
+                else if (apkCookie.Value == "geen")
+                {
+                    steekproef = null;
                 }
 
+                return View(steekproef);
             }
-            return View("Klaargemeld", model);
+
+            return RedirectToAction("Index", "Onderhoud");
+
         }
+
+        ///// <summary>
+        ///// Post the inserted data from a KlaarmeldenVM
+        ///// </summary>
+        ///// <param name="model">KlaarmeldenVM with kenteken</param>
+        ///// <returns>View</returns>
+        //[HttpPost]
+        //public ActionResult Klaarmelden(OnderhoudswerkzaamhedenVM model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        //var searchCriteria = new VoertuigenSearchCriteria
+        //        //{
+        //        //    Kenteken = model.Kenteken,
+        //        //};
+
+        //        var werkzaamheden = new Onderhoudswerkzaamheden
+        //        {
+        //            Afmeldingsdatum = model.Afmeldingsdatum,
+        //            Kilometerstand = model.Kilometerstand,
+        //            Onderhoudswerkzaamhedenomschrijving = "Bla 123",// model.Onderhoudsomschrijving,
+        //            Onderhoudsopdracht = new Onderhoudsopdracht
+        //            {
+        //                ID = model.OnderhoudsopdrachtID,
+        //                Aanmeldingsdatum = DateTime.Now,
+        //                APK = true,
+        //                Kilometerstand = 123,
+        //                Onderhoudsomschrijving = "Bla",
+        //                Voertuig = new Voertuig
+        //                {
+        //                    Kenteken = "00-00-00",
+        //                    Merk = "VW",
+        //                    Type = "Polo",
+        //                    Eigenaar = new Persoon
+        //                    {
+        //                        Voornaam = "Kees",
+        //                        Achternaam = "Caespi",
+        //                        Telefoonnummer = "0612345678",
+        //                    }
+        //                },
+
+
+        //            },
+        //        };
+
+        //        //var voertuigen = _agent.GetVoertuigBy(searchCriteria);
+
+        //        model.Steekproef = _agent.VoegOnderhoudswerkzaamhedenToe(werkzaamheden);
+
+        //        //if (model.Steekproef)
+        //        //{
+        //        //    model.Message = $"De auto met het kenteken {model.Kenteken} is klaargemeld.";
+        //        //}
+        //        //else
+        //        //{
+        //        //    model.Message = $"De auto met het kenteken {model.Kenteken} is afgemeld.";
+        //        //}
+
+        //    }
+        //    return View("Klaargemeld", model);
+        //}
 
         /// <summary>
         /// Show the form to show Onderhoudsopdracht
@@ -177,7 +230,7 @@ namespace Minor.Case2.FEGMS.Client.Controllers
         /// <param name="model">KlaarmeldenVM with kenteken</param>
         /// <returns>View</returns>
         [HttpPost]
-        public ActionResult Onderhoudsopdracht(OnderhoudswerkzaamhedenVM model)
+        public ActionResult Onderhoudsopdracht(OnderhoudsopdrachtVM model)
         {
             if (ModelState.IsValid)
             {

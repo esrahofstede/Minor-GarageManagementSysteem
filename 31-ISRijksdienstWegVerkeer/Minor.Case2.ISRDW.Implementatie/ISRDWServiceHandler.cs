@@ -29,6 +29,17 @@ namespace Minor.Case2.ISRDW.Implementation
         /// <returns></returns>
         public SendRdwKeuringsverzoekResponseMessage RequestKeuringsverzoek(SendRdwKeuringsverzoekRequestMessage message)
         {
+            return new SendRdwKeuringsverzoekResponseMessage
+            {
+                Kenteken = "00-00-00",
+                Keuringsverzoek = new Keuringsverzoek
+                {
+                    CorrolatieId = "31245-4325-24532-632-523",
+                    Date = DateTime.Now,
+                    Kilometerstand = 1234,
+                },
+                Steekproef = false,
+            };
             var list = new List<FunctionalErrorDetail>();
 
             if (message == null)

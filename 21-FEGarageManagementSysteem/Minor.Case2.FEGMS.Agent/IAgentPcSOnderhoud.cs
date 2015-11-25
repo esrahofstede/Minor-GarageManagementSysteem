@@ -11,6 +11,6 @@ namespace Minor.Case2.FEGMS.Agent
         bool MeldVoertuigKlaar(Voertuig voertuig);
         KlantenCollection GetAllLeasemaatschappijen();
         Onderhoudsopdracht GetOnderhoudsopdrachtBy(OnderhoudsopdrachtZoekCriteria criteria);
-        bool VoegOnderhoudswerkzaamhedenToe(Onderhoudswerkzaamheden werkzaamheden);
+        bool? VoegOnderhoudswerkzaamhedenToe(Onderhoudswerkzaamheden werkzaamheden);
     }
 }

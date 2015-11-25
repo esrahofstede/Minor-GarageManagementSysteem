@@ -96,6 +96,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Helper.cs" />
     <Compile Include="Controllers\MoneurControllerTest.cs" />
     <Compile Include="DummyData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

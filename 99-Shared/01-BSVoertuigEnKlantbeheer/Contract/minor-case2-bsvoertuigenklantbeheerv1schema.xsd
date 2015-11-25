@@ -83,23 +83,23 @@
   <xs:complexType name="Onderhoudsopdracht">
     <xs:sequence>
       <xs:element minOccurs="0" name="ID" type="xs:long" />
-      <xs:element name="Aanmeldingsdatum" type="xs:dateTime" />
-      <xs:element name="Kilometerstand" type="xs:long" />
-      <xs:element name="Onderhoudsomschrijving" nillable="true" type="xs:string">
+      <xs:element minOccurs="0" name="Aanmeldingsdatum" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Kilometerstand" type="xs:long" />
+      <xs:element minOccurs="0" name="Onderhoudsomschrijving" nillable="true" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
             <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="Voertuig" nillable="true" type="tns:Voertuig">
+      <xs:element minOccurs="0" name="Voertuig" nillable="true" type="tns:Voertuig">
         <xs:annotation>
           <xs:appinfo>
             <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="APK" type="xs:boolean" />
+      <xs:element minOccurs="0" name="APK" type="xs:boolean" />
       <xs:element name="Onderhoudswerkzaamheden" nillable="true" type="tns:Onderhoudswerkzaamheden" />
     </xs:sequence>
   </xs:complexType>

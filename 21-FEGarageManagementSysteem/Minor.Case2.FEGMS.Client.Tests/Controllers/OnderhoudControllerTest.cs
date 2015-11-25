@@ -125,7 +125,7 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
 
             OnderhoudController controller = new OnderhoudController(mock.Object);
 
-            controller.ControllerContext = CreateContext(controller);
+            controller.ControllerContext = Helper.CreateContext(controller);
             //Set klantcookie
             var klantgegevensCookie = new HttpCookie("Klantgegevens", new JavaScriptSerializer().Serialize(DummyData.GetKlantGegevens(true)));
             controller.HttpContext.Request.Cookies.Add(klantgegevensCookie);
@@ -151,7 +151,7 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
             OnderhoudController controller = new OnderhoudController(mock.Object);
 
-            controller.ControllerContext = CreateContext(controller);
+            controller.ControllerContext = Helper.CreateContext(controller);
 
             // Act
             RedirectToRouteResult result = controller.InsertLeasemaatschappijGegevens() as RedirectToRouteResult;
@@ -253,8 +253,8 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             // Arrange
             var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
             OnderhoudController controller = new OnderhoudController(mock.Object);
-            controller.ControllerContext = CreateContext(controller);
-            SetCookie("Klantgegevens", controller);
+            controller.ControllerContext = Helper.CreateContext(controller);
+            Helper.SetCookie("Klantgegevens", controller);
 
             // Act
             ViewResult result = controller.InsertVoertuiggegevens() as ViewResult;
@@ -270,7 +270,7 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             // Arrange
             var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
             OnderhoudController controller = new OnderhoudController(mock.Object);
-            controller.ControllerContext = CreateContext(controller);
+            controller.ControllerContext = Helper.CreateContext(controller);
 
             // Act
             RedirectToRouteResult result = controller.InsertVoertuiggegevens() as RedirectToRouteResult;
@@ -357,11 +357,11 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             // Arrange
             var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
             OnderhoudController controller = new OnderhoudController(mock.Object);
-            controller.ControllerContext = CreateContext(controller);
+            controller.ControllerContext = Helper.CreateContext(controller);
 
-            SetCookie("Klantgegevens", controller);
-            SetCookie("LeasemaatschappijGegevens", controller);
-            SetCookie("Voertuiggegevens", controller);
+            Helper.SetCookie("Klantgegevens", controller);
+            Helper.SetCookie("LeasemaatschappijGegevens", controller);
+            Helper.SetCookie("Voertuiggegevens", controller);
 
             // Act
             ViewResult result = controller.InsertOnderhoudsopdracht() as ViewResult;
@@ -377,7 +377,7 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             // Arrange
             var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
             OnderhoudController controller = new OnderhoudController(mock.Object);
-            controller.ControllerContext = CreateContext(controller);
+            controller.ControllerContext = Helper.CreateContext(controller);
 
             // Act
             RedirectToRouteResult result = controller.InsertOnderhoudsopdracht() as RedirectToRouteResult;
@@ -470,45 +470,6 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             // Assert
             Assert.IsNotNull(result);
             Assert.AreEqual("Index", result.RouteValues.First().Value);
-        }
-
-        /// <summary>
-        /// Helper method to create a controllercontext
-        /// </summary>
-        /// <param name="controller">The controller self</param>
-        /// <returns>ControllerContext</returns>
-        private ControllerContext CreateContext(Controller controller)
-        {
-            var request = new HttpRequest("", "http://example.com/", "");
-            var response = new HttpResponse(TextWriter.Null);
-            var httpContext = new HttpContextWrapper(new HttpContext(request, response));
-            return new ControllerContext(httpContext, new RouteData(), controller);
-        }
-
-        /// <summary>
-        /// Helper method to set a new cookie
-        /// </summary>
-        /// <param name="name">Name of the cookie</param>
-        /// <param name="controller">Controller to set the cookie</param>
-        private void SetCookie(string name, Controller controller)
-        {
-            var serializer = new JavaScriptSerializer();
-
-            switch (name)
-            {
-                case "Klantgegevens":
-                    var klantgegevensCookie = new HttpCookie("Klantgegevens", serializer.Serialize(DummyData.GetKlantGegevens(false)));
-                    controller.HttpContext.Request.Cookies.Add(klantgegevensCookie);
-                    break;
-                case "LeasemaatschappijGegevens":
-                    var leasemaatschappijCookie = new HttpCookie("LeasemaatschappijGegevens", serializer.Serialize(DummyData.GetLeasemaatschappijGegevens(false)));
-                    controller.HttpContext.Request.Cookies.Add(leasemaatschappijCookie);
-                    break;
-                case "Voertuiggegevens":
-                    var voertuigCookie = new HttpCookie("Voertuiggegevens", serializer.Serialize(DummyData.GetVoertuiggegevens()));
-                    controller.HttpContext.Request.Cookies.Add(voertuigCookie);
-                    break;
-            }
         }
 
     }

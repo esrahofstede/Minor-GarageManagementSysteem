@@ -79,11 +79,11 @@
   <xs:complexType name="Onderhoudsopdracht">
     <xs:sequence>
       <xs:element name="ID" type="xs:long" minOccurs="0" />
-      <xs:element name="Aanmeldingsdatum" type="xs:dateTime" />
-      <xs:element name="Kilometerstand" type="xs:long" />
-      <xs:element name="Onderhoudsomschrijving" type="xs:string" />
-      <xs:element name="Voertuig" type="bsvk:Voertuig" />
-      <xs:element name="APK" type="xs:boolean" />
+      <xs:element name="Aanmeldingsdatum" type="xs:dateTime" minOccurs="0" />
+      <xs:element name="Kilometerstand" type="xs:long" minOccurs="0"/>
+      <xs:element name="Onderhoudsomschrijving" type="xs:string"  minOccurs="0"/>
+      <xs:element name="Voertuig" type="bsvk:Voertuig" minOccurs="0"/>
+      <xs:element name="APK" type="xs:boolean" minOccurs="0"/>
       <xs:element name="Onderhoudswerkzaamheden" type="bsvk:Onderhoudswerkzaamheden" nillable="true" />
     </xs:sequence>
   </xs:complexType>

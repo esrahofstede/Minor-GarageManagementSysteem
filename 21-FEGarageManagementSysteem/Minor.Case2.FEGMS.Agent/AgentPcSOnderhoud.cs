@@ -143,7 +143,7 @@ namespace Minor.Case2.FEGMS.Agent
             return null;
         }
 
-        public bool VoegOnderhoudswerkzaamhedenToe(Onderhoudswerkzaamheden werkzaamheden)
+        public bool? VoegOnderhoudswerkzaamhedenToe(Onderhoudswerkzaamheden werkzaamheden)
         {
             try
             {

@@ -9,15 +9,10 @@ namespace Minor.Case2.FEGMS.Client.ViewModel
 {
     public class OnderhoudswerkzaamhedenVM
     {
-        [Required(ErrorMessage = "{0} moet worden ingevoerd om de onderhoudsopdracht te kunnen inzien")]
-        public string Kenteken { get; set; }
-        public string Message { get; set; }
-        [DataType(DataType.Date)]
-        public DateTime Afmeldingsdatum { get; set; }
-        public Onderhoudsopdracht Onderhoudsopdracht { get; set; }
-        public string Onderhoudsomschrijving { get; set; }
+        [Required(ErrorMessage = "{0} is verplicht om een onderhoud werkzaamheid in te kunnen voeren")]
         public long Kilometerstand { get; set; }
-        public bool Steekproef { get; set; }
+        [Required(ErrorMessage = "{0} is verplicht om een onderhoud werkzaamheid in te kunnen voeren")]
+        public string Onderhoudsomschrijving { get; set; }
         public long OnderhoudsopdrachtID { get; set; }
     }
 }

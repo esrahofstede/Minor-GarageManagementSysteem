@@ -144,6 +144,7 @@
     <Compile Include="ViewModel\InsertVoertuiggegevensVM.cs" />
     <Compile Include="ViewModel\InsertKlantgegevensVM.cs" />
     <Compile Include="ViewModel\KlaarmeldenVM.cs" />
+    <Compile Include="ViewModel\OnderhoudsopdrachtVM.cs" />
     <Compile Include="ViewModel\OnderhoudswerkzaamhedenVM.cs" />
     <Compile Include="ViewModel\SearchVM.cs" />
   </ItemGroup>
@@ -204,7 +205,7 @@
     <Content Include="Views\Onderhoud\InsertedOnderhoudsopdracht.cshtml" />
     <Content Include="Views\Monteur\Onderhoudsopdracht.cshtml" />
     <Content Include="Views\Monteur\OnderhoudswerkzaamhedenInvoeren.cshtml" />
-    <Content Include="Views\Monteur\Klaargemeld.cshtml" />
+    <Content Include="Views\Monteur\Status.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
