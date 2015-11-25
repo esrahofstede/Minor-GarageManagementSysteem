@@ -61,6 +61,7 @@
     <Compile Include="AgentBSKlantEnVoertuigBeheer.cs" />
     <Compile Include="AgentISRDW.cs" />
     <Compile Include="BSKlantEnVoertuigMapper.cs" />
+    <Compile Include="Exceptions\FunctionalErrorList.cs" />
     <Compile Include="Exceptions\FunctionalException.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ISRijksdienstWegVerkeerV1Contract.cs" />

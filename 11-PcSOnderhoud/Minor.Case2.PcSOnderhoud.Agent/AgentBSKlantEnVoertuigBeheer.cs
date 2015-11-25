@@ -4,6 +4,7 @@ using Minor.ServiceBus.Agent.Implementation;
 using System;
 using System.Linq;
 using System.ServiceModel;
+using Minor.Case2.PcSOnderhoud.Agent.Exceptions;
 using Schema = Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
 using AgentSchema = Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent;
 
@@ -35,7 +36,10 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             }
             catch (FaultException<FunctionalErrorDetail[]> ex)
             {
-                
+                throw new FunctionalException
+                {
+                    Errors = new FunctionalErrorList(ex.Detail)
+                };
             }
             catch (InvalidOperationException ex)
             {
