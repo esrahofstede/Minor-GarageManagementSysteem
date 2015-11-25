@@ -34,7 +34,7 @@ namespace Minor.Case2.PcSOnderhoud.Contract
         Schema.Onderhoudsopdracht GetHuidigeOnderhoudsopdrachtBy(Schema.OnderhoudsopdrachtZoekCriteria searchCriteria);
 
         [OperationContract]
-        bool VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden, Schema.Voertuig voertuig, AgentSchema.Garage garage);
+        bool VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden, AgentSchema.Garage garage);
     }
 
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Schema = Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
 using System.ServiceModel;
+using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent;
 using Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent;
 using Minor.Case2.PcSOnderhoud.Contract;
 using Minor.Case2.PcSOnderhoud.Agent;
@@ -77,10 +78,32 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             return onderhoudsopdracht;
         }
 
-        public bool VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden, Schema.Voertuig voertuig, Garage garage)
+        public bool VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden, Garage garage)
         {
-            AgentBSKlantEnVoertuigBeheer agent = new AgentBSKlantEnVoertuigBeheer();
-            return false;
+            AgentBSKlantEnVoertuigBeheer agentBS = new AgentBSKlantEnVoertuigBeheer();
+            AgentISRDW agentIS = new AgentISRDW();
+
+            Schema.OnderhoudsopdrachtZoekCriteria zoekCriteria = new Schema.OnderhoudsopdrachtZoekCriteria();
+            zoekCriteria.ID = onderhoudswerkzaamheden.Onderhoudsopdracht.ID;
+            var onderhoudsopdrachten = agentBS.GetOnderhoudsOpdrachtenBy(zoekCriteria);
+            var onderhoudsopdracht = onderhoudsopdrachten.First();
+
+            Keuringsverzoek keuringsverzoek = new Keuringsverzoek
+            {
+                Kilometerstand = (int) onderhoudswerkzaamheden.Kilometerstand,
+                Date = onderhoudswerkzaamheden.Afmeldingsdatum,
+                CorrolatieId = Guid.NewGuid().ToString()
+            };
+            onderhoudsopdracht.Voertuig.Status = "Klaar";
+
+            bool steekproef = agentIS.SendAPKKeuringsverzoek(onderhoudsopdracht.Voertuig, garage, keuringsverzoek).Steekproef;
+            if (!steekproef)
+            {
+                onderhoudsopdracht.Voertuig.Status = "Afgemeld";
+            }
+            agentBS.UpdateVoertuig(onderhoudsopdracht.Voertuig);
+            agentBS.VoegOnderhoudswerkzaamhedenToe(onderhoudswerkzaamheden);
+            return steekproef;
         }
 
         public void VoegVoertuigMetKlantToe(Schema.Voertuig voertuig)
