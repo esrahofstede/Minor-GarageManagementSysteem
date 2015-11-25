@@ -199,10 +199,17 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
             //bestuurder is always a persoon
             if (nieuwVoertuig.Bestuurder != null)
             {
-                nieuwVoertuig.Bestuurder.Klantnummer = rnd.Next(100000, 999999); //sorry
-                bestuurderID = _persoonDataMapper.Insert(nieuwVoertuig.Bestuurder);
-                nieuwVoertuig.Bestuurder.ID = bestuurderID;
-
+                //check if bestuurder not already exist
+                if (_persoonDataMapper.FindAllBy(p => p.ID == nieuwVoertuig.Bestuurder.ID).FirstOrDefault() == null)
+                {
+                    nieuwVoertuig.Bestuurder.Klantnummer = rnd.Next(100000, 999999); //sorry
+                    bestuurderID = _persoonDataMapper.Insert(nieuwVoertuig.Bestuurder);
+                    nieuwVoertuig.Bestuurder.ID = bestuurderID;
+                }
+                else
+                {
+                    bestuurderID = nieuwVoertuig.Bestuurder.ID;
+                }
             }
             //eigenaar is a persoon or a leasemaatschappij
             if (nieuwVoertuig.Eigenaar != null)
