@@ -1,8 +1,10 @@
 ﻿using Minor.Case2.ISRDW.DAL.Entities;
 using Minor.Case2.ISRijksdienstWegVerkeer.V1.Messages;
 using Minor.Case2.ISRijksdienstWegVerkeer.V1.Schema;
+using minorcase2bsvoertuigenklantbeheer.v1.schema;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,12 +23,14 @@ namespace Minor.Case2.ISRDW.Implementation
         /// <returns>apkKeuringsverzoekRequestMessage object to send to the RDW service</returns>
         public static apkKeuringsverzoekRequestMessage MapToRDWRequestMessage(SendRdwKeuringsverzoekRequestMessage message)
         {
-            if(message == null)
+            if (message == null)
             {
                 throw new ArgumentNullException(nameof(message), "The message that needs to be mapped, cannot be null");
             }
 
             var keuringsverzoek = message?.Keuringsverzoek;
+
+            string naam = FormatName(message.Voertuig.Eigenaar);
 
             var apkKeuringsverzoek = new keuringsverzoek()
             {
@@ -43,7 +47,7 @@ namespace Minor.Case2.ISRDW.Implementation
                 {
                     kenteken = message.Voertuig.Kenteken,
                     kilometerstand = message.Keuringsverzoek.Kilometerstand,
-                    naam = message.Voertuig.Bestuurder.Achternaam,
+                    naam = naam,
                     type = voertuigtype.personenauto,
                 }
             };
@@ -52,6 +56,24 @@ namespace Minor.Case2.ISRDW.Implementation
             {
                 keuringsverzoek = apkKeuringsverzoek,
             };
+        }
+
+        private static string FormatName(Klant eigenaar)
+        {
+            string naam = string.Empty;
+            if (eigenaar.GetType() == typeof(Leasemaatschappij))
+            {
+               Leasemaatschappij lease = eigenaar as Leasemaatschappij;
+               return lease.Naam;
+            }
+            else
+            {
+                Persoon p = eigenaar as Persoon;
+                string initiaal = char.ToUpper(p.Voornaam[0]) + ".";
+                string achternaam = char.ToUpper(p.Achternaam[0]) + p.Achternaam.Substring(1);
+                return initiaal + " " + achternaam;
+            }
+
         }
 
         /// <summary>

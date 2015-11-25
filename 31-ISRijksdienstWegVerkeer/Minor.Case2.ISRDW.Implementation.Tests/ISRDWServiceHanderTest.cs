@@ -7,10 +7,10 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
     public class ISRDWServiceHanderTest
     {
         [TestMethod]
-        public void MapRequestMessageToAPKRequestMessageTest()
+        public void MapPersoonRequestMessageToAPKRequestMessageTest()
         {
             //Arange
-            var requestMessage = DummyData.GetSendRdwKeuringsverzoekRequestMessage();
+            var requestMessage = DummyData.GetSendRdwKeuringsverzoekPersoonRequestMessage();
             ISRDWServiceHandler handler = new ISRDWServiceHandler();
             //Act
             var rdwRequestMessage = Mapper.MapToRDWRequestMessage(requestMessage);
@@ -18,6 +18,22 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
             Assert.AreEqual(requestMessage.Garage.Kvk, rdwRequestMessage.keuringsverzoek.keuringsinstantie.kvk);
             Assert.AreEqual(requestMessage.Voertuig.Kenteken, rdwRequestMessage.keuringsverzoek.voertuig.kenteken);
             Assert.AreEqual(requestMessage.Keuringsverzoek.CorrolatieId, rdwRequestMessage.keuringsverzoek.correlatieId);
+            Assert.AreEqual("J. Jansen", rdwRequestMessage.keuringsverzoek.voertuig.naam);
+        }
+
+        [TestMethod]
+        public void MapLeasemaatschappijRequestMessageToAPKRequestMessageTest()
+        {
+            //Arange
+            var requestMessage = DummyData.GetSendRdwKeuringsverzoekLeasemaatschappijRequestMessage();
+            ISRDWServiceHandler handler = new ISRDWServiceHandler();
+            //Act
+            var rdwRequestMessage = Mapper.MapToRDWRequestMessage(requestMessage);
+            //Assert
+            Assert.AreEqual(requestMessage.Garage.Kvk, rdwRequestMessage.keuringsverzoek.keuringsinstantie.kvk);
+            Assert.AreEqual(requestMessage.Voertuig.Kenteken, rdwRequestMessage.keuringsverzoek.voertuig.kenteken);
+            Assert.AreEqual(requestMessage.Keuringsverzoek.CorrolatieId, rdwRequestMessage.keuringsverzoek.correlatieId);
+            Assert.AreEqual("Sixt", rdwRequestMessage.keuringsverzoek.voertuig.naam);
         }
 
         [TestMethod]

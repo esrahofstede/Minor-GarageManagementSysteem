@@ -36,7 +36,42 @@ namespace Minor.Case2.ISRDW.Implementation.Tests
             };
         }
 
-        internal static SendRdwKeuringsverzoekRequestMessage GetSendRdwKeuringsverzoekRequestMessage()
+        internal static SendRdwKeuringsverzoekRequestMessage GetSendRdwKeuringsverzoekLeasemaatschappijRequestMessage()
+        {
+            return new SendRdwKeuringsverzoekRequestMessage
+            {
+                Garage = new Garage
+                {
+                    Naam = "test",
+                    Kvk = "123112344",
+                    Plaats = "Utrecht",
+                    Type = "Garage",
+                },
+                Voertuig = new Voertuig
+                {
+                    Kenteken = "12-AA-BB",
+                    Merk = "ford",
+                    Type = "focus",
+                    Bestuurder = new Persoon
+                    {
+                        Voornaam = "jan",
+                        Achternaam = "jansen"
+                    },
+                    Eigenaar = new Leasemaatschappij
+                    {
+                        Naam = "Sixt"
+                    },
+                    ID = 1
+                },
+                Keuringsverzoek = new ISRijksdienstWegVerkeer.V1.Schema.Keuringsverzoek
+                {
+                    CorrolatieId = "0038c17b-aa10-4f93-8569-d184fdfc265b",
+                    Date = DateTime.Now
+                }
+            };
+        }
+
+        internal static SendRdwKeuringsverzoekRequestMessage GetSendRdwKeuringsverzoekPersoonRequestMessage()
         {
             return new SendRdwKeuringsverzoekRequestMessage
             {
