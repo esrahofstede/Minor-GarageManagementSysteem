@@ -77,10 +77,22 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="VoegOnderhoudswerkzaamhedenToe">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="onderhoudswerkzaamheden" nillable="true" xmlns:q9="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q9:Onderhoudswerkzaamheden" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VoegOnderhoudswerkzaamhedenToeResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="UpdateVoertuig">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="voertuig" nillable="true" xmlns:q9="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q9:Voertuig" />
+        <xs:element minOccurs="0" name="voertuig" nillable="true" xmlns:q10="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q10:Voertuig" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
