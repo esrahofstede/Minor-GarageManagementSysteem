@@ -312,7 +312,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Impl.Test
 
             OnderhoudsopdrachtZoekCriteria zoekCriteria = new OnderhoudsopdrachtZoekCriteria
             {
-                Voertuig = new Voertuig
+                VoertuigenSearchCriteria = new VoertuigenSearchCriteria
                 {
                     Kenteken = "GG-WP-13"
                 },
