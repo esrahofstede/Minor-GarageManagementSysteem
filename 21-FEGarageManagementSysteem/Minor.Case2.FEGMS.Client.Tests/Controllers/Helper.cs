@@ -69,6 +69,10 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
                     var NoAPKCookie = new HttpCookie("APK", "geen");
                     controller.HttpContext.Request.Cookies.Add(NoAPKCookie);
                     break;
+                case "VoertuiggegevensExisting":
+                    var existingVoertuigenCookie = new HttpCookie("VoertuiggegevensExisting", serializer.Serialize(DummyData.GetVoertuigenCollection()));
+                    controller.HttpContext.Request.Cookies.Add(existingVoertuigenCookie);
+                    break;
             }
         }
     }
