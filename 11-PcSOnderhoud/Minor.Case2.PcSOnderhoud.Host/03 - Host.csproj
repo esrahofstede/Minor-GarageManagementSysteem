@@ -80,6 +80,7 @@
       <Link>Case2Key.snk</Link>
     </Content>
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\PCS.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
