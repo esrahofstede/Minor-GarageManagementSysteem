@@ -37,6 +37,10 @@
     <AssemblyOriginatorKeyFile>..\..\99-Shared\Case2Key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.14.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.4\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Minor.ServiceBus.Agent.Implementation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=73e451069382071b, processorArchitecture=MSIL">
       <HintPath>..\packages\Minor.Caespi.ServiceBus.Agent.1.0.0.3\lib\net452\Minor.ServiceBus.Agent.Implementation.dll</HintPath>
       <Private>True</Private>
