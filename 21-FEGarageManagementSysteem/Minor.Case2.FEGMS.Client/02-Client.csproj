@@ -156,6 +156,7 @@
     <Content Include="..\..\99-Shared\Case2Key.snk">
       <Link>Case2Key.snk</Link>
     </Content>
+    <None Include="Properties\PublishProfiles\FE.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
