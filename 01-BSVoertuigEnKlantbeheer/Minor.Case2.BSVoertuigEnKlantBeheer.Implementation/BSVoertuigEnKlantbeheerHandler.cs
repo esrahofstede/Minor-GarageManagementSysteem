@@ -168,7 +168,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
                 list.Add(new FunctionalErrorDetail
                 {
                     ErrorCode = 302,
-                    Message = "voertuig with kenteken bestaat al"
+                    Message = "Voertuig bestaat al"
                 });
 
             }
