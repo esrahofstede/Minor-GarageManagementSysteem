@@ -44,6 +44,7 @@ namespace Minor.Case2.FEGMS.Agent.Tests
         {
             return new Onderhoudsopdracht
             {
+                ID = 1,
                 APK = true,
                 Kilometerstand = 12000,
                 Aanmeldingsdatum = new DateTime(2015, 11, 11),
@@ -80,6 +81,36 @@ namespace Minor.Case2.FEGMS.Agent.Tests
 
             return voertuigen;
 
+        }
+
+        public static KlantenCollection GetAllLeasemaatschappijen()
+        {
+            var klanten = new KlantenCollection();
+
+            klanten.Add(new Leasemaatschappij
+            {
+                ID = 1,
+                Klantnummer = 123,
+                Naam = "LeasePlan",
+                Telefoonnummer = "0612345678"
+            });
+
+            klanten.Add(new Leasemaatschappij
+            {
+                ID = 2,
+                Klantnummer = 141,
+                Naam = "Sixt",
+                Telefoonnummer = "065641235"
+            });
+
+            klanten.Add(new Leasemaatschappij
+            {
+                ID = 1,
+                Klantnummer = 23645,
+                Naam = "AutoLease",
+                Telefoonnummer = "0612354845"
+            });
+            return klanten;
         }
     }
 }

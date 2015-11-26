@@ -112,5 +112,68 @@ namespace Minor.Case2.FEGMS.Agent.Tests
             factoryMock.Verify(factory => factory.CreateAgent());
             serviceMock.Verify(service => service.MeldVoertuigKlaar(It.IsAny<Voertuig>(), It.IsAny<Garage>()));
         }
+
+        [TestMethod]
+        public void GetAllLeasemaatschappijenTest()
+        {
+            //Arrange
+            var serviceMock = new Mock<IPcSOnderhoudService>(MockBehavior.Strict);
+            serviceMock.Setup(service => service.GetAllLeasemaatschappijen()).Returns(DummyData.GetAllLeasemaatschappijen());
+            var factoryMock = new Mock<ServiceFactory<IPcSOnderhoudService>>(MockBehavior.Strict);
+            factoryMock.Setup(factory => factory.CreateAgent()).Returns(serviceMock.Object);
+
+            AgentPcSOnderhoud agent = new AgentPcSOnderhoud(factoryMock.Object);
+
+            //Act
+            var leasemaatschappijen = agent.GetAllLeasemaatschappijen();
+
+            //Assert
+            Assert.AreEqual(3, leasemaatschappijen.Count);
+            factoryMock.Verify(factory => factory.CreateAgent());
+            serviceMock.Verify(service => service.GetAllLeasemaatschappijen());
+        }
+
+        [TestMethod]
+        public void GetOnderhoudsopdrachtByTest()
+        {
+            //Arrange
+            var serviceMock = new Mock<IPcSOnderhoudService>(MockBehavior.Strict);
+            serviceMock.Setup(service => service.GetHuidigeOnderhoudsopdrachtBy(It.IsAny<OnderhoudsopdrachtZoekCriteria>())).Returns(DummyData.GetDummyOnderhoudsopdracht());
+            var factoryMock = new Mock<ServiceFactory<IPcSOnderhoudService>>(MockBehavior.Strict);
+            factoryMock.Setup(factory => factory.CreateAgent()).Returns(serviceMock.Object);
+
+            AgentPcSOnderhoud agent = new AgentPcSOnderhoud(factoryMock.Object);
+
+            //Act
+            var onderhoudsopdracht = agent.GetOnderhoudsopdrachtBy(It.IsAny<OnderhoudsopdrachtZoekCriteria>());
+
+            //Assert
+            Assert.AreEqual(12000, onderhoudsopdracht.Kilometerstand);
+            Assert.AreEqual("APK Keuren", onderhoudsopdracht.Onderhoudsomschrijving);
+            Assert.AreEqual(1, onderhoudsopdracht.ID);
+            Assert.IsTrue(onderhoudsopdracht.APK);
+            factoryMock.Verify(factory => factory.CreateAgent());
+            serviceMock.Verify(service => service.GetHuidigeOnderhoudsopdrachtBy(It.IsAny<OnderhoudsopdrachtZoekCriteria>()));
+        }
+
+        [TestMethod]
+        public void VoegOnderhoudswerkzaamhedenToeTest()
+        {
+            //Arrange
+            var serviceMock = new Mock<IPcSOnderhoudService>(MockBehavior.Strict);
+            serviceMock.Setup(service => service.VoegOnderhoudswerkzaamhedenToe(It.IsAny<Onderhoudswerkzaamheden>(), It.IsAny<Garage>())).Returns(true);
+            var factoryMock = new Mock<ServiceFactory<IPcSOnderhoudService>>(MockBehavior.Strict);
+            factoryMock.Setup(factory => factory.CreateAgent()).Returns(serviceMock.Object);
+
+            AgentPcSOnderhoud agent = new AgentPcSOnderhoud(factoryMock.Object);
+
+            //Act
+            var result = agent.VoegOnderhoudswerkzaamhedenToe(It.IsAny<Onderhoudswerkzaamheden>());
+
+            //Assert
+            Assert.IsTrue(result.Value);
+            factoryMock.Verify(factory => factory.CreateAgent());
+            serviceMock.Verify(service => service.VoegOnderhoudswerkzaamhedenToe(It.IsAny<Onderhoudswerkzaamheden>(), It.IsAny<Garage>()));
+        }
     }
 }
