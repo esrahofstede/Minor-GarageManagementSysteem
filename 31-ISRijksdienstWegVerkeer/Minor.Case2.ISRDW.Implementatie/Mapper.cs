@@ -60,7 +60,6 @@ namespace Minor.Case2.ISRDW.Implementation
 
         private static string FormatName(Klant eigenaar)
         {
-            string naam = string.Empty;
             if (eigenaar.GetType() == typeof(Leasemaatschappij))
             {
                Leasemaatschappij lease = eigenaar as Leasemaatschappij;
