@@ -8,6 +8,7 @@ using Minor.ServiceBus.Agent.Implementation;
 using System.ServiceModel;
 using Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema;
 using System.Configuration;
+using log4net;
 
 namespace Minor.Case2.FEGMS.Agent
 {
@@ -17,6 +18,7 @@ namespace Minor.Case2.FEGMS.Agent
     public class AgentPcSOnderhoud : IAgentPcSOnderhoud
     {
         private ServiceFactory<IPcSOnderhoudService> _factory;
+        private static readonly ILog logger = LogManager.GetLogger(typeof(AgentPcSOnderhoud));
 
         public AgentPcSOnderhoud()
         {
@@ -45,7 +47,7 @@ namespace Minor.Case2.FEGMS.Agent
             }
             catch (FaultException ex)
             {
-
+                logger.Info(ex);
             }
 
         }
@@ -74,7 +76,7 @@ namespace Minor.Case2.FEGMS.Agent
             }
             catch (FaultException ex)
             {
-
+                logger.Info(ex);
             }
             return null;
         }
@@ -88,7 +90,7 @@ namespace Minor.Case2.FEGMS.Agent
             }
             catch (FaultException ex)
             {
-
+                logger.Info(ex);
             }
             return null;
         }
@@ -102,7 +104,7 @@ namespace Minor.Case2.FEGMS.Agent
             }
             catch (FaultException ex)
             {
-
+                logger.Info(ex);
             }
             return null;
         }
@@ -125,7 +127,7 @@ namespace Minor.Case2.FEGMS.Agent
             }
             catch (FaultException ex)
             {
-
+                logger.Info(ex);
             }
             return false;
         }
@@ -139,7 +141,7 @@ namespace Minor.Case2.FEGMS.Agent
             }
             catch (FaultException ex)
             {
-
+                logger.Info(ex);
             }
             return null;
         }
