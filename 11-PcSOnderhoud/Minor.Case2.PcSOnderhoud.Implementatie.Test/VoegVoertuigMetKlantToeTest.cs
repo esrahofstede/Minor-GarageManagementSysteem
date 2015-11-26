@@ -13,14 +13,15 @@ namespace Minor.Case2.PcSOnderhoud.Implementation.Tests
     public class VoegVoertuigMetKlantToeTest
     {
         [TestMethod]
-        [ExpectedException(typeof(FaultException<FunctionalErrorDetail[]>))]
+        [ExpectedException(typeof(FaultException))]
         public void ThrowsFunctionalErrorDetailArrayException()
         {
             //Arrange            
             var agentMock = new Mock<IAgentBSVoertuigEnKlantBeheer>(MockBehavior.Strict);
             var error = new FunctionalErrorDetail();
-            agentMock.Setup(agent => agent.VoegVoertuigMetKlantToe(It.IsAny<Schema.Voertuig>())).Throws(
-                new FunctionalException(new FunctionalErrorList(new[] { error })));
+            agentMock.Setup(agent => agent.VoegVoertuigMetKlantToe(It.IsAny<Schema.Voertuig>())).Throws(new TechnicalException(""));
+            agentMock.Setup(agent => agent.GetAllPersonen()).Throws(new FaultException(""));
+
             var target = new PcSOnderhoudServiceHandler(agentMock.Object);
 
             //Act
@@ -41,8 +42,8 @@ namespace Minor.Case2.PcSOnderhoud.Implementation.Tests
             var agentMock = new Mock<IAgentBSVoertuigEnKlantBeheer>(MockBehavior.Strict);
             var error = new FunctionalErrorDetail();
             error.Message = "error gegooid";
-            agentMock.Setup(agent => agent.VoegVoertuigMetKlantToe(It.IsAny<Schema.Voertuig>())).Throws(
-                new FunctionalException(new FunctionalErrorList(new[] { error })));
+            agentMock.Setup(agent => agent.VoegVoertuigMetKlantToe(It.IsAny<Schema.Voertuig>())).Throws(new TechnicalException("error gegooid"));
+            agentMock.Setup(agent => agent.GetAllPersonen()).Throws(new FaultException("error gegooid"));
             var target = new PcSOnderhoudServiceHandler(agentMock.Object);
 
             //Act
@@ -54,11 +55,10 @@ namespace Minor.Case2.PcSOnderhoud.Implementation.Tests
                     Eigenaar = new Schema.Persoon()
                 });
             }
-            catch (FaultException<FunctionalErrorDetail[]> ex)
+            catch (FaultException ex)
             {
                 //Assert   
-                Assert.AreEqual(1, ex.Detail.Length);
-                Assert.AreEqual(error.Message, ex.Detail[0].Message);
+                Assert.AreEqual(error.Message, ex.Message);
             }
         }
 
@@ -70,6 +70,7 @@ namespace Minor.Case2.PcSOnderhoud.Implementation.Tests
             var agentMock = new Mock<IAgentBSVoertuigEnKlantBeheer>(MockBehavior.Strict);
             agentMock.Setup(agent => agent.VoegVoertuigMetKlantToe(It.IsAny<Schema.Voertuig>())).Throws(
                 new TechnicalException("error"));
+            agentMock.Setup(agent => agent.GetAllPersonen()).Throws(new FaultException("error"));
             var target = new PcSOnderhoudServiceHandler(agentMock.Object);
 
             //Act
@@ -90,6 +91,7 @@ namespace Minor.Case2.PcSOnderhoud.Implementation.Tests
             var agentMock = new Mock<IAgentBSVoertuigEnKlantBeheer>(MockBehavior.Strict);
             agentMock.Setup(agent => agent.VoegVoertuigMetKlantToe(It.IsAny<Schema.Voertuig>())).Throws(
                  new TechnicalException("error"));
+            agentMock.Setup(agent => agent.GetAllPersonen()).Throws(new FaultException("error"));
             var target = new PcSOnderhoudServiceHandler(agentMock.Object);
 
             //Act
