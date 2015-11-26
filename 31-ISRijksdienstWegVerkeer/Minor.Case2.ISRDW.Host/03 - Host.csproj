@@ -49,6 +49,9 @@
             <PreSource Path="Data Source=.\SQLEXPRESS%3bInitial Catalog=RDWDatabase%3bIntegrated Security=True" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" />
             <Source Path="obj\Release\AutoScripts\RDWDB-Deployment_SchemaOnly.sql" Transacted="True" />
           </Object>
+          <Object Type="DbFullSql">
+            <Source Path="RDWGRANTscript.sql" Transacted="False" />
+          </Object>
         </ObjectGroup>
       </Objects>
     </PublishDatabaseSettings>
