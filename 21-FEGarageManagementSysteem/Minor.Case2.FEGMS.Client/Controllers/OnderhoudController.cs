@@ -5,6 +5,7 @@ using Minor.Case2.FEGMS.Client.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
@@ -256,7 +257,19 @@ namespace Minor.Case2.FEGMS.Client.Controllers
 
                     var voertuig = Mapper.MapToVoertuig(leasemaatschappijgegevens, klantgegevens, model);
 
-                    _agent.VoegVoertuigMetKlantToe(voertuig);
+                    try {
+                        _agent.VoegVoertuigMetKlantToe(voertuig);
+                    }
+                    catch(FaultException ex)
+                    {
+                        ModelState.AddModelError("Kenteken", ex.Message);
+                        HttpCookie voertuigenCookieEx = Request.Cookies.Get("VoertuiggegevensExisting");
+                        var voertuigenEx = new JavaScriptSerializer().Deserialize<Voertuig[]>(voertuigenCookieEx.Value);
+
+                        model.Voertuigen = voertuigenEx.Select(voertuigEx => new SelectListItem { Text = voertuigEx.Kenteken, Value = voertuigEx.Kenteken });
+
+                        return View(model);
+                    }
 
                     HttpCookie voertuigenExistCookie = Request.Cookies.Get("VoertuiggegevensExisting");
                     voertuigenExistCookie.Expires = DateTime.Now.AddDays(-1);
