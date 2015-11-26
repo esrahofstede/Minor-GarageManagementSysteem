@@ -283,7 +283,11 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
             OnderhoudsopdrachtenCollection onderhoudsopdrachtenCollection = new OnderhoudsopdrachtenCollection();
 
             IEnumerable<Entities.Onderhoudsopdracht> onderhoudsopdrachten = _onderhoudsDataMapper.FindAll();
-  
+
+            if (zoekCriteria.VoertuigenSearchCriteria.ID > 0)
+            {
+                onderhoudsopdrachten = onderhoudsopdrachten.Where(v => v.ID == zoekCriteria.VoertuigenSearchCriteria.ID);
+            }
             if (zoekCriteria.VoertuigenSearchCriteria != null && !string.IsNullOrEmpty(zoekCriteria.VoertuigenSearchCriteria.Kenteken))
             {
                 onderhoudsopdrachten = onderhoudsopdrachten.Where(v => v.Voertuig.Kenteken == zoekCriteria.VoertuigenSearchCriteria.Kenteken);
