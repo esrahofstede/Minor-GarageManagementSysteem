@@ -254,45 +254,51 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
                 FunctionalErrorDetail error = new FunctionalErrorDetail { Message = "Onderhoudsopdracht mag niet null zijn" };
                 throw new FaultException<FunctionalErrorDetail[]>(new[] { error });
             }
-            
-            Schema.OnderhoudsopdrachtZoekCriteria zoekCriteria = new Schema.OnderhoudsopdrachtZoekCriteria
+            try
             {
-                ID = onderhoudswerkzaamheden.Onderhoudsopdracht.ID
-            };
-            var onderhoudsopdrachten = _agentBS.GetOnderhoudsopdrachtenBy(zoekCriteria);
-            if (onderhoudsopdrachten.Count == 0)
-            {
-                FunctionalErrorDetail error = new FunctionalErrorDetail { Message = "Geen onderhoudsopdrachten gevonden" };
-                throw new FaultException<FunctionalErrorDetail[]>(new[] { error });
-            }
-            var onderhoudsopdracht = onderhoudsopdrachten.First();
-            if (onderhoudsopdracht.APK)
-            {
-                Keuringsverzoek keuringsverzoek = new Keuringsverzoek
+                Schema.OnderhoudsopdrachtZoekCriteria zoekCriteria = new Schema.OnderhoudsopdrachtZoekCriteria
                 {
-                    Kilometerstand = (int)onderhoudswerkzaamheden.Kilometerstand,
-                    Date = onderhoudswerkzaamheden.Afmeldingsdatum,
-                    CorrolatieId = Guid.NewGuid().ToString()
+                    ID = onderhoudswerkzaamheden.Onderhoudsopdracht.ID
                 };
-
-                onderhoudsopdracht.Voertuig.Status = "Klaar";
-                var voertuigSearchCriteria = new Schema.VoertuigenSearchCriteria
+                var onderhoudsopdrachten = _agentBS.GetOnderhoudsopdrachtenBy(zoekCriteria);
+                if (onderhoudsopdrachten.Count == 0)
                 {
-                    ID = onderhoudsopdracht.Voertuig.ID
-                };
-                var voertuigen = _agentBS.GetVoertuigBy(voertuigSearchCriteria);
-                onderhoudsopdracht.Voertuig = voertuigen.First();
-                steekproef = _agentIS.SendAPKKeuringsverzoek(onderhoudsopdracht.Voertuig, garage, keuringsverzoek).Steekproef;
-            }
+                    FunctionalErrorDetail error = new FunctionalErrorDetail { Message = "Geen onderhoudsopdrachten gevonden" };
+                    throw new FaultException<FunctionalErrorDetail[]>(new[] { error });
+                }
+                var onderhoudsopdracht = onderhoudsopdrachten.First();
+                if (onderhoudsopdracht.APK)
+                {
+                    Keuringsverzoek keuringsverzoek = new Keuringsverzoek
+                    {
+                        Kilometerstand = (int)onderhoudswerkzaamheden.Kilometerstand,
+                        Date = onderhoudswerkzaamheden.Afmeldingsdatum,
+                        CorrolatieId = Guid.NewGuid().ToString()
+                    };
 
-            if (steekproef == null)
-            {
-                onderhoudsopdracht.Voertuig.Status = "Afgemeld";
-            }
+                    onderhoudsopdracht.Voertuig.Status = "Klaar";
+                    var voertuigSearchCriteria = new Schema.VoertuigenSearchCriteria
+                    {
+                        ID = onderhoudsopdracht.Voertuig.ID
+                    };
+                    var voertuigen = _agentBS.GetVoertuigBy(voertuigSearchCriteria);
+                    onderhoudsopdracht.Voertuig = voertuigen.First();
+                    steekproef = _agentIS.SendAPKKeuringsverzoek(onderhoudsopdracht.Voertuig, garage, keuringsverzoek).Steekproef;
+                }
+
+                if (steekproef == null)
+                {
+                    onderhoudsopdracht.Voertuig.Status = "Afgemeld";
+                }
             
-            _agentBS.UpdateVoertuig(onderhoudsopdracht.Voertuig);
-            _agentBS.VoegOnderhoudswerkzaamhedenToe(onderhoudswerkzaamheden);
-            return steekproef;
+                _agentBS.UpdateVoertuig(onderhoudsopdracht.Voertuig);
+                _agentBS.VoegOnderhoudswerkzaamhedenToe(onderhoudswerkzaamheden);
+                return steekproef;
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException(ex.Message);
+            }
         }
 
         /// <summary>

@@ -272,8 +272,11 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                     }
 
                     HttpCookie voertuigenExistCookie = Request.Cookies.Get("VoertuiggegevensExisting");
-                    voertuigenExistCookie.Expires = DateTime.Now.AddDays(-1);
-                    Response.Cookies.Add(voertuigenExistCookie);
+                    if (voertuigenExistCookie != null)
+                    {
+                        voertuigenExistCookie.Expires = DateTime.Now.AddDays(-1);
+                        Response.Cookies.Add(voertuigenExistCookie);
+                    }
 
                 }
                 else
