@@ -8,8 +8,20 @@ using AgentSchema = Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Agent;
 
 namespace Minor.Case2.PcSOnderhoud.Agent
 {
+    /// <summary>
+    /// Deze klasses doet de mapping van de GeneratedTypes in het Schema, 
+    /// naar de geimporteerde wsdl van de BS en andersom
+    /// De mapping is 1 op 1 behalve bij klant, waar bekeken wordt of de 
+    /// eigenaar een persoon is of een leasemaatschappij
+    /// Als een Entiteit null, dan wordt null teruggestuurd
+    /// </summary>
     public class BSKlantEnVoertuigMapper
     {
+        /// <summary>
+        /// Standaard mapping
+        /// </summary>
+        /// <param name="persoon"></param>
+        /// <returns></returns>
         public AgentSchema.Persoon SchemaToAgentPersoonMapper(Schema.Persoon persoon)
         {
             if (persoon == null)
@@ -31,6 +43,11 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             };
         }
 
+        /// <summary>
+        /// Standaard mapping
+        /// </summary>
+        /// <param name="persoon"></param>
+        /// <returns></returns>
         public Schema.Persoon AgentToSchemaPersoonMapper(AgentSchema.Persoon persoon)
         {
             if (persoon == null)
@@ -52,6 +69,11 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             };
         }
 
+        /// <summary>
+        /// Standaard mapping
+        /// </summary>
+        /// <param name="leasemaatschappij"></param>
+        /// <returns></returns>
         public AgentSchema.Leasemaatschappij SchemaToAgentLeasemaatschappijMapper(Schema.Leasemaatschappij leasemaatschappij)
         {
             if (leasemaatschappij == null)
@@ -67,6 +89,11 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             };
         }
 
+        /// <summary>
+        /// Standaard mapping
+        /// </summary>
+        /// <param name="leasemaatschappij"></param>
+        /// <returns></returns>
         public Schema.Leasemaatschappij AgentToSchemaLeasemaatschappijMapper(AgentSchema.Leasemaatschappij leasemaatschappij)
         {
             if (leasemaatschappij == null)
@@ -83,6 +110,12 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             };
         }
 
+        /// <summary>
+        /// Als klant persoon is dan wordt persoon gemapt
+        /// Als klant leasemaatschappij is, dan wordt leasemaatschapij gemapt
+        /// </summary>
+        /// <param name="klant"></param>
+        /// <returns></returns>
         public AgentSchema.Klant SchemaToAgentKlantMapper(Schema.Klant klant)
         {
             if (klant == null)
@@ -96,6 +129,12 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             return SchemaToAgentLeasemaatschappijMapper((Schema.Leasemaatschappij)klant);
         }
 
+        /// <summary>
+        /// /// Als klant persoon is dan wordt persoon gemapt
+        /// Als klant leasemaatschappij is, dan wordt leasemaatschapij gemapt
+        /// </summary>
+        /// <param name="klant"></param>
+        /// <returns></returns>
         public Schema.Klant AgentToSchemaKlantMapper(AgentSchema.Klant klant)
         {
             if (klant == null)
@@ -109,6 +148,12 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             return AgentToSchemaLeasemaatschappijMapper((AgentSchema.Leasemaatschappij)klant);
         }
 
+        /// <summary>
+        /// Als klant persoon is dan wordt persoon gemapt
+        /// Als klant leasemaatschappij is, dan wordt leasemaatschapij gemapt
+        /// </summary>
+        /// <param name="klant"></param>
+        /// <returns></returns>
         public AgentSchema.Voertuig SchemaToAgentVoertuigMapper(Schema.Voertuig voertuig)
         {
             if (voertuig == null)
@@ -127,6 +172,13 @@ namespace Minor.Case2.PcSOnderhoud.Agent
                  Status = voertuig.Status
             };
         }
+
+        /// <summary>
+        /// Als klant persoon is dan wordt persoon gemapt
+        /// Als klant leasemaatschappij is, dan wordt leasemaatschapij gemapt
+        /// </summary>
+        /// <param name="klant"></param>
+        /// <returns></returns>
         public Schema.Voertuig AgentToSchemaVoertuigMapper(AgentSchema.Voertuig voertuig)
         {
             if (voertuig == null)
@@ -146,6 +198,12 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             };
         }
 
+        /// <summary>
+        /// Als klant persoon is dan wordt persoon gemapt
+        /// Als klant leasemaatschappij is, dan wordt leasemaatschapij gemapt
+        /// </summary>
+        /// <param name="klant"></param>
+        /// <returns></returns>
         public AgentSchema.Onderhoudsopdracht SchemaToAgentOnderhoudsopdrachtMapper(Schema.Onderhoudsopdracht onderhoudsopdracht)
         {
             if (onderhoudsopdracht == null)
@@ -163,6 +221,12 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             };
         }
 
+        /// <summary>
+        /// Als klant persoon is dan wordt persoon gemapt
+        /// Als klant leasemaatschappij is, dan wordt leasemaatschapij gemapt
+        /// </summary>
+        /// <param name="klant"></param>
+        /// <returns></returns>
         public Schema.Onderhoudsopdracht AgentToSchemaOnderhoudsopdrachtMapper(AgentSchema.Onderhoudsopdracht onderhoudsopdracht)
         {
             if (onderhoudsopdracht == null)
@@ -180,6 +244,12 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             };
         }
 
+        /// <summary>
+        /// Als klant persoon is dan wordt persoon gemapt
+        /// Als klant leasemaatschappij is, dan wordt leasemaatschapij gemapt
+        /// </summary>
+        /// <param name="klant"></param>
+        /// <returns></returns>
         public Schema.VoertuigenSearchCriteria AgentToSchemaVoertuigSearchCriteriaMapper(AgentSchema.VoertuigenSearchCriteria searchCriteria)
         {
             if (searchCriteria == null)
@@ -195,6 +265,12 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             };
         }
 
+        /// <summary>
+        /// Als klant persoon is dan wordt persoon gemapt
+        /// Als klant leasemaatschappij is, dan wordt leasemaatschapij gemapt
+        /// </summary>
+        /// <param name="klant"></param>
+        /// <returns></returns>
         public AgentSchema.VoertuigenSearchCriteria SchemaToAgentVoertuigSearchCriteriaMapper(Schema.VoertuigenSearchCriteria searchCriteria)
         {
             if (searchCriteria == null)
@@ -207,9 +283,16 @@ namespace Minor.Case2.PcSOnderhoud.Agent
                 Kenteken = searchCriteria.Kenteken,
                 Merk = searchCriteria.Merk,
                 Type = searchCriteria.Type,
+                Bestuurder = SchemaToAgentPersoonMapper(searchCriteria.Bestuurder)
             };
         }
 
+        /// <summary>
+        /// Als klant persoon is dan wordt persoon gemapt
+        /// Als klant leasemaatschappij is, dan wordt leasemaatschapij gemapt
+        /// </summary>
+        /// <param name="klant"></param>
+        /// <returns></returns>
         public AgentSchema.OnderhoudsopdrachtZoekCriteria SchemaToAgentOnderhoudsopdrachtSearchCriteriaMapper(Schema.OnderhoudsopdrachtZoekCriteria searchCriteria)
         {
             if (searchCriteria == null)
@@ -227,6 +310,12 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             };
         }
 
+        /// <summary>
+        /// Als klant persoon is dan wordt persoon gemapt
+        /// Als klant leasemaatschappij is, dan wordt leasemaatschapij gemapt
+        /// </summary>
+        /// <param name="klant"></param>
+        /// <returns></returns>
         public Schema.OnderhoudsopdrachtZoekCriteria AgentToSchemaOnderhoudsopdrachtSearchCriteriaMapper(AgentSchema.OnderhoudsopdrachtZoekCriteria searchCriteria)
         {
             if (searchCriteria == null)
@@ -244,6 +333,12 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             };
         }
 
+        /// <summary>
+        /// Als klant persoon is dan wordt persoon gemapt
+        /// Als klant leasemaatschappij is, dan wordt leasemaatschapij gemapt
+        /// </summary>
+        /// <param name="klant"></param>
+        /// <returns></returns>
         public AgentSchema.Onderhoudswerkzaamheden SchemaToAgentOnderhoudswerkzaamhedenMapper(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden)
         {
             if (onderhoudswerkzaamheden == null)
@@ -260,6 +355,12 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             };
         }
 
+        /// <summary>
+        /// Als klant persoon is dan wordt persoon gemapt
+        /// Als klant leasemaatschappij is, dan wordt leasemaatschapij gemapt
+        /// </summary>
+        /// <param name="klant"></param>
+        /// <returns></returns>
         public Schema.Onderhoudswerkzaamheden AgentToSchemaOnderhoudswerkzaamhedenMapper(AgentSchema.Onderhoudswerkzaamheden onderhoudswerkzaamheden)
         {
             if (onderhoudswerkzaamheden == null)

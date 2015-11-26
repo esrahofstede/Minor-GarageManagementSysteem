@@ -139,11 +139,13 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
                     {
                         Bestuurder = new Schema.Persoon
                         {
-                            ID = filteredPersonen.First().ID
+                            ID = filteredPersonen.First().ID,
+                            Achternaam = filteredPersonen.First().Achternaam,
+                            Voornaam = filteredPersonen.First().Voornaam,
+                            Telefoonnummer = filteredPersonen.First().Telefoonnummer,
                         }
                     };
                     voertuigen = _agentBS.GetVoertuigBy(searchCriteria);
-
                 }
                 else if (filteredPersonen.Count > 1)
                 {
@@ -195,31 +197,6 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             }
         }
 
-        //public bool MeldVoertuigKlaar(Schema.Voertuig voertuig, Garage garage)
-        //{
-        //    if (voertuig == null || garage == null)
-        //    {
-        //        return false;
-        //    }
-        //    AgentBSVoertuigEnKlantBeheer agentBS = new AgentBSVoertuigEnKlantBeheer();
-        //    AgentISRDW agentIS = new AgentISRDW();
-
-        //    Keuringsverzoek keuringsverzoek = new Keuringsverzoek
-        //    {
-        //        Kilometerstand = 100000,
-        //        Date = DateTime.Now, 
-        //        CorrolatieId = Guid.NewGuid().ToString()
-        //    };
-        //    voertuig.Status = "Klaar";
-
-        //    bool steekproef = agentIS.SendAPKKeuringsverzoek(voertuig, garage, keuringsverzoek).Steekproef;
-        //    if (!steekproef)
-        //    {
-        //        voertuig.Status = "Afgemeld";
-        //    }
-        //    agentBS.UpdateVoertuig(voertuig);
-        //    return steekproef;
-        //}
         /// <summary>
         /// Deze methode zoek de huidigeonderhoudsopdracht op uit de BS
         /// Uit de lijst met onderzoeksopdrachten wordt de niewste opdracht teruggegeven
@@ -256,7 +233,14 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             }
         }
 
-
+        /// <summary>
+        /// Deze methode verstuur nieuwe onderhoudswerkzaamheden naar de BS
+        /// Als er een APK is uitgevoerd, wordt de APK verstuurt naar de IS
+        /// De IS geeft terug of er wel of geen steekproef wordt uitgevoerd
+        /// </summary>
+        /// <param name="onderhoudswerkzaamheden">De onderhoudswerkzaamheden die verstuurt worden naar de BS</param>
+        /// <param name="garage">De garage die de onderhoudswerkzaameheden verstuurt, nodig voor de apk check</param>
+        /// <returns>Geeft null terug als geen APK is uitgevoerd, False als er geen steekproef is en True als er wel een steekproef is</returns>
         public bool? VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden, Garage garage)
         {
             bool? steekproef = null;
@@ -278,7 +262,7 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             var onderhoudsopdrachten = _agentBS.GetOnderhoudsopdrachtenBy(zoekCriteria);
             if (onderhoudsopdrachten.Count == 0)
             {
-                FunctionalErrorDetail error = new FunctionalErrorDetail { Message = "Geen onderhouds opdrachten gevonden" };
+                FunctionalErrorDetail error = new FunctionalErrorDetail { Message = "Geen onderhoudsopdrachten gevonden" };
                 throw new FaultException<FunctionalErrorDetail[]>(new[] { error });
             }
             var onderhoudsopdracht = onderhoudsopdrachten.First();
@@ -296,7 +280,8 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
                 {
                     ID = onderhoudsopdracht.Voertuig.ID
                 };
-                onderhoudsopdracht.Voertuig = _agentBS.GetVoertuigBy(voertuigSearchCriteria).First();
+                var voertuigen = _agentBS.GetVoertuigBy(voertuigSearchCriteria);
+                onderhoudsopdracht.Voertuig = voertuigen.First();
                 steekproef = _agentIS.SendAPKKeuringsverzoek(onderhoudsopdracht.Voertuig, garage, keuringsverzoek).Steekproef;
             }
 
