@@ -168,7 +168,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
                 list.Add(new FunctionalErrorDetail
                 {
                     ErrorCode = 302,
-                    Message = "voertuig with kenteken already exist in the database"
+                    Message = "voertuig with kenteken bestaat al"
                 });
 
             }
@@ -180,7 +180,7 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
 
             if (list.Any())
             {
-                throw new FaultException<FunctionalErrorDetail[]>(list.ToArray());
+                throw new FaultException(list.First().Message);
             }
 
         }

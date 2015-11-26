@@ -74,12 +74,20 @@ namespace Minor.Case2.PcSOnderhoud.Agent
             {
                 throw new FunctionalException(new FunctionalErrorList(ex.Detail));
             }
+            catch (FaultException ex)
+            {
+                throw new TechnicalException(ex.Message, ex.InnerException);
+            }
+            catch (CommunicationException ex)
+            {
+                throw new TechnicalException(ex.Message, ex.InnerException);
+            }
             catch (Exception ex)
             {
                 _logger.Fatal(ex.Message);
                 throw new TechnicalException(ex.Message, ex.InnerException);
             }
-            
+
 
         }
         
