@@ -276,5 +276,72 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             Assert.AreEqual("Onderhoud", result.RouteValues.Last().Value);
         }
 
+        [TestMethod]
+        public void OnderhoudsopdrachtTest()
+        {
+            // Arrange
+            var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
+            MonteurController controller = new MonteurController(mock.Object);
+
+            // Act
+            ViewResult result = controller.Onderhoudsopdracht() as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsNull(result.Model);
+        }
+
+        [TestMethod]
+        public void OnderhoudsopdrachtPostTest()
+        {
+            // Arrange
+            var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
+            mock.Setup(agent => agent.GetOnderhoudsopdrachtBy(It.IsAny<OnderhoudsopdrachtZoekCriteria>())).Returns(DummyData.GetDummyOnderhoudsopdracht());
+            MonteurController controller = new MonteurController(mock.Object);
+
+            OnderhoudsopdrachtVM model = new OnderhoudsopdrachtVM
+            {
+                Kenteken = "00-00-00",
+            };
+
+            // Act
+            ViewResult result = controller.Onderhoudsopdracht(model) as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result.Model, typeof(OnderhoudsopdrachtVM));
+            var onderhoudsopdrachtVM = result.Model as OnderhoudsopdrachtVM;
+            Assert.AreEqual(1, onderhoudsopdrachtVM.Onderhoudsopdracht.ID);
+            Assert.IsTrue(onderhoudsopdrachtVM.Onderhoudsopdracht.APK);
+            Assert.AreEqual(12000, onderhoudsopdrachtVM.Onderhoudsopdracht.Kilometerstand);
+            Assert.AreEqual(new DateTime(2015, 11, 11), onderhoudsopdrachtVM.Onderhoudsopdracht.Aanmeldingsdatum);
+            Assert.AreEqual("APK Keuren", onderhoudsopdrachtVM.Onderhoudsopdracht.Onderhoudsomschrijving);
+        }
+
+
+        [TestMethod]
+        public void OnderhoudsopdrachtPostWithoutOnderhoudsopdrachtTest()
+        {
+            // Arrange
+            var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
+            mock.Setup(agent => agent.GetOnderhoudsopdrachtBy(It.IsAny<OnderhoudsopdrachtZoekCriteria>())).Returns(default(Onderhoudsopdracht));
+            MonteurController controller = new MonteurController(mock.Object);
+
+            OnderhoudsopdrachtVM model = new OnderhoudsopdrachtVM
+            {
+                Kenteken = "00-00-00",
+            };
+
+            // Act
+            ViewResult result = controller.Onderhoudsopdracht(model) as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result.Model, typeof(OnderhoudsopdrachtVM));
+            var onderhoudsopdrachtVM = result.Model as OnderhoudsopdrachtVM;
+            Assert.IsNull(onderhoudsopdrachtVM.Onderhoudsopdracht);
+            Assert.AreEqual("Voor de auto met het kenteken 00-00-00 kon geen onderhoudsopdracht gevonden worden", onderhoudsopdrachtVM.Message);
+
+        }
     }
 }

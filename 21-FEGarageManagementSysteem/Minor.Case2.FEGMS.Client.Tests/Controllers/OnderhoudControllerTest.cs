@@ -248,7 +248,7 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
         }
 
         [TestMethod]
-        public void InsertVoertuiggegevens()
+        public void InsertVoertuiggegevensWithoutExistingVoertuigenTest()
         {
             // Arrange
             var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
@@ -261,7 +261,32 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.IsNull(result.Model);
+            Assert.IsInstanceOfType(result.Model, typeof(InsertVoertuiggegevensVM));
+            var voertuigen = result.Model as InsertVoertuiggegevensVM;
+            Assert.IsNull(voertuigen.Voertuigen);
+            Assert.IsFalse(voertuigen.Exist);
+        }
+
+        [TestMethod]
+        public void InsertVoertuiggegevensWithExistingVoertuigenTest()
+        {
+            // Arrange
+            var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
+            OnderhoudController controller = new OnderhoudController(mock.Object);
+            controller.ControllerContext = Helper.CreateContext(controller);
+            Helper.SetCookie("Klantgegevens", controller);
+            Helper.SetCookie("VoertuiggegevensExisting", controller);
+
+            // Act
+            ViewResult result = controller.InsertVoertuiggegevens() as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result.Model, typeof(InsertVoertuiggegevensVM));
+
+            var voertuigen = result.Model as InsertVoertuiggegevensVM;
+            Assert.AreEqual(1, voertuigen.Voertuigen.Count());
+            Assert.IsTrue(voertuigen.Exist);
         }
 
         [TestMethod]
@@ -296,11 +321,11 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
 
             // Act
             RedirectToRouteResult result = controller.InsertVoertuiggegevens(voertuiggegevens) as RedirectToRouteResult;
-            var cookie = controller.HttpContext.Response.Cookies.Get("Voertuiggegevens");
 
+            // Assert   
+            var cookie = controller.HttpContext.Response.Cookies.Get("Voertuiggegevens");
             var voertuigFromCookie = serializer.Deserialize<InsertVoertuiggegevensVM>(cookie.Value);
 
-            // Assert
             mock.Verify(agent => agent.VoegVoertuigMetKlantToe(It.IsAny<Voertuig>()));
             Assert.IsNotNull(result);
             Assert.AreEqual("InsertOnderhoudsopdracht", result.RouteValues.First().Value);
@@ -334,6 +359,91 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             Assert.AreEqual(voertuiggegevens.Kenteken, voertuigFromCookie.Kenteken);
             Assert.AreEqual(voertuiggegevens.Merk, voertuigFromCookie.Merk);
             Assert.AreEqual(voertuiggegevens.Type, voertuigFromCookie.Type);
+        }
+
+        [TestMethod]
+        public void InsertVoertuiggegevensWithoutExistingVoertuigenWithoutKentekenMerkAndTypePostTest()
+        {
+            // Arrange
+            var serializer = new JavaScriptSerializer();
+            var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
+            OnderhoudController controller = new OnderhoudController(mock.Object);
+            InsertVoertuiggegevensVM voertuiggegevens = DummyData.GetVoertuiggegevens();
+            voertuiggegevens.Kenteken = "";
+            voertuiggegevens.Merk = "";
+            voertuiggegevens.Type = "";
+
+            controller.ControllerContext = Helper.CreateContext(controller);
+            Helper.SetCookie("VoertuiggegevensExisting", controller);
+
+            // Act
+            ViewResult result = controller.InsertVoertuiggegevens(voertuiggegevens) as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result.Model, typeof(InsertVoertuiggegevensVM));
+            var insertVoertuigen = result.Model as InsertVoertuiggegevensVM;
+
+            Assert.AreEqual(1, insertVoertuigen.Voertuigen.Count());
+            Assert.AreEqual(1, controller.ModelState["Kenteken"].Errors.Count);
+            Assert.AreEqual("Kenteken is een verplicht veld voor de voertuiggegevens", controller.ModelState["Kenteken"].Errors.First().ErrorMessage);
+            Assert.AreEqual(1, controller.ModelState["Merk"].Errors.Count);
+            Assert.AreEqual("Merk is een verplicht veld voor de voertuiggegevens", controller.ModelState["Merk"].Errors.First().ErrorMessage);
+            Assert.AreEqual(1, controller.ModelState["Type"].Errors.Count);
+            Assert.AreEqual("Type is een verplicht veld voor de voertuiggegevens", controller.ModelState["Type"].Errors.First().ErrorMessage);
+        }
+
+        [TestMethod]
+        public void InsertVoertuiggegevensWithExistingVoertuigenWithoutSelectingPostTest()
+        {
+            // Arrange
+            var serializer = new JavaScriptSerializer();
+            var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
+            OnderhoudController controller = new OnderhoudController(mock.Object);
+            InsertVoertuiggegevensVM voertuiggegevens = DummyData.GetVoertuiggegevens();
+            voertuiggegevens.SelectedKenteken = "";
+            voertuiggegevens.Exist = true;
+
+            controller.ControllerContext = Helper.CreateContext(controller);
+            Helper.SetCookie("VoertuiggegevensExisting", controller);
+
+            // Act
+            ViewResult result = controller.InsertVoertuiggegevens(voertuiggegevens) as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result.Model, typeof(InsertVoertuiggegevensVM));
+            var insertVoertuigen = result.Model as InsertVoertuiggegevensVM;
+
+            Assert.AreEqual(1, insertVoertuigen.Voertuigen.Count());
+            Assert.AreEqual(1, controller.ModelState["Voertuigen"].Errors.Count);
+            Assert.AreEqual("Indien het een bestaand voertuig is, moet er één geselecteerd zijn.", controller.ModelState["Voertuigen"].Errors.First().ErrorMessage);
+        }
+
+        [TestMethod]
+        public void InsertVoertuiggegevensWithExistingVoertuigTest()
+        {
+            // Arrange
+            var serializer = new JavaScriptSerializer();
+            var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
+            OnderhoudController controller = new OnderhoudController(mock.Object);
+            InsertVoertuiggegevensVM voertuiggegevens = DummyData.GetVoertuiggegevens();
+            voertuiggegevens.SelectedKenteken = "00-00-00";
+            controller.ControllerContext = Helper.CreateContext(controller);
+
+            Helper.SetCookie("Klantgegevens", controller);
+            Helper.SetCookie("LeasemaatschappijGegevens", controller);
+
+            // Act
+            RedirectToRouteResult result = controller.InsertVoertuiggegevens(voertuiggegevens) as RedirectToRouteResult;
+
+            // Assert   
+            var cookie = controller.HttpContext.Response.Cookies.Get("Voertuiggegevens");
+            var voertuigFromCookie = serializer.Deserialize<InsertVoertuiggegevensVM>(cookie.Value);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("InsertOnderhoudsopdracht", result.RouteValues.First().Value);
+            Assert.AreEqual("00-00-00", voertuigFromCookie.Kenteken);
         }
 
         [TestMethod]

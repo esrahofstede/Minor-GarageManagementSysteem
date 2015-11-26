@@ -13,6 +13,15 @@ namespace Minor.Case2.FEGMS.Client.Helper
 {
     public static class Mapper
     {
+
+        /// <summary>
+        /// Maps viewmodels InsertOnderhoudsopdrachtVM, InsertLeasemaatschappijGegevensVM, InsertKlantgegevensVM and InsertVoertuiggegevensVM to Onderhoudsopdracht
+        /// </summary>
+        /// <param name="onderhoudsopdracht">InsertOnderhoudsopdrachtVM</param>
+        /// <param name="leasemaatschappijgegevens">InsertLeasemaatschappijGegevensVM</param>
+        /// <param name="klantgegevens">InsertKlantgegevensVM</param>
+        /// <param name="voertuiggegevens">InsertVoertuiggegevensVM</param>
+        /// <returns>Mapped onderhoudsopdracht</returns>
         public static Onderhoudsopdracht MapToOnderhoudsopdracht(InsertOnderhoudsopdrachtVM onderhoudsopdracht, InsertLeasemaatschappijGegevensVM leasemaatschappijgegevens, InsertKlantgegevensVM klantgegevens, InsertVoertuiggegevensVM voertuiggegevens)
         {
             var voertuig = MapToVoertuig(leasemaatschappijgegevens, klantgegevens, voertuiggegevens);
@@ -27,6 +36,13 @@ namespace Minor.Case2.FEGMS.Client.Helper
             };
         }
 
+        /// <summary>
+        /// Maps viewmodels InsertLeasemaatschappijGegevensVM, InsertKlantgegevensVM and InsertVoertuiggegevensVM to voertuig
+        /// </summary>
+        /// <param name="leasemaatschappijgegevens">InsertLeasemaatschappijGegevensVM</param>
+        /// <param name="klantgegevens">InsertKlantgegevensVM</param>
+        /// <param name="voertuiggegevens">InsertVoertuiggegevensVM</param>
+        /// <returns>Mapped voertuig</returns>
         public static Voertuig MapToVoertuig(InsertLeasemaatschappijGegevensVM leasemaatschappijgegevens, InsertKlantgegevensVM klantgegevens, InsertVoertuiggegevensVM voertuiggegevens)
         {
             if(klantgegevens == null)

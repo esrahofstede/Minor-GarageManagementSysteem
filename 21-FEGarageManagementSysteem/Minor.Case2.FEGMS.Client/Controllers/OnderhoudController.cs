@@ -67,7 +67,6 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                 HttpCookie KlantgegevensCookie = new HttpCookie("Klantgegevens", serializedKlantgegevens);
                 Response.Cookies.Add(KlantgegevensCookie);
 
-                ///NIEWWWW ----------------------------------------
                 Persoon persoon = new Persoon
                 {
                     Voornaam = model.Voornaam,
@@ -99,8 +98,6 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                         return RedirectToAction("InsertVoertuiggegevens");
                     }
                 }
-
-                ///END NIEWWWW ----------------------------------------
 
                 if (model.Lease)
                 {
@@ -187,7 +184,6 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                 return RedirectToAction("InsertKlantgegevens");
             }
 
-            //NIEUW ----------------------------
             InsertVoertuiggegevensVM model = new InsertVoertuiggegevensVM();
             if(AreCookieSet("VoertuiggegevensExisting"))
             {
@@ -199,11 +195,6 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                 model.Voertuigen = voertuigen.Select(voertuig => new SelectListItem { Text = voertuig.Kenteken, Value = voertuig.Kenteken });
                 model.Exist = true;
             }
-
-            //Model meegeven nieuw
-            //END NIEUW ----------------------------
-
-
 
             return View(model);
         }
@@ -217,8 +208,6 @@ namespace Minor.Case2.FEGMS.Client.Controllers
         [HttpPost]
         public ActionResult InsertVoertuiggegevens(InsertVoertuiggegevensVM model)
         {
-
-            //NIEUW --------------------------------------------------
             if (!model.Exist)
             {
                 if (string.IsNullOrWhiteSpace(model.Kenteken))
@@ -243,9 +232,6 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                     ModelState.AddModelError("Voertuigen", "Indien het een bestaand voertuig is, moet er één geselecteerd zijn.");
                 }
             }
-
-            //if (model.SelectedVoertuigID == 0)
-            //END NIEUW-------------------------------
 
             if (ModelState.IsValid)
             {
@@ -275,7 +261,7 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                 }
                 else
                 {
-                    //NIEUW
+
                     InsertVoertuiggegevensVM existingVoertuig  = new InsertVoertuiggegevensVM
                     {
                         Kenteken = model.SelectedKenteken,
@@ -289,13 +275,10 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                 return RedirectToAction("InsertOnderhoudsopdracht");
             }
 
-            //NIEUW --------------------------------------------------
-
             HttpCookie voertuigenCookie = Request.Cookies.Get("VoertuiggegevensExisting");
             var voertuigen = new JavaScriptSerializer().Deserialize<Voertuig[]>(voertuigenCookie.Value);
 
             model.Voertuigen = voertuigen.Select(voertuig => new SelectListItem { Text = voertuig.Kenteken, Value = voertuig.Kenteken });
-            //END NIEUW-------------------------------
 
             return View(model);
         }
