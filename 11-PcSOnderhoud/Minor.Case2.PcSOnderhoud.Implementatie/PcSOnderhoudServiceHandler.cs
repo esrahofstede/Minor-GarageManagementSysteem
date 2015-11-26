@@ -10,6 +10,7 @@ using Minor.Case2.Exceptions.V1.Schema;
 using Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent;
 using Minor.Case2.PcSOnderhoud.Contract;
 using Minor.Case2.PcSOnderhoud.Agent;
+using Minor.Case2.PcSOnderhoud.Agent.Exceptions;
 
 namespace Minor.Case2.PcSOnderhoud.Implementation
 {
@@ -31,7 +32,7 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
         }
 
         /// <summary>
-        /// 
+        /// Een constructor waarmee een custom BS Agent geinjecteerd kan worden
         /// </summary>
         /// <param name="agentBS"></param>
         public PcSOnderhoudServiceHandler(IAgentBSVoertuigEnKlantBeheer agentBS)
@@ -48,13 +49,43 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
         /// <returns>Alle leasemaatschappijen die in de BS te vinden zijn, lege lijst als geen leasemaatschappijen gevonden zijn</returns>
         public Schema.KlantenCollection GetAllLeasemaatschappijen()
         {
-            return _agentBS.GetAllLeasemaatschappijen(); ;
+            try
+            {
+                return _agentBS.GetAllLeasemaatschappijen();
+            }
+            catch (FunctionalException ex)
+            {
+                throw new FaultException<FunctionalErrorDetail[]>(ex.Errors.Details);
+
+            }
+            catch (TechnicalException ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+            
         }
 
+        /// <summary>
+        /// Deze methode haalt alle voertuigen op die voldoen aan de ingevulde criteria. Als geen voertuigen gevonden zijn, 
+        /// wordt een lege VoertuigenCollection verstuurd
+        /// </summary>
+        /// <param name="searchCriteria">De criteria waarop gezocht kan wroden naar een voertuig</param>
+        /// <returns>Alle voertuigen die voldoen aan de gestelde criteria</returns>
         public Schema.VoertuigenCollection GetVoertuigBy(Schema.VoertuigenSearchCriteria searchCriteria)
         {
-            AgentBSVoertuigEnKlantBeheer agent = new AgentBSVoertuigEnKlantBeheer();
-            return agent.GetVoertuigBy(searchCriteria);
+            try
+            {
+                return _agentBS.GetVoertuigBy(searchCriteria);
+            }
+            catch (FunctionalException ex)
+            {
+                throw new FaultException<FunctionalErrorDetail[]>(ex.Errors.Details);
+
+            }
+            catch (TechnicalException ex)
+            {
+                throw new FaultException(ex.Message);
+            }
         }
 
         public Schema.VoertuigenCollection HaalVoertuigenOpVoor(Schema.Persoon persoon)
@@ -82,15 +113,35 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             return voertuigen;
         }
 
+        /// <summary>
+        /// Deze methode stuurt een nieuwe onderhoudsopdracht naar de BS
+        /// Het is verplicht om een onderzoeksopdracht met daarin een voertuig op te geven
+        /// </summary>
+        /// <param name="onderhoudsopdracht">De onderzoekopdracht die verstuurt wordt, met daarbij het ook het voertuig</param>
         public void VoegOnderhoudsopdrachtToe(Schema.Onderhoudsopdracht onderhoudsopdracht)
         {
-            if (onderhoudsopdracht == null)
+            try
             {
-                return;
+                if (onderhoudsopdracht == null)
+                {
+                    throw new FaultException("Onderhoudsopdracht cannot be null");
+                }
+                if (onderhoudsopdracht.Voertuig == null)
+                {
+                    throw new FaultException("Voertuig cannot be null");
+                }
+                onderhoudsopdracht.Voertuig.Status = "Aangemeld";
+                _agentBS.VoegOnderhoudsopdrachtToe(onderhoudsopdracht);
             }
-            AgentBSVoertuigEnKlantBeheer agent = new AgentBSVoertuigEnKlantBeheer();
-            onderhoudsopdracht.Voertuig.Status = "Aangemeld";
-            agent.VoegOnderhoudsopdrachtToe(onderhoudsopdracht);
+            catch (FunctionalException ex)
+            {
+                throw new FaultException<FunctionalErrorDetail[]>(ex.Errors.Details);
+
+            }
+            catch (TechnicalException ex)
+            {
+                throw new FaultException(ex.Message);
+            }
         }
 
         public bool MeldVoertuigKlaar(Schema.Voertuig voertuig, Garage garage)
@@ -121,14 +172,25 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
 
         public Schema.Onderhoudsopdracht GetHuidigeOnderhoudsopdrachtBy(Schema.OnderhoudsopdrachtZoekCriteria searchCriteria)
         {
-            AgentBSVoertuigEnKlantBeheer agent = new AgentBSVoertuigEnKlantBeheer();
-            var onderhoudsopdrachten = agent.GetOnderhoudsopdrachtenBy(searchCriteria);
-            if (onderhoudsopdrachten.Count == 0)
+            try
             {
-                return null;
+                var onderhoudsopdrachten = _agentBS.GetOnderhoudsopdrachtenBy(searchCriteria);
+                if (onderhoudsopdrachten.Count == 0)
+                {
+                    return null;
+                }
+                var onderhoudsopdracht = onderhoudsopdrachten.OrderByDescending(o => o.Aanmeldingsdatum).FirstOrDefault();
+                return onderhoudsopdracht;
             }
-            Schema.Onderhoudsopdracht onderhoudsopdracht = onderhoudsopdrachten.OrderByDescending(o => o.Aanmeldingsdatum).FirstOrDefault();
-            return onderhoudsopdracht;
+            catch (FunctionalException ex)
+            {
+                throw new FaultException<FunctionalErrorDetail[]>(ex.Errors.Details);
+
+            }
+            catch (TechnicalException ex)
+            {
+                throw new FaultException(ex.Message);
+            }
         }
 
         public bool? VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden, Garage garage)
@@ -172,16 +234,41 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             return steekproef;
         }
 
+        /// <summary>
+        /// Deze methode voegt een nieuw voertuig met een nieuwe klant toe aan de BS
+        /// Voertuig, Eigenaar en Bestuurder moeten ingevuld zijn.
+        /// </summary>
+        /// <param name="voertuig">Het nieuwe voertuig met daarbij ook de Bestuurder en Eigenaar</param>
         public void VoegVoertuigMetKlantToe(Schema.Voertuig voertuig)
         {
-            if (voertuig == null)
+            try
             {
-                return;
+                if (voertuig == null)
+                {
+                    throw new TechnicalException("Voertuig cannot be null");
+                }
+                if (voertuig.Bestuurder == null)
+                {
+                    throw new TechnicalException("Bestuurder cannot be null");
+                }
+                if (voertuig.Eigenaar == null)
+                {
+                    throw new TechnicalException("Eigenaar cannot be null");
+                }
+                voertuig.Status = "Aangemeld";
+                _agentBS.VoegVoertuigMetKlantToe(voertuig);
             }
-            AgentBSVoertuigEnKlantBeheer agent = new AgentBSVoertuigEnKlantBeheer();
-            voertuig.Status = "Aangemeld";
-            agent.VoegVoertuigMetKlantToe(voertuig);
-            
+            catch (FunctionalException ex)
+            {
+                throw new FaultException<FunctionalErrorDetail[]>(ex.Errors.Details);
+
+            }
+            catch (TechnicalException ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+
+
         }
     }
 }

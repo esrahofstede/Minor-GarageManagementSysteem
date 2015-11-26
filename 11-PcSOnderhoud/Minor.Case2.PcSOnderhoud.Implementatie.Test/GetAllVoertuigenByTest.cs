@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.ServiceModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Minor.Case2.Exceptions.V1.Schema;
@@ -11,43 +10,47 @@ using Moq;
 namespace Minor.Case2.PcSOnderhoud.Implementation.Tests
 {
     [TestClass]
-    public class GetAllLeaseMaatschappijenTest
+    public class GetAllVoertuigenByTest
     {
         [TestMethod]
-        public void ReturnKlantenCollection()
+        public void ReturnsVoertuigenCollection()
         {
             //Arrange
-            var leasemaatschappijen = new Schema.KlantenCollection();
-            leasemaatschappijen.Add(new Schema.Leasemaatschappij());
-            leasemaatschappijen.Add(new Schema.Leasemaatschappij());
-            leasemaatschappijen.Add(new Schema.Leasemaatschappij());
+            var voertuigenCollections = new Schema.VoertuigenCollection
+            {
+                new Schema.Voertuig(),
+                new Schema.Voertuig(),
+                new Schema.Voertuig()
+            };
             var agentMock = new Mock<IAgentBSVoertuigEnKlantBeheer>(MockBehavior.Strict);
-            agentMock.Setup(agent => agent.GetAllLeasemaatschappijen()).Returns(leasemaatschappijen);
+            agentMock.Setup(agent => agent.GetVoertuigBy(It.IsAny<Schema.VoertuigenSearchCriteria>())).Returns(voertuigenCollections);
 
-            //Act
             var target = new PcSOnderhoudServiceHandler(agentMock.Object);
 
+            //Act
+            var result = target.GetVoertuigBy(new Schema.VoertuigenSearchCriteria());
+
             //Assert
-            Assert.AreEqual(typeof(Schema.KlantenCollection), target.GetAllLeasemaatschappijen().GetType());
+            Assert.AreEqual(typeof(Schema.VoertuigenCollection), result.GetType());
         }
 
         [TestMethod]
         public void ReturnCorrectData()
         {
             //Arrange
-            var leasemaatschappijen = new Schema.KlantenCollection();
-            leasemaatschappijen.Add(new Schema.Leasemaatschappij());
-            leasemaatschappijen.Add(new Schema.Leasemaatschappij());
-            leasemaatschappijen.Add(new Schema.Leasemaatschappij());
+            var voertuigenCollections = new Schema.VoertuigenCollection();
+            voertuigenCollections.Add(new Schema.Voertuig());
+            voertuigenCollections.Add(new Schema.Voertuig());
+            voertuigenCollections.Add(new Schema.Voertuig());
             var agentMock = new Mock<IAgentBSVoertuigEnKlantBeheer>(MockBehavior.Strict);
-            agentMock.Setup(agent => agent.GetAllLeasemaatschappijen()).Returns(leasemaatschappijen);
+            agentMock.Setup(agent => agent.GetVoertuigBy(It.IsAny<Schema.VoertuigenSearchCriteria>())).Returns(voertuigenCollections);
 
             //Act
             var target = new PcSOnderhoudServiceHandler(agentMock.Object);
-            var result = target.GetAllLeasemaatschappijen();
+            var result = target.GetVoertuigBy(new Schema.VoertuigenSearchCriteria());
 
             //Assert
-            Assert.AreEqual(3, target.GetAllLeasemaatschappijen().Count);
+            Assert.AreEqual(3, result.Count);
         }
 
         [TestMethod]
@@ -62,7 +65,7 @@ namespace Minor.Case2.PcSOnderhoud.Implementation.Tests
             var agentMock = new Mock<IAgentBSVoertuigEnKlantBeheer>(MockBehavior.Strict);
             var error = new FunctionalErrorDetail();
             agentMock.Setup(agent => agent.GetAllLeasemaatschappijen()).Throws(
-                new FunctionalException(new FunctionalErrorList(new []{error})));
+                new FunctionalException(new FunctionalErrorList(new[] { error })));
             var target = new PcSOnderhoudServiceHandler(agentMock.Object);
 
             //Act
@@ -76,21 +79,17 @@ namespace Minor.Case2.PcSOnderhoud.Implementation.Tests
         public void ThrowsFunctionalErrorDetailArrayExceptionCorrectErrors()
         {
             //Arrange
-            var leasemaatschappijen = new Schema.KlantenCollection();
-            leasemaatschappijen.Add(new Schema.Leasemaatschappij());
-            leasemaatschappijen.Add(new Schema.Leasemaatschappij());
-            leasemaatschappijen.Add(new Schema.Leasemaatschappij());
             var agentMock = new Mock<IAgentBSVoertuigEnKlantBeheer>(MockBehavior.Strict);
             var error = new FunctionalErrorDetail();
             error.Message = "error gegooid";
-            agentMock.Setup(agent => agent.GetAllLeasemaatschappijen()).Throws(
-                new FunctionalException(new FunctionalErrorList(new []{error})));
+            agentMock.Setup(agent => agent.GetVoertuigBy(It.IsAny<Schema.VoertuigenSearchCriteria>())).Throws(
+                new FunctionalException(new FunctionalErrorList(new[] { error })));
             var target = new PcSOnderhoudServiceHandler(agentMock.Object);
 
             //Act
             try
             {
-                var result = target.GetAllLeasemaatschappijen();
+                target.GetVoertuigBy(new Schema.VoertuigenSearchCriteria());
             }
             catch (FaultException<FunctionalErrorDetail[]> ex)
             {
@@ -105,17 +104,13 @@ namespace Minor.Case2.PcSOnderhoud.Implementation.Tests
         public void ThrowsTechnicalErrorDetailArrayException()
         {
             //Arrange
-            var leasemaatschappijen = new Schema.KlantenCollection();
-            leasemaatschappijen.Add(new Schema.Leasemaatschappij());
-            leasemaatschappijen.Add(new Schema.Leasemaatschappij());
-            leasemaatschappijen.Add(new Schema.Leasemaatschappij());
             var agentMock = new Mock<IAgentBSVoertuigEnKlantBeheer>(MockBehavior.Strict);
-            agentMock.Setup(agent => agent.GetAllLeasemaatschappijen()).Throws(
+            agentMock.Setup(agent => agent.GetVoertuigBy(It.IsAny<Schema.VoertuigenSearchCriteria>())).Throws(
                 new TechnicalException("error"));
             var target = new PcSOnderhoudServiceHandler(agentMock.Object);
 
             //Act
-            var result = target.GetAllLeasemaatschappijen();
+            var result = target.GetVoertuigBy(new Schema.VoertuigenSearchCriteria());
 
             //Assert
             //Exception thrown
@@ -130,14 +125,14 @@ namespace Minor.Case2.PcSOnderhoud.Implementation.Tests
             leasemaatschappijen.Add(new Schema.Leasemaatschappij());
             leasemaatschappijen.Add(new Schema.Leasemaatschappij());
             var agentMock = new Mock<IAgentBSVoertuigEnKlantBeheer>(MockBehavior.Strict);
-            agentMock.Setup(agent => agent.GetAllLeasemaatschappijen()).Throws(
+            agentMock.Setup(agent => agent.GetVoertuigBy(It.IsAny<Schema.VoertuigenSearchCriteria>())).Throws(
                  new TechnicalException("error"));
             var target = new PcSOnderhoudServiceHandler(agentMock.Object);
 
             //Act
             try
             {
-                var result = target.GetAllLeasemaatschappijen();
+                var result = target.GetVoertuigBy(new Schema.VoertuigenSearchCriteria());
             }
             catch (FaultException ex)
             {
