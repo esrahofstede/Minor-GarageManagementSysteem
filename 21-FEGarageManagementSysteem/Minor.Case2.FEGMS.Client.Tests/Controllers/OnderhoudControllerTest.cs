@@ -51,23 +51,34 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
         }
 
         [TestMethod]
-        public void InsertKlantgegevensPostWitLeaseTest()
+        public void InsertKlantgegevensPostExistingVoertuigTest()
         {
             // Arrange
             var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
+            mock.Setup(agent => agent.HaalVoertuigenOpVoor(It.IsAny<Persoon>())).Returns(DummyData.GetVoertuigenCollection());
             OnderhoudController controller = new OnderhoudController(mock.Object);
             InsertKlantgegevensVM klantgegevens = DummyData.GetKlantGegevens(true);
             controller.ControllerContext = Helper.CreateContext(controller);
 
             // Act
             RedirectToRouteResult result = controller.InsertKlantgegevens(klantgegevens) as RedirectToRouteResult;
-            var cookie = controller.HttpContext.Response.Cookies.Get("Klantgegevens");
-
-            var klantgegevensFromCookie = new JavaScriptSerializer().Deserialize<InsertKlantgegevensVM>(cookie.Value);
 
             // Assert
+            var serializer = new JavaScriptSerializer();
+
+            var cookie = controller.HttpContext.Response.Cookies.Get("Klantgegevens");
+            var klantgegevensFromCookie = serializer.Deserialize<InsertKlantgegevensVM>(cookie.Value);
+
+            var voertuigenExistCookie = controller.HttpContext.Response.Cookies.Get("VoertuiggegevensExisting");
+            var voertuigencollection = serializer.Deserialize<Voertuig[]>(voertuigenExistCookie.Value);
+
+            Assert.AreEqual(1, voertuigencollection.Length);
+            Assert.AreEqual("DS-344-S", voertuigencollection.First().Kenteken);
+
+            mock.Verify(agent => agent.HaalVoertuigenOpVoor(It.IsAny<Persoon>()));
+
             Assert.IsNotNull(result);
-            Assert.AreEqual("InsertLeasemaatschappijGegevens", result.RouteValues.First().Value);
+            Assert.AreEqual("InsertVoertuiggegevens", result.RouteValues.First().Value);
             Assert.AreEqual(klantgegevens.Voornaam, klantgegevensFromCookie.Voornaam);
             Assert.AreEqual(klantgegevens.Tussenvoegsel, klantgegevensFromCookie.Tussenvoegsel);
             Assert.AreEqual(klantgegevens.Achternaam, klantgegevensFromCookie.Achternaam);
@@ -80,10 +91,11 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
         }
 
         [TestMethod]
-        public void InsertKlantgegevensPostWitoutLeaseTest()
+        public void InsertKlantgegevensPostWitoutExistingVoertuigTest()
         {
             // Arrange
             var mock = new Mock<IAgentPcSOnderhoud>(MockBehavior.Strict);
+            mock.Setup(agent => agent.HaalVoertuigenOpVoor(It.IsAny<Persoon>())).Returns(new VoertuigenCollection());
             OnderhoudController controller = new OnderhoudController(mock.Object);
             InsertKlantgegevensVM klantgegevens = DummyData.GetKlantGegevens(false);
             controller.ControllerContext = Helper.CreateContext(controller);
@@ -95,6 +107,8 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             var klantgegevensFromCookie = new JavaScriptSerializer().Deserialize<InsertKlantgegevensVM>(cookie.Value);
 
             // Assert
+            mock.Verify(agent => agent.HaalVoertuigenOpVoor(It.IsAny<Persoon>()));
+
             Assert.IsNotNull(result);
             Assert.AreEqual("InsertVoertuiggegevens", result.RouteValues.First().Value);
             Assert.AreEqual(klantgegevens.Voornaam, klantgegevensFromCookie.Voornaam);

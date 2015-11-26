@@ -33,9 +33,9 @@ namespace Minor.Case2.FEGMS.Client.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Homepage
         /// </summary>
-        /// <returns></returns>
+        /// <returns>View</returns>
         public ActionResult Index()
         {
             return View();
@@ -188,6 +188,8 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                 var voertuigen = new JavaScriptSerializer().Deserialize<VoertuigenCollection>(voertuigenCookie.Value);
                 model.Voertuigen = voertuigen.Select(voertuig => new SelectListItem { Text = voertuig.Kenteken, Value = voertuig.ID.ToString() });
             }
+
+            model.Exist = true;
             //Model meegeven nieuw
             //END NIEUW ----------------------------
 
@@ -205,6 +207,36 @@ namespace Minor.Case2.FEGMS.Client.Controllers
         [HttpPost]
         public ActionResult InsertVoertuiggegevens(InsertVoertuiggegevensVM model)
         {
+
+            //NIEUW --------------------------------------------------
+            if (!model.Exist)
+            {
+                if (string.IsNullOrWhiteSpace(model.Kenteken))
+                {
+                    ModelState.AddModelError("Kenteken", "Kenteken is een verplicht veld voor de voertuiggegevens");
+                }
+
+                if (string.IsNullOrWhiteSpace(model.Merk))
+                {
+                    ModelState.AddModelError("Merk", "Merk is een verplicht veld voor de voertuiggegevens");
+                }
+
+                if (string.IsNullOrWhiteSpace(model.Type))
+                {
+                    ModelState.AddModelError("Type", "Type is een verplicht veld voor de voertuiggegevens");
+                }
+            }
+            else
+            {
+                if (model.SelectedVoertuigID == 0)
+                {
+                    ModelState.AddModelError("Voertuigen", "Indien het een bestaand voertuig is, moet er één geselecteerd zijn.");
+                }
+            }
+
+
+            //END NIEUW-------------------------------
+
             if (ModelState.IsValid)
             {
                 var serializer = new JavaScriptSerializer();
@@ -220,7 +252,6 @@ namespace Minor.Case2.FEGMS.Client.Controllers
 
                 HttpCookie klantgegevensCookie = Request.Cookies.Get("Klantgegevens");
                 var klantgegevens = serializer.Deserialize<InsertKlantgegevensVM>(klantgegevensCookie.Value);
-
 
                 HttpCookie voertuiggegevensCookie = new HttpCookie("Voertuiggegevens", serializedVoertuiggegevens);
                 Response.Cookies.Add(voertuiggegevensCookie);
