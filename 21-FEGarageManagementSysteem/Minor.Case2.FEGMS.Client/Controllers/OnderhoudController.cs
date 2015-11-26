@@ -193,6 +193,8 @@ namespace Minor.Case2.FEGMS.Client.Controllers
             {
                 HttpCookie voertuigenCookie = Request.Cookies.Get("VoertuiggegevensExisting");
                 var voertuigen = new JavaScriptSerializer().Deserialize<Voertuig[]>(voertuigenCookie.Value);
+                voertuigenCookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(voertuigenCookie);
 
                 model.Voertuigen = voertuigen.Select(voertuig => new SelectListItem { Text = voertuig.Kenteken, Value = voertuig.Kenteken });
                 model.Exist = true;
