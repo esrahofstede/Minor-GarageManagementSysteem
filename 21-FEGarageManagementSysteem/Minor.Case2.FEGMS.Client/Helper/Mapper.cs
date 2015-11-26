@@ -64,7 +64,7 @@ namespace Minor.Case2.FEGMS.Client.Helper
                 {
                     Naam = leasemaatschappijgegevens.Naam,
                     Telefoonnummer = leasemaatschappijgegevens.Telefoonnummer,
-                    ID = leasemaatschappijgegevens.SelectedLeasemaatschappijID,
+                    ID = leasemaatschappijgegevens.SelectedLeasemaatschappijID.HasValue ? leasemaatschappijgegevens.SelectedLeasemaatschappijID.Value : 0,
                 };
             }
             else

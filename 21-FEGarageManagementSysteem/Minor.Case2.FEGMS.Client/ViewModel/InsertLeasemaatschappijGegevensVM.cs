@@ -13,7 +13,7 @@ namespace Minor.Case2.FEGMS.Client.ViewModel
         public IEnumerable<SelectListItem> Leasemaatschappijen { get; set; }
         [Display(Name = "Bestaande leasemaatschappij")]
         public bool Exist { get; set; }
-        public int SelectedLeasemaatschappijID { set; get; }
+        public int? SelectedLeasemaatschappijID { set; get; }
 
     }
 }

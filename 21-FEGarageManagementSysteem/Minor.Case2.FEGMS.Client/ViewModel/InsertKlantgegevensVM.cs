@@ -23,5 +23,6 @@ namespace Minor.Case2.FEGMS.Client.ViewModel
         [EmailAddress(ErrorMessage = "Dit is geen geldig emailadres")]
         public string Emailadres { get; set; }
         public bool Lease { get; set; }
+        public long KlantID { get; set; }
     }
 }

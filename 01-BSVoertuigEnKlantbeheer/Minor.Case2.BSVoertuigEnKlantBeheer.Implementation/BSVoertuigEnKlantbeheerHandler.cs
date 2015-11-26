@@ -284,9 +284,9 @@ namespace Minor.Case2.BSVoertuigEnKlantBeheer.Implementation
 
             IEnumerable<Entities.Onderhoudsopdracht> onderhoudsopdrachten = _onderhoudsDataMapper.FindAll();
 
-            if (zoekCriteria.VoertuigenSearchCriteria.ID > 0)
+            if (zoekCriteria.ID > 0)
             {
-                onderhoudsopdrachten = onderhoudsopdrachten.Where(v => v.ID == zoekCriteria.VoertuigenSearchCriteria.ID);
+                onderhoudsopdrachten = onderhoudsopdrachten.Where(v => v.ID == zoekCriteria.ID);
             }
             if (zoekCriteria.VoertuigenSearchCriteria != null && !string.IsNullOrEmpty(zoekCriteria.VoertuigenSearchCriteria.Kenteken))
             {
