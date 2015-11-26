@@ -933,12 +933,6 @@ public interface IPcSOnderhoudService
         "ponse")]
     System.Threading.Tasks.Task VoegOnderhoudsopdrachtToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht);
     
-    [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/MeldVoertuigKlaar", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/MeldVoertuigKlaarResponse")]
-    bool MeldVoertuigKlaar(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig, Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Garage garage);
-    
-    [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/MeldVoertuigKlaar", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/MeldVoertuigKlaarResponse")]
-    System.Threading.Tasks.Task<bool> MeldVoertuigKlaarAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig, Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Garage garage);
-    
     [System.ServiceModel.OperationContractAttribute(Action="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetHuidigeOnderhoudsopdracht" +
         "By", ReplyAction="urn:minor:case2:pcsonderhoud:v1/IPcSOnderhoudService/GetHuidigeOnderhoudsopdracht" +
         "ByResponse")]
@@ -1042,16 +1036,6 @@ public partial class PcSOnderhoudServiceClient : System.ServiceModel.ClientBase<
     public System.Threading.Tasks.Task VoegOnderhoudsopdrachtToeAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht onderhoudsopdracht)
     {
         return base.Channel.VoegOnderhoudsopdrachtToeAsync(onderhoudsopdracht);
-    }
-    
-    public bool MeldVoertuigKlaar(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig, Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Garage garage)
-    {
-        return base.Channel.MeldVoertuigKlaar(voertuig, garage);
-    }
-    
-    public System.Threading.Tasks.Task<bool> MeldVoertuigKlaarAsync(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Voertuig voertuig, Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Garage garage)
-    {
-        return base.Channel.MeldVoertuigKlaarAsync(voertuig, garage);
     }
     
     public Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.Onderhoudsopdracht GetHuidigeOnderhoudsopdrachtBy(Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema.OnderhoudsopdrachtZoekCriteria searchCriteria)

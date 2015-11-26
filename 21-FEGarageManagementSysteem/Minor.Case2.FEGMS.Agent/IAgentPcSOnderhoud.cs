@@ -8,7 +8,6 @@ namespace Minor.Case2.FEGMS.Agent
         void AddOnderhoudsopdrachtWithKlantAndVoertuig(Onderhoudsopdracht opdracht);
         void VoegVoertuigMetKlantToe(Voertuig voertuig);
         VoertuigenCollection GetVoertuigBy(VoertuigenSearchCriteria critera);
-        bool MeldVoertuigKlaar(Voertuig voertuig);
         KlantenCollection GetAllLeasemaatschappijen();
         Onderhoudsopdracht GetOnderhoudsopdrachtBy(OnderhoudsopdrachtZoekCriteria criteria);
         bool? VoegOnderhoudswerkzaamhedenToe(Onderhoudswerkzaamheden werkzaamheden);

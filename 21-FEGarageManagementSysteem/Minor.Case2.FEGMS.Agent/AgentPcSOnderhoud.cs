@@ -86,35 +86,6 @@ namespace Minor.Case2.FEGMS.Agent
             return null;
         }
 
-        /// <summary>
-        /// Meld voertuig klaar in the PcSOnderhoud via a proxy
-        /// Get the garage data from the .Config file
-        /// </summary>
-        /// <param name="voertuig">The voertuig</param>
-        /// <returns>True if there is a steekproef else false</returns>
-        public bool MeldVoertuigKlaar(Voertuig voertuig)
-        {
-            try
-            {
-                var section = ConfigurationManager.GetSection("Keuringsinstantie/Instantie") as KeuringsinstantieConfigSection;
-                var garage = new Garage
-                {
-                    Naam = section.Naam,
-                    Plaats = section.Plaats,
-                    Kvk = section.KVK,
-                    Type = section.TypeInstantie,
-                };
-
-                var proxy = _factory.CreateAgent();
-                return proxy.MeldVoertuigKlaar(voertuig, garage);
-            }
-            catch (FaultException ex)
-            {
-
-            }
-            return false;
-        }
-
         public KlantenCollection GetAllLeasemaatschappijen()
         {
             try
