@@ -78,27 +78,6 @@ namespace Minor.Case2.FEGMS.Client.Controllers
             return View(model);
         }
 
-        private bool AreCookieSet(params string[] names)
-        {
-            if(!names.Any())
-            {
-                return false;
-            }
-
-            bool cookiesSet = true;
-            foreach(var name in names)
-            {
-                HttpCookie cookie = Request.Cookies.Get(name);
-                if(cookie == null)
-                {
-                    cookiesSet = false;
-                    break;
-                }
-            }
-            return cookiesSet;
-        }
-
-
         /// <summary>
         /// Show the form to insert Leasemaatschappijgegevens
         /// </summary>
@@ -240,6 +219,7 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                 var serializer = new JavaScriptSerializer();
 
                 HttpCookie leasemaatschappijCookie = Request.Cookies.Get("LeasemaatschappijGegevens");
+                model.AanmeldingsDatum = DateTime.Now;
 
                 InsertLeasemaatschappijGegevensVM leasemaatschappijgegevens = null;
                 if (leasemaatschappijCookie != null)
@@ -289,6 +269,31 @@ namespace Minor.Case2.FEGMS.Client.Controllers
             Response.Cookies.Add(onderhoudsopdrachtCookie);
 
             return View(onderhoudsopdracht);
+        }
+
+        /// <summary>
+        /// Methode that look if all cookies are set
+        /// </summary>
+        /// <param name="names">params string with cookie names</param>
+        /// <returns>true is all cookies are set otherwise false</returns>
+        private bool AreCookieSet(params string[] names)
+        {
+            if (!names.Any())
+            {
+                return false;
+            }
+
+            bool cookiesSet = true;
+            foreach (var name in names)
+            {
+                HttpCookie cookie = Request.Cookies.Get(name);
+                if (cookie == null)
+                {
+                    cookiesSet = false;
+                    break;
+                }
+            }
+            return cookiesSet;
         }
     }
 }
