@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <DbFullSql path="C:\GIT\caspare\01-BSVoertuigEnKlantbeheer\Minor.Case2.BSVoertuigEnKlantBeheer.Host\obj\Release\AutoScripts\BSKlantBeheerDB-Deployment_SchemaAndData.sql" Transacted="True" />
+  <DbFullSql path="C:\GIT\caspare\01-BSVoertuigEnKlantbeheer\Minor.Case2.BSVoertuigEnKlantBeheer.Host\KlantGRANTscript.sql" Transacted="False" />
+  <DbFullSql path="C:\GIT\caspare\01-BSVoertuigEnKlantbeheer\Minor.Case2.BSVoertuigEnKlantBeheer.Host\obj\Release\AutoScripts\BSVoertuigBeheerDB-Deployment_SchemaOnly.sql" Transacted="True" />
+  <DbFullSql path="C:\GIT\caspare\01-BSVoertuigEnKlantbeheer\Minor.Case2.BSVoertuigEnKlantBeheer.Host\VoertuigGRANTscript.sql" Transacted="False" />
+  <IisApp path="C:\GIT\caspare\01-BSVoertuigEnKlantbeheer\Minor.Case2.BSVoertuigEnKlantBeheer.Host\obj\Release\Package\PackageTmp" />
+  <setAcl path="C:\GIT\caspare\01-BSVoertuigEnKlantbeheer\Minor.Case2.BSVoertuigEnKlantBeheer.Host\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="C:\GIT\caspare\01-BSVoertuigEnKlantbeheer\Minor.Case2.BSVoertuigEnKlantBeheer.Host\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+</sitemanifest>

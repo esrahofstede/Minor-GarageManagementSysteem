@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="Default Web Site/Caespi/BS" />
+  <setParameter name="BSKlantBeheerDB-Deployment-Deployment Connection String" value="Data Source=.\SQLEXPRESS;Initial Catalog=Caespi_BSKlantBeheerDB;Integrated Security=True" />
+  <setParameter name="BSVoertuigBeheerDB-Deployment-Deployment Connection String" value="Data Source=.\SQLEXPRESS;Initial Catalog=Caespi_BSVoertuigBeheerDB;Integrated Security=True" />
+  <setParameter name="BSKlantBeheerDB-Web.config Connection String" value="Data Source=.\SQLEXPRESS;Initial Catalog=Caespi_BSKlantBeheerDB;Integrated Security=true" />
+  <setParameter name="BSVoertuigBeheerDB-Web.config Connection String" value="Data Source=.\SQLEXPRESS;Initial Catalog=Caespi_BSVoertuigBeheerDB;Integrated Security=true" />
+</parameters>
