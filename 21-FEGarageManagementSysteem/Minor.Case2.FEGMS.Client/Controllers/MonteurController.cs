@@ -70,6 +70,7 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                     Kilometerstand = onderhoudsopdracht.Kilometerstand,
                     Onderhoudsomschrijving = onderhoudsopdracht.Onderhoudsomschrijving,
                     OnderhoudsopdrachtID = onderhoudsopdracht.ID,
+                    APK = onderhoudsopdracht.APK,
                 };
 
                 var serializedOnderhoudswerkzaamheden = new JavaScriptSerializer().Serialize(onderhoudswerkzaamheden);
@@ -124,6 +125,7 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                     Onderhoudsopdracht = new Onderhoudsopdracht
                     {
                         ID = model.OnderhoudsopdrachtID,
+                        APK = model.APK,
                     },
                 };
 

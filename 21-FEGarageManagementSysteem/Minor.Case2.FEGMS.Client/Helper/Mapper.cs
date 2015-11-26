@@ -74,7 +74,6 @@ namespace Minor.Case2.FEGMS.Client.Helper
 
             return new Voertuig
             {
-                ID = voertuiggegevens.SelectedVoertuigID, //NIEUW
                 Bestuurder = bestuurder,
                 Eigenaar = eigenaar,
                 Kenteken = voertuiggegevens.Kenteken,

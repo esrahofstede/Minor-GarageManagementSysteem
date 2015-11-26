@@ -81,16 +81,24 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                 };
 
                 var voertuigen = _agent.HaalVoertuigenOpVoor(persoon);
-                
-                if(voertuigen.Count > 0)
+
+                if (voertuigen != null)
                 {
-                    var serializedVoertuigen = serializer.Serialize(voertuigen);
-                    HttpCookie voertuigenCookie = new HttpCookie("VoertuiggegevensExisting", serializedVoertuigen);
-                    Response.Cookies.Add(voertuigenCookie);
+                    if (voertuigen.Count > 0)
+                    {
+                        var voertuigenCollection = new VoertuigenCollection();
+                        foreach (var voertuig in voertuigen)
+                        {
+                            voertuigenCollection.Add(new Voertuig() { ID = voertuig.ID, Kenteken = voertuig.Kenteken });
+                        }
 
-                    return RedirectToAction("InsertVoertuiggegevens");
+                        var serializedVoertuigen = serializer.Serialize(voertuigenCollection);
+                        HttpCookie voertuigenCookie = new HttpCookie("VoertuiggegevensExisting", serializedVoertuigen);
+                        Response.Cookies.Add(voertuigenCookie);
+
+                        return RedirectToAction("InsertVoertuiggegevens");
+                    }
                 }
-
 
                 ///END NIEWWWW ----------------------------------------
 
@@ -181,15 +189,15 @@ namespace Minor.Case2.FEGMS.Client.Controllers
 
             //NIEUW ----------------------------
             InsertVoertuiggegevensVM model = new InsertVoertuiggegevensVM();
-            if(!AreCookieSet("VoertuiggegevensExisting"))
+            if(AreCookieSet("VoertuiggegevensExisting"))
             {
-                //KLANT BESTAAT AL
                 HttpCookie voertuigenCookie = Request.Cookies.Get("VoertuiggegevensExisting");
-                var voertuigen = new JavaScriptSerializer().Deserialize<VoertuigenCollection>(voertuigenCookie.Value);
-                model.Voertuigen = voertuigen.Select(voertuig => new SelectListItem { Text = voertuig.Kenteken, Value = voertuig.ID.ToString() });
+                var voertuigen = new JavaScriptSerializer().Deserialize<Voertuig[]>(voertuigenCookie.Value);
+
+                model.Voertuigen = voertuigen.Select(voertuig => new SelectListItem { Text = voertuig.Kenteken, Value = voertuig.Kenteken });
+                model.Exist = true;
             }
 
-            model.Exist = true;
             //Model meegeven nieuw
             //END NIEUW ----------------------------
 
@@ -228,40 +236,64 @@ namespace Minor.Case2.FEGMS.Client.Controllers
             }
             else
             {
-                if (model.SelectedVoertuigID == 0)
+                if (string.IsNullOrWhiteSpace(model.SelectedKenteken))
                 {
                     ModelState.AddModelError("Voertuigen", "Indien het een bestaand voertuig is, moet er één geselecteerd zijn.");
                 }
             }
 
-
+            //if (model.SelectedVoertuigID == 0)
             //END NIEUW-------------------------------
 
             if (ModelState.IsValid)
             {
                 var serializer = new JavaScriptSerializer();
-                var serializedVoertuiggegevens = serializer.Serialize(model);
-       
-                HttpCookie leasemaatschappijCookie = Request.Cookies.Get("LeasemaatschappijGegevens");
 
-                InsertLeasemaatschappijGegevensVM leasemaatschappijgegevens = null;
-                if (leasemaatschappijCookie != null)
+                if (string.IsNullOrWhiteSpace(model.SelectedKenteken))
                 {
-                    leasemaatschappijgegevens = serializer.Deserialize<InsertLeasemaatschappijGegevensVM>(leasemaatschappijCookie.Value);
+                    var serializedVoertuiggegevens = serializer.Serialize(model);
+
+                    HttpCookie leasemaatschappijCookie = Request.Cookies.Get("LeasemaatschappijGegevens");
+
+                    InsertLeasemaatschappijGegevensVM leasemaatschappijgegevens = null;
+                    if (leasemaatschappijCookie != null)
+                    {
+                        leasemaatschappijgegevens = serializer.Deserialize<InsertLeasemaatschappijGegevensVM>(leasemaatschappijCookie.Value);
+                    }
+
+                    HttpCookie klantgegevensCookie = Request.Cookies.Get("Klantgegevens");
+                    var klantgegevens = serializer.Deserialize<InsertKlantgegevensVM>(klantgegevensCookie.Value);
+
+                    HttpCookie voertuiggegevensCookie = new HttpCookie("Voertuiggegevens", serializedVoertuiggegevens);
+                    Response.Cookies.Add(voertuiggegevensCookie);
+
+                    var voertuig = Mapper.MapToVoertuig(leasemaatschappijgegevens, klantgegevens, model);
+
+                    _agent.VoegVoertuigMetKlantToe(voertuig);
                 }
+                else
+                {
+                    //NIEUW
+                    InsertVoertuiggegevensVM existingVoertuig  = new InsertVoertuiggegevensVM
+                    {
+                        Kenteken = model.SelectedKenteken,
+                    };
+                    var serializedVoertuiggegevens = serializer.Serialize(existingVoertuig);
 
-                HttpCookie klantgegevensCookie = Request.Cookies.Get("Klantgegevens");
-                var klantgegevens = serializer.Deserialize<InsertKlantgegevensVM>(klantgegevensCookie.Value);
-
-                HttpCookie voertuiggegevensCookie = new HttpCookie("Voertuiggegevens", serializedVoertuiggegevens);
-                Response.Cookies.Add(voertuiggegevensCookie);
-
-                var voertuig = Mapper.MapToVoertuig(leasemaatschappijgegevens, klantgegevens, model);
-
-                _agent.VoegVoertuigMetKlantToe(voertuig);
+                    HttpCookie voertuiggegevensCookie = new HttpCookie("Voertuiggegevens", serializedVoertuiggegevens);
+                    Response.Cookies.Add(voertuiggegevensCookie);
+                }
 
                 return RedirectToAction("InsertOnderhoudsopdracht");
             }
+
+            //NIEUW --------------------------------------------------
+
+            HttpCookie voertuigenCookie = Request.Cookies.Get("VoertuiggegevensExisting");
+            var voertuigen = new JavaScriptSerializer().Deserialize<Voertuig[]>(voertuigenCookie.Value);
+
+            model.Voertuigen = voertuigen.Select(voertuig => new SelectListItem { Text = voertuig.Kenteken, Value = voertuig.Kenteken });
+            //END NIEUW-------------------------------
 
             return View(model);
         }

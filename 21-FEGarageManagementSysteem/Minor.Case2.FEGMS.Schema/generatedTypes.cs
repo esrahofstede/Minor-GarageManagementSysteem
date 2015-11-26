@@ -403,7 +403,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
         public string Merk
         {
             get
@@ -416,7 +416,7 @@ namespace Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
         public string Type
         {
             get

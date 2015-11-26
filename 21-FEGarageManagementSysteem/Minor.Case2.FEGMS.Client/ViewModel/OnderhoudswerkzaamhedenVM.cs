@@ -14,5 +14,6 @@ namespace Minor.Case2.FEGMS.Client.ViewModel
         [Required(ErrorMessage = "{0} is verplicht om een onderhoud werkzaamheid in te kunnen voeren")]
         public string Onderhoudsomschrijving { get; set; }
         public long OnderhoudsopdrachtID { get; set; }
+        public bool APK { get; set; }
     }
 }

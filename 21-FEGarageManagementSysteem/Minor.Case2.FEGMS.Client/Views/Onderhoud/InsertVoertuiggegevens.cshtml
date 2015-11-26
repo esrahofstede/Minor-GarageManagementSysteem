@@ -7,32 +7,34 @@
 <h2>Voertuiggegevens invoeren</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Exist, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.CheckBoxFor(model => model.Exist)
-                    @Html.ValidationMessageFor(model => model.Exist, "", new { @class = "text-danger" })
+        @if (Model.Voertuigen != null)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Exist, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.CheckBoxFor(model => model.Exist)
+                        @Html.ValidationMessageFor(model => model.Exist, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="form-group" id="existing-voertuigen" @*style="@(!Model.Exist ? "display: none;" : "") }} "*@>
-            @Html.LabelFor(model => model.Voertuigen, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.SelectedVoertuigID, Model.Voertuigen, "Selecteer een leasemaatschappij", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Voertuigen, "", new { @class = "text-danger" })
+            <div class="form-group" id="existing-voertuigen" @*style="@(!Model.Exist ? "display: none;" : "") }} "*@>
+                @Html.LabelFor(model => model.Voertuigen, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.SelectedKenteken, Model.Voertuigen, "Selecteer een auto", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Voertuigen, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-
+        }
         <div class="form-group">
             @Html.LabelFor(model => model.Kenteken, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -66,8 +68,8 @@
 }
 
 @*<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>*@
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
