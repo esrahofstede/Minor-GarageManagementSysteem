@@ -332,6 +332,18 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
                     throw new TechnicalException("Eigenaar cannot be null");
                 }
                 voertuig.Status = "Aangemeld";
+                var personen = from persoonAs in _agentBS.GetAllPersonen()
+                               select persoonAs as Schema.Persoon;
+                var filteredPersonen = personen.Where(
+                    p => p.Achternaam == voertuig.Bestuurder.Achternaam &&
+                    p.Tussenvoegsel == voertuig.Bestuurder.Tussenvoegsel &&
+                    p.Voornaam == voertuig.Bestuurder.Voornaam &&
+                    p.Telefoonnummer == voertuig.Bestuurder.Telefoonnummer).ToList();
+                if (filteredPersonen.Count == 1)
+                {
+                    voertuig.Bestuurder.ID = filteredPersonen.First().ID;
+                }
+
                 _agentBS.VoegVoertuigMetKlantToe(voertuig);
             }
             catch (FunctionalException ex)
