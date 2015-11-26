@@ -21,14 +21,16 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
     public class PcSOnderhoudServiceHandler : IPcSOnderhoudService
     {
         private readonly IAgentBSVoertuigEnKlantBeheer _agentBS;
+        private readonly IAgentISRDW _agentIS;
 
         /// <summary>
-        /// Standaard constructor die log4net configureert en een instantie van de BSAgent aanmaakt
+        /// Standaard constructor die log4net configureert en een instantie van de BSAgent en ISAgent aanmaakt
         /// </summary>
         public PcSOnderhoudServiceHandler()
         {
             log4net.Config.XmlConfigurator.Configure();
             _agentBS = new AgentBSVoertuigEnKlantBeheer();
+            _agentIS = new AgentISRDW();
         }
 
         /// <summary>
@@ -40,6 +42,17 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             _agentBS = agentBS;
         }
 
+        /// <summary>
+        /// Een constructor waar een custom BS agent en een custom IS Agent worden geinjecteerd.
+        /// </summary>
+        /// <param name="agentBS">De custom BS agent, moet IAgentBSVoertuigEnKlantBeheer implementeren</param>
+        /// <param name="agentsIS">De custom IS agent, moet IAgentISRDW implementeren</param>
+        public PcSOnderhoudServiceHandler(IAgentBSVoertuigEnKlantBeheer agentBS, IAgentISRDW agentsIS)
+        {
+            _agentBS = agentBS;
+            _agentIS = agentsIS;
+        }
+        
         /// <summary>
         /// Deze methode haalt alle leasemaatschappijen op die in de BS te vinden zijn
         /// Als geen leasemaatschappijen gevonden worden dan wordt een lege collection teruggeven.
@@ -90,32 +103,63 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             }
         }
 
+        /// <summary>
+        /// Deze methode haalt alle voertuigen op voor een een persoon
+        /// Als de persoon nog niet bestaat, dan wordt deze toegevoegd in de BS
+        /// Als de persoon wel bestaat, worden al zijn voertuigen terug gestuurt.
+        /// De persoon wordt gefilterd op basis van voor- en achternaam en telefoonnummer.
+        /// De voertuigen worden opgehaald op basis van het ID van de klant.
+        /// </summary>
+        /// <param name="persoon">De persoon waarvan de voertuigen opgehaald moeten worden</param>
+        /// <returns>
+        /// Null als er meerdere personen zjin gevonden, 
+        /// Lege lijst als er geen voertuigen zijn gevonden, 
+        /// of het een nieuwe klant is en een lijst met voertuigen als er voertuigen in de BS staan voor die klant
+        /// </returns>
         public Schema.VoertuigenCollection HaalVoertuigenOpVoor(Schema.Persoon persoon)
         {
-            Schema.VoertuigenCollection voertuigen = new Schema.VoertuigenCollection();
-            var personen = from persoonAs in _agentBS.GetAllPersonen()
-                            select persoonAs as Schema.Persoon;
-            var filteredPersonen = personen.Where(
-                p => p.Achternaam == persoon.Achternaam && 
-                p.Tussenvoegsel == persoon.Tussenvoegsel &&
-                p.Voornaam == persoon.Voornaam &&
-                p.Telefoonnummer == persoon.Telefoonnummer).ToList();
-            if (filteredPersonen.Count() == 1 )
+            if (persoon == null)
             {
-                var searchCriteria = new Schema.VoertuigenSearchCriteria
-                {
-                    Bestuurder = new Schema.Persoon
-                    {
-                        ID = filteredPersonen.First().ID
-                    }
-                };
-                voertuigen = _agentBS.GetVoertuigBy(searchCriteria);
-
-            } else if (filteredPersonen.Count > 1)
-            {
-                return null;
+                throw new FaultException("Persoon mag niet null zijn");
             }
-            return voertuigen;
+            try
+            {
+                Schema.VoertuigenCollection voertuigen = new Schema.VoertuigenCollection();
+                var personen = from persoonAs in _agentBS.GetAllPersonen()
+                               select persoonAs as Schema.Persoon;
+                var filteredPersonen = personen.Where(
+                    p => p.Achternaam == persoon.Achternaam &&
+                    p.Tussenvoegsel == persoon.Tussenvoegsel &&
+                    p.Voornaam == persoon.Voornaam &&
+                    p.Telefoonnummer == persoon.Telefoonnummer).ToList();
+
+                if (filteredPersonen.Count() == 1)
+                {
+                    var searchCriteria = new Schema.VoertuigenSearchCriteria
+                    {
+                        Bestuurder = new Schema.Persoon
+                        {
+                            ID = filteredPersonen.First().ID
+                        }
+                    };
+                    voertuigen = _agentBS.GetVoertuigBy(searchCriteria);
+
+                }
+                else if (filteredPersonen.Count > 1)
+                {
+                    return null;
+                }
+                return voertuigen;
+            }
+            catch (FunctionalException ex)
+            {
+                throw new FaultException<FunctionalErrorDetail[]>(ex.Errors.Details);
+
+            }
+            catch (TechnicalException ex)
+            {
+                throw new FaultException(ex.Message);
+            }
         }
 
         /// <summary>
@@ -212,22 +256,31 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             }
         }
 
+
         public bool? VoegOnderhoudswerkzaamhedenToe(Schema.Onderhoudswerkzaamheden onderhoudswerkzaamheden, Garage garage)
         {
             bool? steekproef = null;
             if (onderhoudswerkzaamheden == null)
             {
                 FunctionalErrorDetail error = new FunctionalErrorDetail {Message = "Onderhoudswerkzaamheden mogen niet null zijn"};
-                throw new FaultException<FunctionalErrorDetail[]>(new FunctionalErrorDetail[] {error});
+                throw new FaultException<FunctionalErrorDetail[]>(new[] {error});
             }
-            AgentBSVoertuigEnKlantBeheer agentBS = new AgentBSVoertuigEnKlantBeheer();
-            AgentISRDW agentIS = new AgentISRDW();
-
+            if (onderhoudswerkzaamheden.Onderhoudsopdracht == null)
+            {
+                FunctionalErrorDetail error = new FunctionalErrorDetail { Message = "Onderhoudsopdracht mag niet null zijn" };
+                throw new FaultException<FunctionalErrorDetail[]>(new[] { error });
+            }
+            
             Schema.OnderhoudsopdrachtZoekCriteria zoekCriteria = new Schema.OnderhoudsopdrachtZoekCriteria
             {
                 ID = onderhoudswerkzaamheden.Onderhoudsopdracht.ID
             };
-            var onderhoudsopdrachten = agentBS.GetOnderhoudsopdrachtenBy(zoekCriteria);
+            var onderhoudsopdrachten = _agentBS.GetOnderhoudsopdrachtenBy(zoekCriteria);
+            if (onderhoudsopdrachten.Count == 0)
+            {
+                FunctionalErrorDetail error = new FunctionalErrorDetail { Message = "Geen onderhouds opdrachten gevonden" };
+                throw new FaultException<FunctionalErrorDetail[]>(new[] { error });
+            }
             var onderhoudsopdracht = onderhoudsopdrachten.First();
             if (onderhoudsopdracht.APK)
             {
@@ -239,8 +292,12 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
                 };
 
                 onderhoudsopdracht.Voertuig.Status = "Klaar";
-
-                steekproef = agentIS.SendAPKKeuringsverzoek(onderhoudsopdracht.Voertuig, garage, keuringsverzoek).Steekproef;
+                var voertuigSearchCriteria = new Schema.VoertuigenSearchCriteria
+                {
+                    ID = onderhoudsopdracht.Voertuig.ID
+                };
+                onderhoudsopdracht.Voertuig = _agentBS.GetVoertuigBy(voertuigSearchCriteria).First();
+                steekproef = _agentIS.SendAPKKeuringsverzoek(onderhoudsopdracht.Voertuig, garage, keuringsverzoek).Steekproef;
             }
 
             if (steekproef == null)
@@ -248,8 +305,8 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
                 onderhoudsopdracht.Voertuig.Status = "Afgemeld";
             }
             
-            agentBS.UpdateVoertuig(onderhoudsopdracht.Voertuig);
-            agentBS.VoegOnderhoudswerkzaamhedenToe(onderhoudswerkzaamheden);
+            _agentBS.UpdateVoertuig(onderhoudsopdracht.Voertuig);
+            _agentBS.VoegOnderhoudswerkzaamhedenToe(onderhoudswerkzaamheden);
             return steekproef;
         }
 

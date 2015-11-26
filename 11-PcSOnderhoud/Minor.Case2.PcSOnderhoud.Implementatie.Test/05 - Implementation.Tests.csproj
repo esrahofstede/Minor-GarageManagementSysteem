@@ -62,11 +62,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="HaalVoertuigenOpVoorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GetAllLeaseMaatschappijenTest.cs" />
     <Compile Include="GetAllVoertuigenByTest.cs" />
     <Compile Include="GetHuidigeOnderhoudsopdrachtByTest.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="VoegOnderhoudswerkzaamhedenToe.cs" />
     <Compile Include="VoegVoertuigMetKlantToeTest.cs" />
     <Compile Include="VoegOnderhoudsopdrachtToeTest.cs" />
   </ItemGroup>

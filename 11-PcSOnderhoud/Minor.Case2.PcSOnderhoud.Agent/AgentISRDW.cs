@@ -15,7 +15,7 @@ namespace Minor.Case2.PcSOnderhoud.Agent
     /// <summary>
     /// Deze agent is verantwoordelijk voor de communicatie met de ISRDWService
     /// </summary>
-    public class AgentISRDW
+    public class AgentISRDW : IAgentISRDW
     {
         private ServiceFactory<IISRDWService> _factory;
         /// <summary>
