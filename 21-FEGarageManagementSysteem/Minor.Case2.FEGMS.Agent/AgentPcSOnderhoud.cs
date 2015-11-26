@@ -56,15 +56,8 @@ namespace Minor.Case2.FEGMS.Agent
         /// <param name="voertuig">Voertuig and Klant</param>
         public void VoegVoertuigMetKlantToe(Voertuig voertuig)
         {
-            try
-            {
-                var proxy = _factory.CreateAgent();
-                proxy.VoegVoertuigMetKlantToe(voertuig);
-            }
-            catch (FaultException ex)
-            {
-
-            }
+            var proxy = _factory.CreateAgent();
+            proxy.VoegVoertuigMetKlantToe(voertuig);
         }
 
         /// <summary>

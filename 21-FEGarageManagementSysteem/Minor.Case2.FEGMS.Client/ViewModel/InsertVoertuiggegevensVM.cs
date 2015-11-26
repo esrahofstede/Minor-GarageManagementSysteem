@@ -15,6 +15,7 @@ namespace Minor.Case2.FEGMS.Client.ViewModel
         public string Type { get; set; }
         public IEnumerable<SelectListItem> Voertuigen { get; set; }
         public string SelectedKenteken { get; set; }
+        [Display(Name = "Bestaand voertuig")]
         public bool Exist { get; set; }
     }
 }
