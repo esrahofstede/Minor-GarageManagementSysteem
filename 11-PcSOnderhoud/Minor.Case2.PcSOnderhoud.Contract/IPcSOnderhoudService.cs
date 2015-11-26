@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using Minor.Case2.Exceptions.V1.Schema;
 using AgentSchema = Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema.Agent;
 using Schema = Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
 
@@ -13,6 +14,7 @@ namespace Minor.Case2.PcSOnderhoud.Contract
     public interface IPcSOnderhoudService
     {
         [OperationContract]
+        //[FaultContract(typeof(FunctionalErrorDetail[]))]
         Schema.KlantenCollection GetAllLeasemaatschappijen();
 
         [OperationContract]
@@ -27,8 +29,8 @@ namespace Minor.Case2.PcSOnderhoud.Contract
         [OperationContract]
         void VoegOnderhoudsopdrachtToe(Schema.Onderhoudsopdracht onderhoudsopdracht);
 
-        [OperationContract]
-        bool MeldVoertuigKlaar(Schema.Voertuig voertuig, AgentSchema.Garage garage);
+        //[OperationContract]
+        //bool MeldVoertuigKlaar(Schema.Voertuig voertuig, AgentSchema.Garage garage);
 
         [OperationContract]
         Schema.Onderhoudsopdracht GetHuidigeOnderhoudsopdrachtBy(Schema.OnderhoudsopdrachtZoekCriteria searchCriteria);

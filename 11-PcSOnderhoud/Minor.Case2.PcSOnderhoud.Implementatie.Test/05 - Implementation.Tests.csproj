@@ -66,6 +66,7 @@
     <Compile Include="GetAllLeaseMaatschappijenTest.cs" />
     <Compile Include="GetAllVoertuigenByTest.cs" />
     <Compile Include="GetHuidigeOnderhoudsopdrachtByTest.cs" />
+    <Compile Include="UnitTest1.cs" />
     <Compile Include="VoegVoertuigMetKlantToeTest.cs" />
     <Compile Include="VoegOnderhoudsopdrachtToeTest.cs" />
   </ItemGroup>

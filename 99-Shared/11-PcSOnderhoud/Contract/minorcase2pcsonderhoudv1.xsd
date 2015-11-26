@@ -66,40 +66,25 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="MeldVoertuigKlaar">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="voertuig" nillable="true" xmlns:q8="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q8:Voertuig" />
-        <xs:element minOccurs="0" name="garage" nillable="true" xmlns:q9="urn:minor-case2-isrijksdienstwegverkeer:v1:schema" type="q9:Garage" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="MeldVoertuigKlaarResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="MeldVoertuigKlaarResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="GetHuidigeOnderhoudsopdrachtBy">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="searchCriteria" nillable="true" xmlns:q10="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q10:OnderhoudsopdrachtZoekCriteria" />
+        <xs:element minOccurs="0" name="searchCriteria" nillable="true" xmlns:q8="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q8:OnderhoudsopdrachtZoekCriteria" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetHuidigeOnderhoudsopdrachtByResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="GetHuidigeOnderhoudsopdrachtByResult" nillable="true" xmlns:q11="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q11:Onderhoudsopdracht" />
+        <xs:element minOccurs="0" name="GetHuidigeOnderhoudsopdrachtByResult" nillable="true" xmlns:q9="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q9:Onderhoudsopdracht" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="VoegOnderhoudswerkzaamhedenToe">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="onderhoudswerkzaamheden" nillable="true" xmlns:q12="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q12:Onderhoudswerkzaamheden" />
-        <xs:element minOccurs="0" name="garage" nillable="true" xmlns:q13="urn:minor-case2-isrijksdienstwegverkeer:v1:schema" type="q13:Garage" />
+        <xs:element minOccurs="0" name="onderhoudswerkzaamheden" nillable="true" xmlns:q10="urn:minor-case2-bsvoertuigenklantbeheer:v1:schema" type="q10:Onderhoudswerkzaamheden" />
+        <xs:element minOccurs="0" name="garage" nillable="true" xmlns:q11="urn:minor-case2-isrijksdienstwegverkeer:v1:schema" type="q11:Garage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

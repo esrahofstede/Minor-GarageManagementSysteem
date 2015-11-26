@@ -68,6 +68,8 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
         /// <summary>
         /// Deze methode haalt alle voertuigen op die voldoen aan de ingevulde criteria. Als geen voertuigen gevonden zijn, 
         /// wordt een lege VoertuigenCollection verstuurd
+        /// Functionele fouten worden doorgestuurd naar de aanroeper
+        /// Technische fouten worden doorgestuurd naar de aanroeper
         /// </summary>
         /// <param name="searchCriteria">De criteria waarop gezocht kan wroden naar een voertuig</param>
         /// <returns>Alle voertuigen die voldoen aan de gestelde criteria</returns>
@@ -109,6 +111,9 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
                 };
                 voertuigen = _agentBS.GetVoertuigBy(searchCriteria);
 
+            } else if (filteredPersonen.Count > 1)
+            {
+                return null;
             }
             return voertuigen;
         }
@@ -116,6 +121,8 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
         /// <summary>
         /// Deze methode stuurt een nieuwe onderhoudsopdracht naar de BS
         /// Het is verplicht om een onderzoeksopdracht met daarin een voertuig op te geven
+        /// Functionele fouten worden doorgestuurd naar de aanroeper
+        /// Technische fouten worden doorgestuurd naar de aanroeper
         /// </summary>
         /// <param name="onderhoudsopdracht">De onderzoekopdracht die verstuurt wordt, met daarbij het ook het voertuig</param>
         public void VoegOnderhoudsopdrachtToe(Schema.Onderhoudsopdracht onderhoudsopdracht)
@@ -144,34 +151,46 @@ namespace Minor.Case2.PcSOnderhoud.Implementation
             }
         }
 
-        public bool MeldVoertuigKlaar(Schema.Voertuig voertuig, Garage garage)
-        {
-            if (voertuig == null || garage == null)
-            {
-                return false;
-            }
-            AgentBSVoertuigEnKlantBeheer agentBS = new AgentBSVoertuigEnKlantBeheer();
-            AgentISRDW agentIS = new AgentISRDW();
-            
-            Keuringsverzoek keuringsverzoek = new Keuringsverzoek
-            {
-                Kilometerstand = 100000,
-                Date = DateTime.Now, 
-                CorrolatieId = Guid.NewGuid().ToString()
-            };
-            voertuig.Status = "Klaar";
-            
-            bool steekproef = agentIS.SendAPKKeuringsverzoek(voertuig, garage, keuringsverzoek).Steekproef;
-            if (!steekproef)
-            {
-                voertuig.Status = "Afgemeld";
-            }
-            agentBS.UpdateVoertuig(voertuig);
-            return steekproef;
-        }
+        //public bool MeldVoertuigKlaar(Schema.Voertuig voertuig, Garage garage)
+        //{
+        //    if (voertuig == null || garage == null)
+        //    {
+        //        return false;
+        //    }
+        //    AgentBSVoertuigEnKlantBeheer agentBS = new AgentBSVoertuigEnKlantBeheer();
+        //    AgentISRDW agentIS = new AgentISRDW();
 
+        //    Keuringsverzoek keuringsverzoek = new Keuringsverzoek
+        //    {
+        //        Kilometerstand = 100000,
+        //        Date = DateTime.Now, 
+        //        CorrolatieId = Guid.NewGuid().ToString()
+        //    };
+        //    voertuig.Status = "Klaar";
+
+        //    bool steekproef = agentIS.SendAPKKeuringsverzoek(voertuig, garage, keuringsverzoek).Steekproef;
+        //    if (!steekproef)
+        //    {
+        //        voertuig.Status = "Afgemeld";
+        //    }
+        //    agentBS.UpdateVoertuig(voertuig);
+        //    return steekproef;
+        //}
+        /// <summary>
+        /// Deze methode zoek de huidigeonderhoudsopdracht op uit de BS
+        /// Uit de lijst met onderzoeksopdrachten wordt de niewste opdracht teruggegeven
+        /// Het is verplicht om zoekcriteria op te geven.
+        /// Functionele fouten worden doorgestuurd naar de aanroeper
+        /// Technische fouten worden doorgestuurd naar de aanroeper
+        /// </summary>
+        /// <param name="searchCriteria">De criteria waarop gezocht moet worden in de BS</param>
+        /// <returns></returns>
         public Schema.Onderhoudsopdracht GetHuidigeOnderhoudsopdrachtBy(Schema.OnderhoudsopdrachtZoekCriteria searchCriteria)
         {
+            if (searchCriteria == null)
+            {
+                throw new FaultException("SearchCriteria mag niet nul zijn");
+            }
             try
             {
                 var onderhoudsopdrachten = _agentBS.GetOnderhoudsopdrachtenBy(searchCriteria);
