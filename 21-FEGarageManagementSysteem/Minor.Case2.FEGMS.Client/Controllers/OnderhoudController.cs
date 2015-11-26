@@ -189,8 +189,6 @@ namespace Minor.Case2.FEGMS.Client.Controllers
             {
                 HttpCookie voertuigenCookie = Request.Cookies.Get("VoertuiggegevensExisting");
                 var voertuigen = new JavaScriptSerializer().Deserialize<Voertuig[]>(voertuigenCookie.Value);
-                voertuigenCookie.Expires = DateTime.Now.AddDays(-1);
-                Response.Cookies.Add(voertuigenCookie);
 
                 model.Voertuigen = voertuigen.Select(voertuig => new SelectListItem { Text = voertuig.Kenteken, Value = voertuig.Kenteken });
                 model.Exist = true;
@@ -255,9 +253,15 @@ namespace Minor.Case2.FEGMS.Client.Controllers
                     HttpCookie voertuiggegevensCookie = new HttpCookie("Voertuiggegevens", serializedVoertuiggegevens);
                     Response.Cookies.Add(voertuiggegevensCookie);
 
+
                     var voertuig = Mapper.MapToVoertuig(leasemaatschappijgegevens, klantgegevens, model);
 
                     _agent.VoegVoertuigMetKlantToe(voertuig);
+
+                    HttpCookie voertuigenExistCookie = Request.Cookies.Get("VoertuiggegevensExisting");
+                    voertuigenExistCookie.Expires = DateTime.Now.AddDays(-1);
+                    Response.Cookies.Add(voertuigenExistCookie);
+
                 }
                 else
                 {

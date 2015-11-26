@@ -318,6 +318,7 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
 
             Helper.SetCookie("Klantgegevens", controller);
             Helper.SetCookie("LeasemaatschappijGegevens", controller);
+            Helper.SetCookie("VoertuiggegevensExisting", controller);
 
             // Act
             RedirectToRouteResult result = controller.InsertVoertuiggegevens(voertuiggegevens) as RedirectToRouteResult;
@@ -345,6 +346,7 @@ namespace Minor.Case2.FEGMS.Client.Tests.Controllers
             InsertVoertuiggegevensVM voertuiggegevens = DummyData.GetVoertuiggegevens();
             controller.ControllerContext = Helper.CreateContext(controller);
             Helper.SetCookie("Klantgegevens", controller);
+            Helper.SetCookie("VoertuiggegevensExisting", controller);
 
             // Act
             RedirectToRouteResult result = controller.InsertVoertuiggegevens(voertuiggegevens) as RedirectToRouteResult;
