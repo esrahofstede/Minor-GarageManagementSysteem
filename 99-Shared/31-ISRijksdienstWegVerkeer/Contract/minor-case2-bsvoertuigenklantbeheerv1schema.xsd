@@ -10,14 +10,14 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="Merk" nillable="true" type="xs:string">
+      <xs:element minOccurs="0" name="Merk" nillable="true" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
             <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element name="Type" nillable="true" type="xs:string">
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string">
         <xs:annotation>
           <xs:appinfo>
             <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
