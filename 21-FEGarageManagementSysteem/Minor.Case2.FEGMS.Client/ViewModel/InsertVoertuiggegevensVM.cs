@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Minor.Case2.FEGMS.Client.ViewModel
 {
@@ -15,5 +16,7 @@ namespace Minor.Case2.FEGMS.Client.ViewModel
         public string Merk { get; set; }
         [Required(ErrorMessage = "{0} is een verplicht veld voor de voertuiggegevens")]
         public string Type { get; set; }
+        public IEnumerable<SelectListItem> Voertuigen { get; set; }
+        public long SelectedVoertuigID { get; set; }
     }
 }

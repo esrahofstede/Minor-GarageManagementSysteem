@@ -4,6 +4,7 @@ using Minor.Case2.BSVoertuigenEnKlantBeheer.V1.Schema;
 using Moq;
 using Minor.ServiceBus.Agent.Implementation;
 using Minor.Case2.ISRijksdienstWegverkeerService.V1.Schema;
+using System.Linq;
 
 namespace Minor.Case2.FEGMS.Agent.Tests
 {
@@ -174,6 +175,28 @@ namespace Minor.Case2.FEGMS.Agent.Tests
             Assert.IsTrue(result.Value);
             factoryMock.Verify(factory => factory.CreateAgent());
             serviceMock.Verify(service => service.VoegOnderhoudswerkzaamhedenToe(It.IsAny<Onderhoudswerkzaamheden>(), It.IsAny<Garage>()));
+        }
+
+        [TestMethod]
+        public void HaalVoertuigenOpVoorTest()
+        {
+            //Arrange
+            var serviceMock = new Mock<IPcSOnderhoudService>(MockBehavior.Strict);
+            serviceMock.Setup(service => service.HaalVoertuigenOpVoor(It.IsAny<Persoon>())).Returns(DummyData.GetVoertuigenCollection());
+            var factoryMock = new Mock<ServiceFactory<IPcSOnderhoudService>>(MockBehavior.Strict);
+            factoryMock.Setup(factory => factory.CreateAgent()).Returns(serviceMock.Object);
+
+            AgentPcSOnderhoud agent = new AgentPcSOnderhoud(factoryMock.Object);
+
+            //Act
+            var voertuigen = agent.HaalVoertuigenOpVoor(It.IsAny<Persoon>());
+
+            //Assert
+            Assert.AreEqual(1, voertuigen.Count);
+            Assert.AreEqual("DS-344-S", voertuigen.First().Kenteken);
+            
+            factoryMock.Verify(factory => factory.CreateAgent());
+            serviceMock.Verify(service => service.HaalVoertuigenOpVoor(It.IsAny<Persoon>()));
         }
     }
 }

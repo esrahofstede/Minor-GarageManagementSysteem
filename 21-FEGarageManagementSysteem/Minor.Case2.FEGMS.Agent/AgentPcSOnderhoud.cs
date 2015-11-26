@@ -157,13 +157,27 @@ namespace Minor.Case2.FEGMS.Agent
                 };
 
                 var proxy = _factory.CreateAgent();
-                return  proxy.VoegOnderhoudswerkzaamhedenToe(werkzaamheden, garage);
+                return proxy.VoegOnderhoudswerkzaamhedenToe(werkzaamheden, garage);
             }
             catch (FaultException ex)
             {
 
             }
             return false;
+        }
+
+        public VoertuigenCollection HaalVoertuigenOpVoor(Persoon persoon)
+        {
+            try
+            {
+                var proxy = _factory.CreateAgent();
+                return proxy.HaalVoertuigenOpVoor(persoon);
+            }
+            catch (FaultException ex)
+            {
+
+            }
+            return null;
         }
 
     }

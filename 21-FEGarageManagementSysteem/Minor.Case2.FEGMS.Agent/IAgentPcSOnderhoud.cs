@@ -12,5 +12,6 @@ namespace Minor.Case2.FEGMS.Agent
         KlantenCollection GetAllLeasemaatschappijen();
         Onderhoudsopdracht GetOnderhoudsopdrachtBy(OnderhoudsopdrachtZoekCriteria criteria);
         bool? VoegOnderhoudswerkzaamhedenToe(Onderhoudswerkzaamheden werkzaamheden);
+        VoertuigenCollection HaalVoertuigenOpVoor(Persoon persoon);
     }
 }
